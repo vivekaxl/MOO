@@ -1,0 +1,46 @@
+Experiment: 
+Problem Name: ant-1.4
+Algorithm: GALE
+NumEval: Median: 207.000  IQR: 0.000
+RunTime: Median: 4.318  IQR: 0.000
+pd: Median: 0.000  IQR: 0.000
+pf: Median: 0.000  IQR: 0.000
+prec: Median: 84.000  IQR: 0.000
+Default pd: Median: 81.000  IQR: 0.000
+Default pf: Median: 19.000  IQR: 0.000
+Default prec: Median: 0.000  IQR: 0.000
+
+
+Algorithm: NSGAII
+NumEval: Median: 4000.000  IQR: 0.000
+RunTime: Median: 26.364  IQR: 0.000
+pd: Median: 15.000  IQR: 0.000
+pf: Median: 27.000  IQR: 0.000
+prec: Median: 10.000  IQR: 0.000
+Default pd: Median: 83.000  IQR: 0.000
+Default pf: Median: 17.000  IQR: 0.000
+Default prec: Median: 0.000  IQR: 0.000
+
+
+Algorithm: SPEA2
+NumEval: Median: 4000.000  IQR: 0.000
+RunTime: Median: 59.492  IQR: 0.000
+pd: Median: 5.000  IQR: 0.000
+pf: Median: 12.000  IQR: 0.000
+prec: Median: 7.000  IQR: 0.000
+Default pd: Median: 78.000  IQR: 0.000
+Default pf: Median: 22.000  IQR: 0.000
+Default prec: Median: 0.000  IQR: 0.000
+
+
+Algorithm: DE
+NumEval: Median: 4000.000  IQR: 0.000
+RunTime: Median: 26.284  IQR: 0.000
+pd: Median: 100.000  IQR: 0.000
+pf: Median: 0.000  IQR: 0.000
+prec: Median: 100.000  IQR: 0.000
+Default pd: Median: 82.000  IQR: 0.000
+Default pf: Median: 18.000  IQR: 0.000
+Default prec: Median: 0.000  IQR: 0.000
+
+

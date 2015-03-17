@@ -29,6 +29,7 @@
 
 import numpy 
 import math
+from sk import *
 
 def avg(list):
     return (float)(sum(list))/(float)(len(list))
@@ -238,6 +239,24 @@ def spacing(dataset):
     d_bar = avg(d_)
     ssm =   ((1 / float(len(dataset) - 1)) * sum([(d_bar - d_i)**2 for d_i in d_]))**0.5
     return ssm
+
+
+def callrdivdemo(eraCollector):
+  #print eraCollector
+  #print "callrdivdemo %d"%len(eraCollector.keys())
+  keylist = eraCollector.keys()
+  #print keylist
+  variant = len(keylist)
+  #print variant
+  rdivarray=[]
+  for y in xrange(variant):
+      #print "Length of array: %f"%len(eraCollector[keylist[y]][x])
+      temp = eraCollector[keylist[y]]
+      #print temp
+      temp.insert(0,str(keylist[y]))
+      #print temp
+      rdivarray.append(temp)
+  rdivDemo(rdivarray)
   
 """
 def losstest():

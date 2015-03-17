@@ -55,6 +55,9 @@ reportOnly = False
 chartOnly = False
 binsOnly = False
 noReports = True
+dfreportOnly = False
+dfchartOnly = False
+
 for i,arg in enumerate(sys.argv):
     if arg == "-n" or arg == "-N":
         repeats = sys.argv[i+1]
@@ -72,6 +75,12 @@ for i,arg in enumerate(sys.argv):
     if arg == "-binsOnly":
         binsOnly = True
         reportOnly = True
+    if arg == "-defectreport":
+        dfreportOnly = True
+    if arg == "-defectchart":
+        dfchartOnly = True
+
+
         
         
 # Build new initial populations if suggested.  Before tests can be performed, a problem requires an initial dataset.
@@ -90,11 +99,18 @@ elif reportOnly: reports = [jmoo_stats_report(tests)]
 elif noReports: reports = []
 else: reports = [jmoo_stats_report(tests), jmoo_decision_report(tests), jmoo_chart_report(tests)]
 
+if dfreportOnly is True:
+    reports = [jmoo_df_report("stats")]
+if dfchartOnly is True:
+    reports = [jmoo_df_report("charts")]
+
+
 # Associate core with tests and reports
 core = JMOO(tests, reports)
 
 # Perform the tests
-if not reportOnly: core.doDefectPrediction()
+if not reportOnly and not dfreportOnly and not dfchartOnly:
+    core.doDefectPrediction()
 
 # Prepare the reports
 core.doReports(tag)

@@ -58,11 +58,9 @@ def chosen_one(problem, lst):
         return min(new)
 
     chosen = lst[0]
-    print "><><<>>>>>>>>>>>>>>>>>>>>>: ", chosen, sum(chosen)
     for element in lst:
         if sum(chosen) < sum(element):
             chosen = element
-            print "###############################################Chosen changed: ", sum(element)
 
     return chosen
 
@@ -79,6 +77,7 @@ from jmoo_core import *
 from joes_stats_suite import *
 from joes_moo_charter import *
 from joes_decision_binner import *
+from jmoo_defect_chart import *
 import time,sys
 
 class jmoo_stats_report:
@@ -98,11 +97,28 @@ class jmoo_chart_report:
         self.tests = tests
     def doit(self,tagnote=""):
         joes_charter_reporter(self.tests.problems, self.tests.algorithms, tag=tagnote)
+
+class jmoo_df_report:
+    def __init__(self, tag="stats"):
+        self.filename = DEFECT_PREDICT_PREFIX + "DefectPredict.xml"
+        self.tag = tag
+    def doit(self, tagnote=""):
+        if self.tag == "stats":
+            self.doStatistics()
+        elif self.tag == "charts":
+            self.doCharts()
+    def doStatistics(self):
+        parseXML(self.filename,self.tag)
+    def doCharts(self):
+        parseXML(self.filename,self.tag)
+
         
 class jmoo_test:
     def __init__(self,problems,algorithms):
         self.problems = problems
         self.algorithms = algorithms
+    def __str__(self):
+        return str(self.problems) + str(self.algorithms)
         
 class JMOO:
     def __init__(self,tests,reports):
@@ -112,6 +128,7 @@ class JMOO:
     def doTests(self):
         
         sc2 = open(DATA_PREFIX + SUMMARY_RESULTS + DATA_SUFFIX, 'w')
+
         # Main control loop
         representatives = []                        # List of resulting final generations (stat boxe datatype)
         zOut = "<Experiment>\n"
@@ -248,6 +265,7 @@ class JMOO:
                 zOut += "</Algorithm>\n"
             zOut += "</Problem>\n"
         zOut += "</Experiment>\n"
+
         zOutFile = open("ExperimentRecords.xml", 'w')
         zOutFile.write(zOut)
 
@@ -269,19 +287,22 @@ class JMOO:
     def doDefectPrediction(self):
 
         sc2 = open(DATA_PREFIX + SUMMARY_RESULTS + DATA_SUFFIX, 'w')
+        defect_p = open(DEFECT_PREDICT_PREFIX + "DefectPredict.xml", "w")
         # Main control loop
         representatives = []                        # List of resulting final generations (stat boxe datatype)
-        zOut = "<Experiment>\n"
+        #zOut = "<Experiment>\n"
         vOut = "<Experiment>\n"
         for problem in self.tests.problems:
 
-            zOut += "<Problem name = '" + problem.name + "'>\n"
+
+
+            #zOut += "<Problem name = '" + problem.name + "'>\n"
             vOut += "<Problem name = '" + problem.name + "'>\n"
 
             for algorithm in self.tests.algorithms:
 
 
-                zOut += "<Algorithm name = '" + algorithm.name + "'>\n"
+                #zOut += "<Algorithm name = '" + algorithm.name + "'>\n"
                 vOut += "<Algorithm name = '" + algorithm.name + "'>\n"
 
                 print "#<------- " + problem.name + " + " + algorithm.name + " ------->#"
@@ -316,7 +337,7 @@ class JMOO:
                     parameters = ["pd", "pf", "prec"]
 
                     # Run
-                    zOut += "<Run id = '" + str(repeat+1) + "'>\n"
+                    #zOut += "<Run id = '" + str(repeat+1) + "'>\n"
                     vOut += "<Run id = '" + str(repeat+1) + "'>\n"
 
 
@@ -343,7 +364,13 @@ class JMOO:
                     for i,a in enumerate(result):
                         vOut += "\t<" + parameters[i] + "> " + str(result[i]) + "</" + parameters[i] + "> \n"
                     vOut += "</Testing>\n"
-                    vOut += "</Summary>"
+                    vOut += "<Default>\n"
+                    result = problem.default()
+                    for i,a in enumerate(result):
+                        vOut += "\t<" + parameters[i] + "> " + str(result[i]) + "</" + parameters[i] + "> \n"
+                    vOut += "</Default>\n"
+                    vOut += "</Summary\n>"
+
 
 
                     # Record
@@ -420,22 +447,21 @@ class JMOO:
 
 
                     # Finish
-                    zOut += "</Run>\n"
-                    vOut += "</Run>\n\n"
+                    #zOut += "</Run>\n"
+                    vOut += "</Run>\n"
                     print " # Finished: Celebrate! # " + " Time taken: " + str("%10.5f" % (end-start)) + " seconds."
 
-                zOut += "</Algorithm>\n"
+                # zOut += "</Algorithm>\n"
                 vOut += "</Algorithm>\n"
-            zOut += "</Problem>\n"
+            # zOut += "</Problem>\n"
             vOut += "</Problem>\n"
 
         vOut += "</Experiment>\n"
         vOutFile = open("DefectPrediction.xml", 'w')
         vOutFile.write(vOut)
 
-        zOut += "</Experiment>\n"
-        zOutFile = open("ExperimentRecords.xml", 'w')
-        zOutFile.write(zOut)
+        #zOut += "</Experiment>\n"
+        defect_p.write(vOut)
                     
                     
                     

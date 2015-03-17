@@ -9,22 +9,22 @@
 <Tuning>ant-1.4</Tuning>
 <Testing>ant-1.5</Testing>
 <Training_Tuning>
-	<pd> 25.0</pd> 
-	<pf> 7.0</pf> 
-	<prec> 42.0</prec> 
+	<pd> 25.0</pd>
+	<pf> 7.0</pf>
+	<prec> 42.0</prec>
 </Training_Tuning>
 <Testing>
-	<pd> 0</pd> 
-	<pf> 0</pf> 
-	<prec> 84</prec> 
+	<pd> 0</pd>
+	<pf> 0</pf>
+	<prec> 84</prec>
 </Testing>
 <Default>
-	<pd> 81</pd> 
-	<pf> 19</pf> 
-	<prec> 0</prec> 
-<Default>
-</Summary></Run>
-
+	<pd> 81</pd>
+	<pf> 19</pf>
+	<prec> 0</prec>
+</Default>
+</Summary>
+</Run>
 </Algorithm>
 <Algorithm name = 'NSGAII'>
 <Run id = '1'>
@@ -35,22 +35,21 @@
 <Tuning>ant-1.4</Tuning>
 <Testing>ant-1.5</Testing>
 <Training_Tuning>
-	<pd> 45.0</pd> 
-	<pf> 25.0</pf> 
-	<prec> 26.0</prec> 
+	<pd> 45.0</pd>
+	<pf> 25.0</pf>
+	<prec> 26.0</prec>
 </Training_Tuning>
 <Testing>
-	<pd> 15</pd> 
-	<pf> 27</pf> 
-	<prec> 10</prec> 
+	<pd> 15</pd>
+	<pf> 27</pf>
+	<prec> 10</prec>
 </Testing>
 <Default>
-	<pd> 83</pd> 
-	<pf> 17</pf> 
-	<prec> 0</prec> 
-<Default>
+	<pd> 83</pd>
+	<pf> 17</pf>
+	<prec> 0</prec>
+</Default>
 </Summary></Run>
-
 </Algorithm>
 <Algorithm name = 'SPEA2'>
 <Run id = '1'>
@@ -61,22 +60,21 @@
 <Tuning>ant-1.4</Tuning>
 <Testing>ant-1.5</Testing>
 <Training_Tuning>
-	<pd> 25.0</pd> 
-	<pf> 12.0</pf> 
-	<prec> 28.0</prec> 
+	<pd> 25.0</pd>
+	<pf> 12.0</pf>
+	<prec> 28.0</prec>
 </Training_Tuning>
 <Testing>
-	<pd> 5</pd> 
-	<pf> 12</pf> 
-	<prec> 7</prec> 
+	<pd> 5</pd>
+	<pf> 12</pf>
+	<prec> 7</prec>
 </Testing>
 <Default>
-	<pd> 78</pd> 
-	<pf> 22</pf> 
-	<prec> 0</prec> 
-<Default>
+	<pd> 78</pd>
+	<pf> 22</pf>
+	<prec> 0</prec>
+</Default>
 </Summary></Run>
-
 </Algorithm>
 <Algorithm name = 'DE'>
 <Run id = '1'>
@@ -87,22 +85,21 @@
 <Tuning>ant-1.4</Tuning>
 <Testing>ant-1.5</Testing>
 <Training_Tuning>
-	<pd> 100.0</pd> 
-	<pf> 0.0</pf> 
-	<prec> 100.0</prec> 
+	<pd> 100.0</pd>
+	<pf> 0.0</pf>
+	<prec> 100.0</prec>
 </Training_Tuning>
 <Testing>
-	<pd> 100</pd> 
-	<pf> 0</pf> 
-	<prec> 100</prec> 
+	<pd> 100</pd>
+	<pf> 0</pf>
+	<prec> 100</prec>
 </Testing>
 <Default>
-	<pd> 82</pd> 
-	<pf> 18</pf> 
-	<prec> 0</prec> 
-<Default>
+	<pd> 82</pd>
+	<pf> 18</pf>
+	<prec> 0</prec>
+</Default>
 </Summary></Run>
-
 </Algorithm>
 </Problem>
 </Experiment>

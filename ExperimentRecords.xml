@@ -1,94 +1,41 @@
 <Experiment>
-<Problem name = 'ant-1.4'>
-<Algorithm name = 'NSGAII'>
-<Run id = '1'>
 <Summary>
-<NumEvals>2200</NumEvals>
-<RunTime>27.9703509808</RunTime>
-<IBD>0.88865140493</IBD>
-<IBS>0.0</IBS>
-<pd>0.0</pd>
-<pf>0.0</pf>
-<prec>84.0</prec>
-</Summary
-></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>26.2686178684</RunTime>
-<IBD>0.873063953568</IBD>
-<IBS>0.0</IBS>
-<pd>0.0</pd>
-<pf>0.0</pf>
-<prec>84.0</prec>
-</Summary
-></Run>
-</Algorithm>
-<Algorithm name = 'GALE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>113</NumEvals>
-<RunTime>3.95948791504</RunTime>
-<IBD>0.822671247749</IBD>
+<NumEvals>80</NumEvals>
+<RunTime>4.31814193726</RunTime>
+<IBD>0.826233525717</IBD>
 <IBS>0.0</IBS>
 <pd>100</pd>
 <pf>0</pf>
 <prec>100</prec>
 </Summary
 ></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>134</NumEvals>
-<RunTime>4.36642789841</RunTime>
-<IBD>0.840330109422</IBD>
-<IBS>0.0</IBS>
-<pd>0</pd>
-<pf>0</pf>
-<prec>84</prec>
-</Summary
-></Run>
 </Algorithm>
-<Algorithm name = 'SPEA2'>
-<Run id = '1'>
-<Summary>
-<NumEvals>2600</NumEvals>
-<RunTime>61.3451721668</RunTime>
-<IBD>0.881538037776</IBD>
-<IBS>0.0</IBS>
-<pd>0.0</pd>
-<pf>0.0</pf>
-<prec>84.0</prec>
-</Summary
-></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>53.9024729729</RunTime>
-<IBD>0.879359275614</IBD>
-<IBS>0.0</IBS>
-<pd>0.0</pd>
-<pf>0.0</pf>
-<prec>84.0</prec>
-</Summary
-></Run>
-</Algorithm>
-<Algorithm name = 'DE'>
-<Run id = '1'>
 <Summary>
 <NumEvals>3000</NumEvals>
-<RunTime>24.5183148384</RunTime>
-<IBD>0.728372365533</IBD>
+<RunTime>26.3644979</RunTime>
+<IBD>0.87998845086</IBD>
 <IBS>0.0</IBS>
-<pd>100</pd>
-<pf>0</pf>
-<prec>100</prec>
+<pd>0.0</pd>
+<pf>0.0</pf>
+<prec>84.0</prec>
 </Summary
 ></Run>
-<Run id = '2'>
+</Algorithm>
 <Summary>
-<NumEvals>3200</NumEvals>
-<RunTime>26.8686020374</RunTime>
-<IBD>0.755285321908</IBD>
+<NumEvals>3000</NumEvals>
+<RunTime>59.4919171333</RunTime>
+<IBD>0.876145384438</IBD>
+<IBS>0.0</IBS>
+<pd>0.0</pd>
+<pf>0.0</pf>
+<prec>84.0</prec>
+</Summary
+></Run>
+</Algorithm>
+<Summary>
+<NumEvals>3000</NumEvals>
+<RunTime>26.2841238976</RunTime>
+<IBD>0.764620686331</IBD>
 <IBS>0.0</IBS>
 <pd>100</pd>
 <pf>0</pf>

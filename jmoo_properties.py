@@ -38,9 +38,9 @@ from tera_datasets import *
 
 # JMOO Experimental Definitions
 algorithms = [
-              
-              jmoo_NSGAII(),
               jmoo_GALE(),
+              jmoo_NSGAII(),
+
               jmoo_SPEA2(),
     jmoo_DE()
               
@@ -92,7 +92,7 @@ build_new_pop = False                                       # Whether or not to 
 
 
 # JMOO Universal Properties
-repeats = 2   #Repeats of each MOEA
+repeats = 1   #Repeats of each MOEA
 MU      = 100   #Population Size
 PSI     = 20    #Maximum number of generations
 
@@ -107,6 +107,7 @@ CF = 0.3 # prob of cross over
 
 # File Names
 DATA_PREFIX        = "data/"
+DEFECT_PREDICT_PREFIX = "defect_prediction/"
 
 "decision bin tables are a list of decisions and objective scores for a certain model"
 DECISION_BIN_TABLE = "decision_bin_table"

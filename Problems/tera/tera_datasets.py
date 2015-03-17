@@ -126,11 +126,15 @@ def readDataset(file, properties):
     return np.array(dataread), properties
 
 def evaluator(input, properties):
-    
-    mss = int(round(input[0]))
-    msl = int(round(input[1]))
-    mxf = float(input[2])
-    threshold = float(input[3])
+
+
+    if properties.type != "default":
+        mss = int(round(input[0]))
+        msl = int(round(input[1]))
+        mxf = float(input[2])
+        threshold = float(input[3])
+    else:
+        threshold = 1
 
 
     data_train = ([], [])
@@ -143,7 +147,10 @@ def evaluator(input, properties):
     indep = np.array(map(lambda x: np.array(x[:-1]), data_train[0]))
     dep   = np.array(map(lambda x: np.array(x[-1:]), data_train[0]))
     from sklearn.tree import DecisionTreeRegressor
-    clf = DecisionTreeRegressor(max_features=mxf, min_samples_split=mss, min_samples_leaf=msl)
+    if properties.type == "default":
+        clf = DecisionTreeRegressor()
+    else:
+        clf = DecisionTreeRegressor(max_features=mxf, min_samples_split=mss, min_samples_leaf=msl)
     # random_state = 0, min_samples_split = mss, max_depth = md, max_leaf_nodes = mln, criterion = cri, min_samples_leaf = msl)
     clf.fit(indep, dep)
     
@@ -167,10 +174,11 @@ def evaluator(input, properties):
         
 
 class Properties:
-    def __init__(self, name, test_file, train_file):
+    def __init__(self, name, test_file, train_file, type="Test"):
         self.dataset_name = name
         self.training_dataset = train_file
         self.test_dataset = test_file
+        self.type = type
 
 class xalan25(jmoo_problem):
     def __init__(prob):
@@ -824,6 +832,10 @@ class ant14(jmoo_problem):
             exit()
         output = evaluator(input, Properties(prob.name, "ant-1.5", ["ant-1.3"]))
         return output
+    def default(prob):
+        output = evaluator(input, Properties(prob.name, "ant-1.5", ["ant-1.3"], type="default"))
+        return output
+
 
 
     def evalConstraints(prob,input = None):
