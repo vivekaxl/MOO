@@ -1,0 +1,164 @@
+<Experiment>
+<Problem name = 'ant-1.4'>
+<Algorithm name = 'NSGAII'>
+<Run id = '1'>
+<Summary>
+<NumEvals>4000</NumEvals>
+<RunTime>27.9703509808</RunTime>
+<Training>ant-1.3</Training>
+<Tuning>ant-1.4</Tuning>
+<Testing>ant-1.5</Testing>
+<Training_Tuning>
+	<pd> 45.0</pd> 
+	<pf> 19.0</pf> 
+	<prec> 31.0</prec> 
+</Training_Tuning>
+<Testing>
+	<pd> 5</pd> 
+	<pf> 19</pf> 
+	<prec> 5</prec> 
+</Testing>
+</Summary></Run>
+
+<Run id = '2'>
+<Summary>
+<NumEvals>4000</NumEvals>
+<RunTime>26.2686178684</RunTime>
+<Training>ant-1.3</Training>
+<Tuning>ant-1.4</Tuning>
+<Testing>ant-1.5</Testing>
+<Training_Tuning>
+	<pd> 50.0</pd> 
+	<pf> 24.0</pf> 
+	<prec> 29.0</prec> 
+</Training_Tuning>
+<Testing>
+	<pd> 40</pd> 
+	<pf> 35</pf> 
+	<prec> 18</prec> 
+</Testing>
+</Summary></Run>
+
+</Algorithm>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>190</NumEvals>
+<RunTime>3.95948791504</RunTime>
+<Training>ant-1.3</Training>
+<Tuning>ant-1.4</Tuning>
+<Testing>ant-1.5</Testing>
+<Training_Tuning>
+	<pd> 100.0</pd> 
+	<pf> 0.0</pf> 
+	<prec> 100.0</prec> 
+</Training_Tuning>
+<Testing>
+	<pd> 100</pd> 
+	<pf> 0</pf> 
+	<prec> 100</prec> 
+</Testing>
+</Summary></Run>
+
+<Run id = '2'>
+<Summary>
+<NumEvals>218</NumEvals>
+<RunTime>4.36642789841</RunTime>
+<Training>ant-1.3</Training>
+<Tuning>ant-1.4</Tuning>
+<Testing>ant-1.5</Testing>
+<Training_Tuning>
+	<pd> 15.0</pd> 
+	<pf> 13.0</pf> 
+	<prec> 18.0</prec> 
+</Training_Tuning>
+<Testing>
+	<pd> 0</pd> 
+	<pf> 0</pf> 
+	<prec> 84</prec> 
+</Testing>
+</Summary></Run>
+
+</Algorithm>
+<Algorithm name = 'SPEA2'>
+<Run id = '1'>
+<Summary>
+<NumEvals>4000</NumEvals>
+<RunTime>61.3451721668</RunTime>
+<Training>ant-1.3</Training>
+<Tuning>ant-1.4</Tuning>
+<Testing>ant-1.5</Testing>
+<Training_Tuning>
+	<pd> 35.0</pd> 
+	<pf> 18.0</pf> 
+	<prec> 27.0</prec> 
+</Training_Tuning>
+<Testing>
+	<pd> 25</pd> 
+	<pf> 22</pf> 
+	<prec> 18</prec> 
+</Testing>
+</Summary></Run>
+
+<Run id = '2'>
+<Summary>
+<NumEvals>4000</NumEvals>
+<RunTime>53.9024729729</RunTime>
+<Training>ant-1.3</Training>
+<Tuning>ant-1.4</Tuning>
+<Testing>ant-1.5</Testing>
+<Training_Tuning>
+	<pd> 30.0</pd> 
+	<pf> 15.0</pf> 
+	<prec> 27.0</prec> 
+</Training_Tuning>
+<Testing>
+	<pd> 10</pd> 
+	<pf> 16</pf> 
+	<prec> 11</prec> 
+</Testing>
+</Summary></Run>
+
+</Algorithm>
+<Algorithm name = 'DE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>4000</NumEvals>
+<RunTime>24.5183148384</RunTime>
+<Training>ant-1.3</Training>
+<Tuning>ant-1.4</Tuning>
+<Testing>ant-1.5</Testing>
+<Training_Tuning>
+	<pd> 100.0</pd> 
+	<pf> 0.0</pf> 
+	<prec> 100.0</prec> 
+</Training_Tuning>
+<Testing>
+	<pd> 100</pd> 
+	<pf> 0</pf> 
+	<prec> 100</prec> 
+</Testing>
+</Summary></Run>
+
+<Run id = '2'>
+<Summary>
+<NumEvals>4000</NumEvals>
+<RunTime>26.8686020374</RunTime>
+<Training>ant-1.3</Training>
+<Tuning>ant-1.4</Tuning>
+<Testing>ant-1.5</Testing>
+<Training_Tuning>
+	<pd> 100.0</pd> 
+	<pf> 0.0</pf> 
+	<prec> 100.0</prec> 
+</Training_Tuning>
+<Testing>
+	<pd> 100</pd> 
+	<pf> 0</pf> 
+	<prec> 100</prec> 
+</Testing>
+</Summary></Run>
+
+</Algorithm>
+</Problem>
+</Experiment>
