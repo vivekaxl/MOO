@@ -27,38 +27,38 @@
       <file leaf-file-name="jmoo_interface.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jmoo_interface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1256" max-vertical-offset="1815">
-              <caret line="103" column="23" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1091" max-vertical-offset="1815">
+              <caret line="102" column="25" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jmoo_problems.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_problems.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="449" max-vertical-offset="25320">
-              <caret line="56" column="145" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="145" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jmoo_properties.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jmoo_properties.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1346" max-vertical-offset="1890">
-              <caret line="94" column="11" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.53271025" vertical-offset="480" max-vertical-offset="1890">
+              <caret line="52" column="45" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jmoo_stats_box.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
+      <file leaf-file-name="tera_datasets.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Problems/tera/tera_datasets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.925926" vertical-offset="683" max-vertical-offset="3660">
-              <caret line="72" column="38" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
+            <state vertical-scroll-proportion="11.666667" vertical-offset="4365" max-vertical-offset="14565">
+              <caret line="277" column="0" selection-start-line="277" selection-start-column="2" selection-end-line="315" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefectPredict_chart.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/defect_prediction/DefectPredict_chart.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -67,43 +67,9 @@
       <file leaf-file-name="jmoo_core.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jmoo_core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.6888888" vertical-offset="584" max-vertical-offset="7170">
-              <caret line="50" column="74" selection-start-line="50" selection-start-column="70" selection-end-line="50" selection-end-column="74" />
+            <state vertical-scroll-proportion="-25.355556" vertical-offset="4334" max-vertical-offset="7245">
+              <caret line="365" column="35" selection-start-line="365" selection-start-column="35" selection-end-line="365" selection-end-column="35" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefectPredict_chart.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/defect_prediction/DefectPredict_chart.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7996324" vertical-offset="0" max-vertical-offset="600">
-              <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jmoo_defect_chart.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_defect_chart.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.592592" vertical-offset="218" max-vertical-offset="2100">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jmoo_algorithms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_algorithms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3911" max-vertical-offset="4455">
-              <caret line="259" column="4" selection-start-line="259" selection-start-column="4" selection-end-line="259" selection-end-column="4" />
-              <folding>
-                <element signature="e#1065#1086#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -122,15 +88,16 @@
         <option value="$PROJECT_DIR$/DE/de_component.py" />
         <option value="$PROJECT_DIR$/jmoo_algorithms.py" />
         <option value="$PROJECT_DIR$/jmoo_individual.py" />
-        <option value="$PROJECT_DIR$/teratester.py" />
-        <option value="$PROJECT_DIR$/Problems/tera/tera_datasets.py" />
         <option value="$PROJECT_DIR$/utility.py" />
-        <option value="$PROJECT_DIR$/jmoo_properties.py" />
         <option value="$PROJECT_DIR$/defect_prediction/DefectPredict.xml" />
-        <option value="$PROJECT_DIR$/defect_prediction/DefectPredict_chart.txt" />
-        <option value="$PROJECT_DIR$/jmoo_defect_chart.py" />
-        <option value="$PROJECT_DIR$/jmoo_core.py" />
         <option value="$PROJECT_DIR$/jmoo_interface.py" />
+        <option value="$PROJECT_DIR$/defect_prediction/DefectPredict_report.txt" />
+        <option value="$PROJECT_DIR$/jmoo_core.py" />
+        <option value="$PROJECT_DIR$/teratester.py" />
+        <option value="$PROJECT_DIR$/jmoo_defect_chart.py" />
+        <option value="$PROJECT_DIR$/defect_prediction/DefectPredict_chart.txt" />
+        <option value="$PROJECT_DIR$/Problems/tera/tera_datasets.py" />
+        <option value="$PROJECT_DIR$/jmoo_properties.py" />
       </list>
     </option>
   </component>
@@ -177,6 +144,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="jmoo-jmoo_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jmoo-jmoo_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jmoo-jmoo_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tera" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -395,14 +376,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32942554" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33997655" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19513889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -478,16 +459,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_defect_prediction_properties.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="266" max-vertical-offset="1860">
-          <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
-          <folding>
-            <element signature="e#1078#1107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_fitness.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20036764" vertical-offset="431" max-vertical-offset="1140">
@@ -516,14 +487,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="2580">
           <caret line="42" column="10" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tera/ant-1.3.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1980">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -568,20 +531,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/teratester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46875" vertical-offset="0" max-vertical-offset="544">
-          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stats.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1391" max-vertical-offset="3090">
           <caret line="147" column="45" selection-start-line="147" selection-start-column="45" selection-end-line="147" selection-end-column="45" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -600,24 +555,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.4371374" vertical-offset="1208" max-vertical-offset="1845">
           <caret line="35" column="45" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/tera/tera_datasets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.148149" vertical-offset="12158" max-vertical-offset="13605">
-          <caret line="836" column="21" selection-start-line="836" selection-start-column="21" selection-end-line="836" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_individual.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1856618" vertical-offset="0" max-vertical-offset="870">
-          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -646,54 +583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.925926" vertical-offset="683" max-vertical-offset="3660">
-          <caret line="72" column="38" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1346" max-vertical-offset="1890">
-          <caret line="94" column="11" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DefectPrediction.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
-          <caret line="108" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_problems.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="449" max-vertical-offset="25320">
-          <caret line="56" column="145" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="145" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/defect_prediction/DefectPredict_report.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.43382353" vertical-offset="236" max-vertical-offset="780">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/defect_prediction/DefectPredict.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1121" max-vertical-offset="1665">
-          <caret line="95" column="10" selection-start-line="95" selection-start-column="10" selection-end-line="95" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_algorithms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3704" max-vertical-offset="4455">
@@ -704,20 +593,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.037037" vertical-offset="683" max-vertical-offset="3660">
+          <caret line="65" column="58" selection-start-line="65" selection-start-column="58" selection-end-line="65" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/defect_prediction/DefectPredict_report.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+          <caret line="27" column="29" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tera/ant-1.3.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3584559" vertical-offset="195" max-vertical-offset="1980">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teratester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="735">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_defect_chart.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.592592" vertical-offset="218" max-vertical-offset="2100">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.75435203" vertical-offset="1305" max-vertical-offset="2235">
+          <caret line="113" column="36" selection-start-line="113" selection-start-column="36" selection-end-line="113" selection-end-column="36" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_individual.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3382353" vertical-offset="326" max-vertical-offset="870">
+          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_problems.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.47969052" vertical-offset="1733" max-vertical-offset="25320">
+          <caret line="106" column="9" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.6888888" vertical-offset="584" max-vertical-offset="7170">
-          <caret line="50" column="74" selection-start-line="50" selection-start-column="70" selection-end-line="50" selection-end-column="74" />
+        <state vertical-scroll-proportion="-25.355556" vertical-offset="4334" max-vertical-offset="7245">
+          <caret line="365" column="35" selection-start-line="365" selection-start-column="35" selection-end-line="365" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DefectPrediction.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.99264705" vertical-offset="0" max-vertical-offset="630">
+          <caret line="36" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -725,15 +670,39 @@
     <entry file="file://$PROJECT_DIR$/jmoo_interface.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1256" max-vertical-offset="1815">
-          <caret line="103" column="23" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
+          <caret line="102" column="25" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/tera/tera_datasets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="11.666667" vertical-offset="4365" max-vertical-offset="14565">
+          <caret line="277" column="0" selection-start-line="277" selection-start-column="2" selection-end-line="315" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/defect_prediction/DefectPredict_chart.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7996324" vertical-offset="0" max-vertical-offset="600">
-          <caret line="29" column="52" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/defect_prediction/DefectPredict.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53271025" vertical-offset="480" max-vertical-offset="1890">
+          <caret line="52" column="45" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
           <folding />
         </state>
       </provider>

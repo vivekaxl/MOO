@@ -31,6 +31,8 @@ def stat(list):
     out = "Median: %2.3f "% median(list)
     out += " IQR: %2.3f" % iqr(list)
 
+    print out
+
     return out
 
 def parseXML(xml_file, tag):
@@ -52,6 +54,9 @@ def parseXML(xml_file, tag):
             scores_pf = defaultdict(list)
             scores_prec = defaultdict(list)
             scores_eval = defaultdict(list)
+            dpd = []
+            dpf =[]
+            dprec = []
             for algorithm in problem:
                 result +="Algorithm: "+ str(algorithm.attrib["name"])+"\n"
                 numeval = []
@@ -59,9 +64,6 @@ def parseXML(xml_file, tag):
                 pd = []
                 pf =[]
                 prec = []
-                dpd = []
-                dpf =[]
-                dprec = []
                 for run in algorithm:
                     for summary in run:
                         for junk in summary:
@@ -95,6 +97,7 @@ def parseXML(xml_file, tag):
                     result += "Default pd: "+ str(stat(dpd))+"\n"
                     result += "Default pf: "+ str(stat(dpf))+"\n"
                     result += "Default prec: "+ str(stat(dprec))+"\n\n\n"
+
                 if tag == "charts":
                     scores_pd[str(algorithm.attrib["name"])] = []
                     scores_pf[str(algorithm.attrib["name"])] = []
@@ -106,6 +109,12 @@ def parseXML(xml_file, tag):
                     scores_eval[str(algorithm.attrib["name"])] = numeval
 
             if tag == "charts":
+                scores_pd["default"] = []
+                scores_pf["default"] = []
+                scores_prec["default"] = []
+                scores_pd["default"] = dpd
+                scores_pf["default"] = dpf
+                scores_prec["default"] = dprec
                 import sys
                 f = open(DEFECT_PREDICT_PREFIX + "DefectPredict_chart.txt", 'a+')
                 sys.stdout = f

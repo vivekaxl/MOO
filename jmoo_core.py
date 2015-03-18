@@ -360,6 +360,11 @@ class JMOO:
                         vOut += "\t<" + parameters[i] + "> " + str(any.fitness.fitness[i]) + "</" + parameters[i] + "> \n" # de
                     vOut += "</Training_Tuning>\n"
                     result = problem.test(any.decisionValues)
+                    vOut += "<Parameters>\n"
+                    arguments = ["mss", "msl", "mxf", "threshold"]
+                    for i,a in enumerate(any.decisionValues):
+                        vOut += "<" + arguments[i] + ">" + str(a) + "</" + arguments[i] + "> \n"
+                    vOut += "</Parameters>\n"
                     vOut += "<Testing>\n"
                     for i,a in enumerate(result):
                         vOut += "\t<" + parameters[i] + "> " + str(result[i]) + "</" + parameters[i] + "> \n"
@@ -434,14 +439,14 @@ class JMOO:
                         sc2.write(s_out + "\n")
 
 
-                    zOut += "<Summary>\n"
-                    zOut += "<NumEvals>" + str(representative.numEval) + "</NumEvals>\n"
-                    zOut += "<RunTime>" + str((end-start)) + "</RunTime>\n"
-                    zOut += "<IBD>" + str(box.IBD) + "</IBD>\n"
-                    zOut += "<IBS>" + str(box.IBS) + "</IBS>\n"
-                    for i in range(len(problem.objectives)):
-                        zOut += "<" + problem.objectives[i].name + ">" + str(representative.fitnessMedians[i]) + "</" + problem.objectives[i].name + ">\n"
-                    zOut += "</Summary\n>"
+                    # zOut += "<Summary>\n"
+                    # zOut += "<NumEvals>" + str(representative.numEval) + "</NumEvals>\n"
+                    # zOut += "<RunTime>" + str((end-start)) + "</RunTime>\n"
+                    # zOut += "<IBD>" + str(box.IBD) + "</IBD>\n"
+                    # zOut += "<IBS>" + str(box.IBS) + "</IBS>\n"
+                    # for i in range(len(problem.objectives)):
+                    #     zOut += "<" + problem.objectives[i].name + ">" + str(representative.fitnessMedians[i]) + "</" + problem.objectives[i].name + ">\n"
+                    # zOut += "</Summary\n>"
 
 
 

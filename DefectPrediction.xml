@@ -1,108 +1,36 @@
 <Experiment>
-<Problem name = 'ant-1.4'>
+<Problem name = 'Xalan'>
 <Algorithm name = 'GALE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>207</NumEvals>
-<RunTime>4.31814193726</RunTime>
-<Training>ant-1.3</Training>
-<Tuning>ant-1.4</Tuning>
-<Testing>ant-1.5</Testing>
+<NumEvals>168</NumEvals>
+<RunTime>12.3977501392</RunTime>
+<Training>xalan-2.4</Training>
+<Tuning>xalan-2.5</Tuning>
+<Testing>xalan-2.6</Testing>
 <Training_Tuning>
-	<pd> 25.0</pd> 
-	<pf> 7.0</pf> 
-	<prec> 42.0</prec> 
+	<pd> 22.0</pd> 
+	<pf> 9.0</pf> 
+	<prec> 69.0</prec> 
 </Training_Tuning>
+<Parameters>
+<mss>19.9729465675</mss> 
+<msl>8.0157051809</msl> 
+<mxf>0.674717334237</mxf> 
+<threshold>0.537423007487</threshold> 
+</Parameters>
 <Testing>
-	<pd> 0</pd> 
-	<pf> 0</pf> 
-	<prec> 84</prec> 
+	<pd> 36</pd> 
+	<pf> 5</pf> 
+	<prec> 86</prec> 
 </Testing>
 <Default>
-	<pd> 81</pd> 
-	<pf> 19</pf> 
-	<prec> 0</prec> 
-<Default>
-</Summary></Run>
-
-</Algorithm>
-<Algorithm name = 'NSGAII'>
-<Run id = '1'>
-<Summary>
-<NumEvals>4000</NumEvals>
-<RunTime>26.3644979</RunTime>
-<Training>ant-1.3</Training>
-<Tuning>ant-1.4</Tuning>
-<Testing>ant-1.5</Testing>
-<Training_Tuning>
-	<pd> 45.0</pd> 
-	<pf> 25.0</pf> 
-	<prec> 26.0</prec> 
-</Training_Tuning>
-<Testing>
-	<pd> 15</pd> 
-	<pf> 27</pf> 
-	<prec> 10</prec> 
-</Testing>
-<Default>
-	<pd> 83</pd> 
-	<pf> 17</pf> 
-	<prec> 0</prec> 
-<Default>
-</Summary></Run>
-
-</Algorithm>
-<Algorithm name = 'SPEA2'>
-<Run id = '1'>
-<Summary>
-<NumEvals>4000</NumEvals>
-<RunTime>59.4919171333</RunTime>
-<Training>ant-1.3</Training>
-<Tuning>ant-1.4</Tuning>
-<Testing>ant-1.5</Testing>
-<Training_Tuning>
-	<pd> 25.0</pd> 
-	<pf> 12.0</pf> 
-	<prec> 28.0</prec> 
-</Training_Tuning>
-<Testing>
-	<pd> 5</pd> 
-	<pf> 12</pf> 
-	<prec> 7</prec> 
-</Testing>
-<Default>
-	<pd> 78</pd> 
-	<pf> 22</pf> 
-	<prec> 0</prec> 
-<Default>
-</Summary></Run>
-
-</Algorithm>
-<Algorithm name = 'DE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>4000</NumEvals>
-<RunTime>26.2841238976</RunTime>
-<Training>ant-1.3</Training>
-<Tuning>ant-1.4</Tuning>
-<Testing>ant-1.5</Testing>
-<Training_Tuning>
-	<pd> 100.0</pd> 
-	<pf> 0.0</pf> 
-	<prec> 100.0</prec> 
-</Training_Tuning>
-<Testing>
-	<pd> 100</pd> 
-	<pf> 0</pf> 
-	<prec> 100</prec> 
-</Testing>
-<Default>
-	<pd> 82</pd> 
-	<pf> 18</pf> 
-	<prec> 0</prec> 
-<Default>
-</Summary></Run>
-
+	<pd> 28</pd> 
+	<pf> 9</pf> 
+	<prec> 72</prec> 
+</Default>
+</Summary
+></Run>
 </Algorithm>
 </Problem>
 </Experiment>

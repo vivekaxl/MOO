@@ -38,11 +38,11 @@ from tera_datasets import *
 
 # JMOO Experimental Definitions
 algorithms = [
-              jmoo_GALE(),
+               jmoo_GALE(),
               jmoo_NSGAII(),
 
               jmoo_SPEA2(),
-    jmoo_DE()
+                jmoo_DE()
               
               ]
 
@@ -50,7 +50,7 @@ algorithms = [
 
 
 problems =[ #fonseca(3)]
-    ant14()]
+    ant(), camel(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(), xalan()]
 """
     , ivy20(), jedit40(), jedit41(), jedit42(), jedit43(),
            lucene22(), lucene24(), poi20(), poi25(), poi30(),
@@ -92,7 +92,7 @@ build_new_pop = False                                       # Whether or not to 
 
 
 # JMOO Universal Properties
-repeats = 1   #Repeats of each MOEA
+repeats = 10   #Repeats of each MOEA
 MU      = 100   #Population Size
 PSI     = 20    #Maximum number of generations
 
