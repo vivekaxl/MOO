@@ -382,7 +382,7 @@ are called on only a logarithmic number of times. So...
 For examples on using this code, see _rdivDemo_ (below).
 
 """
-def scottknott(data,cohen=0.3,small=3, useA12=False,epsilon=0.01):
+def scottknott(data,cohen=0.3,small=3, useA12=False,epsilon=0.05):
   """Recursively split data, maximizing delta of
   the expected value of the mean before and
   after the splits.

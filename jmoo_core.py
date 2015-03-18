@@ -292,6 +292,7 @@ class JMOO:
         representatives = []                        # List of resulting final generations (stat boxe datatype)
         #zOut = "<Experiment>\n"
         vOut = "<Experiment>\n"
+
         for problem in self.tests.problems:
 
 
@@ -361,18 +362,18 @@ class JMOO:
                     vOut += "</Training_Tuning>\n"
                     result = problem.test(any.decisionValues)
                     vOut += "<Parameters>\n"
-                    arguments = ["mss", "msl", "mxf", "threshold"]
+                    #arguments = ["mss", "msl", "mxf", "threshold"]
                     for i,a in enumerate(any.decisionValues):
-                        vOut += "<" + arguments[i] + ">" + str(a) + "</" + arguments[i] + "> \n"
+                        vOut += "<" + i + ">" + str(a) + "</" + i + "> \n"
                     vOut += "</Parameters>\n"
                     vOut += "<Testing>\n"
                     for i,a in enumerate(result):
-                        vOut += "\t<" + parameters[i] + "> " + str(result[i]) + "</" + parameters[i] + "> \n"
+                        vOut += "\t<" + i + "> " + str(result[i]) + "</" + i + "> \n"
                     vOut += "</Testing>\n"
                     vOut += "<Default>\n"
                     result = problem.default()
                     for i,a in enumerate(result):
-                        vOut += "\t<" + parameters[i] + "> " + str(result[i]) + "</" + parameters[i] + "> \n"
+                        vOut += "\t<" + i + "> " + str(result[i]) + "</" + i + "> \n"
                     vOut += "</Default>\n"
                     vOut += "</Summary\n>"
 

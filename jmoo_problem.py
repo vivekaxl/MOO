@@ -29,7 +29,7 @@
 
 from jmoo_individual import *
 import random,csv
-
+import pdb
 class jmoo_problem(object):
     "a representation of a multi-objective problem"
     

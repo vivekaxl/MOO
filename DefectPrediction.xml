@@ -1,33 +1,33 @@
 <Experiment>
-<Problem name = 'Xalan'>
+<Problem name = 'ant'>
 <Algorithm name = 'GALE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>168</NumEvals>
-<RunTime>12.3977501392</RunTime>
-<Training>xalan-2.4</Training>
-<Tuning>xalan-2.5</Tuning>
-<Testing>xalan-2.6</Testing>
+<NumEvals>161</NumEvals>
+<RunTime>3.17539215088</RunTime>
+<Training>ant-1.3</Training>
+<Tuning>ant-1.4</Tuning>
+<Testing>ant-1.5</Testing>
 <Training_Tuning>
-	<pd> 22.0</pd> 
-	<pf> 9.0</pf> 
-	<prec> 69.0</prec> 
+	<pd> 33.0</pd> 
+	<pf> 12.0</pf> 
+	<prec> 45.0</prec> 
 </Training_Tuning>
 <Parameters>
-<mss>19.9729465675</mss> 
-<msl>8.0157051809</msl> 
-<mxf>0.674717334237</mxf> 
-<threshold>0.537423007487</threshold> 
+<mss>3.66092355546</mss> 
+<msl>10.3050250406</msl> 
+<mxf>0.218693793335</mxf> 
+<threshold>0.596168556368</threshold> 
 </Parameters>
 <Testing>
-	<pd> 36</pd> 
-	<pf> 5</pf> 
-	<prec> 86</prec> 
+	<pd> 59</pd> 
+	<pf> 10</pf> 
+	<prec> 42</prec> 
 </Testing>
 <Default>
-	<pd> 28</pd> 
-	<pf> 9</pf> 
-	<prec> 72</prec> 
+	<pd> 38</pd> 
+	<pf> 13</pf> 
+	<prec> 27</prec> 
 </Default>
 </Summary
 ></Run>

@@ -1,46 +1,13 @@
 Experiment: 
 Problem Name: ant
 Algorithm: GALE
-NumEval: Median: 99.000  IQR: 0.000
-RunTime: Median: 2.243  IQR: 0.000
-pd: Median: 53.000  IQR: 0.000
-pf: Median: 10.000  IQR: 0.000
-prec: Median: 40.000  IQR: 0.000
+NumEval: Median: 183.000  IQR: 0.000
+RunTime: Median: 4.162  IQR: 0.000
+pd: Median: 25.000  IQR: 0.000
+pf: Median: 12.000  IQR: 0.000
+prec: Median: 21.000  IQR: 0.000
 Default pd: Median: 34.000  IQR: 0.000
-Default pf: Median: 11.000  IQR: 0.000
-Default prec: Median: 28.000  IQR: 0.000
-
-
-Algorithm: NSGAII
-NumEval: Median: 4000.000  IQR: 0.000
-RunTime: Median: 27.380  IQR: 0.000
-pd: Median: 38.000  IQR: 0.000
-pf: Median: 18.000  IQR: 0.000
-prec: Median: 20.000  IQR: 0.000
-Default pd: Median: 38.000  IQR: 0.000
 Default pf: Median: 12.000  IQR: 0.000
-Default prec: Median: 28.000  IQR: 0.000
-
-
-Algorithm: SPEA2
-NumEval: Median: 4000.000  IQR: 0.000
-RunTime: Median: 42.004  IQR: 0.000
-pd: Median: 38.000  IQR: 0.000
-pf: Median: 18.000  IQR: 0.000
-prec: Median: 20.000  IQR: 0.000
-Default pd: Median: 38.000  IQR: 0.000
-Default pf: Median: 11.000  IQR: 0.000
-Default prec: Median: 29.000  IQR: 0.000
-
-
-Algorithm: DE
-NumEval: Median: 4000.000  IQR: 0.000
-RunTime: Median: 27.910  IQR: 0.000
-pd: Median: 38.000  IQR: 0.000
-pf: Median: 18.000  IQR: 0.000
-prec: Median: 20.000  IQR: 0.000
-Default pd: Median: 38.000  IQR: 0.000
-Default pf: Median: 11.000  IQR: 0.000
-Default prec: Median: 29.000  IQR: 0.000
+Default prec: Median: 26.000  IQR: 0.000
 
 

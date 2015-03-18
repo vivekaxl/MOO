@@ -32,25 +32,28 @@ from jmoo_problems import *
 cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/tera")))
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
-from tera_datasets import *
+from tera_dataset import *
+from tera_datasets_WHERE import *
 
 
 
 # JMOO Experimental Definitions
 algorithms = [
                jmoo_GALE(),
-              jmoo_NSGAII(),
-
-              jmoo_SPEA2(),
-                jmoo_DE()
+              # jmoo_NSGAII(),
+              #
+              # jmoo_SPEA2(),
+              #   jmoo_DE()
               
               ]
 
 #problems = [defect_prediction([ant14()], [ant15()], [ant16()])]#srinivas(), fonseca(3)]
 
 
-problems =[ #fonseca(3)]
-    ant(), camel(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(), xalan()]
+problems =[antW()]
+    #  , camel(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(), xalan()]
+
+
 """
     , ivy20(), jedit40(), jedit41(), jedit42(), jedit43(),
            lucene22(), lucene24(), poi20(), poi25(), poi30(),
@@ -92,7 +95,7 @@ build_new_pop = False                                       # Whether or not to 
 
 
 # JMOO Universal Properties
-repeats = 10   #Repeats of each MOEA
+repeats = 1     #Repeats of each MOEA
 MU      = 100   #Population Size
 PSI     = 20    #Maximum number of generations
 

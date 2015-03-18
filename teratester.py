@@ -6,9 +6,9 @@ if cmd_subfolder not in sys.path:
 
 
 
-from tera_datasets import *
+from tera_dataset import *
 
-a = ant()
+a = camel()
 
 input = []
 for i,arg in enumerate(sys.argv):
@@ -22,8 +22,8 @@ for i,arg in enumerate(sys.argv):
 
 
 if len(input) == 0:
-    input = [8.8641246794, 14.9794761475, 0.929123322772, 0.915820856764]
-    input_wei = [8, 16, 1, 0.5]
+    input = [8.8641246794, 14.9794761475, 0.929123322772, 5, 0.915820856764]
+    input_wei = [12, 8, 0.01, 1, 0.01]
 
     mss = int(round(input[0]))
     msl  = int(round(input[1]))
@@ -33,7 +33,7 @@ if len(input) == 0:
 
     output = a.test(input=input)
     default = a.default()
-    output = [float(str("%.2f" % out)) for out in output]
+    #output = [float(str("%.2f" % out)) for out in output]
 
     output2 = a.test(input=input_wei)
     #print [mss, msl, mxf, thres], output
