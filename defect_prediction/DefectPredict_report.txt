@@ -1,13 +1,13 @@
 Experiment: 
-Problem Name: ant
+Problem Name: antW
 Algorithm: GALE
-NumEval: Median: 183.000  IQR: 0.000
-RunTime: Median: 4.162  IQR: 0.000
-pd: Median: 25.000  IQR: 0.000
-pf: Median: 12.000  IQR: 0.000
-prec: Median: 21.000  IQR: 0.000
-Default pd: Median: 34.000  IQR: 0.000
-Default pf: Median: 12.000  IQR: 0.000
-Default prec: Median: 26.000  IQR: 0.000
+NumEval: Median: 284.000  IQR: 0.000
+RunTime: Median: 363.020  IQR: 0.000
+pd: Median: 44.000  IQR: 0.000
+pf: Median: 26.000  IQR: 0.000
+prec: Median: 17.000  IQR: 0.000
+Default pd: Median: 53.000  IQR: 0.000
+Default pf: Median: 15.000  IQR: 0.000
+Default prec: Median: 30.000  IQR: 0.000
 
 

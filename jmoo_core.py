@@ -294,6 +294,7 @@ class JMOO:
         vOut = "<Experiment>\n"
 
         for problem in self.tests.problems:
+            objectives = ["pd", "pf", "prec"]
 
 
 
@@ -364,16 +365,16 @@ class JMOO:
                     vOut += "<Parameters>\n"
                     #arguments = ["mss", "msl", "mxf", "threshold"]
                     for i,a in enumerate(any.decisionValues):
-                        vOut += "<" + i + ">" + str(a) + "</" + i + "> \n"
+                        vOut += "<param"  +str(i) + ">" + str(a) + "</param" + str(i) + "> \n"
                     vOut += "</Parameters>\n"
                     vOut += "<Testing>\n"
                     for i,a in enumerate(result):
-                        vOut += "\t<" + i + "> " + str(result[i]) + "</" + i + "> \n"
+                        vOut += "\t<" + objectives[i] + "> " + str(result[i]) + "</" + objectives[i] + "> \n"
                     vOut += "</Testing>\n"
                     vOut += "<Default>\n"
                     result = problem.default()
                     for i,a in enumerate(result):
-                        vOut += "\t<" + i + "> " + str(result[i]) + "</" + i + "> \n"
+                        vOut += "\t<" + objectives[i] + "> " + str(result[i]) + "</" + objectives[i] + "> \n"
                     vOut += "</Default>\n"
                     vOut += "</Summary\n>"
 

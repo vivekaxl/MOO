@@ -3,31 +3,36 @@
 <Algorithm name = 'GALE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>161</NumEvals>
-<RunTime>3.17539215088</RunTime>
+<NumEvals>284</NumEvals>
+<RunTime>363.019854069</RunTime>
 <Training>ant-1.3</Training>
 <Tuning>ant-1.4</Tuning>
 <Testing>ant-1.5</Testing>
 <Training_Tuning>
-	<pd> 33.0</pd> 
-	<pf> 12.0</pf> 
-	<prec> 45.0</prec> 
+	<pd> 41.0</pd> 
+	<pf> 25.0</pf> 
+	<prec> 16.0</prec> 
 </Training_Tuning>
 <Parameters>
-<mss>3.66092355546</mss> 
-<msl>10.3050250406</msl> 
-<mxf>0.218693793335</mxf> 
-<threshold>0.596168556368</threshold> 
+<0>0.810021167471</0> 
+<1>1.65054543382</1> 
+<2>0.496440381263</2> 
+<3>0.476245100034</3> 
+<4>19.0878315967</4> 
+<5>3.5623585314</5> 
+<6>0.887581020094</6> 
+<7>0.0522318011187</7> 
+<8>0.870048724864</8> 
 </Parameters>
 <Testing>
-	<pd> 59</pd> 
-	<pf> 10</pf> 
-	<prec> 42</prec> 
+	<0> 44</0> 
+	<1> 26</1> 
+	<2> 17</2> 
 </Testing>
 <Default>
-	<pd> 38</pd> 
-	<pf> 13</pf> 
-	<prec> 27</prec> 
+	<0> 53</0> 
+	<1> 15</1> 
+	<2> 30</2> 
 </Default>
 </Summary
 ></Run>

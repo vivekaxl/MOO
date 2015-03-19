@@ -45,7 +45,9 @@ def parseXML(xml_file, tag):
     result = "Experiment: \n"
     if tag == "charts":
         import os
-        os.remove(DEFECT_PREDICT_PREFIX + "DefectPredict_chart.txt")
+        try:
+            os.remove(DEFECT_PREDICT_PREFIX + "DefectPredict_chart.txt")
+        except: pass
 
     for problem in experiment:
         result += "Problem Name: " + str(problem.attrib["name"])+"\n"

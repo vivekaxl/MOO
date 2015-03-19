@@ -174,7 +174,7 @@ class Properties:
 
 class xalanW(jmoo_problem):
     def __init__(prob):
-        prob.name = "Xalan"
+        prob.name = "XalanW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "xalan-2.5", ["xalan-2.4"])
@@ -208,7 +208,7 @@ class xalanW(jmoo_problem):
 
 class xercesW(jmoo_problem):
     def __init__(prob):
-        prob.name = "xerces"
+        prob.name = "xercesW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "xerces-1.3", ["xerces-1.2"])
@@ -243,7 +243,7 @@ class xercesW(jmoo_problem):
 
 class velocityW(jmoo_problem):
     def __init__(prob):
-        prob.name = "Velocity"
+        prob.name = "VelocityW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "velocity-1.5", ["velocity-1.4"])
@@ -278,7 +278,7 @@ class velocityW(jmoo_problem):
 
 class synapseW(jmoo_problem):
     def __init__(prob):
-        prob.name = "synapse"
+        prob.name = "synapseW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "synapse-1.1", ["synapse-1.0"])
@@ -313,7 +313,7 @@ class synapseW(jmoo_problem):
 
 class poiW(jmoo_problem):
     def __init__(prob):
-        prob.name = "poi"
+        prob.name = "poiW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "poi-2.0", ["poi-1.5"])
@@ -347,7 +347,7 @@ class poiW(jmoo_problem):
 
 class luceneW(jmoo_problem):
     def __init__(prob):
-        prob.name = "lucene"
+        prob.name = "luceneW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "lucene-2.2", ["lucene-2.0"])
@@ -380,7 +380,7 @@ class luceneW(jmoo_problem):
 
 class jeditW(jmoo_problem):
     def __init__(prob):
-        prob.name = "jedit"
+        prob.name = "jeditW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "jedit-4.0", ["jedit-3.2"])
@@ -414,7 +414,7 @@ class jeditW(jmoo_problem):
 
 class ivyW(jmoo_problem):
     def __init__(prob):
-        prob.name = "ivy"
+        prob.name = "ivyW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "ivy-1.4", ["ivy-1.1"])
@@ -448,7 +448,7 @@ class ivyW(jmoo_problem):
 
 class forrestW(jmoo_problem):
     def __init__(prob):
-        prob.name = "forrest"
+        prob.name = "forrestW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "forrest-0.7", [ "forrest-0.6"])
@@ -482,7 +482,7 @@ class forrestW(jmoo_problem):
 
 class camelW(jmoo_problem):
     def __init__(prob):
-        prob.name = "camel"
+        prob.name = "camelW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "camel-1.2", ["camel-1.0"])
@@ -517,7 +517,7 @@ class camelW(jmoo_problem):
 
 class antW(jmoo_problem):  # ant 15 is the latest, it can't see anything other than 1.5
     def __init__(prob):
-        prob.name = "ant"
+        prob.name = "antW"
         prob.properties = Properties(prob.name, prefix + "ant-1.5" + suffix, [prefix + "ant-1.3" + suffix])
         prob.training = "ant-1.3"
         prob.tuning = "ant-1.4"

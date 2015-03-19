@@ -107,11 +107,12 @@ def weitransform(list, threshold):
 
 
 
-tera_decisions= [jmoo_decision("min_samples_split", 2, 20),
-                  jmoo_decision("min_samples_leaf", 1, 20),
-                  jmoo_decision("max_features", 0.01, 1),
-                  jmoo_decision("max_depth", 1, 50),
-                  jmoo_decision("threshold", 0, 1)
+tera_decisions= [jmoo_decision("threshold", 2, 20),
+                  jmoo_decision("max_features", 1, 20),
+                  jmoo_decision("min_samples_split", 0.01, 1),
+                  jmoo_decision("min_samples_leaf", 1, 50),
+                  jmoo_decision("max_leaf_nodes", 0, 1),
+                  jmoo_decision("n_estimators", 0.01, 1)
                   ]
 
 
