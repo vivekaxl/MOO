@@ -1,13 +1,13 @@
 Experiment: 
-Problem Name: antW
+Problem Name: antRF
 Algorithm: GALE
-NumEval: Median: 284.000  IQR: 0.000
-RunTime: Median: 363.020  IQR: 0.000
-pd: Median: 44.000  IQR: 0.000
-pf: Median: 26.000  IQR: 0.000
-prec: Median: 17.000  IQR: 0.000
-Default pd: Median: 53.000  IQR: 0.000
-Default pf: Median: 15.000  IQR: 0.000
-Default prec: Median: 30.000  IQR: 0.000
+NumEval: Median: 110.000  IQR: 0.000
+RunTime: Median: 9.601  IQR: 0.000
+pd: Median: 69.000  IQR: 0.000
+pf: Median: 30.000  IQR: 0.000
+prec: Median: 22.000  IQR: 0.000
+Default pd: Median: 56.000  IQR: 0.000
+Default pf: Median: 23.000  IQR: 0.000
+Default prec: Median: 23.000  IQR: 0.000
 
 

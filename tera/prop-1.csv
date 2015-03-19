@@ -1,4 +1,4 @@
-Name,version,wmc,dit,noc,cbo,rfc,lcom,ca,ce,npm,lcom3,loc,dam,moa,mfa,cam,ic,cbm,amc,max_cc,avg_cc,bug
+?.name,?$version,?.Name,$wmc,$dit,$noc,$cbo,$rfc,$lcom,$ca,$ce,$npm,$lcom3,$loc,$dam,$moa,$mfa,$cam,$ic,$cbm,$amc,$max_cc,$avg_cc,$<bug
 prop-1,4,2,4,0,2,5,1,0,2,1,2,24,1,0,0.941176471,0.75,1,1,10.5,3,1.5,0
 prop-1,4,12,4,1,19,44,66,2,18,6,2,259,0,0,0.905172414,0.35,2,3,20.58333333,8,2.0833,0
 prop-1,4,10,4,0,13,48,45,4,13,2,1.066666667,206,1,0,0.918918919,0.5,2,3,19.1,4,1.2,0

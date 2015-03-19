@@ -1,4 +1,4 @@
-name,version,name,wmc,dit,noc,cbo,rfc,lcom,ca,ce,npm,lcom3,loc,dam,moa,mfa,cam,ic,cbm,amc,max_cc,avg_cc,bug
+?.name,?$version,?.Name,$wmc,$dit,$noc,$cbo,$rfc,$lcom,$ca,$ce,$npm,$lcom3,$loc,$dam,$moa,$mfa,$cam,$ic,$cbm,$amc,$max_cc,$avg_cc,$<bug
 forrest,0.7,org.apache.forrest.sourcetype.SourceTypeAction,3,2,0,24,43,0,0,24,3,0.75,247,1,0,0.714285714,0.428571429,0,0,80.66666667,1,0.6667,0
 forrest,0.7,org.apache.forrest.locationmap.lm.SelectNode,3,3,0,13,30,0,2,13,3,0.625,216,1,2,0.818181818,0.444444444,2,2,69.66666667,1,0.6667,0
 forrest,0.7,org.apache.forrest.sourcetype.SourceInfo,14,1,0,7,19,69,7,0,14,0.897435897,81,1,0,0,0.785714286,0,0,4.357142857,1,0.9286,0

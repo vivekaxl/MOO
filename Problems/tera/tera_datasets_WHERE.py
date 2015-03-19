@@ -18,7 +18,7 @@ def avg(lst):
     return sum(lst)/float(len(lst))
 
 class Abcd:
-    def __init__(i,db="all",rx="all"):
+    def __init__(i,db="all"+ suffix,rx="all"):
         i.db = db; i.rx=rx;
         i.yes = i.no = 0
         i.known = {}; i.a= {}; i.b= {}; i.c= {}; i.d= {}
@@ -49,7 +49,7 @@ class Abcd:
             print "#",('{0:10s} {1:11s}  {2:4s}  {3:4s} {4:4s} '+ \
                        '{5:4s}{6:4s} {7:3s} {8:3s} {9:3s} '+ \
                        '{10:3s} {11:3s}{12:3s}{13:10s}').format(
-                "db", "rx",
+                "db",prefix +"rx",
                 "n", "a","b","c","d","acc","pd","pf","prec",
                 "f","g","class")
             print '-'*100
@@ -97,7 +97,7 @@ def _Abcd(predicted, actual, threshold):
         predicted_txt +=[isDef(data)]
     for act, pre in zip(actual, predicted_txt):
         abcd.tell(act, pre)
-    abcd.header()
+    #abcd.header()
     score = abcd.ask()
     # pdb.set_trace()
     return score[-1]
@@ -177,7 +177,7 @@ class xalanW(jmoo_problem):
         prob.name = "XalanW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "xalan-2.5", ["xalan-2.4"])
+        prob.properties = Properties(prob.name,prefix +"xalan-2.5"+ suffix, [prefix+"xalan-2.4"+ suffix])
         prob.training = "xalan-2.4"
         prob.tuning = "xalan-2.5"
         prob.testing = "xalan-2.6"
@@ -198,11 +198,11 @@ class xalanW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "xalan-2.6", ["xalan-2.4"]))
+        output = evaluator(input, Properties(prob.name,prefix +"xalan-2.6"+ suffix, [prefix+"xalan-2.4"+ suffix]))
         return output
 
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "xalan-2.6", ["xalan-2.4"], type="default"))
+        output = evaluator(input, Properties(prob.name,prefix +"xalan-2.6"+ suffix, [prefix+"xalan-2.4"+ suffix], type="default"))
         return output
 #ant
 
@@ -211,7 +211,7 @@ class xercesW(jmoo_problem):
         prob.name = "xercesW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "xerces-1.3", ["xerces-1.2"])
+        prob.properties = Properties(prob.name,prefix +"xerces-1.3"+ suffix, [prefix+"xerces-1.2"+ suffix])
         prob.training = "xerces-1.2"
         prob.tuning = "xerces-1.3"
         prob.testing = "xerces-1.4"
@@ -234,11 +234,11 @@ class xercesW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "xerces-1.4", ["xerces-1.2"]))
+        output = evaluator(input, Properties(prob.name,prefix +"xerces-1.4"+ suffix, [prefix+"xerces-1.2"+ suffix]))
         return output
 
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "xerces-1.4", ["xerces-1.2"], type="default"))
+        output = evaluator(input, Properties(prob.name,prefix +"xerces-1.4"+ suffix, [prefix+"xerces-1.2"+ suffix], type="default"))
         return output
 
 class velocityW(jmoo_problem):
@@ -246,7 +246,7 @@ class velocityW(jmoo_problem):
         prob.name = "VelocityW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "velocity-1.5", ["velocity-1.4"])
+        prob.properties = Properties(prob.name,prefix +"velocity-1.5"+ suffix, [prefix+"velocity-1.4"+ suffix])
         prob.training = "velocity-1.4"
         prob.tuning = "velocity-1.5"
         prob.testing = "velocity-1.6"
@@ -268,11 +268,11 @@ class velocityW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "velocity-1.6", ["velocity-1.4"]))
+        output = evaluator(input, Properties(prob.name,prefix +"velocity-1.6"+ suffix, [prefix+"velocity-1.4"+ suffix]))
         return output
 
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "velocity-1.6", ["velocity-1.4"], type="default"))
+        output = evaluator(input, Properties(prob.name,prefix +"velocity-1.6"+ suffix, [prefix+"velocity-1.4"+ suffix], type="default"))
         return output
 
 
@@ -281,7 +281,7 @@ class synapseW(jmoo_problem):
         prob.name = "synapseW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "synapse-1.1", ["synapse-1.0"])
+        prob.properties = Properties(prob.name,prefix +"synapse-1.1"+ suffix, [prefix+"synapse-1.0"+ suffix])
         prob.training = "synapse-1.0"
         prob.tuning = "synapse-1.1"
         prob.testing = "synapse-1.2"
@@ -303,11 +303,11 @@ class synapseW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "synapse-1.2", ["synapse-1.0"]))
+        output = evaluator(input, Properties(prob.name,prefix +"synapse-1.2"+ suffix, [prefix+"synapse-1.0"+ suffix]))
         return output
 
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "synapse-1.2", ["synapse-1.0"], type="default"))
+        output = evaluator(input, Properties(prob.name,prefix +"synapse-1.2"+ suffix, [prefix+"synapse-1.0"+ suffix], type="default"))
         return output
 
 
@@ -316,7 +316,7 @@ class poiW(jmoo_problem):
         prob.name = "poiW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "poi-2.0", ["poi-1.5"])
+        prob.properties = Properties(prob.name,prefix +"poi-2.0"+ suffix, [prefix+"poi-1.5"+ suffix])
         prob.training = "poi-1.5"
         prob.tuning = "poi-2.0"
         prob.testing = "poi-2.5"
@@ -338,11 +338,11 @@ class poiW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "poi-2.5", ["poi-1.5"]))
+        output = evaluator(input, Properties(prob.name,prefix +"poi-2.5"+ suffix, [prefix+"poi-1.5"+ suffix]))
         return output
 
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "poi-2.5", ["poi-1.5"], type="default"))
+        output = evaluator(input, Properties(prob.name,prefix +"poi-2.5"+ suffix, [prefix+"poi-1.5"+ suffix], type="default"))
         return output
 
 class luceneW(jmoo_problem):
@@ -350,7 +350,7 @@ class luceneW(jmoo_problem):
         prob.name = "luceneW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "lucene-2.2", ["lucene-2.0"])
+        prob.properties = Properties(prob.name,prefix +"lucene-2.2"+ suffix, [prefix+"lucene-2.0"+ suffix])
         prob.training = "lucene-2.0"
         prob.tuning = "lucene-2.2"
         prob.testing = "lucene-2.4"
@@ -371,11 +371,11 @@ class luceneW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "lucene-2.4", ["lucene-2.0"]))
+        output = evaluator(input, Properties(prob.name,prefix +"lucene-2.4"+ suffix, [prefix+"lucene-2.0"+ suffix]))
         return output
 
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "lucene-2.4", ["lucene-2.0"], type="default"))
+        output = evaluator(input, Properties(prob.name,prefix +"lucene-2.4"+ suffix, [prefix+"lucene-2.0"+ suffix], type="default"))
         return output
 
 class jeditW(jmoo_problem):
@@ -383,7 +383,7 @@ class jeditW(jmoo_problem):
         prob.name = "jeditW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "jedit-4.0", ["jedit-3.2"])
+        prob.properties = Properties(prob.name,prefix +"jedit-4.0"+ suffix, [prefix+"jedit-3.2"+ suffix])
         prob.training = "jedit-3.2"
         prob.tuning = "jedit-4.0"
         prob.testing = "jedit-4.1"
@@ -402,11 +402,11 @@ class jeditW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "jedit-4.1", ["jedit-3.2"]))
+        output = evaluator(input, Properties(prob.name,prefix +"jedit-4.1"+ suffix, [prefix+"jedit-3.2"+ suffix]))
         return output
 
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "jedit-4.1", ["jedit-3.2"], type="default"))
+        output = evaluator(input, Properties(prob.name,prefix +"jedit-4.1"+ suffix, [prefix+"jedit-3.2"+ suffix], type="default"))
         return output
 
     def evalConstraints(prob,input = None):
@@ -417,7 +417,7 @@ class ivyW(jmoo_problem):
         prob.name = "ivyW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "ivy-1.4", ["ivy-1.1"])
+        prob.properties = Properties(prob.name,prefix +"ivy-1.4"+ suffix, [prefix+"ivy-1.1"+ suffix])
         prob.training = "ivy-1.1"
         prob.tuning = "ivy-1.4"
         prob.testing = "ivy-2.0"
@@ -438,11 +438,11 @@ class ivyW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "ivy-2.0", ["ivy-1.1"]))
+        output = evaluator(input, Properties(prob.name,prefix +"ivy-2.0"+ suffix, [prefix+"ivy-1.1"+ suffix]))
         return output
 
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "ivy-2.0", ["ivy-1.1"], type="default"))
+        output = evaluator(input, Properties(prob.name,prefix +"ivy-2.0"+ suffix, [prefix+"ivy-1.1"+ suffix], type="default"))
         return output
 
 
@@ -451,7 +451,7 @@ class forrestW(jmoo_problem):
         prob.name = "forrestW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "forrest-0.7", [ "forrest-0.6"])
+        prob.properties = Properties(prob.name, prefix + "forrest-0.7"+ suffix, [ prefix + "forrest-0.6"+ suffix])
         prob.training = "forrest-0.6"
         prob.tuning = "forrest-0.7"
         prob.testing = "forrest-0.8"
@@ -470,11 +470,11 @@ class forrestW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "forrest-0.8", ["forrest-0.6"]))
+        output = evaluator(input, Properties(prob.name, prefix + "forrest-0.8"+ suffix, [prefix + "forrest-0.6"+ suffix]))
         return output
 
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "forrest-0.8", ["forrest-0.6"], type="default"))
+        output = evaluator(input, Properties(prob.name, prefix + "forrest-0.8"+ suffix, [prefix + "forrest-0.6"+ suffix], type="default"))
         return output
 
     def evalConstraints(prob,input = None):
@@ -485,7 +485,7 @@ class camelW(jmoo_problem):
         prob.name = "camelW"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
-        prob.properties = Properties(prob.name, "camel-1.2", ["camel-1.0"])
+        prob.properties = Properties(prob.name, prefix + "camel-1.2"+ suffix, [prefix + "camel-1.0"+ suffix])
         prob.training = "camel-1.0"
         prob.tuning = "camel-1.2"
         prob.testing = "camel-1.4"
@@ -505,10 +505,10 @@ class camelW(jmoo_problem):
         if input is None:
             print "input parameter required"
             exit()
-        output = evaluator(input, Properties(prob.name, "camel-1.4", ["camel-1.0"]))
+        output = evaluator(input, Properties(prob.name, prefix + "camel-1.4"+ suffix, [prefix +"camel-1.0"+ suffix]))
         return output
     def default(prob):
-        output = evaluator(input, Properties(prob.name, "camel-1.4", ["camel-1.0"], type="default"))
+        output = evaluator(input, Properties(prob.name, prefix + "camel-1.4"+ suffix, [prefix +"camel-1.0"+ suffix], type="default"))
         return output
 
 

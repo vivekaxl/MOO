@@ -34,24 +34,30 @@ if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 from tera_dataset import *
 from tera_datasets_WHERE import *
+from tera_dataset_RF import *
 
 
 
 # JMOO Experimental Definitions
 algorithms = [
                jmoo_GALE(),
-              # jmoo_NSGAII(),
+               jmoo_NSGAII(),
               #
-              # jmoo_SPEA2(),
-              #   jmoo_DE()
+               jmoo_SPEA2(),
+               jmoo_DE()
               
               ]
 
 #problems = [defect_prediction([ant14()], [ant15()], [ant16()])]#srinivas(), fonseca(3)]
 
 
-problems =[antW()]
-    #  , camel(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(), xalan()]
+problems =[
+    # ant()  , camel(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(), xalan(),
+    # antRF()  , camelRF(),  forrestRF(), ivyRF(), jeditRF(), luceneRF(), poiRF(), synapseRF(), velocityRF(), xercesRF(), xalanRF(),
+    # antW()  , camelW(),  forrestW(), ivyW(), jeditW(), luceneW(), poiW(), synapseW(), velocityW(), xercesW(),
+    xalanW()
+
+]
 
 
 """

@@ -1,4 +1,4 @@
-name,version,name,wmc,dit,noc,cbo,rfc,lcom,ca,ce,npm,lcom3,loc,dam,moa,mfa,cam,ic,cbm,amc,max_cc,avg_cc,bug
+?.name,?$version,?.Name,$wmc,$dit,$noc,$cbo,$rfc,$lcom,$ca,$ce,$npm,$lcom3,$loc,$dam,$moa,$mfa,$cam,$ic,$cbm,$amc,$max_cc,$avg_cc,$<bug
 forrest,0.8,org.apache.forrest.locationmap.lm.LocatorNode,6,3,0,15,37,1,5,14,3,0.666666667,258,1,2,0.642857143,0.305555556,1,1,41.5,1,0.8333,0
 forrest,0.8,org.apache.forrest.xni.XNIConfigurableFileGenerator,8,5,0,19,43,8,1,19,8,0.821428571,305,0.25,0,0.65,0.3,1,1,36.625,2,1.125,0
 forrest,0.8,org.apache.forrest.sourceexists.SourceExistsSelector,3,2,0,10,14,0,0,10,3,0,104,0,0,0.714285714,0.466666667,0,0,33.33333333,4,1.6667,0

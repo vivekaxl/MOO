@@ -1,7 +1,7 @@
 import csv
 from sklearn import tree
 import numpy as np
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestRegressor
 import sys, os, inspect
 from jmoo_objective import *
 from jmoo_decision import *
@@ -107,12 +107,12 @@ def weitransform(list, threshold):
 
 
 
-tera_decisions= [jmoo_decision("threshold", 2, 20),
-                  jmoo_decision("max_features", 1, 20),
-                  jmoo_decision("min_samples_split", 0.01, 1),
-                  jmoo_decision("min_samples_leaf", 1, 50),
-                  jmoo_decision("max_leaf_nodes", 0, 1),
-                  jmoo_decision("n_estimators", 0.01, 1)
+tera_decisions= [jmoo_decision("min_samples_split", 1, 20),
+                  jmoo_decision("min_samples_leaf", 2, 20),
+                  jmoo_decision("max_leaf_nodes", 10, 50),
+                  jmoo_decision("m_estimators", 50, 150),
+                  jmoo_decision("max_features", 0.01, 1),
+                  jmoo_decision("threshold", 0.01, 1)
                   ]
 
 
@@ -150,13 +150,13 @@ def evaluator(input, properties):
     # print input
     # print "Length: ", len(input)
 
-
     if properties.type != "default":
         mss = int(round(input[0]))
         msl = int(round(input[1]))
-        mxf = float(input[2])
-        md = int(input[3])
-        threshold = float(input[4])
+        mln = int(round(input[2]))
+        ne = int(input[3])
+        mf = float(input[4])
+        threshold = float(input[5])
     else:
         threshold = 0.5
 
@@ -167,14 +167,17 @@ def evaluator(input, properties):
 
     #train the learner
     indep = np.array(map(lambda x: np.array(x[:-1]), data_train[0]))
-    dep   = np.array(map(lambda x: np.array(x[-1:]), data_train[0]))
+    dep   = np.array(map(lambda x: np.array(x[-1]), data_train[0]))
+
+
 
 
     from sklearn.tree import DecisionTreeRegressor
     if properties.type == "default":
-        clf = DecisionTreeRegressor()
+        clf = RandomForestRegressor()
     else:
-        clf = DecisionTreeRegressor(max_features=mxf, min_samples_split=mss, min_samples_leaf=msl, random_state= 1, max_depth= md)
+
+        clf = RandomForestRegressor(min_samples_split=mss ,min_samples_leaf=msl, max_leaf_nodes=mln, n_estimators=ne, max_features= mf, random_state= 1)
     # random_state = 0, min_samples_split = mss, max_depth = md, max_leaf_nodes = mln, criterion = cri, min_samples_leaf = msl)
     clf.fit(indep, dep)
 
@@ -201,9 +204,9 @@ class Properties:
         return self.dataset_name + str(self.training_dataset)
 
 
-class xalan(jmoo_problem):
+class xalanRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "Xalan"
+        prob.name = "XalanRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "xalan-2.5", ["xalan-2.4"])
@@ -235,9 +238,9 @@ class xalan(jmoo_problem):
         return output
 #ant
 
-class xerces(jmoo_problem):
+class xercesRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "xerces"
+        prob.name = "xercesRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "xerces-1.3", ["xerces-1.2"])
@@ -269,9 +272,9 @@ class xerces(jmoo_problem):
         output = evaluator(input, Properties(prob.name, "xerces-1.4", ["xerces-1.2"], type="default"))
         return output
 
-class velocity(jmoo_problem):
+class velocityRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "Velocity"
+        prob.name = "VelocityRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "velocity-1.5", ["velocity-1.4"])
@@ -304,9 +307,9 @@ class velocity(jmoo_problem):
         return output
 
 
-class synapse(jmoo_problem):
+class synapseRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "synapse"
+        prob.name = "synapseRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "synapse-1.1", ["synapse-1.0"])
@@ -339,9 +342,9 @@ class synapse(jmoo_problem):
         return output
 
 
-class poi(jmoo_problem):
+class poiRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "poi"
+        prob.name = "poiRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "poi-2.0", ["poi-1.5"])
@@ -373,9 +376,9 @@ class poi(jmoo_problem):
         output = evaluator(input, Properties(prob.name, "poi-2.5", ["poi-1.5"], type="default"))
         return output
 
-class lucene(jmoo_problem):
+class luceneRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "lucene"
+        prob.name = "luceneRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "lucene-2.2", ["lucene-2.0"])
@@ -406,9 +409,9 @@ class lucene(jmoo_problem):
         output = evaluator(input, Properties(prob.name, "lucene-2.4", ["lucene-2.0"], type="default"))
         return output
 
-class jedit(jmoo_problem):
+class jeditRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "jedit"
+        prob.name = "jeditRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "jedit-4.0", ["jedit-3.2"])
@@ -440,9 +443,9 @@ class jedit(jmoo_problem):
     def evalConstraints(prob,input = None):
         return False #no constraints
 
-class ivy(jmoo_problem):
+class ivyRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "ivy"
+        prob.name = "ivyRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "ivy-1.4", ["ivy-1.1"])
@@ -474,9 +477,9 @@ class ivy(jmoo_problem):
         return output
 
 
-class forrest(jmoo_problem):
+class forrestRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "forrest"
+        prob.name = "forrestRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "forrest-0.7", [ "forrest-0.6"])
@@ -508,9 +511,9 @@ class forrest(jmoo_problem):
     def evalConstraints(prob,input = None):
         return False #no constraints
 
-class ant(jmoo_problem):
+class antRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "ant"
+        prob.name = "antRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "ant-1.4", ["ant-1.3"])
@@ -542,9 +545,9 @@ class ant(jmoo_problem):
         return False  # no constraints
 
 
-class camel(jmoo_problem):
+class camelRF(jmoo_problem):
     def __init__(prob):
-        prob.name = "camel"
+        prob.name = "camelRF"
         prob.decisions = tera_decisions
         prob.objectives = tera_objectives
         prob.properties = Properties(prob.name, "camel-1.2", ["camel-1.0"])

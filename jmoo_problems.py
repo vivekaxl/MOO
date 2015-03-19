@@ -55,6 +55,7 @@ def initialPopulation(problem, n):
         
     #write the dataset to file
     filename = "data/" + problem.name + "-p" + str(n) + "-d" + str(len(problem.decisions)) + "-o" + str(len(problem.objectives)) + "-dataset.txt"
+    print filename
     fo = open(filename, 'w')
     h = problem.buildHeader() #the header row
     fo.write(h + "\n")
@@ -67,6 +68,9 @@ def initialPopulation(problem, n):
     #take first X guys of dataset to get reference point and objective highs and lows
     fitnesses = []
     for i in range(500):
+        print ".",
+        import sys
+        sys.stdout.flush()
         fitnesses.append( problem.evaluate(problem.generateInput()) )
     # Split Columns into Lists
     fitnessColumns = [[fit[i] for fit in fitnesses] for i,obj in enumerate(problem.objectives)]

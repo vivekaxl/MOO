@@ -1,4 +1,4 @@
-name,version,name,wmc,dit,noc,cbo,rfc,lcom,ca,ce,npm,lcom3,loc,dam,moa,mfa,cam,ic,cbm,amc,max_cc,avg_cc,bug
+?.name,?$version,?.Name,$wmc,$dit,$noc,$cbo,$rfc,$lcom,$ca,$ce,$npm,$lcom3,$loc,$dam,$moa,$mfa,$cam,$ic,$cbm,$amc,$max_cc,$avg_cc,$<bug
 jEdit,3.2.1,org.gjt.sp.jedit.Registers,14,1,0,9,45,61,3,6,11,0.769230769,425,1,1,0,0.294871795,0,0,29.14285714,8,2.4286,0
 jEdit,3.2.1,gnu.regexp.RETokenRepeated,7,2,0,4,21,0,1,3,0,0.541666667,300,1,1,0.538461538,0.333333333,1,3,41.28571429,16,4.7143,0
 jEdit,3.2.1,gnu.regexp.REMatchEnumeration,6,1,0,3,11,9,1,3,5,0.6,113,1,3,0,0.333333333,0,0,16.33333333,5,1.5,0
