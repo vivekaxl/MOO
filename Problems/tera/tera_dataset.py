@@ -6,7 +6,18 @@ import sys, os, inspect
 from jmoo_objective import *
 from jmoo_decision import *
 from jmoo_problem import jmoo_problem
-import pdb
+parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/tera")))
+if parentdir not in sys.path:
+    sys.path.insert(0, parentdir)
+from jmoo_preprocessor import PDPF, ABCD, GF
+
+
+
+print PDPF
+# PD_PF = jmoo_preprocessor.PDPF
+# ABCD = jmoo_preprocessor.ABCD
+# GF = jmoo_preprocessor.GF
+
 
 def avg(lst):
     return sum(lst)/float(len(lst))
@@ -73,7 +84,15 @@ class Abcd:
                            '{10:3d} {11:3d} {12:3d} {13:10s}').format(i.db,
                                                                       i.rx,  n(b + d), n(a), n(b),n(c), n(d),
                                                                       p(acc), p(pd), p(pf), p(prec), p(f), p(g),auto(x))
-            scores +=[[p(pd), p(pf), p(prec)]]  # e.g:[[100, 100, 74, 0], [0, 0, 74, 0]]
+            print PD_PF
+            if PD_PF:
+                scores += [[p(pd), p(pf), p(prec)]]  # e.g:[[100, 100, 74, 0], [0, 0, 74, 0]]
+            elif ABCD:
+                scores += [[p(pd), p(pf), p(prec), a, b, c, d]]
+            elif G_F:
+                scores += [[p(pd), p(pf), p(prec), p(g), p(f)]]
+
+
         return scores
 
         #print x,p(pd),p(prec)
@@ -557,9 +576,20 @@ class camel(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PD_PF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif G_F:
+            prob.objectives[0].value = output[-3]
+            prob.objectives[1].value = output[-2]
+            prob.objectives[2].value = output[-1]
+
         return [objective.value for objective in prob.objectives]
 
     def test(prob, input=None):
@@ -567,10 +597,16 @@ class camel(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "camel-1.4", ["camel-1.0"]))
-        return output
+        if PD_PF:
+            print [o for o in output]
+        elif ABCD:
+            print [o for o in output[-4:]]
+        elif G_F:
+            print [o for o in output[-3:]]
+        return output[:3]
     def default(prob):
         output = evaluator(input, Properties(prob.name, "camel-1.4", ["camel-1.0"], type="default"))
-        return output
+        return output[:3]
 
 
     def evalConstraints(prob,input = None):

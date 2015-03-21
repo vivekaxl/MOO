@@ -172,11 +172,10 @@ def evaluator(input, properties):
 
 
 
-    from sklearn.tree import DecisionTreeRegressor
+    # from sklearn.tree import DecisionTreeRegressor
     if properties.type == "default":
         clf = RandomForestRegressor()
     else:
-
         clf = RandomForestRegressor(min_samples_split=mss ,min_samples_leaf=msl, max_leaf_nodes=mln, n_estimators=ne, max_features= mf, random_state= 1)
     # random_state = 0, min_samples_split = mss, max_depth = md, max_leaf_nodes = mln, criterion = cri, min_samples_leaf = msl)
     clf.fit(indep, dep)

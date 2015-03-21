@@ -1,0 +1,2 @@
+set path= ($path /share/vnair2/miniconda/bin/ $home/bin/)
+alias python "python2.7"

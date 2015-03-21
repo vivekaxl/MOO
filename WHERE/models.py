@@ -5,8 +5,6 @@ import math
 import numpy as np
 from utilities import *
 from options import *
-sys.path.insert(0, './pom3')
-from pom3 import *
 from model import *
 sys.dont_write_bytecode = True
 

@@ -52,52 +52,15 @@ algorithms = [
 
 
 problems =[
-    # ant()  , camel(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(), xalan(),
-    # antRF()  , camelRF(),  forrestRF(), ivyRF(), jeditRF(), luceneRF(), poiRF(), synapseRF(), velocityRF(), xercesRF(), xalanRF(),
-    # antW()  , camelW(),  forrestW(), ivyW(), jeditW(), luceneW(), poiW(), synapseW(), velocityW(), xercesW(),
-    xalanW()
+      camel(), ant()  ,  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
+    # antRF()  , camelRF(),  forrestRF(), ivyRF(), jeditRF(), luceneRF(), poiRF(), synapseRF(), velocityRF(), xercesRF(),
+    # antW()  , camelW(),  forrestW(), ivyW(), jeditW(), luceneW(), poiW(), synapseW(), velocityW(), xercesW()
+
 
 ]
-
-
-"""
-    , ivy20(), jedit40(), jedit41(), jedit42(), jedit43(),
-           lucene22(), lucene24(), poi20(), poi25(), poi30(),
-           synapse11(), synapse12(), velocity15(), velocity16(),
-           xalan25(), xalan26(), xalan27()]  
-"""
-#problems = [jedit42(), jedit43(), lucene22(), lucene24()]
-#problems = [poi20(), poi25(), poi30(), synapse11()]
-#problems = [synapse12(), velocity15(), velocity16(), xalan25()]
-#problems = [xalan26(), xalan27(), xalan27(), xalan27()]
-#problems = [ant14()]
-    
-#[POM3A(), POM3B(), POM3C(), XOMO_flight(), XOMO_osp2(), XOMO_ground(), srinivas(), schaffer(), osyczka2(), water(), bnh(), twobartruss(), viennet2(), dtlz2(5,20)]
-"""
-A0_test(), A001_test(),
-scale_test_similar(), scale_test_dissimilar(),
-deceptive1_test(), deceptive2_test(),
-bias_test(),
-dtlz1(5,2), dtlz1(5, 4),
-dtlz2(10,2), dtlz2(10, 4),
-dtlz3(10,2), dtlz3(10, 4),
-dtlz4(10,2), dtlz4(10, 4),
-dtlz5(10,2), dtlz5(10, 4),
-dtlz6(20,2), dtlz6(20, 4),
-XOMO_flight(), XOMO_ground(), XOMO_osp(), XOMO_osp2(), XOMO_all(),
-bnh(), schaffer(), constrex(), golinski(), osyczka2(), srinivas(), tanaka(), twobartruss(),
-viennet2(), viennet3(), viennet4(), zdt1(), zdt2(), zdt3(), zdt4(), zdt6(), poloni(), kursawe(3), fonseca(3), water(),
-#sbnh(), twobartruss(), osyczka2(), srinivas(), tanaka(), water(),constrex(),
-#golinski(), osyczka2(), srinivas(), zdt1(), tanaka(), schaffer(), poloni(), kursawe(3), fonseca(3)
-POM3A(), POM3B(), POM3C()
-#schaffer()
-
-]
-"""
 
 
 build_new_pop = False                                       # Whether or not to rebuild the initial population
-
 
 
 # JMOO Universal Properties
@@ -114,6 +77,8 @@ LAMBDA =  3     #Number of lives for bstop
 F = 0.75 # extrapolate amount
 CF = 0.3 # prob of cross over
 
+
+
 # File Names
 DATA_PREFIX        = "data/"
 DEFECT_PREDICT_PREFIX = "defect_prediction/"
@@ -128,3 +93,5 @@ SUMMARY_RESULTS    = "summary_"
 
 RRS_TABLE = "RRS_TABLE_"
 DATA_SUFFIX        = ".datatable"
+
+
