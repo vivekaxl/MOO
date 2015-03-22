@@ -9,7 +9,7 @@ from jmoo_problem import jmoo_problem
 parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/tera")))
 if parentdir not in sys.path:
     sys.path.insert(0, parentdir)
-from jmoo_preprocessor import PDPF, ABCD, GF
+from jmoo_preprocessor import PDPF, ABCD, GF, ACC
 
 
 
@@ -77,20 +77,22 @@ class Abcd:
             if (c+d)    : prec = d     / (c+d)
             if (1-pf+pd): g    = 2*(1-pf)*pd / (1-pf+pd)
             if (prec+pd): f    = 2*prec*pd/(prec+pd)
-            if (i.yes + i.no): acc= i.yes/(i.yes+i.no)
+            if (a+b+c+d): acc=float(a+d)/(a+b+c+d)
             if False:
                 print "#",('{0:10s} {1:10s} {2:4d} {3:4d} {4:4d} '+ \
                            '{5:4d} {6:4d} {7:4d} {8:3d} {9:3d} '+ \
                            '{10:3d} {11:3d} {12:3d} {13:10s}').format(i.db,
                                                                       i.rx,  n(b + d), n(a), n(b),n(c), n(d),
                                                                       p(acc), p(pd), p(pf), p(prec), p(f), p(g),auto(x))
-            print PD_PF
-            if PD_PF:
+
+            if PDPF:
                 scores += [[p(pd), p(pf), p(prec)]]  # e.g:[[100, 100, 74, 0], [0, 0, 74, 0]]
             elif ABCD:
                 scores += [[p(pd), p(pf), p(prec), a, b, c, d]]
-            elif G_F:
+            elif GF:
                 scores += [[p(pd), p(pf), p(prec), p(g), p(f)]]
+            elif ACC:
+                scores += [[p(pd), p(pf), p(prec), p(acc)]]
 
 
         return scores
@@ -134,10 +136,21 @@ tera_decisions= [jmoo_decision("min_samples_split", 2, 20),
                   ]
 
 
+if PDPF:
+    tera_objectives = [jmoo_objective("pd", False),
+                       jmoo_objective("pf", True),
+                       jmoo_objective("prec", False),]
+elif ABCD:
+    tera_objectives = [jmoo_objective("a", False),
+                       jmoo_objective("b", True),
+                       jmoo_objective("c", True),
+                       jmoo_objective("d", False),]
+elif GF:
+    tera_objectives = [jmoo_objective("g", False),
+                       jmoo_objective("f", False),]
 
-tera_objectives = [jmoo_objective("pd", False),
-                   jmoo_objective("pf", True),
-                   jmoo_objective("prec", False),]
+elif ACC:
+    tera_objectives = [jmoo_objective("acc", False)]
 
 
 def readDataset(file, properties):
@@ -234,9 +247,18 @@ class xalan(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
@@ -250,7 +272,7 @@ class xalan(jmoo_problem):
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "xalan-2.6", ["xalan-2.4"], type="default"))
-        return output
+        return output[:3]
 #ant
 
 class xerces(jmoo_problem):
@@ -268,9 +290,18 @@ class xerces(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
@@ -281,11 +312,11 @@ class xerces(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "xerces-1.4", ["xerces-1.2"]))
-        return output
+        return output[:3]
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "xerces-1.4", ["xerces-1.2"], type="default"))
-        return output
+        return output[:3]
 
 class velocity(jmoo_problem):
     def __init__(prob):
@@ -303,9 +334,18 @@ class velocity(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
@@ -315,11 +355,17 @@ class velocity(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "velocity-1.6", ["velocity-1.4"]))
-        return output
+        if PDPF:
+            print [o for o in output]
+        elif ABCD:
+            print [o for o in output[-4:]]
+        elif GF:
+            print [o for o in output[-3:]]
+        return output[:3]
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "velocity-1.6", ["velocity-1.4"], type="default"))
-        return output
+        return output[:3]
 
 
 class synapse(jmoo_problem):
@@ -338,9 +384,18 @@ class synapse(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
@@ -350,11 +405,17 @@ class synapse(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "synapse-1.2", ["synapse-1.0"]))
-        return output
+        if PDPF:
+            print [o for o in output]
+        elif ABCD:
+            print [o for o in output[-4:]]
+        elif GF:
+            print [o for o in output[-3:]]
+        return output[:3]
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "synapse-1.2", ["synapse-1.0"], type="default"))
-        return output
+        return output[:3]
 
 
 class poi(jmoo_problem):
@@ -372,9 +433,18 @@ class poi(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
 
     def evalConstraints(prob,input = None):
@@ -385,11 +455,17 @@ class poi(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "poi-2.5", ["poi-1.5"]))
-        return output
+        if PDPF:
+            print [o for o in output]
+        elif ABCD:
+            print [o for o in output[-4:]]
+        elif GF:
+            print [o for o in output[-3:]]
+        return output[:3]
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "poi-2.5", ["poi-1.5"], type="default"))
-        return output
+        return output[:3]
 
 class lucene(jmoo_problem):
     def __init__(prob):
@@ -406,9 +482,18 @@ class lucene(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
@@ -418,11 +503,17 @@ class lucene(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "lucene-2.4", ["lucene-2.0"]))
-        return output
+        if PDPF:
+            print [o for o in output]
+        elif ABCD:
+            print [o for o in output[-4:]]
+        elif GF:
+            print [o for o in output[-3:]]
+        return output[:3]
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "lucene-2.4", ["lucene-2.0"], type="default"))
-        return output
+        return output[:3]
 
 class jedit(jmoo_problem):
     def __init__(prob):
@@ -439,9 +530,18 @@ class jedit(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
 
     def test(prob, input=None):
@@ -449,12 +549,17 @@ class jedit(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "jedit-4.1", ["jedit-3.2"]))
-        return output
+        if PDPF:
+            print [o for o in output]
+        elif ABCD:
+            print [o for o in output[-4:]]
+        elif GF:
+            print [o for o in output[-3:]]
+        return output[:3]
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "jedit-4.1", ["jedit-3.2"], type="default"))
-        return output
-
+        return output[:3]
     def evalConstraints(prob,input = None):
         return False #no constraints
 
@@ -473,9 +578,18 @@ class ivy(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
@@ -485,11 +599,17 @@ class ivy(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "ivy-2.0", ["ivy-1.1"]))
-        return output
+        if PDPF:
+            print [o for o in output]
+        elif ABCD:
+            print [o for o in output[-4:]]
+        elif GF:
+            print [o for o in output[-3:]]
+        return output[:3]
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "ivy-2.0", ["ivy-1.1"], type="default"))
-        return output
+        return output[:3]
 
 
 class forrest(jmoo_problem):
@@ -507,9 +627,18 @@ class forrest(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
 
     def test(prob, input=None):
@@ -517,12 +646,17 @@ class forrest(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "forrest-0.8", ["forrest-0.6"]))
-        return output
+        if PDPF:
+            print [o for o in output]
+        elif ABCD:
+            print [o for o in output[-4:]]
+        elif GF:
+            print [o for o in output[-3:]]
+        return output[:3]
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "forrest-0.8", ["forrest-0.6"], type="default"))
-        return output
-
+        return output[:3]
     def evalConstraints(prob,input = None):
         return False #no constraints
 
@@ -542,9 +676,18 @@ class ant(jmoo_problem):
                 decision.value = input[i]
         input = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        prob.objectives[0].value = output[0]
-        prob.objectives[1].value = output[1]
-        prob.objectives[2].value = output[2]
+        if PDPF:
+            prob.objectives[0].value = output[0]
+            prob.objectives[1].value = output[1]
+            prob.objectives[2].value = output[2]
+        elif ABCD:
+            prob.objectives[0].value = output[-4]
+            prob.objectives[1].value = output[-3]
+            prob.objectives[2].value = output[-2]
+            prob.objectives[3].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
         return [objective.value for objective in prob.objectives]
 
     def test(prob, input=None):
@@ -552,10 +695,16 @@ class ant(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "ant-1.5", ["ant-1.3"]))
-        return output
+        if PDPF:
+            print [o for o in output]
+        elif ABCD:
+            print [o for o in output[-4:]]
+        elif GF:
+            print [o for o in output[-3:]]
+        return output[:3]
     def default(prob):
         output = evaluator(input, Properties(prob.name, "ant-1.5", ["ant-1.3"], type="default"))
-        return output
+        return output[:3]
     def evalConstraints(prob,input = None):
         return False  # no constraints
 
@@ -576,7 +725,7 @@ class camel(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PD_PF:
+        if PDPF:
             prob.objectives[0].value = output[0]
             prob.objectives[1].value = output[1]
             prob.objectives[2].value = output[2]
@@ -585,10 +734,11 @@ class camel(jmoo_problem):
             prob.objectives[1].value = output[-3]
             prob.objectives[2].value = output[-2]
             prob.objectives[3].value = output[-1]
-        elif G_F:
-            prob.objectives[0].value = output[-3]
-            prob.objectives[1].value = output[-2]
-            prob.objectives[2].value = output[-1]
+        elif GF:
+            prob.objectives[0].value = output[-2]
+            prob.objectives[1].value = output[-1]
+        elif ACC:
+            prob.objectives[0].value = output[-1]
 
         return [objective.value for objective in prob.objectives]
 
@@ -597,12 +747,14 @@ class camel(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "camel-1.4", ["camel-1.0"]))
-        if PD_PF:
+        if PDPF:
             print [o for o in output]
         elif ABCD:
             print [o for o in output[-4:]]
-        elif G_F:
+        elif GF:
             print [o for o in output[-3:]]
+        elif ACC:
+            print [o for o in output[-1:]]
         return output[:3]
     def default(prob):
         output = evaluator(input, Properties(prob.name, "camel-1.4", ["camel-1.0"], type="default"))

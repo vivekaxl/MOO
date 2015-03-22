@@ -29,7 +29,7 @@
 
 from jmoo_individual import *
 import random,csv
-import pdb
+from jmoo_preprocessor import GALE_DISTRIBUTION
 class jmoo_problem(object):
     "a representation of a multi-objective problem"
     
@@ -43,13 +43,32 @@ class jmoo_problem(object):
         
     def generateInput(prob):
         "a way to generate decisions for this problem"
-        
-        while True: # repeat if we don't meet constraints
-            for decision in prob.decisions:
-                decision.value = random.uniform(decision.low, decision.up)
-            if not prob.evalConstraints():
-                break
-        return [decision.value for decision in prob.decisions]
+
+        if GALE_DISTRIBUTION == "GAUSSIAN":
+            while True: # repeat if we don't meet constraints
+                for decision in prob.decisions:
+                    mean = (decision.low + decision.up)/ float(2)
+                    sd = abs(mean - decision.low) / float(3)
+                    while True:
+                        temp = random.gauss(mean, sd)
+                        # print temp, decision.up, decision.low, mean, sd
+                        if temp > decision.low and temp <= decision.up:
+                            decision.value = temp
+                            # print temp, decision.low, decision.up
+                            break
+                        else:
+                            print "x",
+                if not prob.evalConstraints():
+                    break
+            return [decision.value for decision in prob.decisions]
+
+        elif GALE_DISTRIBUTION == "UNIFORM":
+            while True: # repeat if we don't meet constraints
+                for decision in prob.decisions:
+                    decision.value = random.uniform(decision.low, decision.up)
+                if not prob.evalConstraints():
+                    break
+            return [decision.value for decision in prob.decisions]
     def generateExtreme(prob):
         
         for decision in prob.decisions:

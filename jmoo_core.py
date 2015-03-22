@@ -48,6 +48,7 @@ def one(lst):
 def chosen_one(problem, lst):
     def sum(ll):
         l = ll.fitness.fitness
+        # print "l: ", l
         assert len(problem.objectives) == len(l), "Something is wrong here"
         new = []
         for i, o in enumerate(problem.objectives):
@@ -55,12 +56,22 @@ def chosen_one(problem, lst):
                 new.append(l[i])
             else:
                 new.append(100 - l[i])
+        # print "New: ", min(new)
         return min(new)
 
+    # print "Length of frontier: ", len(lst)
     chosen = lst[0]
+    print "================================================"
+    print "Start: ", lst[0]
+
     for element in lst:
+        score = problem.evaluate(element.decisionValues)
+        # print element.fitness.fitness
         if sum(chosen) < sum(element):
             chosen = element
+        # print "There: ", chosen
+
+    print "Chosen: ", chosen
 
     return chosen
 
@@ -294,7 +305,6 @@ class JMOO:
         vOut = "<Experiment>\n"
 
         for problem in self.tests.problems:
-            objectives = ["pd", "pf", "prec"]
 
 
 
@@ -336,7 +346,7 @@ class JMOO:
 
                 # Repeat Core
                 for repeat in range(repeats):
-                    parameters = ["pd", "pf", "prec"]
+                    objectives = ["pd", "pf", "prec"]
 
                     # Run
                     #zOut += "<Run id = '" + str(repeat+1) + "'>\n"
@@ -359,7 +369,7 @@ class JMOO:
                     vOut += "<Testing>" + str(problem.testing) + "</Testing>\n"
                     vOut += "<Training_Tuning>\n"
                     for i,a in enumerate(any.fitness.fitness):
-                        vOut += "\t<" + parameters[i] + "> " + str(any.fitness.fitness[i]) + "</" + parameters[i] + "> \n" # de
+                        vOut += "\t<parameters" + str(i) + "> " + str(any.fitness.fitness[i]) + "</parameters" + str(i) + "> \n" # de
                     vOut += "</Training_Tuning>\n"
                     result = problem.test(any.decisionValues)
                     vOut += "<Parameters>\n"
