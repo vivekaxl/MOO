@@ -76,33 +76,20 @@ class jmoo_stats_box:
         #    if not pop.valid: pop.evaluate()
         population = [pop for pop in population if pop.fitness.valid]
 
+        print "Length of population: ", len(population)
 
-        
-        #population = jmoo_algorithms.deap_format(statBox.problem, population)
-        
-        #front = ParetoFront()
-        #front.update(population)
-        
-        """
-        fitnesses = []
-        population = []
-        for i,dIndividual in enumerate(front):
-            cells = []
-            for j in range(len(dIndividual)):
-                cells.append(dIndividual[j])
-            fit = []
-            for k in range(len(statBox.problem.objectives)):
-                fit.append(dIndividual.fitness.values[k])
-            population.append( jmoo_individual(statBox.problem, cells, fit) )
-        """         
-        # Evaluate Fitnesses
-        #for individual in population:
-        #    if not individual.valid: individual.evaluate()
         fitnesses = [individual.fitness.fitness for individual in population if individual.valid]
+
+        print "Length of fitness: ", len(fitnesses)
+        print "Number of objectives: ", len(statBox.problem.objectives)
+        import time
+        time.sleep(0.5)
         
                 
         # Split Columns into Lists
         fitnessColumns = [[fit[i] for fit in fitnesses] for i,obj in enumerate(statBox.problem.objectives)]
+
+        print "fitnessColumns: ", fitnessColumns
     
         # Calculate Medians and Spreads
         fitnessMedians = [median(fitCol) for fitCol in fitnessColumns]
@@ -111,11 +98,14 @@ class jmoo_stats_box:
         # Initialize Reference Point on Initial Run
         if initial == True:
             statBox.referencePoint = [o.med for o in statBox.problem.objectives]
-            print [(o.low, o.up) for o in statBox.problem.objectives]
+
+        print "Reference Point: ", statBox.referencePoint
             
 
         # Calculate IBD & IBS
         norms = [[min(fitnessColumns[i]+[statBox.referencePoint[i]]), max(fitnessColumns[i]+[statBox.referencePoint[i]])] for i,obj in enumerate(statBox.problem.objectives)]
+        print "Norms: ", norms
+
         lossInQualities = [{"qual": loss_in_quality(statBox.problem, [statBox.referencePoint], fit, norms), "index": i} for i,fit in enumerate(fitnesses)]
         
         lossInQualities.sort(key=lambda(r): r["qual"])
@@ -141,8 +131,9 @@ class jmoo_stats_box:
             
             if initial:
                 outString += str(statBox.numEval) + ","
-                for med,spr,initmed,obj,o in zip(statBox.referencePoint, [0 for x in statBox.problem.objectives], statBox.referencePoint,statBox.problem.objectives,range(len(statBox.problem.objectives))):
+                for med,spr,initmed,obj,o in zip(statBox.referencePoint, [0 for x in statBox.problem.objectives], statBox.referencePoint, statBox.problem.objectives, range(len(statBox.problem.objectives))):
                     change = percentChange(med, initmed, obj.lismore, obj.low, obj.up)
+                    print "change: ", change
                     changes.append(float(change.strip("%")))
                     statBox.bests[o] = changes[-1]
                     statBox.bests_actuals[o] = med
@@ -151,9 +142,11 @@ class jmoo_stats_box:
                     else: statBox.foam[o][statBox.numEval] = [change]
                 outString += str("%8.4f" % IBD) + "," + percentChange(statBox.referenceIBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS)
             else:
+                exit()
                 outString += str(statBox.numEval) + ","
                 for med,spr,initmed,obj,o in zip(best_fitness, fitnessSpreads, statBox.referencePoint,statBox.problem.objectives,range(len(statBox.problem.objectives))):
                     change = percentChange(med, initmed, obj.lismore, obj.low, obj.up)
+                    print "change: ", change
                     changes.append(float(change.strip("%")))
                     if changes[-1] < statBox.bests[o]: 
                         statBox.bests[o] = changes[-1]
@@ -172,6 +165,7 @@ class jmoo_stats_box:
         for i,pop in enumerate(population):
             trunk.append(jmoo_individual(statBox.problem, pop.decisionValues, pop.fitness.fitness))
             #if i < 5: print trunk[-1].decisionValues, statBox.problem.evalConstraints(trunk[-1].decisionValues)
+        print changes
         statBox.box.append(jmoo_stats(trunk, fitnesses, best_fitness, fitnessSpreads, statBox.numEval, gen, IBD, IBS, changes))
         fa.close()
 ###########
@@ -182,17 +176,14 @@ def percentChange(new, old, lismore, low, up):
     # print "old: ", old
     # print "new: ", new
     return str("%1.1f" % changeFromOld(new, old, lismore, low, up)) + "%"
+
 def changeFromOld(new, old, lismore, low, up):
     if new < 0 or old < 0: 
         ourlismore = not lismore
         new = abs(new)
         old = abs(old)
     else: ourlismore = lismore
-    
-
-    
-    
-    #if new == 0 or old == 0: return 0 if ourlismore else 110
+    # if new == 0 or old == 0: return 0 if ourlismore else 110
     new = normalize(new, low, up)
     old = normalize(old, low, up)
     if old == 0: x = 0
@@ -238,7 +229,7 @@ def loss_in_quality(problem, pop, fit1, norms):
     # Calculate the loss in quality of removing fit1 from the population
     F = []
     for X2 in pop:
-        F.append(-k/(sum([-math.exp(-w*(normalize(p2,n[0],n[1]) - normalize(p1,n[0],n[1]))/k) for w,p1,p2,n in zip(weights,fit1,  X2,        norms)])))
+        F.append(-k/(sum([-math.exp(-w*(normalize(p2,n[0],n[1]) - normalize(p1,n[0],n[1]))/k) for w,p1,p2,n in zip(weights,fit1,X2,norms)])))
     F1 = sum(F)
     
     return F1

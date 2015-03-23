@@ -236,8 +236,6 @@ def evaluator(input, properties):
     result = [float(x) for x in result]
 
     scores = _Abcd(result, weitransform(test_dep, 0), threshold)
-    print "Scores: ", scores
-    exit()
     return scores
 
 

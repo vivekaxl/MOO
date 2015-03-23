@@ -27,7 +27,7 @@
 "Brief notes"
 "Bunch of often used functions"
 
-import numpy 
+import numpy
 import math
 from sk import *
 
@@ -45,7 +45,7 @@ def median(list):
 
 def spread(list):
     return getPercentile(list, 75) - getPercentile(list, 25)
-    
+
 def mul(list):
     sum = list[0]
     for i in list[1:]:
@@ -53,11 +53,11 @@ def mul(list):
     return sum
 
 def var(list):
-   mean = avg(list)
-   squared_diffs = []
-   for i in list:
-       squared_diffs.append((i-mean)**2)
-   return ((float)(sum(squared_diffs))/(float)(len(list)-1))
+    mean = avg(list)
+    squared_diffs = []
+    for i in list:
+        squared_diffs.append((i-mean)**2)
+    return ((float)(sum(squared_diffs))/(float)(len(list)-1))
 
 def avg2(list, index):
     "return the average of a particular column from an array of arrays"
@@ -69,72 +69,72 @@ def avg2(list, index):
 def matrix_avg(matrix):
     vals = []
     averages = []
-    
+
     #populate vals with empty frames
     for i in range(len(matrix[0])):
         vals.append([])
-    
+
     #populate vals with matrix data
     for i,row in enumerate(matrix):
         for j,col in enumerate(row):
             vals[j].append(col)
-            
+
     #compute averages of each column
     for i,col in enumerate(vals):
         averages.append(avg(col))
-    
+
     return averages
 
 def matrix_var(matrix):
     vals = []
     variances = []
-    
+
     #populate vals with empty frames
     for i in range(len(matrix[0])):
         vals.append([])
-    
+
     #populate vals with matrix data
     for i,row in enumerate(matrix):
         for j,col in enumerate(row):
             vals[j].append(col)
-            
+
     #compute averages of each column
     for i,col in enumerate(vals):
         variances.append(var(col))
-    
+
     return variances
 
 def getPercentile(list, percentile):
-        import math
-        #sort the list
-        list.sort()
-        
-        k = (len(list) - 1) * (percentile/100.0)
-        f = math.floor(k)
-        c = math.ceil(k)
-        if f == c:
-            val = list[int(k)]
-        else:
-            d0 = list[int(f)] * (c-k)
-            d1 = list[int(c)] * (k-f)
-            val = d0+d1
-        return val
+    import math
+    #sort the list
+    list.sort()
+
+    k = (len(list) - 1) * (percentile/100.0)
+    f = math.floor(k)
+    c = math.ceil(k)
+    if f == c:
+        val = list[int(k)]
+    else:
+        d0 = list[int(f)] * (c-k)
+        d1 = list[int(c)] * (k-f)
+        val = d0+d1
+    return val
 def avg(list):
-      return (float)(sum(list))/(float)(len(list))
+    return (float)(sum(list))/(float)(len(list))
 
 def sum(list):
-      sum = 0;
-      for i in list:
-          sum+= i;
-      return sum
-  
+    sum = 0;
+    for i in list:
+        sum+= i;
+    return sum
+
 def var(list):
-     mean = avg(list)
-     squared_diffs = []
-     for i in list:
-         squared_diffs.append((i-mean)**2)
-     return ((float)(sum(squared_diffs))/(float)(len(list)-1))
- 
+    mean = avg(list)
+    squared_diffs = []
+    for i in list:
+        squared_diffs.append((i-mean)**2)
+    return ((float)(sum(squared_diffs))/(float)(len(list)-1))
+
 def dist(A,B):
     return sum([(a-b)**2 for a,b in zip(A,B)])**0.5
 def pretty_print(matrix):
@@ -143,8 +143,8 @@ def pretty_print(matrix):
         for val in row:
             s += str('%15.3f'%(val)) + ", "
         print s
-        
-        
+
+
 def getFront(problem, population):
     #fitnesses = [list(x) for x in set(tuple(x) for x in fitnesses)]
 
@@ -154,35 +154,35 @@ def getFront(problem, population):
             decision.value = ind.decisionValues[d]
         if True: #not problem.evalConstraints():
             myList.append(population[i])
-        
+
     #for i,pop in enumerate(population):
     #    print pop.decisionValues, sum(problem.evalConstraintOverages(pop.decisionValues)), problem.evalConstraints(pop.decisionValues)
-            
+
     # Sort the list in either ascending or descending order of X
     myList = sorted(myList, key= lambda pop: pop.fitness.fitness)
-    
+
     # Start the Pareto frontier with the first value in the sorted list
     p_front = []
     for pair in myList:
         if pair.valid and not problem.evalConstraints(pair.decisionValues):
             p_front = [pair]
             break
-        
+
     # Loop through the sorted list
-    for pair in myList[1:]: 
-            if pair.valid and pair.fitness.fitness[1] <= p_front[-1].fitness.fitness[1] and not problem.evalConstraints(pair.decisionValues):
-                p_front.append(pair)
-    
-    
+    for pair in myList[1:]:
+        if pair.valid and pair.fitness.fitness[1] <= p_front[-1].fitness.fitness[1] and not problem.evalConstraints(pair.decisionValues):
+            p_front.append(pair)
+
+
     area = 1
-        
+
     return p_front, area
 
 def pareto_frontier_multi(myArray):
     #fitnesses = [list(x) for x in set(tuple(x) for x in fitnesses)]
-    
+
     # Sort on first dimension
-    
+
     myArray = myArray[myArray[:,0].argsort()]
     # Add first row to pareto_frontier
     pareto_frontier = myArray[0:1,:]
@@ -196,23 +196,23 @@ def pareto_frontier_multi(myArray):
 
 def normalize(x, min, max):
     tmp = float((x - min)) / \
-                (max - min + 0.000001) 
+          (max - min + 0.000001)
     if   tmp > 1 : return 1
     elif tmp < 0 : return 0
-    else         : return tmp 
-    
+    else         : return tmp
+
 def loss(x1, x2, mins=None, maxs=None):
     #normalize if mins and maxs are given
     if mins and maxs:
         x1 = [normalize(x, mins[i], maxs[i]) for i,x in enumerate(x1)]
         x2 = [normalize(x, mins[i], maxs[i]) for i,x in enumerate(x2)]
-    
+
     o = min(len(x1), len(x2)) #len of x1 and x2 should be equal 
     return sum([math.exp((x2i - x1i)/o) for x1i, x2i in zip(x1,x2)])/o
 
 
 def loss2(x1, pop, mins=None, maxs=None, weights=None):  # removal of pop-x1 vs pop
-    
+
     k = len(weights)
     norms = [(min,max) for min,max in zip(mins, maxs)]
     # Calculate the loss in quality of removing fit1 from the population
@@ -222,8 +222,8 @@ def loss2(x1, pop, mins=None, maxs=None, weights=None):  # removal of pop-x1 vs 
             F.append(-k/(sum([-math.exp(-w*(normalize(p2,n[0],n[1]) - normalize(p1,n[0],n[1]))/k) for w,p1,p2,n in zip(weights,x1,  X2,        norms)])))
     F1 = sum(F)
     return F1
-    
-    
+
+
 def cdom(x1, x2, mins=None, maxs=None):
     return loss(x1,x2, mins, maxs) / loss(x2,x1, mins, maxs)
 
@@ -234,7 +234,7 @@ def spacing(dataset):
         fma = []
         for j,fit_j in enumerate(dataset):
             if not i == j:
-                fma.append(sum([abs(fit_i[k] - fit_j[k]) for k in range(dim)]))                                            
+                fma.append(sum([abs(fit_i[k] - fit_j[k]) for k in range(dim)]))
         d_.append(min(fma))
     d_bar = avg(d_)
     ssm =   ((1 / float(len(dataset) - 1)) * sum([(d_bar - d_i)**2 for d_i in d_]))**0.5
@@ -242,22 +242,15 @@ def spacing(dataset):
 
 
 def callrdivdemo(eraCollector):
-  #print eraCollector
-  #print "callrdivdemo %d"%len(eraCollector.keys())
-  keylist = eraCollector.keys()
-  #print keylist
-  variant = len(keylist)
-  #print variant
-  rdivarray=[]
-  for y in xrange(variant):
-      #print "Length of array: %f"%len(eraCollector[keylist[y]][x])
-      temp = eraCollector[keylist[y]]
-      #print temp
-      temp.insert(0,str(keylist[y]))
-      #print temp
-      rdivarray.append(temp)
-  rdivDemo(rdivarray)
-  
+    keylist = eraCollector.keys()
+    variant = len(keylist)
+    rdivarray=[]
+    for y in xrange(variant):
+        temp = eraCollector[keylist[y]]
+        temp.insert(0, str(keylist[y]))
+        rdivarray.append(temp)
+    rdivDemo(rdivarray)
+
 """
 def losstest():
 x1 = [0.1, 0.1, 0.1, 0.1]

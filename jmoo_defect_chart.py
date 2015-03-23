@@ -3,30 +3,52 @@ from jmoo_core import *
 from collections import defaultdict
 from utility import *
 
+def rank_cdom(problem, weights, one, two):
+    #Score the poles
+    n = len(one)
+    assert(len(one) == len(two)), "Length mismatch"
+
+    weightedWest = [c*w for c,w in zip(one, weights)]
+    weightedEast = [c*w for c,w in zip(two, weights)]
+    westLoss = loss(weightedWest, weightedEast, mins = [0,0,0], maxs = [100, 100, 100]) # Work around. Fix it
+
+    return westLoss  #, eastLoss
+
+
+def cdom_ranking(problem, weights, dict):
+    ret = []
+    for l in dict.keys():
+        ret.append([l, sum([rank_cdom(problem, weights, dict[l], dict[ll]) for ll in dict.keys() if l != ll])])
+    print sorted(ret, key=lambda x: x[-1], reverse=True)
+    for d in dict.keys():
+        print d, dict[d]
+
+
 
 #----------------------------------------------------------------------
-def stat(list):
-    def median(xs, is_sorted=False):
-        """
-        Return the median of the integer-indexed object passed in. To save sorting
-        time, the client can pass in is_sorted=True to skip the sorting step.
-        """
-        # implementation from http://stackoverflow.com/a/10482734/3408454
-        if not is_sorted:
-            xs = sorted(xs)
-        n = len(xs)
-        return xs[n // 2] if n % 2 else (xs[n // 2] + xs[n // 2 - 1]) / 2
-
-
-    def mean(xs):
-        "Returns the mean of the iterable argument."
-        return sum(xs) / len(xs)
-
-
-    def iqr(xs):
+def median(xs, is_sorted=False):
+    """
+    Return the median of the integer-indexed object passed in. To save sorting
+    time, the client can pass in is_sorted=True to skip the sorting step.
+    """
+    # implementation from http://stackoverflow.com/a/10482734/3408454
+    if not is_sorted:
         xs = sorted(xs)
-        n = len(xs)
-        return xs[int(n * .75)] - xs[int(n * .25)]
+    n = len(xs)
+    return xs[n // 2] if n % 2 else (xs[n // 2] + xs[n // 2 - 1]) / 2
+
+
+def mean(xs):
+    "Returns the mean of the iterable argument."
+    return sum(xs) / len(xs)
+
+
+def iqr(xs):
+    xs = sorted(xs)
+    n = len(xs)
+    return xs[int(n * .75)] - xs[int(n * .25)]
+
+def stat(list):
 
     out = "Median: %2.3f "% median(list)
     out += " IQR: %2.3f" % iqr(list)
@@ -35,10 +57,14 @@ def stat(list):
 
     return out
 
-def parseXML(xml_file, tag):
+def parseXML( xml_file, tag, tests = None):
     """
     Parse XML with ElementTree
     """
+    if tag == "ranking":
+        assert(tests is not None), "Something is wrong"
+
+    from collections import defaultdict
 
     tree = ET.ElementTree(file=xml_file)
     experiment = tree.getroot()
@@ -56,6 +82,7 @@ def parseXML(xml_file, tag):
             scores_pf = defaultdict(list)
             scores_prec = defaultdict(list)
             scores_eval = defaultdict(list)
+            ranking = defaultdict(list)
             dpd = []
             dpf =[]
             dprec = []
@@ -100,6 +127,11 @@ def parseXML(xml_file, tag):
                     result += "Default pf: "+ str(stat(dpf))+"\n"
                     result += "Default prec: "+ str(stat(dprec))+"\n\n\n"
 
+                if tag == "ranking":
+                    alg = algorithm.attrib["name"]
+                    ranking[alg] = [float(median(pd)), float(median(pf)), float(median(prec))]
+
+
                 if tag == "charts":
                     scores_pd[str(algorithm.attrib["name"])] = []
                     scores_pf[str(algorithm.attrib["name"])] = []
@@ -109,6 +141,9 @@ def parseXML(xml_file, tag):
                     scores_pf[str(algorithm.attrib["name"])] = pf
                     scores_prec[str(algorithm.attrib["name"])] = prec
                     scores_eval[str(algorithm.attrib["name"])] = numeval
+
+            if tag == "ranking":
+                ranking["default"] = [median(dpd), median(dpf), median(dprec)]
 
             if tag == "charts":
                 scores_pd["default"] = []
@@ -125,10 +160,24 @@ def parseXML(xml_file, tag):
                 names = ["PD", "PF", "PREC", "EVALS"]
                 for i,x in enumerate([scores_pd, scores_pf, scores_prec, scores_eval]):
                     print "Features: ", names[i]
+                    print x
                     callrdivdemo(x)
                 sys.stdout = sys.__stdout__
                 f.close()
 
+            if tag == "ranking":
+                print problem.attrib["name"]
+                weights = []
+                for obj in tests.problems[0].objectives:
+                    # w is negative when we are maximizing that objective
+                    if obj.lismore:
+                        weights.append(+1)
+                    else:
+                        weights.append(-1)
+                if problem.attrib["name"] == "default":
+                    cdom_ranking(tests.problems[0], weights, ranking)
+                else:
+                    cdom_ranking([x for x in tests.problems if x.name == problem.attrib["name"]][-1], weights, ranking)
 
 
 

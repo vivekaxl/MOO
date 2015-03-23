@@ -79,6 +79,8 @@ for i,arg in enumerate(sys.argv):
         dfreportOnly = True
     if arg == "-defectchart":
         dfchartOnly = True
+    if arg == "-defectranking":
+        dfrankOnly = True
 
 
         
@@ -103,13 +105,15 @@ if dfreportOnly is True:
     reports = [jmoo_df_report("stats")]
 if dfchartOnly is True:
     reports = [jmoo_df_report("charts")]
+if dfrankOnly is True:
+    reports = [jmoo_df_report("ranking", tests)]
 
 
 # Associate core with tests and reports
 core = JMOO(tests, reports)
 
 # Perform the tests
-if not reportOnly and not dfreportOnly and not dfchartOnly:
+if not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly:
     core.doDefectPrediction()
 
 # Prepare the reports

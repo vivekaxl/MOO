@@ -704,7 +704,6 @@ class antW(jmoo_problem):  # ant 15 is the latest, it can't see anything other t
         input = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
         print output
-        exit()
         if PDPF:
             prob.objectives[0].value = output[0]
             prob.objectives[1].value = output[1]

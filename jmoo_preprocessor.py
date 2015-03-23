@@ -10,5 +10,5 @@ ACC = False
 GALE_DISTRIBUTION = "UNIFORM"
 
 # SMOTE the training data
-SMOTE = True
+SMOTE = False
 

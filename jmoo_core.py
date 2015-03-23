@@ -110,18 +110,25 @@ class jmoo_chart_report:
         joes_charter_reporter(self.tests.problems, self.tests.algorithms, tag=tagnote)
 
 class jmoo_df_report:
-    def __init__(self, tag="stats"):
+    def __init__(self, tag="stats", tests = None):
         self.filename = DEFECT_PREDICT_PREFIX + "DefectPredict.xml"
         self.tag = tag
+        self.tests = tests
     def doit(self, tagnote=""):
         if self.tag == "stats":
             self.doStatistics()
         elif self.tag == "charts":
             self.doCharts()
+        elif self.tag == "ranking":
+            self.doRanks()
     def doStatistics(self):
         parseXML(self.filename,self.tag)
     def doCharts(self):
         parseXML(self.filename,self.tag)
+    def doRanks(self):
+        assert(self.tests != None), "Problems not passed"
+        print self.filename
+        parseXML(self.filename, self.tag, self.tests)
 
         
 class jmoo_test:
