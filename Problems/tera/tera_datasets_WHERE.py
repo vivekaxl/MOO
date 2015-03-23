@@ -195,7 +195,6 @@ def evaluator(input, properties):
         return Where(input, properties.training_dataset[0], properties.test_dataset)
     else:
         return NaiveWhere(properties.training_dataset[0], properties.test_dataset)
-    return scores
 
 
 class Properties:
@@ -704,6 +703,8 @@ class antW(jmoo_problem):  # ant 15 is the latest, it can't see anything other t
                 decision.value = input[i]
         input = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
+        print output
+        exit()
         if PDPF:
             prob.objectives[0].value = output[0]
             prob.objectives[1].value = output[1]

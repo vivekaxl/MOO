@@ -49,8 +49,8 @@
       <file leaf-file-name="tera_datasets_WHERE.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Problems/tera/tera_datasets_WHERE.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2700" max-vertical-offset="11250">
-              <caret line="197" column="4" selection-start-line="197" selection-start-column="4" selection-end-line="197" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="10296" max-vertical-offset="11265">
+              <caret line="706" column="14" selection-start-line="706" selection-start-column="14" selection-end-line="706" selection-end-column="14" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -68,24 +68,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jmoo_problems.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_problems.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5895" max-vertical-offset="25380">
-              <caret line="73" column="55" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="tera_dataset.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Problems/tera/tera_dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2177" max-vertical-offset="11880">
-              <caret line="163" column="28" selection-start-line="163" selection-start-column="28" selection-end-line="163" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="81.666664" vertical-offset="2205" max-vertical-offset="11880">
+              <caret line="0" column="10" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,8 +91,8 @@
       <file leaf-file-name="smote.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Techniques/smote.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.333333" vertical-offset="978" max-vertical-offset="1545">
-              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="93" selection-end-column="30" />
+            <state vertical-scroll-proportion="-0.44444445" vertical-offset="948" max-vertical-offset="1545">
+              <caret line="64" column="37" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -115,9 +103,11 @@
       <file leaf-file-name="table.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WHERE/table.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57789856" vertical-offset="221" max-vertical-offset="2340">
-              <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-              <folding />
+            <state vertical-scroll-proportion="0.36050725" vertical-offset="746" max-vertical-offset="2970">
+              <caret line="63" column="58" selection-start-line="63" selection-start-column="58" selection-end-line="63" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -125,8 +115,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WHERE/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.814815" vertical-offset="5906" max-vertical-offset="8985">
-              <caret line="406" column="18" selection-start-line="406" selection-start-column="16" selection-end-line="406" selection-end-column="18" />
+            <state vertical-scroll-proportion="-17.222221" vertical-offset="930" max-vertical-offset="8985">
+              <caret line="93" column="16" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="16" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -139,7 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tera/camel-1.2.csv" />
         <option value="$PROJECT_DIR$/tera/camel-1.4.csv" />
         <option value="$PROJECT_DIR$/tera/forrest-0.6.csv" />
         <option value="$PROJECT_DIR$/tera/forrest-0.7.csv" />
@@ -185,10 +174,11 @@
         <option value="$PROJECT_DIR$/WHERE/Abcd.py" />
         <option value="$PROJECT_DIR$/jmoo_preprocessor.py" />
         <option value="$PROJECT_DIR$/Problems/tera/tera_dataset.py" />
-        <option value="$PROJECT_DIR$/Techniques/smote.py" />
         <option value="$PROJECT_DIR$/jmoo_properties.py" />
-        <option value="$PROJECT_DIR$/Problems/tera/tera_datasets_WHERE.py" />
         <option value="$PROJECT_DIR$/Problems/tera/tera_dataset_RF.py" />
+        <option value="$PROJECT_DIR$/WHERE/main.py" />
+        <option value="$PROJECT_DIR$/Problems/tera/tera_datasets_WHERE.py" />
+        <option value="$PROJECT_DIR$/Techniques/smote.py" />
         <option value="$PROJECT_DIR$/WHERE/table.py" />
       </list>
     </option>
@@ -236,6 +226,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="jmoo-jmoo_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jmoo-jmoo_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jmoo-jmoo_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WHERE" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -304,7 +308,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/GIT/Transfer-Learning" />
+    <property name="last_opened_file_path" value="$USER_HOME$/jmoo-jmoo_v3" />
     <property name="FullScreen" value="true" />
     <property name="SearchEverywhereHistoryKey" value="initi&#9;null&#9;null&#10;row&#9;null&#9;null&#10;jmoo_te&#9;null&#9;null&#10;stats&#9;null&#9;null&#10;any&#9;null&#9;null" />
   </component>
@@ -462,7 +466,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2883939" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2883939" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -505,13 +509,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tera/jedit-3.2.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4185">
-          <caret line="0" column="135" selection-start-line="0" selection-start-column="135" selection-end-line="0" selection-end-column="135" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tera/jedit-4.0.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4695">
@@ -781,16 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="602" max-vertical-offset="5295">
-          <caret line="63" column="59" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
-          <folding>
-            <element signature="e#3974#10472#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/defect_prediction/DefectPredict_chart.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4980" max-vertical-offset="5640">
@@ -833,12 +820,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/tera/tera_dataset_RF.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2856" max-vertical-offset="11655">
+          <caret line="203" column="8" selection-start-line="203" selection-start-column="8" selection-end-line="203" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/csv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.59930915" vertical-offset="347" max-vertical-offset="6870">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#52#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Problems/tera/tera_dataset.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2177" max-vertical-offset="11880">
-          <caret line="163" column="28" selection-start-line="163" selection-start-column="28" selection-end-line="163" selection-end-column="28" />
+        <state vertical-scroll-proportion="81.666664" vertical-offset="2205" max-vertical-offset="11880">
+          <caret line="0" column="10" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="602" max-vertical-offset="5295">
+          <caret line="63" column="59" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#3974#10472#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -853,26 +866,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Problems/tera/tera_datasets_WHERE.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2700" max-vertical-offset="11250">
-          <caret line="197" column="4" selection-start-line="197" selection-start-column="4" selection-end-line="197" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="10296" max-vertical-offset="11265">
+          <caret line="706" column="14" selection-start-line="706" selection-start-column="14" selection-end-line="706" selection-end-column="14" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/tera/tera_dataset_RF.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2856" max-vertical-offset="11655">
-          <caret line="203" column="8" selection-start-line="203" selection-start-column="8" selection-end-line="203" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WHERE/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.814815" vertical-offset="5906" max-vertical-offset="8985">
-          <caret line="406" column="18" selection-start-line="406" selection-start-column="16" selection-end-line="406" selection-end-column="18" />
+        <state vertical-scroll-proportion="-17.222221" vertical-offset="930" max-vertical-offset="8985">
+          <caret line="93" column="16" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="16" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -881,8 +886,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Techniques/smote.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.333333" vertical-offset="978" max-vertical-offset="1545">
-          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="93" selection-end-column="30" />
+        <state vertical-scroll-proportion="-0.44444445" vertical-offset="948" max-vertical-offset="1545">
+          <caret line="64" column="37" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -891,9 +896,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WHERE/table.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57789856" vertical-offset="221" max-vertical-offset="2340">
-          <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
-          <folding />
+        <state vertical-scroll-proportion="0.36050725" vertical-offset="746" max-vertical-offset="2970">
+          <caret line="63" column="58" selection-start-line="63" selection-start-column="58" selection-end-line="63" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
