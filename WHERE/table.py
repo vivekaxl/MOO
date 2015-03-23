@@ -22,11 +22,12 @@ def rows(file,
   ins = open(file)
 
   for line in ins:
+    print "LINE: ", line
     now   = re.sub(bad,"",line) # kill white space
     kept += now
     if kept:
       if not now[-1] == sep:
-        yield n, map(atom,kept.split(sep))
+        yield n, map(atom, kept.split(sep))
         n += 1
         kept = "" 
   ins.close()
@@ -36,14 +37,20 @@ def row(file,skip= The.reader.skip):
   todo = None
   for n,line in rows(file): # line is a list including elements of  one row
     todo = todo or [col for col,name in enumerate(line) if not skip in name]
+    print n, [ line[col] for col in todo ]
+    need to add smoting to where!!
     yield n, [ line[col] for col in todo ]
 
 ## Read Headers and Rows
 def table(source, rows = True, contents = row):
   t = table0(source) # Thing object
+
   for n,cells in contents(source): # cells is a list including one row elements
     if n == 0 : head(cells,t)
-    else      : body(cells,t,rows)
+    else      :
+        body(cells,t,rows)
+        print len(cells)
+        exit()
   #print ">>>>", len(t._rows)
 
   return t

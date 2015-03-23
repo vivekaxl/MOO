@@ -6,7 +6,7 @@ import sys, os, inspect
 from jmoo_objective import *
 from jmoo_decision import *
 from jmoo_problem import jmoo_problem
-parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/tera")))
+parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"../../Techniques")))
 if parentdir not in sys.path:
     sys.path.insert(0, parentdir)
 from jmoo_preprocessor import PDPF, ABCD, GF
@@ -149,6 +149,15 @@ elif ACC:
     tera_objectives = [jmoo_objective("acc", False)]
 
 
+def readSmoteDataset(file, properties):
+    prefix = "tera/"
+    suffix = ".csv"
+    finput = open(prefix + file + suffix, 'rb')
+    reader = csv.reader(finput, delimiter=',')
+    dataread = smote(reader)
+    return np.array(dataread[0]), dataread[-1]  # keeping the same format as Joe's code
+
+
 def readDataset(file, properties):
     prefix = "tera/"
     suffix = ".csv"
@@ -188,7 +197,12 @@ def evaluator(input, properties):
         threshold = 0.5
 
     assert(len(properties.training_dataset) == 1), "didn't assume"
-    data_train = readDataset(properties.training_dataset[0], properties)
+    if SMOTE is True:
+        data_train = readSmoteDataset(properties.training_dataset[0], properties)
+        # print data_train
+    else:
+        data_train = readDataset(properties.training_dataset[0], properties)
+
     data_test  = readDataset(properties.test_dataset, properties)
 
 

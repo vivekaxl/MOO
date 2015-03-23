@@ -6,10 +6,11 @@ import sys, os, inspect
 from jmoo_objective import *
 from jmoo_decision import *
 from jmoo_problem import jmoo_problem
-parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/tera")))
+parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"../../Techniques")))
 if parentdir not in sys.path:
     sys.path.insert(0, parentdir)
-from jmoo_preprocessor import PDPF, ABCD, GF
+from smote import smote
+from jmoo_preprocessor import PDPF, ABCD, GF, ACC, SMOTE
 
 
 cmd_subfolder = "/Users/viveknair/jmoo-jmoo_v2/WHERE"  # This needs to be changed
@@ -154,11 +155,21 @@ elif ACC:
     tera_objectives = [jmoo_objective("acc", False)]
 
 
+def readSmoteDataset(file, properties):
+    prefix = "tera/"
+    suffix = ".csv"
+    finput = open(prefix + file + suffix, 'rb')
+    reader = csv.reader(finput, delimiter=',')
+    dataread = smote(reader)
+    return np.array(dataread[0]), dataread[-1]  # keeping the same format as Joe's code
+
+
 def readDataset(file, properties):
     prefix = "tera/"
     suffix = ".csv"
     finput = open(prefix + file + suffix, 'rb')
     reader = csv.reader(finput, delimiter=',')
+
     dataread = []
     try:
         k = properties.unusual_range_end
@@ -184,8 +195,6 @@ def evaluator(input, properties):
         return Where(input, properties.training_dataset[0], properties.test_dataset)
     else:
         return NaiveWhere(properties.training_dataset[0], properties.test_dataset)
-
-
     return scores
 
 

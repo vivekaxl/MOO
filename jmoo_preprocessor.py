@@ -5,5 +5,10 @@ GF = False
 ACC = False
 
 
-# change the distribution for GALE
+# change the distribution
+# options: UNIFORM, GAUSSIAN
 GALE_DISTRIBUTION = "UNIFORM"
+
+# SMOTE the training data
+SMOTE = True
+
