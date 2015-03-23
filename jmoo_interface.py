@@ -56,6 +56,7 @@ chartOnly = False
 binsOnly = False
 noReports = True
 dfreportOnly = False
+dfrankOnly = False
 dfchartOnly = False
 
 for i,arg in enumerate(sys.argv):
