@@ -1,5 +1,7 @@
 from collections import defaultdict
 from random import choice, random
+
+from jmoo_preprocessor import SMOTE_BINARY_CLASSIFICATION
 def euclidean(list1, list2, k=3):
     assert(len(list1) == len(list2)), "Length mismatch"
     dist = 0
@@ -12,21 +14,31 @@ def nearest(one, data):
     for d in data:
         if one != d:
             dist.append([d, euclidean(one,d)])
-    dist = sorted(dist, key=lambda x: x[-1])
-    return dist[0][0]
+    dist = sorted(dist, key=lambda x: x[-1])[:5]
+    return [x[0] for x in dist]
 
 
 def extrapolate(one, two, k=3):
     assert(len(one) == len(two)), "Length mismatch"
-    assert(one[-1] == two[-1]), "Class mismatch"
+    if SMOTE_BINARY_CLASSIFICATION is True:
+        assert(one[-1] >= 1 and two[-1] >= 1), "Class mismatch"
+    else:
+        assert(one[-1] == two[-1]), "Class mismatch"
     new = [0 for _ in xrange(len(one))]
     new[:k] = one[:k]
     for i, (a, b) in enumerate(zip(one[k:], two[k:])):
         a = float(a)
         b = float(b)
-        new[k+i] = max(min(a, b), min(min(a, b) + random() * abs(a - b), max(a, b)))
-    new[-1] = one[-1]
-    assert(one[-1] == two[-1] == new[-1]), "Objective not correct"
+        new[k+1] = a + random() * (b - a)
+        # new[k+i] = max(min(a, b), min(min(a, b) + random() * abs(a - b), max(a, b)))
+    if SMOTE_BINARY_CLASSIFICATION is True:
+        new[-1] = float(one[-1]) if random() > 0.5 else float(two[-1])
+    else:
+        new[-1] = float(one[-1])
+    if SMOTE_BINARY_CLASSIFICATION is not True:
+        assert(float(one[-1]) == float(two[-1]) == new[-1]), "Objective not correct"
+    else:
+        assert(float(one[-1]) == new[-1] or float(two[-1]) == new[-1]), "Objectives not correct"
     return new
 
 
@@ -55,7 +67,7 @@ def smote(reader, k=3):
                 new_data.append(temp[k:])
             else:
                 one = choice(data)
-                two = nearest(one, data)
+                two = choice(nearest(one, data))
                 new_data.append(extrapolate(one, two)[k:])
         assert(len(new_data) == new_size), "Expansion unsuccessful"
         return new_data
@@ -64,11 +76,19 @@ def smote(reader, k=3):
     new_population = []
     for n, line in enumerate(reader):
         if n != 0:
-            if line[-1] not in classes.keys():
-                classes[line[-1]] = []
-                classes[line[-1]].append(line)
+            if SMOTE_BINARY_CLASSIFICATION is not True:
+                if line[-1] not in classes.keys():
+                    classes[line[-1]] = []
+                    classes[line[-1]].append(line)
+                else:
+                    classes[line[-1]].append(line)
             else:
-                classes[line[-1]].append(line)
+                    class_type = "True" if float(line[-1]) >= 1 else "False"
+                    if class_type not in classes.keys():
+                        classes[class_type] = []
+                        classes[class_type].append(line)
+                    else:
+                        classes[class_type].append(line)
 
     new_class_size = sum([len(a) for a in classes.values()])/len(classes.keys())
     assert(new_class_size > 0), "new class size is 0 or a negative value"
@@ -88,6 +108,7 @@ def smote(reader, k=3):
     #     else:
     #         cl[d[-1]] += 1
     # print cl
+    # exit()
     assert(len(new_population[0]) == len(line)-k), "Length mismatch"
     # print "OLD: ", len(new_population[0])
     # print new_population[0]

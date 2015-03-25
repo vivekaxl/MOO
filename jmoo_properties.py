@@ -40,8 +40,8 @@ from tera_dataset_RF import *
 
 # JMOO Experimental Definitions
 algorithms = [
-               jmoo_GALE(),
-              jmoo_NSGAII(),
+              jmoo_GALE(),
+               jmoo_NSGAII(),
               # #
               jmoo_SPEA2(),
               jmoo_DE()
@@ -64,7 +64,7 @@ build_new_pop = False                                       # Whether or not to 
 
 
 # JMOO Universal Properties
-repeats = 3     #Repeats of each MOEA
+repeats = 1     #Repeats of each MOEA
 MU      = 100   #Population Size
 PSI     = 20    #Maximum number of generations
 
@@ -76,6 +76,10 @@ LAMBDA =  3     #Number of lives for bstop
 # Propoerties of DE
 F = 0.75 # extrapolate amount
 CF = 0.3 # prob of cross over
+
+# Properties of Culling
+CULLING_PD = 66
+CULLING_PF = 33
 
 
 

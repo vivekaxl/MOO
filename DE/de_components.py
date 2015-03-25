@@ -13,6 +13,7 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 
 import jmoo_properties
+from jmoo_preprocessor import CULLING, NEW_DE
 
 
 def three_others(individuals, one):
@@ -32,6 +33,14 @@ def three_others(individuals, one):
 def trim(mutated, low, up):
     return max(low, min(mutated, up))
 
+def crossover(problem, candidate_a, candidate_b):
+    assert(len(candidate_a) == len(candidate_b)), "Candidate length are not the same"
+    crossover_point = random.randrange(1, len(candidate_a), 1)
+    assert(crossover_point < len(candidate_a)), "Crossover point has gone overboard"
+    mutant = list(candidate_a[:crossover_point])
+    mutant.extend(list(candidate_b[crossover_point:]))
+    assert(len(mutant) == len(candidate_a)), "Mutant created doesn't have the same length as candidates"
+    return mutant
 
 def extrapolate(problem, individuals, one, f, cf):
     # #print "Extrapolate"
@@ -46,6 +55,12 @@ def extrapolate(problem, individuals, one, f, cf):
             solution.append(trim(mutated, decision.low, decision.up))
         else:
             solution.append(one.decisionValues[d])
+
+    if NEW_DE is True:
+        if random.random() < cf:
+            solution = crossover(problem, one.decisionValues, solution)
+
+
     return jmoo_individual(problem, [float(d) for d in solution], None)
 
 def better(problem,individual,mutant):
@@ -82,9 +97,23 @@ def de_selector(problem, individuals):
     for individual in individuals:
         #print "Old Decision: ",individual.decisionValues
         #print "Old Score: ", individual.fitness.fitness
-        mutant = extrapolate(problem, individuals, individual, jmoo_properties.F, jmoo_properties.CF)
-        mutant.evaluate()
-        no_evals += 1
+        if CULLING is True:
+            count = 0
+            while True:
+                mutant = extrapolate(problem, individuals, individual, jmoo_properties.F, jmoo_properties.CF)
+                mutant.evaluate()
+                temp = mutant.fitness.fitness
+                count += 1
+                if (temp[0] > 66 and temp[1] < 33) or count > 10:
+                    if count < 10:
+                        print "SUCCESS"
+                    no_evals += count
+                    break
+        else:
+            mutant = extrapolate(problem, individuals, individual, jmoo_properties.F, jmoo_properties.CF)
+            mutant.evaluate()
+            no_evals += 1
+
         ##print "Mutant Decisions: ",mutant.decisionValues
         #print "New Score: ", mutant.fitness.fitness
         newer_generation.append(better(problem, individual, mutant))

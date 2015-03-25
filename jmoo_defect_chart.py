@@ -19,9 +19,11 @@ def cdom_ranking(problem, weights, dict):
     ret = []
     for l in dict.keys():
         ret.append([l, sum([rank_cdom(problem, weights, dict[l], dict[ll]) for ll in dict.keys() if l != ll])])
-    print sorted(ret, key=lambda x: x[-1], reverse=True)
-    for d in dict.keys():
-        print d, dict[d]
+    # for i in sorted(ret, key=lambda x: x[-1], reverse=True):
+    #     print i[0],
+    print
+    for d in ["default", "NSGAII", "SPEA2", "GALE", "DE"]:
+        print d, [x for x,i in enumerate(sorted(ret, key=lambda x: x[-1], reverse=True)) if i[0] == d][-1]+1
 
 
 
@@ -52,9 +54,6 @@ def stat(list):
 
     out = "Median: %2.3f "% median(list)
     out += " IQR: %2.3f" % iqr(list)
-
-    print out
-
     return out
 
 def parseXML( xml_file, tag, tests = None):
@@ -160,13 +159,12 @@ def parseXML( xml_file, tag, tests = None):
                 names = ["PD", "PF", "PREC", "EVALS"]
                 for i,x in enumerate([scores_pd, scores_pf, scores_prec, scores_eval]):
                     print "Features: ", names[i]
-                    print x
                     callrdivdemo(x)
                 sys.stdout = sys.__stdout__
                 f.close()
 
             if tag == "ranking":
-                print problem.attrib["name"]
+                print problem.attrib["name"] + " : ",
                 weights = []
                 for obj in tests.problems[0].objectives:
                     # w is negative when we are maximizing that objective
@@ -191,5 +189,6 @@ def parseXML( xml_file, tag, tests = None):
 
 
     # ----------------------------------------------------------------------
-    if __name__ == "__main__":
-        parseXML("test_xml.xml")
+if __name__ == "__main__":
+    print "TEERE"
+    print sys.argv

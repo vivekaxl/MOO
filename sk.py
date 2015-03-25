@@ -131,7 +131,6 @@ class Num:
     def p(x) : return float(g(xs[x]))
     i.median()
     xs = i.all
-    print xs
     n  = int(len(xs)*0.25)
     return p(n) , p(int(len(xs)*0.5)) , p(3*n)
   def median(i):

@@ -46,6 +46,7 @@ from jmoo_individual import *
 from gale_components import *
 from de_components import *
 from jmoo_properties import *
+from jmoo_preprocessor import CULLING
 from utility import *
 import jmoo_stats_box
 import array,random,numpy
@@ -163,29 +164,94 @@ def selTournamentDCD(problem, individuals):
 ### MOO Algorithm Adjustors
 #############################################################
 
+def helper_list(lst, item):
+
+    item = [int(item[0]), int(item[1]), round(item[2], 2), int(item[3]), round(item[4], 2)]
+    # print " >>>>", item, len(lst)
+    if len(lst) == 0 or item not in lst:
+        lst.append(item)
+        return lst
+    else:
+        return lst
+
 def crossoverAndMutation(problem, individuals):
 
-    # Format a population data structure usable by DEAP's package
-    dIndividuals = deap_format(problem, individuals)
-    
-    # Crossover
-    for ind1, ind2 in zip(dIndividuals[::2], dIndividuals[1::2]):
-        if random.random() <= 0.9: #crossover rate
-            tools.cxUniform(ind1, ind2, indpb=1.0/len(problem.decisions))
-            
 
-    # Mutation
-    for ind in dIndividuals:
-        tools.mutPolynomialBounded(ind, eta = 1.0, low=[dec.low for dec in problem.decisions], up=[dec.up for dec in problem.decisions], indpb=0.1 )
-        del ind.fitness.values
-         
-    # Update beginning population data structure
-    for individual,dIndividual in zip(individuals, dIndividuals):
-        for i in range(len(individual.decisionValues)):
-            individual.decisionValues[i] = dIndividual[i]
-            individual.fitness = None
+    if CULLING is True:
+        count = 0
+        new_crop = []
 
-    return individuals,0
+        # Format a population data structure usable by DEAP's package
+        dIndividuals = deap_format(problem, individuals)
+
+        while True:
+            count += 1
+            if count > 10 or len(dIndividuals) == 1 or len(new_crop) == len(individuals):
+                break
+
+            # Crossover
+            for ind1, ind2 in zip(dIndividuals[::2], dIndividuals[1::2]):
+                if random.random() <= 0.9: #crossover rate
+                    tools.cxUniform(ind1, ind2, indpb=1.0/len(problem.decisions))
+
+            # Mutation
+            for ind in dIndividuals:
+                temp = []
+                tools.mutPolynomialBounded(ind, eta = 1.0, low=[dec.low for dec in problem.decisions], up=[dec.up for dec in problem.decisions], indpb=0.1 )
+                del ind.fitness.values
+                temp = problem.evaluate(ind)
+                if temp[0] > jmoo_properties.CULLING_PD and temp[1] < jmoo_properties.CULLING_PF:
+                    import numpy as np
+                    test = np.array(ind).tolist()
+                    # print "IND: ", ind
+                    # print "TEST: ", test
+                    if len(new_crop) != len(individuals):
+                        new_crop = helper_list(new_crop, test)
+                    # print ">> ", problem.evaluate(ind)
+
+
+
+        print "NEW CROP: ", len(new_crop)
+        for x in new_crop:
+            if x in dIndividuals:
+                dIndividuals.remove(x)
+            else:
+                dIndividuals.remove(random.choice(dIndividuals))
+            for _ in xrange(1):
+                print ">> ", problem.evaluate(x), x
+        dIndividuals.extend(new_crop)
+        print "Length : ", len(dIndividuals)
+
+        # Update beginning population data structure
+        for individual,dIndividual in zip(individuals, dIndividuals):
+            for i in range(len(individual.decisionValues)):
+                individual.decisionValues[i] = dIndividual[i]
+                individual.fitness = None
+
+        return individuals, len(individuals) * (count - 1)
+
+    else:
+        # Format a population data structure usable by DEAP's package
+        dIndividuals = deap_format(problem, individuals)
+
+        # Crossover
+        for ind1, ind2 in zip(dIndividuals[::2], dIndividuals[1::2]):
+            if random.random() <= 0.9: #crossover rate
+                tools.cxUniform(ind1, ind2, indpb=1.0/len(problem.decisions))
+
+
+        # Mutation
+        for ind in dIndividuals:
+            tools.mutPolynomialBounded(ind, eta = 1.0, low=[dec.low for dec in problem.decisions], up=[dec.up for dec in problem.decisions], indpb=0.1 )
+            del ind.fitness.values
+
+        # Update beginning population data structure
+        for individual,dIndividual in zip(individuals, dIndividuals):
+            for i in range(len(individual.decisionValues)):
+                individual.decisionValues[i] = dIndividual[i]
+                individual.fitness = None
+
+        return individuals,0
 
 def variator(problem, selectees):
     return selectees, 0

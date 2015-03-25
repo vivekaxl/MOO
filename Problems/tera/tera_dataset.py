@@ -133,7 +133,7 @@ def weitransform(list, threshold):
 
 tera_decisions= [jmoo_decision("min_samples_split", 2, 20),
                   jmoo_decision("min_samples_leaf", 1, 20),
-                  jmoo_decision("max_features", 0.01, 1),
+                  jmoo_decision("max_features", 0.05, 1),
                   jmoo_decision("max_depth", 1, 50),
                   jmoo_decision("threshold", 0, 1)
                   ]
@@ -205,7 +205,7 @@ def evaluator(input, properties):
         threshold = 0.5
 
     assert(len(properties.training_dataset) == 1), "didn't assume"
-    if SMOTE is True:
+    if SMOTE is True and properties.type != "default":
         data_train = readSmoteDataset(properties.training_dataset[0], properties)
         # print data_train
     else:
