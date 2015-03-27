@@ -31,6 +31,7 @@ from jmoo_properties import *
 # from jmoo_defect_prediction_properties import *
 from jmoo_core import *
 from jmoo_version_space import version_space_search
+from jmoo_version_space import build_version_space_chart
    
 """
 ------------
@@ -60,6 +61,7 @@ dfreportOnly = False
 dfrankOnly = False
 dfchartOnly = False
 versionspace = False
+vschart = False
 
 for i,arg in enumerate(sys.argv):
     if arg == "-n" or arg == "-N":
@@ -86,17 +88,22 @@ for i,arg in enumerate(sys.argv):
         dfrankOnly = True
     if arg == "-versionspace":
         versionspace = True
+    if arg == "-vschart":
+        vschart = True
+
 
 
         
-        
+print "VSCHART: ", vschart
+
 # Build new initial populations if suggested.  Before tests can be performed, a problem requires an initial dataset.
 if build_new_pop:
     for problem in problems:
         initialPopulation(problem, MU)
         
 # Wrap the tests in the jmoo core framework
-tests = jmoo_test(problems, algorithms)
+if not vschart:
+    tests = jmoo_test(problems, algorithms)
 
 # Define the reports
 if chartOnly == True: reports = [jmoo_chart_report(tests)]
@@ -115,14 +122,20 @@ if dfrankOnly is True:
 
 
 # Associate core with tests and reports
-core = JMOO(tests, reports)
+if vschart:
+    core = JMOO(tests, reports)
 
+print "here"
 # Perform the tests
-if not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not versionspace:
+if not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not versionspace and not vschart:
     core.doDefectPrediction()
 
-if versionspace and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly:
+if versionspace and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not vschart:
     version_space_search(core)
+
+if vschart and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not versionspace:
+    print "there"
+    build_version_space_chart()
 
 # Prepare the reports
 core.doReports(tag)

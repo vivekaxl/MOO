@@ -87,6 +87,7 @@ if CULLING == True:
 # File Names
 DATA_PREFIX        = "data/"
 DEFECT_PREDICT_PREFIX = "defect_prediction/"
+VERSION_SPACE_PREFIX = "version_space/"
 
 "decision bin tables are a list of decisions and objective scores for a certain model"
 DECISION_BIN_TABLE = "decision_bin_table"

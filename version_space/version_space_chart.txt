@@ -1,0 +1,45 @@
+Experiment: 
+Algorithm Name: GALE
+camel|False,(50,)|True,(0,)|False,(45,)|False,()|False,()|False,()|False,()|
+ant|True,(100,)|True,(0,)|True,(89,)|False,(72,35,)|False,(8,45,)|False,(53,30,)|False,()|
+forrest|True,(100,)|True,(0,)|True,(94,)|False,(100,57,)|True,(0,94,)|False,(100,6,)|False,()|
+ivy|True,(98,)|False,(39,)|False,(23,)|False,()|False,()|False,()|False,()|
+jedit|True,(100,)|True,(13,)|False,(37,)|True,(73,21,)|False,()|False,()|False,()|
+lucene|True,(100,)|True,(25,)|True,(81,)|False,(74,41,)|False,(9,84,)|True,(71,68,)|False,()|
+poi|True,(100,)|True,(31,)|True,(80,)|False,(64,32,)|False,(43,73,)|True,(83,79,)|False,()|
+synapse|True,(100,)|True,(0,)|True,(100,)|False,(40,11,)|True,(0,100,)|False,(30,74,)|False,()|
+Velocity|True,(100,)|False,(52,)|False,(55,)|False,()|False,()|False,()|False,()|
+xerces|True,(100,)|True,(0,)|True,(100,)|False,(12,36,)|False,(33,57,)|False,(11,57,)|False,()|
+Algorithm Name: NSGAII
+camel|False,(43,)|True,(0,)|False,(18,)|False,()|False,()|False,()|False,()|
+ant|True,(100,)|True,(0,)|True,(89,)|False,(81,40,)|True,(0,89,)|False,(66,21,)|False,()|
+forrest|True,(100,)|True,(0,)|True,(94,)|False,(100,57,)|True,(0,94,)|False,(100,11,)|False,()|
+ivy|True,(100,)|True,(28,)|False,(27,)|True,(75,26,)|False,()|False,()|False,()|
+jedit|True,(100,)|True,(0,)|True,(86,)|True,(76,25,)|True,(0,86,)|False,(61,62,)|False,()|
+lucene|True,(100,)|True,(1,)|True,(78,)|True,(67,32,)|False,(4,90,)|True,(74,66,)|False,()|
+poi|True,(100,)|True,(26,)|True,(69,)|False,(50,28,)|False,(23,79,)|False,(47,79,)|False,()|
+synapse|True,(100,)|True,(0,)|True,(100,)|False,(63,34,)|True,(0,100,)|False,(58,67,)|False,()|
+Velocity|True,(100,)|False,(38,)|False,(44,)|False,()|False,()|False,()|False,()|
+xerces|True,(100,)|True,(0,)|True,(100,)|False,(33,72,)|True,(0,100,)|False,(19,69,)|False,()|
+Algorithm Name: SPEA2
+camel|False,(52,)|True,(0,)|False,(0,)|False,()|False,()|False,()|False,()|
+ant|True,(100,)|True,(0,)|True,(89,)|True,(75,25,)|True,(0,89,)|False,(63,27,)|False,()|
+forrest|True,(100,)|True,(0,)|True,(94,)|False,(100,57,)|True,(0,94,)|False,(100,11,)|False,()|
+ivy|True,(100,)|True,(25,)|False,(27,)|True,(80,28,)|False,()|False,()|False,()|
+jedit|True,(100,)|True,(0,)|True,(86,)|True,(71,26,)|True,(0,86,)|False,(68,59,)|False,()|
+lucene|True,(100,)|True,(1,)|True,(93,)|False,(69,44,)|False,(1,93,)|True,(71,69,)|False,()|
+poi|True,(100,)|True,(26,)|True,(81,)|False,(51,30,)|False,(31,75,)|False,(49,74,)|False,()|
+synapse|True,(100,)|True,(0,)|True,(100,)|False,(66,39,)|True,(0,100,)|False,(58,67,)|False,()|
+Velocity|True,(100,)|False,(42,)|False,(38,)|False,()|False,()|False,()|False,()|
+xerces|True,(100,)|True,(0,)|True,(100,)|False,(35,54,)|True,(0,100,)|False,(16,79,)|False,()|
+Algorithm Name: DE
+camel|True,(100,)|True,(0,)|True,(67,)|False,(0,0,)|True,(0,67,)|False,(17,48,)|False,()|
+ant|True,(100,)|True,(0,)|True,(89,)|True,(75,25,)|True,(0,89,)|False,(75,27,)|False,()|
+forrest|True,(100,)|True,(0,)|True,(94,)|False,(100,57,)|True,(0,94,)|False,(100,11,)|False,()|
+ivy|True,(100,)|True,(23,)|False,(28,)|True,(80,28,)|False,()|False,()|False,()|
+jedit|True,(100,)|True,(0,)|True,(86,)|False,(61,21,)|True,(0,86,)|False,(62,55,)|False,()|
+lucene|True,(100,)|True,(1,)|True,(93,)|True,(67,32,)|False,(1,93,)|True,(77,70,)|False,()|
+poi|True,(100,)|True,(22,)|True,(77,)|False,(47,23,)|False,(33,65,)|False,(27,69,)|False,()|
+ synapse |True,(100,)|True,(0,)|True,(100,)|False,(69,34,)|True,(0,100,)|False,(45,57,)|False,()|
+Velocity|True,(100,)|True,(8,)|False,(38,)|False,(59,36,)|False,()|False,()|False,()|
+xerces|True,(100,)|True,(0,)|True,(100,)|False,(11,16,)|True,(0,100,)|False,(35,65,)|False,()|
