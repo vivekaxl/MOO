@@ -23,7 +23,7 @@ def cdom_ranking(problem, weights, dict):
     #     print i[0],
     print
     for d in ["default", "NSGAII", "SPEA2", "GALE", "DE"]:
-        print d, [x for x,i in enumerate(sorted(ret, key=lambda x: x[-1], reverse=True)) if i[0] == d][-1]+1
+        print d, "|", dict[d],"|", [x for x,i in enumerate(sorted(ret, key=lambda x: x[-1], reverse=True)) if i[0] == d][-1]+1
 
 
 

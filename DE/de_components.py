@@ -64,24 +64,46 @@ def extrapolate(problem, individuals, one, f, cf):
     return jmoo_individual(problem, [float(d) for d in solution], None)
 
 def better(problem,individual,mutant):
-    # From Joe: Score the poles
-    n = len(problem.decisions)
-    weights = []
-    for obj in problem.objectives:
-        # w is negative when we are maximizing that objective
-        if obj.lismore:
-            weights.append(+1)
-        else:
-            weights.append(-1)
-    weighted_individual = [c*w for c,w in zip(individual.fitness.fitness, weights)]
-    weighted_mutant = [c*w for c,w in zip(mutant.fitness.fitness, weights)]
-    individual_loss = loss(weighted_individual, weighted_mutant, mins = [obj.low for obj in problem.objectives], maxs = [obj.up for obj in problem.objectives])
-    mutant_loss = loss(weighted_mutant, weighted_individual, mins = [obj.low for obj in problem.objectives], maxs = [obj.up for obj in problem.objectives])
+    if len(individual.fitness.fitness) > 1:
+        # From Joe: Score the poles
+        # print "### Individual: ", individual.fitness.fitness
+        # print "### Mutant: ", mutant.fitness.fitness
+        n = len(problem.decisions)
+        weights = []
+        for obj in problem.objectives:
+            # w is negative when we are maximizing that objective
+            if obj.lismore:
+                weights.append(+1)
+            else:
+                weights.append(-1)
+        weighted_individual = [c*w for c,w in zip(individual.fitness.fitness, weights)]
+        weighted_mutant = [c*w for c,w in zip(mutant.fitness.fitness, weights)]
+        individual_loss = loss(weighted_individual, weighted_mutant, mins = [obj.low for obj in problem.objectives], maxs = [obj.up for obj in problem.objectives])
+        mutant_loss = loss(weighted_mutant, weighted_individual, mins = [obj.low for obj in problem.objectives], maxs = [obj.up for obj in problem.objectives])
 
-    if individual_loss < mutant_loss:
-        return mutant
+        if individual_loss < mutant_loss:
+            # print ">>", mutant.fitness.fitness, individual.fitness.fitness
+            return mutant
+        else:
+            # print ">>", individual.fitness.fitness, mutant.fitness.fitness
+            return individual  # otherwise
     else:
-        return individual  # otherwise
+        # print "Binary"
+        assert(len(individual.fitness.fitness) == len(mutant.fitness.fitness)), "length of the objectives are not equal"
+        # print  problem.objectives[-1].lismore
+        if problem.objectives[-1].lismore:
+            indi = 100 - individual.fitness.fitness[-1]
+            mut = 100 - mutant.fitness.fitness[-1]
+        else:
+            indi = individual.fitness.fitness[-1]
+            mut = mutant.fitness.fitness[-1]
+        if indi >= mut:
+            # print ">>", mutant.fitness.fitness, individual.fitness.fitness
+            return individual
+        else:
+            # print ">>", individual.fitness.fitness, mutant.fitness.fitness
+            return mutant
+
 
 
 def de_selector(problem, individuals):
@@ -112,6 +134,7 @@ def de_selector(problem, individuals):
         else:
             mutant = extrapolate(problem, individuals, individual, jmoo_properties.F, jmoo_properties.CF)
             mutant.evaluate()
+            #print mutant.fitness.fitness
             no_evals += 1
 
         ##print "Mutant Decisions: ",mutant.decisionValues

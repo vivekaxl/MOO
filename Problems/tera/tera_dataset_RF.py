@@ -9,7 +9,7 @@ from jmoo_problem import jmoo_problem
 parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"../../Techniques")))
 if parentdir not in sys.path:
     sys.path.insert(0, parentdir)
-from jmoo_preprocessor import PDPF, ABCD, GF
+from jmoo_preprocessor import PDPF, ABCD, GF, ACC
 
 
 

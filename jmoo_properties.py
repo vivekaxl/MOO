@@ -41,8 +41,8 @@ from tera_dataset_RF import *
 # JMOO Experimental Definitions
 algorithms = [
               jmoo_GALE(),
-               jmoo_NSGAII(),
-              # #
+              jmoo_NSGAII(),
+              # # #
               jmoo_SPEA2(),
               jmoo_DE()
 
@@ -78,8 +78,9 @@ F = 0.75 # extrapolate amount
 CF = 0.3 # prob of cross over
 
 # Properties of Culling
-CULLING_PD = 66
-CULLING_PF = 33
+if CULLING == True:
+    CULLING_PD = 66
+    CULLING_PF = 33
 
 
 

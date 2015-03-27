@@ -10,16 +10,8 @@ parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.
 if parentdir not in sys.path:
     sys.path.insert(0, parentdir)
 from smote import smote
-from jmoo_preprocessor import PDPF, ABCD, GF, ACC, SMOTE
+import jmoo_preprocessor
 
-
-
-
-
-print PDPF
-# PD_PF = jmoo_preprocessor.PDPF
-# ABCD = jmoo_preprocessor.ABCD
-# GF = jmoo_preprocessor.GF
 
 
 def avg(lst):
@@ -88,19 +80,17 @@ class Abcd:
                                                                       i.rx,  n(b + d), n(a), n(b),n(c), n(d),
                                                                       p(acc), p(pd), p(pf), p(prec), p(f), p(g),auto(x))
 
-            if PDPF:
+            # Here the flag control the output that needs to be sent back
+
+            if jmoo_preprocessor.PDPF or jmoo_preprocessor.PD or jmoo_preprocessor.PF or jmoo_preprocessor.PREC or jmoo_preprocessor.PFPREC or jmoo_preprocessor.PDPREC:
                 scores += [[p(pd), p(pf), p(prec)]]  # e.g:[[100, 100, 74, 0], [0, 0, 74, 0]]
-            elif ABCD:
+            elif jmoo_preprocessor.ABCD:
                 scores += [[p(pd), p(pf), p(prec), a, b, c, d]]
-            elif GF:
+            elif jmoo_preprocessor.GF:
                 scores += [[p(pd), p(pf), p(prec), p(g), p(f)]]
-            elif ACC:
+            elif jmoo_preprocessor.ACC:
                 scores += [[p(pd), p(pf), p(prec), p(acc)]]
-
-
         return scores
-
-        #print x,p(pd),p(prec)
 
 def _Abcd(predicted, actual, threshold):
     predicted_txt = []
@@ -117,7 +107,6 @@ def _Abcd(predicted, actual, threshold):
         abcd.tell(act, pre)
     abcd.header()
     score = abcd.ask()
-    # pdb.set_trace()
     return score[-1]
 
 
@@ -138,22 +127,59 @@ tera_decisions= [jmoo_decision("min_samples_split", 2, 20),
                   jmoo_decision("threshold", 0, 1)
                   ]
 
+def get_tera_objectives():
+    if jmoo_preprocessor.PDPFPREC is True:
+        print "1"
+        tera_objectives = [jmoo_objective("pd", False),
+                           jmoo_objective("pf", True),
+                           jmoo_objective("prec", False),]
+    elif jmoo_preprocessor.ABCD is True:
+        print "1"
+        tera_objectives = [jmoo_objective("a", False),
+                           jmoo_objective("b", True),
+                           jmoo_objective("c", True),
+                           jmoo_objective("d", False),]
+    elif jmoo_preprocessor.GF is True:
+        print "1"
+        tera_objectives = [jmoo_objective("g", False),
+                           jmoo_objective("f", False),]
 
-if PDPF:
-    tera_objectives = [jmoo_objective("pd", False),
-                       jmoo_objective("pf", True),
-                       jmoo_objective("prec", False),]
-elif ABCD:
-    tera_objectives = [jmoo_objective("a", False),
-                       jmoo_objective("b", True),
-                       jmoo_objective("c", True),
-                       jmoo_objective("d", False),]
-elif GF:
-    tera_objectives = [jmoo_objective("g", False),
-                       jmoo_objective("f", False),]
+    elif jmoo_preprocessor.ACC is True:
+        print "1"
+        tera_objectives = [jmoo_objective("acc", False)]
 
-elif ACC:
-    tera_objectives = [jmoo_objective("acc", False)]
+    elif jmoo_preprocessor.PD is True:
+        print "Objective PD activated"
+        tera_objectives = [jmoo_objective("pd", False)]
+
+
+    elif jmoo_preprocessor.PF is True:
+        print "Objective PF activated"
+        tera_objectives = [jmoo_objective("pf", True)]
+        import time
+        time.sleep(3)
+
+    elif jmoo_preprocessor.PREC is True:
+        print "Objective PREC activated"
+        tera_objectives = [jmoo_objective("prec", False)]
+
+    elif jmoo_preprocessor.PDPF is True:
+        print "Objective PDPF activated"
+        tera_objectives = [jmoo_objective("pd", False),
+                           jmoo_objective("pf", True)]
+
+    elif jmoo_preprocessor.PDPREC is True:
+        print "Objective PDPREC activated"
+        tera_objectives = [jmoo_objective("pd", False),
+                           jmoo_objective("prec", False)]
+
+    elif jmoo_preprocessor.PFPREC is True:
+        print "Objective PFPREC activated"
+        tera_objectives = [jmoo_objective("pf", True),
+                           jmoo_objective("prec", False)]
+
+    return tera_objectives
+
 
 
 def readSmoteDataset(file, properties):
@@ -205,13 +231,16 @@ def evaluator(input, properties):
         threshold = 0.5
 
     assert(len(properties.training_dataset) == 1), "didn't assume"
-    if SMOTE is True and properties.type != "default":
+
+    # Check whether SMOTE need to be used or not. Note that this has only been
+    # applied to the training dataset
+    if jmoo_preprocessor.SMOTE is True and properties.type != "default":
         data_train = readSmoteDataset(properties.training_dataset[0], properties)
         # print data_train
     else:
         data_train = readDataset(properties.training_dataset[0], properties)
 
-    data_test  = readDataset(properties.test_dataset, properties)
+    data_test = readDataset(properties.test_dataset, properties)
 
 
     #train the learner
@@ -222,9 +251,8 @@ def evaluator(input, properties):
     from sklearn.tree import DecisionTreeRegressor
     if properties.type == "default":
         clf = DecisionTreeRegressor()
-    else:
+    else:  # random_state has been set so that we can always reproduce the experiments
         clf = DecisionTreeRegressor(max_features=mxf, min_samples_split=mss, min_samples_leaf=msl, random_state= 1, max_depth= md)
-    # random_state = 0, min_samples_split = mss, max_depth = md, max_leaf_nodes = mln, criterion = cri, min_samples_leaf = msl)
     clf.fit(indep, dep)
 
     #test the learner
@@ -235,8 +263,34 @@ def evaluator(input, properties):
     result = [i for i in t]
     result = [float(x) for x in result]
 
-    scores = _Abcd(result, weitransform(test_dep, 0), threshold)
-    return scores
+    output = _Abcd(result, weitransform(test_dep, 0), threshold)
+
+    if jmoo_preprocessor.PDPFPREC:
+        print [o for o in output]
+        return output[:3]
+    elif jmoo_preprocessor.ABCD:
+        print [o for o in output[-4:]]
+        return output[:3]
+    elif jmoo_preprocessor.GF:
+        print [o for o in output[-3:]]
+        return output[:3]
+    elif jmoo_preprocessor.ACC:
+        print [o for o in output[-1:]]
+        return output[:3]
+    elif jmoo_preprocessor.PD:
+        return [output[0]]
+    elif jmoo_preprocessor.PF:
+        return [output[1]]
+    elif jmoo_preprocessor.PREC:
+        return [output[2]]
+    elif jmoo_preprocessor.PDPF:
+        return [output[0], output[1]]
+    elif jmoo_preprocessor.PFPREC:
+        return [output[1], output[2]]
+    elif jmoo_preprocessor.PDPREC:
+        return [output[0], output[2]]
+    elif jmoo_preprocessor.PDPFPREC:
+        return [output[0], output[1], output[2]]
 
 
 class Properties:
@@ -265,39 +319,41 @@ class xalan(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
-        return [objective.value for objective in prob.objectives]
-    def evalConstraints(prob,input = None):
-        return False #no constraints
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
 
+        return [objective.value for objective in prob.objectives]
+
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "xalan-2.6", ["xalan-2.4"]))
+        print "# Evaluator: -------------> SCORES", output
         return output
+
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "xalan-2.6", ["xalan-2.4"], type="default"))
         return output[:3]
+
+    def evalConstraints(prob,input = None):
+        return False #no constraints
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
 #ant
 
 class xerces(jmoo_problem):
     def __init__(prob):
         prob.name = "xerces"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "xerces-1.3", ["xerces-1.2"])
         prob.training = "xerces-1.2"
         prob.tuning = "xerces-1.3"
@@ -308,39 +364,44 @@ class xerces(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
+
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
 
 
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "xerces-1.4", ["xerces-1.2"]))
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
+
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "xerces-1.4", ["xerces-1.2"], type="default"))
         return output[:3]
 
+    def evalConstraints(prob,input = None):
+        return False #no constraints
+
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
+
 class velocity(jmoo_problem):
     def __init__(prob):
         prob.name = "Velocity"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "velocity-1.5", ["velocity-1.4"])
         prob.training = "velocity-1.4"
         prob.tuning = "velocity-1.5"
@@ -352,45 +413,43 @@ class velocity(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
+
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
 
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "velocity-1.6", ["velocity-1.4"]))
-        if PDPF:
-            print [o for o in output]
-        elif ABCD:
-            print [o for o in output[-4:]]
-        elif GF:
-            print [o for o in output[-3:]]
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
+
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "velocity-1.6", ["velocity-1.4"], type="default"))
         return output[:3]
+    def evalConstraints(prob,input = None):
+        return False #no constraints
+
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
 
 
 class synapse(jmoo_problem):
     def __init__(prob):
         prob.name = "synapse"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "synapse-1.1", ["synapse-1.0"])
         prob.training = "synapse-1.0"
         prob.tuning = "synapse-1.1"
@@ -402,45 +461,43 @@ class synapse(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
+
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
 
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "synapse-1.2", ["synapse-1.0"]))
-        if PDPF:
-            print [o for o in output]
-        elif ABCD:
-            print [o for o in output[-4:]]
-        elif GF:
-            print [o for o in output[-3:]]
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
+
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "synapse-1.2", ["synapse-1.0"], type="default"))
         return output[:3]
+    def evalConstraints(prob,input = None):
+        return False #no constraints
+
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
 
 
 class poi(jmoo_problem):
     def __init__(prob):
         prob.name = "poi"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "poi-2.0", ["poi-1.5"])
         prob.training = "poi-1.5"
         prob.tuning = "poi-2.0"
@@ -451,18 +508,10 @@ class poi(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
+
         return [objective.value for objective in prob.objectives]
 
     def evalConstraints(prob,input = None):
@@ -473,23 +522,28 @@ class poi(jmoo_problem):
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "poi-2.5", ["poi-1.5"]))
-        if PDPF:
-            print [o for o in output]
-        elif ABCD:
-            print [o for o in output[-4:]]
-        elif GF:
-            print [o for o in output[-3:]]
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
+
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "poi-2.5", ["poi-1.5"], type="default"))
         return output[:3]
+    def evalConstraints(prob,input = None):
+        return False #no constraints
+
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
 
 class lucene(jmoo_problem):
     def __init__(prob):
         prob.name = "lucene"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "lucene-2.2", ["lucene-2.0"])
         prob.training = "lucene-2.0"
         prob.tuning = "lucene-2.2"
@@ -500,44 +554,41 @@ class lucene(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
+
         return [objective.value for objective in prob.objectives]
     def evalConstraints(prob,input = None):
         return False #no constraints
 
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "lucene-2.4", ["lucene-2.0"]))
-        if PDPF:
-            print [o for o in output]
-        elif ABCD:
-            print [o for o in output[-4:]]
-        elif GF:
-            print [o for o in output[-3:]]
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "lucene-2.4", ["lucene-2.0"], type="default"))
         return output[:3]
+    def evalConstraints(prob,input = None):
+        return False #no constraints
+
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
 
 class jedit(jmoo_problem):
     def __init__(prob):
         prob.name = "jedit"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "jedit-4.0", ["jedit-3.2"])
         prob.training = "jedit-3.2"
         prob.tuning = "jedit-4.0"
@@ -548,93 +599,88 @@ class jedit(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
+
         return [objective.value for objective in prob.objectives]
 
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "jedit-4.1", ["jedit-3.2"]))
-        if PDPF:
-            print [o for o in output]
-        elif ABCD:
-            print [o for o in output[-4:]]
-        elif GF:
-            print [o for o in output[-3:]]
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
+
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "jedit-4.1", ["jedit-3.2"], type="default"))
         return output[:3]
+
     def evalConstraints(prob,input = None):
         return False #no constraints
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
 
 class ivy(jmoo_problem):
     def __init__(prob):
         prob.name = "ivy"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "ivy-1.4", ["ivy-1.1"])
         prob.training = "ivy-1.1"
         prob.tuning = "ivy-1.4"
         prob.testing = "ivy-2.0"
+    # Just returns what is required. Not extra stuff
     def evaluate(prob, input = None):
         if input:
             for i,decision in enumerate(prob.decisions):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
-        return [objective.value for objective in prob.objectives]
-    def evalConstraints(prob,input = None):
-        return False #no constraints
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
 
+        return [objective.value for objective in prob.objectives]
+
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "ivy-2.0", ["ivy-1.1"]))
-        if PDPF:
-            print [o for o in output]
-        elif ABCD:
-            print [o for o in output[-4:]]
-        elif GF:
-            print [o for o in output[-3:]]
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
+
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "ivy-2.0", ["ivy-1.1"], type="default"))
         return output[:3]
+
+    def evalConstraints(prob,input = None):
+        return False #no constraints
+
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
+
 
 
 class forrest(jmoo_problem):
     def __init__(prob):
         prob.name = "forrest"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "forrest-0.7", [ "forrest-0.6"])
         prob.training = "forrest-0.6"
         prob.tuning = "forrest-0.7"
@@ -645,44 +691,42 @@ class forrest(jmoo_problem):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
+
         return [objective.value for objective in prob.objectives]
 
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "forrest-0.8", ["forrest-0.6"]))
-        if PDPF:
-            print [o for o in output]
-        elif ABCD:
-            print [o for o in output[-4:]]
-        elif GF:
-            print [o for o in output[-3:]]
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
+
 
     def default(prob):
         output = evaluator(input, Properties(prob.name, "forrest-0.8", ["forrest-0.6"], type="default"))
         return output[:3]
+
     def evalConstraints(prob,input = None):
         return False #no constraints
+
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
+
 
 class ant(jmoo_problem):
     def __init__(prob):
         prob.name = "ant"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "ant-1.4", ["ant-1.3"])
         prob.training = "ant-1.3"
         prob.tuning = "ant-1.4"
@@ -694,91 +738,81 @@ class ant(jmoo_problem):
                 decision.value = input[i]
         input = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
+
         return [objective.value for objective in prob.objectives]
 
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "ant-1.5", ["ant-1.3"]))
-        if PDPF:
-            print [o for o in output]
-        elif ABCD:
-            print [o for o in output[-4:]]
-        elif GF:
-            print [o for o in output[-3:]]
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
+
+
     def default(prob):
         output = evaluator(input, Properties(prob.name, "ant-1.5", ["ant-1.3"], type="default"))
         return output[:3]
+
     def evalConstraints(prob,input = None):
-        return False  # no constraints
+        return False #no constraints
+
+    def change_objective(prob):
+        # print "."*100
+        # # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
+
 
 
 class camel(jmoo_problem):
     def __init__(prob):
         prob.name = "camel"
         prob.decisions = tera_decisions
-        prob.objectives = tera_objectives
+        prob.objectives = get_tera_objectives()
         prob.properties = Properties(prob.name, "camel-1.2", ["camel-1.0"])
         prob.training = "camel-1.0"
         prob.tuning = "camel-1.2"
         prob.testing = "camel-1.4"
 
+    # Just returns what is required. Not extra stuff
     def evaluate(prob, input = None):
         if input:
             for i,decision in enumerate(prob.decisions):
                 decision.value = input[i]
         input  = [decision.value for decision in prob.decisions]
         output = evaluator(input, prob.properties)
-        if PDPF:
-            prob.objectives[0].value = output[0]
-            prob.objectives[1].value = output[1]
-            prob.objectives[2].value = output[2]
-        elif ABCD:
-            prob.objectives[0].value = output[-4]
-            prob.objectives[1].value = output[-3]
-            prob.objectives[2].value = output[-2]
-            prob.objectives[3].value = output[-1]
-        elif GF:
-            prob.objectives[0].value = output[-2]
-            prob.objectives[1].value = output[-1]
-        elif ACC:
-            prob.objectives[0].value = output[-1]
+        assert(len(output) == len(prob.objectives)), "Output and Objectives are not same"
+        for i,j in zip(prob.objectives, output):
+            i.value = j
 
         return [objective.value for objective in prob.objectives]
 
+    # Returns the PDPF
     def test(prob, input=None):
         if input is None:
             print "input parameter required"
             exit()
         output = evaluator(input, Properties(prob.name, "camel-1.4", ["camel-1.0"]))
-        if PDPF:
-            print [o for o in output]
-        elif ABCD:
-            print [o for o in output[-4:]]
-        elif GF:
-            print [o for o in output[-3:]]
-        elif ACC:
-            print [o for o in output[-1:]]
-        return output[:3]
+        print "# Evaluator: -------------> SCORES", output
+        return output
+
+
     def default(prob):
         output = evaluator(input, Properties(prob.name, "camel-1.4", ["camel-1.0"], type="default"))
         return output[:3]
 
-
     def evalConstraints(prob,input = None):
         return False #no constraints
+    def change_objective(prob):
+        print "."*100
+        # print "CHNAGE CALLED", jmoo_preprocessor.PF, jmoo_preprocessor.PD
+        prob.objectives = get_tera_objectives()
+#        for o in prob.objectives:
+#            print "Objective name: ", o.name
 

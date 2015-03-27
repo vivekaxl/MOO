@@ -33,9 +33,11 @@ Random Stuff
 """
 
 import random
+import jmoo_preprocessor
 any = random.uniform
 normal= random.gauss
 seed  = random.seed
+
 
 def sometimes(p) :
   "Returns True at probability 'p;"
@@ -57,9 +59,15 @@ def chosen_one(problem, lst):
             else:
                 new.append(100 - l[i])
         # print "New: ", min(new)
-        return min(new)
 
-    # print "Length of frontier: ", len(lst)
+        if jmoo_preprocessor.PD or jmoo_preprocessor.PREC:
+            return max(new)
+        elif jmoo_preprocessor.PF:
+            return min(new)
+        else:
+            return min(new)
+
+    print "Length of frontier: ", len(lst)
     chosen = lst[0]
     print "================================================"
     print "Start: ", lst[0]
@@ -71,7 +79,7 @@ def chosen_one(problem, lst):
             chosen = element
         # print "There: ", chosen
 
-    print "Chosen: ", chosen
+    # print "Chosen: ", chosen
 
     return chosen
 
@@ -132,9 +140,10 @@ class jmoo_df_report:
 
         
 class jmoo_test:
-    def __init__(self,problems,algorithms):
+    def __init__(self, problems, algorithms):
         self.problems = problems
         self.algorithms = algorithms
+
     def __str__(self):
         return str(self.problems) + str(self.algorithms)
         
@@ -302,6 +311,18 @@ class JMOO:
             population.append(jmoo_individual(problem, cells, dIndividual.fitness.values))
         return population
 
+
+    def medianlist(self, list):
+        print "List: ", list
+        ret = []
+        for i in xrange(len(list[0])):
+            temp = []
+            print "i: ", i
+            for l in list:
+                temp.append(l[i])
+            ret.append(median(temp))
+        return ret
+
     def doDefectPrediction(self):
 
         sc2 = open(DATA_PREFIX + SUMMARY_RESULTS + DATA_SUFFIX, 'w')
@@ -313,15 +334,10 @@ class JMOO:
 
         for problem in self.tests.problems:
 
-
-
-            #zOut += "<Problem name = '" + problem.name + "'>\n"
             vOut += "<Problem name = '" + problem.name + "'>\n"
 
             for algorithm in self.tests.algorithms:
 
-
-                #zOut += "<Algorithm name = '" + algorithm.name + "'>\n"
                 vOut += "<Algorithm name = '" + algorithm.name + "'>\n"
 
                 print "#<------- " + problem.name + " + " + algorithm.name + " ------->#"
@@ -484,10 +500,166 @@ class JMOO:
         vOutFile = open("DefectPrediction.xml", 'w')
         vOutFile.write(vOut)
 
-        #zOut += "</Experiment>\n"
+
         defect_p.write(vOut)
-                    
-                    
+
+    def defect_prediction(self, problem, objective, algorithms):
+        """
+
+        :param problem: jmoo_problem object
+        :param objective: It is just a string. This is going to used to generate a file
+        :return:
+        """
+        sc2 = open(DATA_PREFIX + SUMMARY_RESULTS + DATA_SUFFIX, 'w')
+        defect_p = open(DEFECT_PREDICT_PREFIX + "DefectPredict.xml", "w")
+        # Main control loop
+        representatives = []                        # List of resulting final generations (stat boxe datatype)
+        return_results = []
+        vOut = "<Experiment>\n"
+
+        vOut += "<Problem name = '" + problem.name + "'>\n"
+
+
+        for algorithm in algorithms:
+            vOut += "<Algorithm name = '" + algorithm.name + "'>\n"
+            print "#<------- " + problem.name + " + " + algorithm.name + " ------->#"
+            # Decision Data
+            filename = problem.name + "-p" + str(MU) + "-d" + str(len(problem.decisions)) + "-o" + str(len(problem.objectives))+"_"+algorithm.name+DATA_SUFFIX
+            dbt = open(DATA_PREFIX + DECISION_BIN_TABLE + "_" + filename, 'w')
+            sr = open(DATA_PREFIX + SUMMARY_RESULTS + filename, 'w')
+            rrs = open(DATA_PREFIX + RRS_TABLE + "_" + filename, 'w')
+
+            fa = open("data/results_"+filename, 'w')
+            strings = ["NumEval"] + [obj.name + "_median,(%chg)," + obj.name + "_spread" for obj in problem.objectives] + ["IBD,(%chg), IBS"]
+            for s in strings: fa.write(s + ",")
+            fa.write("\n")
+            fa.close()
+
+            # Repeat Core
+            for repeat in range(repeats):
+                objectives = ["pd", "pf", "prec"]
+
+                # Run
+                vOut += "<Run id = '" + str(repeat+1) + "'>\n"
+                start = time.time()
+                statBox = jmoo_evo(problem, algorithm)
+                end = time.time()
+                #  Vivek: Final
+
+                # population = self.remove_dominated_solution(problem, statBox.box[-1].population)
+                population = statBox.box[-1].population
+                any = chosen_one(problem, population)
+                vOut += "<Summary>\n"
+                vOut += "<NumEvals>" + str(statBox.numEval) + "</NumEvals>\n"
+                vOut += "<RunTime>" + str((end-start)) + "</RunTime>\n"
+                vOut += "<Training>" + str(problem.training) + "</Training>\n"
+                vOut += "<Tuning>" + str(problem.tuning) + "</Tuning>\n"
+                vOut += "<Testing>" + str(problem.testing) + "</Testing>\n"
+                vOut += "<Training_Tuning>\n"
+                for i,a in enumerate(any.fitness.fitness):
+                    vOut += "\t<parameters" + str(i) + "> " + str(any.fitness.fitness[i]) + "</parameters" + str(i) + "> \n" # de
+                    print "Function: defect_prediction: >>>>>>>>>>>>>>>>>>>>> ", any.fitness.fitness
+                vOut += "</Training_Tuning>\n"
+
+                result = problem.test(any.decisionValues)
+                print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Result: ", result
+                return_results.append(result[:])
+
+                vOut += "<Parameters>\n"
+                #arguments = ["mss", "msl", "mxf", "threshold"]
+                for i,a in enumerate(any.decisionValues):
+                    vOut += "<param"  +str(i) + ">" + str(a) + "</param" + str(i) + "> \n"
+                vOut += "</Parameters>\n"
+                vOut += "<Testing>\n"
+                for i,a in enumerate(result):
+                    vOut += "\t<" + objectives[i] + "> " + str(result[i]) + "</" + objectives[i] + "> \n"
+                vOut += "</Testing>\n"
+                vOut += "<Default>\n"
+                result = problem.default()
+                for i,a in enumerate(result):
+                    vOut += "\t<" + objectives[i] + "> " + str(result[i]) + "</" + objectives[i] + "> \n"
+                vOut += "</Default>\n"
+                vOut += "</Summary\n>"
+
+
+
+                # Record
+
+                # Find best generation
+                representative = statBox.box[0]
+                for r,rep in enumerate(statBox.box):
+                    # for indi in rep.population:
+                    #     print indi
+                    if rep.IBD < representative.IBD:
+                        representative = statBox.box[r]
+                representatives.append(representative)
+
+
+
+
+                # Decision Bin Data
+                s = ""
+                for row in representative.population:
+                    for dec in row.decisionValues:
+                        s += str("%10.2f" % dec) + ","
+                    if row.valid:
+                        for obj in row.fitness.fitness:
+                            s += str("%10.2f" % obj) + ","
+                    else:
+                        for obj in problem.objectives:
+                            s += "?" + ","
+
+                    s += str(representative.numEval) + ","
+                    s += "\n"
+
+                dbt.write(s)
+
+                baseline = problem.referencePoint
+                s = ""
+                for row in representative.population:
+                    #if not row.valid:
+                    #    row.evaluate()
+                    if row.valid:
+                        for o,base,obj in zip(row.fitness.fitness, baseline, problem.objectives ):
+                            c = percentChange(o, base, obj.lismore, obj.low, obj.up)
+                            s += c + ","
+                        s += str(representative.numEval) + ","
+                        for o,base,obj in zip(row.fitness.fitness, baseline, problem.objectives ):
+                            c = str("%12.2f" % o)
+                            s += c + ","
+                        s += "\n"
+                rrs.write(s)
+
+                #output every generation
+                for box in [representative]:
+                    s_out = ""
+                    s_out += str(MU) + ","
+                    s_out += problem.name + "-p" + str(MU) + "-d"  + str(len(problem.decisions)) + "-o" + str(len(problem.objectives)) + ","
+                    s_out += algorithm.name + ","
+                    s_out += str(box.numEval) + ","
+                    for low in representative.fitnessMedians:
+                        s_out += str("%10.2f" % low) + ","
+                    s_out += str("%10.2f" % box.IBD) + "," + str("%10.2f" % box.IBS) + "," + str((end-start))
+                    sr.write(s_out + "\n")
+                    sc2.write(s_out + "\n")
+
+                # Finish
+                vOut += "</Run>\n"
+                print " # Finished: Celebrate! # " + " Time taken: " + str("%10.5f" % (end-start)) + " seconds."
+
+                vOut += "</Algorithm>\n"
+            vOut += "</Problem>\n"
+
+        vOut += "</Experiment>\n"
+        vOutFile = open("DefectPrediction.xml"+str(objective), 'w')
+        vOutFile.write(vOut)
+        defect_p.write(vOut)
+
+
+        print "# Evaluator: -------------> Return results", return_results
+        return self.medianlist(return_results)  # returns a median of results for all searchers and repeats
+
+
                     
     def doReports(self,thing=""):
         for report in self.reports:

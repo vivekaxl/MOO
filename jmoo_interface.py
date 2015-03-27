@@ -30,6 +30,7 @@
 from jmoo_properties import *
 # from jmoo_defect_prediction_properties import *
 from jmoo_core import *
+from jmoo_version_space import version_space_search
    
 """
 ------------
@@ -58,6 +59,7 @@ noReports = True
 dfreportOnly = False
 dfrankOnly = False
 dfchartOnly = False
+versionspace = False
 
 for i,arg in enumerate(sys.argv):
     if arg == "-n" or arg == "-N":
@@ -82,6 +84,8 @@ for i,arg in enumerate(sys.argv):
         dfchartOnly = True
     if arg == "-defectranking":
         dfrankOnly = True
+    if arg == "-versionspace":
+        versionspace = True
 
 
         
@@ -114,8 +118,11 @@ if dfrankOnly is True:
 core = JMOO(tests, reports)
 
 # Perform the tests
-if not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly:
+if not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not versionspace:
     core.doDefectPrediction()
+
+if versionspace and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly:
+    version_space_search(core)
 
 # Prepare the reports
 core.doReports(tag)
