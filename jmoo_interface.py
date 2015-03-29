@@ -122,7 +122,7 @@ if dfrankOnly is True:
 
 
 # Associate core with tests and reports
-if vschart:
+if not vschart:
     core = JMOO(tests, reports)
 
 print "here"
@@ -138,4 +138,5 @@ if vschart and not reportOnly and not dfreportOnly and not dfchartOnly and not d
     build_version_space_chart()
 
 # Prepare the reports
-core.doReports(tag)
+if not vschart:
+    core.doReports(tag)

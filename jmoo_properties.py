@@ -36,6 +36,12 @@ from tera_dataset import *
 from tera_datasets_WHERE import *
 from tera_dataset_RF import *
 
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/sklearn_dataset")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+
+from diabaties import *
+
 
 
 # JMOO Experimental Definitions
@@ -52,7 +58,8 @@ algorithms = [
 
 
 problems =[
-       camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
+    diabeties()
+       #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
      #antRF()  , camelRF(),  forrestRF(), ivyRF(), jeditRF(), luceneRF(), poiRF(), synapseRF(), velocityRF(), xercesRF(),
      #antW()  , camelW(),  forrestW(), ivyW(), jeditW(), luceneW(), poiW(), synapseW(), velocityW(), xercesW()
 

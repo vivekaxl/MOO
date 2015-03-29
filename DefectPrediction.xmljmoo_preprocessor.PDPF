@@ -1,31 +1,31 @@
 <Experiment>
-<Problem name = 'xerces'>
+<Problem name = 'diabeties'>
 <Algorithm name = 'DE'>
 <Run id = '1'>
 <Summary>
 <NumEvals>4000</NumEvals>
-<RunTime>66.8275640011</RunTime>
-<Training>xerces-1.2</Training>
-<Tuning>xerces-1.3</Tuning>
-<Testing>xerces-1.4</Testing>
+<RunTime>71.6312849522</RunTime>
+<Training>training</Training>
+<Tuning>tuning</Tuning>
+<Testing>testing</Testing>
 <Training_Tuning>
-	<parameters0> 30</parameters0> 
-	<parameters1> 10</parameters1> 
+	<parameters0> 100</parameters0> 
+	<parameters1> 5</parameters1> 
 </Training_Tuning>
 <Parameters>
-<param0>3.84798874625</param0> 
-<param1>11.0742259341</param1> 
-<param2>0.175639579925</param2> 
-<param3>14.8468541432</param3> 
-<param4>0.634300678751</param4> 
+<param0>13.7323556774</param0> 
+<param1>10.3745363164</param1> 
+<param2>0.439454404534</param2> 
+<param3>32.2157790703</param3> 
+<param4>191.968942247</param4> 
 </Parameters>
 <Testing>
-	<pd> 11</pd> 
-	<pf> 16</pf> 
+	<pd> 100</pd> 
+	<pf> 5</pf> 
 </Testing>
 <Default>
-	<pd> 11</pd> 
-	<pf> 32</pf> 
+	<pd> 100</pd> 
+	<pf> 0</pf> 
 </Default>
 </Summary
 ></Run>
