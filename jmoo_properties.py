@@ -46,19 +46,20 @@ from diabaties import *
 
 # JMOO Experimental Definitions
 algorithms = [
-              jmoo_GALE(),
-              jmoo_NSGAII(),
-              # # #
-              jmoo_SPEA2(),
-              jmoo_DE()
+              # jmoo_GALE(),
+              # jmoo_NSGAII(),
+              # # # #
+              # jmoo_SPEA2(),
+               jmoo_DE(),
+                jmoo_MOEAD()
 
               ]
 
 #problems = [defect_prediction([ant14()], [ant15()], [ant16()])]#srinivas(), fonseca(3)]
 
 
-problems =[
-    diabeties()
+problems =[fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
+    #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
      #antRF()  , camelRF(),  forrestRF(), ivyRF(), jeditRF(), luceneRF(), poiRF(), synapseRF(), velocityRF(), xercesRF(),
      #antW()  , camelW(),  forrestW(), ivyW(), jeditW(), luceneW(), poiW(), synapseW(), velocityW(), xercesW()
@@ -83,6 +84,11 @@ LAMBDA =  3     #Number of lives for bstop
 # Propoerties of DE
 F = 0.75 # extrapolate amount
 CF = 0.3 # prob of cross over
+
+# Properties of MOEA/D
+T = 30  # Neighbourhood size
+MOEAD_F = 0.5
+MOEAD_CF = 1.0
 
 # Properties of Culling
 if CULLING == True:

@@ -240,7 +240,6 @@ class JMOO:
                         s += str(representative.numEval) + ","
                         s += "\n"
 
-                    print "S: ", s
                     dbt.write(s)
                         
                     baseline = problem.referencePoint

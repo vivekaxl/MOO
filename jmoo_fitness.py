@@ -35,6 +35,7 @@ class jmoo_fitness:
             weights=[-1.0 if obj.lismore else 1.0 for obj in problem.objectives]
             fit.weightedFitness = (f*w for f,w in zip(fitness,weights))
 
+
     def __str__(fit):
         return str(fit.fitness)
 
@@ -66,6 +67,6 @@ class jmoo_fitness:
         immutable and the fitness does not contain any other object 
         than :attr:`values` and :attr:`weights`.
         """
-        copy = self.__class__()
-        copy.weightedFitness = self.weightedFitness
+        copy = self.__class__(self.problem)
+        copy.fitness = self.fitness
         return copy

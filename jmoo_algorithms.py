@@ -33,18 +33,28 @@ from deap import tools
 
 import os,sys,inspect
 
+def do_nothing_initializer(problem, population):
+    return population, 0
+
 cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"GALE")))
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
-
+from gale_components import *
 
 cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"DE")))
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
+from de_components import *
+
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"MOEA_D")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+from moead_components import *
     
 from jmoo_individual import *
-from gale_components import *
-from de_components import *
+
+
+
 from jmoo_properties import *
 from jmoo_preprocessor import CULLING
 from utility import *
@@ -59,6 +69,7 @@ import array,random,numpy
 class jmoo_NSGAII:
     def __init__(self, color="Blue"):
         self.name = "NSGAII"
+        self.initializer = None
         self.selector = selTournamentDCD
         self.adjustor = crossoverAndMutation
         self.recombiner = selNSGA2
@@ -68,6 +79,7 @@ class jmoo_NSGAII:
 class jmoo_SPEA2:
     def __init__(self, color="Green"):
         self.name = "SPEA2"
+        self.initializer = None
         self.selector = selTournament
         self.adjustor = crossoverAndMutation
         self.recombiner = selSPEA2
@@ -77,6 +89,7 @@ class jmoo_SPEA2:
 class jmoo_GALE:
     def __init__(self, color="Red"):
         self.name = "GALE"
+        self.initializer = None
         self.selector = galeWHERE
         self.adjustor = galeMutate
         self.recombiner = galeRegen
@@ -86,11 +99,22 @@ class jmoo_GALE:
 class jmoo_DE:
     def __init__(self, color="Yellow"):
         self.name = "DE"
+        self.initializer = None
         self.selector = de_selector
         self.adjustor = de_mutate
         self.recombiner = de_recombine #stub
         self.color = color
         self.type = 'o'
+
+class jmoo_MOEAD:
+    def __init__(self, color="Black"):
+        self.name = "MOEAD"
+        self.initializer = initialize_population
+        self.selector = moead_selector
+        self.adjustor = moead_mutate
+        self.recombiner = moead_recombine
+        self.color = color
+        self.type = '*'
 
 class Bin:
     def __init__(self):

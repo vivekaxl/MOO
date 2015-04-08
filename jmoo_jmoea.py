@@ -56,16 +56,25 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     stoppingCriteria = False                             # Just a flag for stopping criteria
     statBox          = jmoo_stats_box(problem,algorithm) # Record keeping device
     gen              = 0                                 # Just a number to track generations
+    numeval = 0
     
     # # # # # # # # # # # # # # # #
     # 2) Load Initial Population  #
     # # # # # # # # # # # # # # # #
     population = problem.loadInitialPopulation(MU)
-    print MU
+
+    # # # # # # # # # # # # # # # #
+    # 2.1) Special Initialization #
+    # # # # # # # # # # # # # # # #
+    if algorithm.initializer is not None:
+        population, numeval = algorithm.initializer(problem, population)
+
+
+
     # # # # # # # # # # # # # # #
     # 3) Collect Initial Stats  #
     # # # # # # # # # # # # # # #
-    statBox.update(population, 0, 0, initial=True)
+    statBox.update(population, 0, numeval, initial=True)
     
     # # # # # # # # # # # # # # #
     # 4) Generational Evolution #

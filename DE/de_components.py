@@ -106,6 +106,7 @@ def better(problem,individual,mutant):
 
 
 
+
 def de_selector(problem, individuals):
     #print "selector"
     newer_generation = []

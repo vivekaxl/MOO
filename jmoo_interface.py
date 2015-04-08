@@ -62,6 +62,8 @@ dfrankOnly = False
 dfchartOnly = False
 versionspace = False
 vschart = False
+df = False
+optimization = False
 
 for i,arg in enumerate(sys.argv):
     if arg == "-n" or arg == "-N":
@@ -80,6 +82,12 @@ for i,arg in enumerate(sys.argv):
     if arg == "-binsOnly":
         binsOnly = True
         reportOnly = True
+
+    if arg == "-defect":
+        df = True
+    if arg == "-opti":
+        optimization = True
+
     if arg == "-defectreport":
         dfreportOnly = True
     if arg == "-defectchart":
@@ -127,8 +135,11 @@ if not vschart:
 
 print "here"
 # Perform the tests
-if not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not versionspace and not vschart:
+if df and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not versionspace and not vschart:
     core.doDefectPrediction()
+
+if not reportOnly and optimization:
+    core.doTests()
 
 if versionspace and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not vschart:
     version_space_search(core)
