@@ -11,9 +11,11 @@ def assign_weights(number, summa = 100):
     assert(number <= summa), "Integers can't be generated"
     ret_results = []
     min_value = 1
+    temp_sum = 0
     for i in xrange(number-1):
-        tem = random.randint(min_value, summa - (min_value * (number - (i+1))) - sum(ret_results))
+        tem = random.randint(min_value, summa - (min_value * (number - (i+1))) - temp_sum)
         ret_results.append(tem)
+        temp_sum += tem
     ret_results.append(summa - sum(ret_results))
     assert(sum(ret_results) == summa), "Result is wrong"
     return [x/float(summa) for x in ret_results]
@@ -54,7 +56,10 @@ def find_neighbours(pop_id):
 
 def trim(mutated, low, up):
     assert(low < up), "There is a mix up between low and up"
-    return max(low, min(mutated, up))
+    if random.random > 0.5:
+        return max(low, min(mutated, up))
+    else:
+        return low + ((mutated - low) % (up - low))
 
 
 def assign_id_to_member(population):
@@ -152,7 +157,7 @@ def update_neighbor(problem, individual, mutant, population, dist_function):
             # step 2.5
             # print "Before: ", [pop.fitness.fitness for pop in population if pop.id == i]
             # print "Changes:", count
-            count += 1
+            # count += 1
             neigh.decisionValues = list(mutant.decisionValues)
             neigh.fitness.fitness = list(mutant.fitness.fitness)
             # print "Change in individual: ", i
@@ -214,10 +219,12 @@ def _find_weights():
         summa = random.randint(1,100)
         number = random.randint(1,summa)
         ret = assign_weights(number, summa)
+        print ret
+        exit()
         return ret
 
     def test_list(lis):
-        temp = [1 if num < 1 else 0 for num in lis]
+        temp = [1 if num < 1/100 else 0 for num in lis]
         if sum(temp) > 0:
             return True
         elif sum(temp) == 0:
@@ -254,4 +261,4 @@ def _euclidean_distance():
 
 
 if __name__ == "__main__":
-    _euclidean_distance()
+    _find_weights()

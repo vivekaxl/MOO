@@ -7,6 +7,48 @@ from itertools import chain
 from operator import attrgetter, itemgetter
 from collections import defaultdict
 
+import os, sys, inspect
+parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"../../NSGAIII")))
+if parentdir not in sys.path:
+    sys.path.insert(0, parentdir)
+from normalize import normalize
+
+######################################
+#   NSGAIII                          #
+######################################
+def selNSGA3(problem, individuals, k):
+    """Apply NSGA-III selection operator on the *individuals*. Usually, the
+    size of *individuals* will be larger than *k* because any individual
+    present in *individuals* will appear in the returned list at most once.
+    Having the size of *individuals* equals to *k* will have no effect other
+    than sorting the population according according to their front rank. The
+    list returned contains references to the input *individuals*. For more
+    details on the NSGA-II operator see [Deb2002]_.
+
+    :param individuals: A list of individuals to select from.
+    :param k: The number of individuals to select.
+    :returns: A list of selected individuals.
+
+    Deb, Kalyanmoy, and Himanshu Jain. "An evolutionary many-objective optimization algorithm using
+    reference-point-based nondominated sorting approach, part i: Solving problems with box constraints."x
+    Evolutionary Computation, IEEE Transactions on 18.4 (2014): 577-601.
+    """
+    print "Length of individuals: ", len(individuals)
+    pareto_fronts = sortNondominated(individuals, k)
+
+    chosen = list(chain(*pareto_fronts[:-1]))
+    print sum([len(front) for front in pareto_fronts])
+    assert(len(chosen) == sum([len(front) for front in pareto_fronts[:-1]])), "length fronts[:-1] should be same as chosen"
+    k -= len(chosen)
+    if k > 0:
+        normalize(problem, chosen, [])
+        associate()
+        niching()
+
+    return chosen
+
+
+
 ######################################
 # Non-Dominated Sorting   (NSGA-II)  #
 ######################################
@@ -28,11 +70,13 @@ def selNSGA2(individuals, k):
        non-dominated sorting genetic algorithm for multi-objective
        optimization: NSGA-II", 2002.
     """
+    print "Length of individuals: ", len(individuals)
     pareto_fronts = sortNondominated(individuals, k)
     for front in pareto_fronts:
         assignCrowdingDist(front)
     
     chosen = list(chain(*pareto_fronts[:-1]))
+
     k = k - len(chosen)
     if k > 0:
         sorted_front = sorted(pareto_fronts[-1], key=attrgetter("fitness.crowding_dist"), reverse=True)
@@ -106,7 +150,6 @@ def sortNondominated(individuals, k, first_front_only=False):
                         fronts[-1].extend(map_fit_ind[fit_d])
             current_front = next_front
             next_front = []
-    
     return fronts
 
 def assignCrowdingDist(individuals):
@@ -568,5 +611,5 @@ def _partition(array, begin, end):
             return j
 
 
-__all__ = ['selNSGA2', 'selSPEA2', 'sortNondominated', 'sortLogNondominated',
+__all__ = ['selNSGA3', 'selNSGA2', 'selSPEA2', 'sortNondominated', 'sortLogNondominated',
            'selTournamentDCD']

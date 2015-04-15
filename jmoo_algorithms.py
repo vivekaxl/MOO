@@ -50,6 +50,12 @@ cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(insp
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 from moead_components import *
+
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"NSGAIII")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+from nsgaiii_components import *
+
     
 from jmoo_individual import *
 
@@ -113,6 +119,16 @@ class jmoo_MOEAD:
         self.selector = moead_selector
         self.adjustor = moead_mutate
         self.recombiner = moead_recombine
+        self.color = color
+        self.type = '*'
+
+class jmoo_NSGAIII:
+    def __init__(self, color="Black"):
+        self.name = "NSGA3"
+        self.initializer = None
+        self.selector = selTournament
+        self.adjustor = crossoverAndMutation
+        self.recombiner = nsgaiii_recombine
         self.color = color
         self.type = '*'
 

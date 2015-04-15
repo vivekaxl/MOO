@@ -48,17 +48,17 @@ from diabaties import *
 algorithms = [
               # jmoo_GALE(),
               # jmoo_NSGAII(),
-              # # # #
               # jmoo_SPEA2(),
-               jmoo_DE(),
-                jmoo_MOEAD()
+              # jmoo_DE(),
+              # jmoo_MOEAD(),
+              jmoo_NSGAIII()
 
               ]
 
 #problems = [defect_prediction([ant14()], [ant15()], [ant16()])]#srinivas(), fonseca(3)]
 
 
-problems =[fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
+problems =[dtlz1(6, 5), fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
     #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
      #antRF()  , camelRF(),  forrestRF(), ivyRF(), jeditRF(), luceneRF(), poiRF(), synapseRF(), velocityRF(), xercesRF(),
