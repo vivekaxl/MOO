@@ -90,6 +90,9 @@ T = 30  # Neighbourhood size
 MOEAD_F = 0.5
 MOEAD_CF = 1.0
 
+# Properties of NSGAIII
+NSGA3_P = 4
+
 # Properties of Culling
 if CULLING == True:
     CULLING_PD = 66

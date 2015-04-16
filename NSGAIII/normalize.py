@@ -4,6 +4,7 @@ cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(insp
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 from jmoo_individual import *
+from ref_point import cover
 
 
 def find_ideal_points(problem, objectives):
@@ -73,6 +74,13 @@ def maxpoints(problem, population):
                    utopia[i] = obj
     return utopia
 
+def final_normalize(problem, intercepts, utopia, population):
+    for individual in population:
+        temp = []
+        for no, i, u in enumerate(zip(intercepts, utopia)):
+            temp.append(individual.translated[no] / (i - u))
+        individual.normalized = temp
+    return population
 
 def normalize(problem, already_chosen, reference_points):
     population = []
@@ -97,20 +105,13 @@ def normalize(problem, already_chosen, reference_points):
 
     if len(extreme_points) != len(set(extreme_points)):
         print "Duplicate exists"
-        extreme_points = [maxpoints(problem, population)] * len(problem.objectives)
+        extreme_points = [maxpoints(problem, population)]
 
-    intercept_points = []
-    for i, point in enumerate(extreme_points):
-        temp = [0 for _ in xrange(len(problem.objectives))]
-        temp[i] = point
-        intercept_points.append(temp)
+    population = final_normalize(problem, extreme_points, utopia, population)
 
-    print intercept_points
-    # ---- Testing ---- #
+    # need to allows users to pass reference points
 
-
-
-    exit()
+    return population
 
 
 

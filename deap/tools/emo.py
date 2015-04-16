@@ -8,10 +8,12 @@ from operator import attrgetter, itemgetter
 from collections import defaultdict
 
 import os, sys, inspect
+import jmoo_properties
 parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"../../NSGAIII")))
 if parentdir not in sys.path:
     sys.path.insert(0, parentdir)
 from normalize import normalize
+from ref_point import cover
 
 ######################################
 #   NSGAIII                          #
@@ -41,7 +43,8 @@ def selNSGA3(problem, individuals, k):
     assert(len(chosen) == sum([len(front) for front in pareto_fronts[:-1]])), "length fronts[:-1] should be same as chosen"
     k -= len(chosen)
     if k > 0:
-        normalize(problem, chosen, [])
+        reference_points = cover(len(problem.objectives), jmoo_properties.NSGA3_P)
+        population = normalize(problem, chosen)
         associate()
         niching()
 
