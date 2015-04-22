@@ -51,14 +51,14 @@ algorithms = [
               # jmoo_SPEA2(),
               # jmoo_DE(),
               # jmoo_MOEAD(),
-              jmoo_NSGAIII()
+               jmoo_NSGAIII()
 
               ]
 
 #problems = [defect_prediction([ant14()], [ant15()], [ant16()])]#srinivas(), fonseca(3)]
 
 
-problems =[dtlz1(6, 5), fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
+problems =[dtlz1(9, 5)#, fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
     #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
      #antRF()  , camelRF(),  forrestRF(), ivyRF(), jeditRF(), luceneRF(), poiRF(), synapseRF(), velocityRF(), xercesRF(),
@@ -73,8 +73,8 @@ build_new_pop = False                                       # Whether or not to 
 
 # JMOO Universal Properties
 repeats = 1     #Repeats of each MOEA
-MU      = 100   #Population Size
-PSI     = 20    #Maximum number of generations
+MU      = 212   #Population Size
+PSI     = 400    #Maximum number of generations
 
 # Properties of GALE
 GAMMA   = 0.15  #Constrained Mutation Parameter
@@ -91,7 +91,7 @@ MOEAD_F = 0.5
 MOEAD_CF = 1.0
 
 # Properties of NSGAIII
-NSGA3_P = 4
+# NSGA3_P = 5 # not required anymore since this is not strictly followed. Looked at nsga3 paper section V
 
 # Properties of Culling
 if CULLING == True:

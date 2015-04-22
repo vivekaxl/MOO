@@ -1,3 +1,8 @@
+from __future__ import division
+class reference_point:
+    def __init__(self, id, coordinates):
+        self.id = id
+        self.coordinates = coordinates
 
 def get_ref_points(root):
     ref_points = []
@@ -13,7 +18,8 @@ def get_ref_points(root):
                 while temp is not None:
                     points = [round(temp.data, 2)] + points
                     temp = temp.parent
-                ref_points.append(points)
+                ref_points.append(reference_point(count, points))
+                count += 1
             stack.extend(vertex.children)
             visited.add(vertex)
     return ref_points
@@ -62,22 +68,35 @@ def tree(node, n, p, level = 0):
     else:
         return
 
-def cover(n, p):
+def cover(n):
     from scipy.misc import comb
-    combination = comb(n + p - 1, p)
-    root = Node(-1)
-    tree(root, n, p)
-    lst = get_ref_points(root)
-    assert(len(lst) == combination), "Length of the lst should be equal to combination"
+    if n <= 5:
+        if n == 3: p = 12
+        elif n == 5: p = 6
+        root = Node(-1)
+        tree(root, n, p)
+        lst = get_ref_points(root)
+        assert(len(lst) == comb(n + p - 1, p)), "Length of the lst should be equal to combination"
+    else:
+        lst = []
+        combination = 0
+        for p in [3, 2]:
+            root = Node(-1)
+            tree(root, n, p)
+            lst.extend(get_ref_points(root))
+            combination += comb(n + p - 1, p)
+        assert(len(lst) == combination), "Length of the lst should be equal to combination"
+
     for l in lst:
-        assert(round(sum(l), 1) == 1), "sum of l should be 1"
+        assert(round(sum(l.coordinates), 1) == 1), "sum of l should be 1"
+    # print "length of the cover: ", len(lst)
     return lst
 
 # -------------------------- Testing -------------------------- #
 
 def _get_ref_points():
     for x in xrange(100):
-        print ".",
+        # print ".",
         import random
         a = random.randint(3, 7)
         b = random.randint(a, 10)

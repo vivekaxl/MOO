@@ -1,97 +1,17 @@
 <Experiment>
-<Problem name = 'Fonseca'>
-<Algorithm name = 'DE'>
+<Problem name = 'DTLZ1'>
+<Algorithm name = 'NSGA3'>
 <Run id = '1'>
 <Summary>
-<NumEvals>4000</NumEvals>
-<RunTime>0.246544122696</RunTime>
-<IBD>0.843290809842</IBD>
-<IBS>0.0475591450818</IBS>
-<f1>0.0102732161541</f1>
-<f2>0.97638884958</f2>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'MOEAD'>
-<Run id = '1'>
-<Summary>
-<NumEvals>300</NumEvals>
-<RunTime>1.07591605186</RunTime>
-<IBD>0.820391555696</IBD>
-<IBS>0.000877941360528</IBS>
-<f1>0.0333026816266</f1>
-<f2>0.987036034217</f2>
-</Summary></Run>
-</Algorithm>
-</Problem>
-<Problem name = 'Srinivas'>
-<Algorithm name = 'DE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.093220949173</RunTime>
-<IBD>0.978611945612</IBD>
-<IBS>0.0492835938477</IBS>
-<f1>436.883221019</f1>
-<f2>-420.35981452</f2>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'MOEAD'>
-<Run id = '1'>
-<Summary>
-<NumEvals>300</NumEvals>
-<RunTime>1.11503005028</RunTime>
-<IBD>0.886818884409</IBD>
+<NumEvals>111936</NumEvals>
+<RunTime>179.504029036</RunTime>
+<IBD>0.818730768864</IBD>
 <IBS>0.0</IBS>
-<f1>806.055963386</f1>
-<f2>-594.486247362</f2>
-</Summary></Run>
-</Algorithm>
-</Problem>
-<Problem name = 'Schaffer'>
-<Algorithm name = 'DE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>4000</NumEvals>
-<RunTime>0.229754924774</RunTime>
-<IBD>0.8371551262</IBD>
-<IBS>0.0112724409718</IBS>
-<f1>0.459131080486</f1>
-<f2>1.74876260226</f2>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'MOEAD'>
-<Run id = '1'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>1.02564096451</RunTime>
-<IBD>0.711517386332</IBD>
-<IBS>0.0</IBS>
-<f1>1.93678727143e-10</f1>
-<f2>4.0000556676</f2>
-</Summary></Run>
-</Algorithm>
-</Problem>
-<Problem name = 'Osyczka2'>
-<Algorithm name = 'DE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>4000</NumEvals>
-<RunTime>0.279293060303</RunTime>
-<IBD>0.844653687334</IBD>
-<IBS>0.0512297086281</IBS>
-<f1>-1672.40314883</f1>
-<f2>115.427136845</f2>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'MOEAD'>
-<Run id = '1'>
-<Summary>
-<NumEvals>300</NumEvals>
-<RunTime>1.16300702095</RunTime>
-<IBD>0.860680712978</IBD>
-<IBS>0.0</IBS>
-<f1>-1636.0</f1>
-<f2>190.63546337</f2>
+<f1>0.0</f1>
+<f2>0.0</f2>
+<f3>0.0</f3>
+<f4>0.0</f4>
+<f5>0.50177486874</f5>
 </Summary></Run>
 </Algorithm>
 </Problem>

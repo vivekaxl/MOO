@@ -71,7 +71,7 @@ def mutPolynomialBounded(individual, eta, low, up, indpb):
             x = x + delta_q * (xu - xl)
             x = min(max(x, xl), xu)
             individual[i] = x
-    return individual,
+    return individual
 
 def mutShuffleIndexes(individual, indpb):
     """Shuffle the attributes of the input individual and return the mutant.

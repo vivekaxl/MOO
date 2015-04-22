@@ -14,6 +14,15 @@ if parentdir not in sys.path:
     sys.path.insert(0, parentdir)
 from normalize import normalize
 from ref_point import cover
+from associate import associate
+from niche import niche_counting, niching
+
+import os, sys, inspect
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0], "../..")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+from jmoo_individual import *
+import jmoo_properties
 
 ######################################
 #   NSGAIII                          #
@@ -35,20 +44,48 @@ def selNSGA3(problem, individuals, k):
     reference-point-based nondominated sorting approach, part i: Solving problems with box constraints."x
     Evolutionary Computation, IEEE Transactions on 18.4 (2014): 577-601.
     """
-    print "Length of individuals: ", len(individuals)
+    #print "Length of individuals: ", len(individuals)
+
+
     pareto_fronts = sortNondominated(individuals, k)
+    if len(pareto_fronts) == 1 :
+        chosen = list(pareto_fronts[-1][:k])
+        print "Length of the pareto front: ", len(chosen)
+        population =[]
+        for i,dIndividual in enumerate(chosen):
+            cells = []
+            for j in xrange(len(dIndividual)):
+                cells.append(dIndividual[j])
+            population.append(jmoo_individual(problem, cells, dIndividual.fitness.values))
+        return population
+    else:
+        chosen = list(chain(*pareto_fronts[:-1]))
 
-    chosen = list(chain(*pareto_fronts[:-1]))
-    print sum([len(front) for front in pareto_fronts])
-    assert(len(chosen) == sum([len(front) for front in pareto_fronts[:-1]])), "length fronts[:-1] should be same as chosen"
+    last_level = list(chain(*pareto_fronts[-1:]))
+    print ">>>>>>>>>>>>>>>>>LastLevel: ", len(chosen), len(last_level), len(individuals)
+    assert(len(chosen) + len(last_level) >= k), "length fronts[:-1] should be same as chosen"
     k -= len(chosen)
-    if k > 0:
-        reference_points = cover(len(problem.objectives), jmoo_properties.NSGA3_P)
-        population = normalize(problem, chosen)
-        associate()
-        niching()
+    reference_points = cover(len(problem.objectives))
 
-    return chosen
+    # print "Length of the reference point: ", len(reference_points)
+    # pdb.set_trace()
+
+    population, lpopulation = normalize(problem, chosen, last_level)
+
+    # print "Length of the population after normalize: ", len(population)
+    # pdb.set_trace()
+
+    population, lpopulation = associate(population, lpopulation, reference_points)
+
+    # print "Length of the population after normalize: ", len(population)
+    # pdb.set_trace()
+
+    population = niching(k, len(reference_points), population, lpopulation)
+    assert(len(population) == jmoo_properties.MU), "Length is mismatched"
+
+
+
+    return population
 
 
 
@@ -74,7 +111,13 @@ def selNSGA2(individuals, k):
        optimization: NSGA-II", 2002.
     """
     print "Length of individuals: ", len(individuals)
+    map_fit_ind = defaultdict(list)
+    for i, ind in enumerate(individuals):
+        map_fit_ind[ind.fitness].append(ind)
+
+    # the inds are not identical
     pareto_fronts = sortNondominated(individuals, k)
+
     for front in pareto_fronts:
         assignCrowdingDist(front)
     
@@ -100,7 +143,6 @@ def sortNondominated(individuals, k, first_front_only=False):
                              exit.
     :returns: A list of Pareto fronts (lists), the first list includes 
               nondominated individuals.
-
     .. [Deb2002] Deb, Pratab, Agarwal, and Meyarivan, "A fast elitist
        non-dominated sorting genetic algorithm for multi-objective
        optimization: NSGA-II", 2002.
@@ -109,8 +151,8 @@ def sortNondominated(individuals, k, first_front_only=False):
         return []
 
     map_fit_ind = defaultdict(list)
-    
-        
+
+
     for ind in individuals:
         map_fit_ind[ind.fitness].append(ind)
     fits = map_fit_ind.keys()
@@ -120,10 +162,11 @@ def sortNondominated(individuals, k, first_front_only=False):
     next_front = []
     dominating_fits = defaultdict(int)
     dominated_fits = defaultdict(list)
-    
+
     # Rank first Pareto front
+    # some of the elements are repeated
     for i, fit_i in enumerate(fits):
-        for fit_j in fits[i+1:]:
+        for fit_j in fits:
             if fit_i.dominates(fit_j):
                 dominating_fits[fit_j] += 1
                 dominated_fits[fit_i].append(fit_j)
@@ -132,13 +175,13 @@ def sortNondominated(individuals, k, first_front_only=False):
                 dominated_fits[fit_j].append(fit_i)
         if dominating_fits[fit_i] == 0:
             current_front.append(fit_i)
-    
+
     fronts = [[]]
     for fit in current_front:
         fronts[-1].extend(map_fit_ind[fit])
     pareto_sorted = len(fronts[-1])
 
-    # Rank the next front until all individuals are sorted or 
+    # Rank the next front until all individuals are sorted or
     # the given number of individual are sorted.
     if not first_front_only:
         N = min(len(individuals), k)
@@ -153,6 +196,7 @@ def sortNondominated(individuals, k, first_front_only=False):
                         fronts[-1].extend(map_fit_ind[fit_d])
             current_front = next_front
             next_front = []
+
     return fronts
 
 def assignCrowdingDist(individuals):

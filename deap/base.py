@@ -211,7 +211,6 @@ class Fitness(object):
                     tested. The default value is `slice(None)`, representing
                     every objectives.
         """
-        
         if self.feasible and other.feasible: return self.normal_dom(other,obj)
         elif self.feasible and not other.feasible: return True
         elif not self.feasible and other.feasible: return False

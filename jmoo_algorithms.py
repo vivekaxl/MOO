@@ -216,6 +216,8 @@ def helper_list(lst, item):
 
 def crossoverAndMutation(problem, individuals):
 
+    from copy import copy
+    new_individuals = individuals
 
     if CULLING is True:
         count = 0
@@ -273,25 +275,36 @@ def crossoverAndMutation(problem, individuals):
     else:
         # Format a population data structure usable by DEAP's package
         dIndividuals = deap_format(problem, individuals)
+        new_dIndividuals = []
+        # print "Number of Individuals: ", len(dIndividuals)
 
         # Crossover
         for ind1, ind2 in zip(dIndividuals[::2], dIndividuals[1::2]):
-            if random.random() <= 0.9: #crossover rate
-                tools.cxUniform(ind1, ind2, indpb=1.0/len(problem.decisions))
+            if random.random() <= 1: #crossover rate
+                # print ".",
+                ind1, ind2 = tools.cxUniform(ind1, ind2, indpb=1.0/len(problem.decisions))
+                new_dIndividuals.append(ind1)
+                new_dIndividuals.append(ind2)
+            else:
+                new_dIndividuals.append(ind1)
+                new_dIndividuals.append(ind2)
+
 
 
         # Mutation
-        for ind in dIndividuals:
+        for ind in new_dIndividuals:
+            # print "+",
             tools.mutPolynomialBounded(ind, eta = 1.0, low=[dec.low for dec in problem.decisions], up=[dec.up for dec in problem.decisions], indpb=0.1 )
             del ind.fitness.values
 
         # Update beginning population data structure
-        for individual,dIndividual in zip(individuals, dIndividuals):
+        for individual, dIndividual in zip(new_individuals, new_dIndividuals):
             for i in range(len(individual.decisionValues)):
                 individual.decisionValues[i] = dIndividual[i]
                 individual.fitness = None
 
-        return individuals,0
+
+        return new_individuals,0
 
 def variator(problem, selectees):
     return selectees, 0

@@ -21,22 +21,16 @@ def nsgaiii_recombine(problem, population, selectees, k):
     for individual in population+selectees:
         if not individual.valid:
             individual.evaluate()
-
+    # for i, individual in enumerate(population+selectees):
+    #     print i, individual.fitness
     # Format a population data structure usable by DEAP's package
     dIndividuals = jmoo_algorithms.deap_format(problem, population+selectees)
 
-    print "Length of dIndividuals: ", len(dIndividuals)
+    # for i, individual in enumerate(dIndividuals):
+    #     print i, individual.fitness
 
-
+    # print "Length of dIndividuals: ", len(dIndividuals)
     # Combine
-    dIndividuals = tools.selNSGA3(problem, dIndividuals, k)
-
-    # Copy from DEAP structure to JMOO structure
-    population = []
-    for i,dIndividual in enumerate(dIndividuals):
-        cells = []
-        for j in range(len(dIndividual)):
-            cells.append(dIndividual[j])
-        population.append(jmoo_individual(problem, cells, dIndividual.fitness.values))
+    population = tools.selNSGA3(problem, dIndividuals, k)
 
     return population, k

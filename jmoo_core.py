@@ -31,6 +31,12 @@ Random Stuff
 ------------
 
 """
+import os, sys, inspect
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0], "Techniques")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+
+from IGD import IGD
 
 import random
 import jmoo_preprocessor
@@ -83,6 +89,16 @@ def chosen_one(problem, lst):
 
     return chosen
 
+def readpf(problem):
+    filename = "./PF/" + problem.name + "(" + str(len(problem.objectives)) + ")-PF.txt"
+    f = open(filename, "r")
+    true_PF = []
+    for line in f:
+        temp = []
+        for x in line.split():
+            temp.append(float(x))
+        true_PF.append(temp)
+    return true_PF
 
 
 "Brief notes"
@@ -202,12 +218,23 @@ class JMOO:
                     
                     zOut += "<Run id = '" + str(repeat+1) + "'>\n"
                     
-                    
+
                     start = time.time()
                     statBox = jmoo_evo(problem, algorithm)
                     end = time.time()
 
-                    print "Bests actuals: ",statBox.bests_actuals
+                    true_PF = readpf(problem)
+                    approximate = []
+                    for individual in statBox.box[-1].fitnesses:
+                        temp = []
+                        for obj, x in zip(problem.objectives, individual):
+                            temp.append((x - obj.low)/(obj.up - obj.low))
+                        approximate.append(temp)
+
+                    print IGD(approximate, true_PF)
+
+
+
 
                     
                     # Record
@@ -663,6 +690,4 @@ class JMOO:
     def doReports(self,thing=""):
         for report in self.reports:
             report.doit(tagnote = thing)
-        
-        
         

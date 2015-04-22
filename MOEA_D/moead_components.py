@@ -4,6 +4,11 @@ from jmoo_individual import *
 distance_matrix = []
 ideal_points = []
 
+import os, sys, inspect
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0], "../Techniques")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+from euclidean_distance import euclidean_distance
 
 def assign_weights(number, summa = 100):
     assert(float(number).is_integer() is True), "Number is not correct"
@@ -19,12 +24,6 @@ def assign_weights(number, summa = 100):
     ret_results.append(summa - sum(ret_results))
     assert(sum(ret_results) == summa), "Result is wrong"
     return [x/float(summa) for x in ret_results]
-
-def euclidean_distance(list1, list2):
-    assert(len(list1) == len(list2)), "The points don't have the same dimension"
-    distance = sum([(i - j) ** 2 for i, j in zip(list1, list2)]) ** 0.5
-    assert(distance >= 0), "Distance can't be less than 0"
-    return distance
 
 def create_distance_matrix(population):
     global distance_matrix

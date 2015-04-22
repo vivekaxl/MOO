@@ -33,6 +33,8 @@ from jmoo_properties import *
 from Moo import *
 from pylab import *
 
+
+
 def jmoo_evo(problem, algorithm, toStop = bstop):
     """
     ----------------------------------------------------------------------------
@@ -63,6 +65,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     # # # # # # # # # # # # # # # #
     population = problem.loadInitialPopulation(MU)
 
+
     # # # # # # # # # # # # # # # #
     # 2.1) Special Initialization #
     # # # # # # # # # # # # # # # #
@@ -86,10 +89,12 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # # # # # # # # #
         # 4a) Selection #
         # # # # # # # # #
-            
+
+        from copy import deepcopy
+        new_population = deepcopy(population)
             
         problem.referencePoint = statBox.referencePoint
-        selectees,evals = algorithm.selector(problem, population)
+        selectees, evals = algorithm.selector(problem, population)
         numNewEvals = evals
         
         
@@ -97,13 +102,13 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # # # # # # # # # #
         # 4b) Adjustment  #
         # # # # # # # # # #
-        selectees,evals = algorithm.adjustor(problem, selectees)
+        selectees, evals = algorithm.adjustor(problem, selectees)
         numNewEvals += evals
         
         # # # # # # # # # # #
         # 4c) Recombination #
         # # # # # # # # # # #
-        population,evals = algorithm.recombiner(problem, population, selectees, MU)
+        population, evals = algorithm.recombiner(problem, new_population, selectees, MU)
         numNewEvals += evals        
         
         
