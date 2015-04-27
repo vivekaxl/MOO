@@ -32,7 +32,9 @@ from jmoo_stats_box import *
 from jmoo_properties import *
 from Moo import *
 from pylab import *
+import jmoo_properties
 
+import os, sys, inspect
 
 
 def jmoo_evo(problem, algorithm, toStop = bstop):
@@ -63,7 +65,9 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     # # # # # # # # # # # # # # # #
     # 2) Load Initial Population  #
     # # # # # # # # # # # # # # # #
+    MU = population_size[problem.name.split("_")[-1]]
     population = problem.loadInitialPopulation(MU)
+    print "Length of population: ", len(population)
 
 
     # # # # # # # # # # # # # # # #
@@ -82,16 +86,18 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     # # # # # # # # # # # # # # #
     # 4) Generational Evolution #
     # # # # # # # # # # # # # # #
+
+    PSI = jmoo_properties.max_generation[problem.name]
     
     while gen < PSI and stoppingCriteria == False:
         gen+= 1
-        
+        print "||" + str(gen) + "||",
         # # # # # # # # #
         # 4a) Selection #
         # # # # # # # # #
 
-        from copy import deepcopy
-        new_population = deepcopy(population)
+        # from copy import deepcopy
+        # new_population = deepcopy(population)
             
         problem.referencePoint = statBox.referencePoint
         selectees, evals = algorithm.selector(problem, population)
@@ -108,8 +114,10 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # # # # # # # # # # #
         # 4c) Recombination #
         # # # # # # # # # # #
-        population, evals = algorithm.recombiner(problem, new_population, selectees, MU)
-        numNewEvals += evals        
+
+        population, evals = algorithm.recombiner(problem, population, selectees, MU)
+        numNewEvals += evals
+
         
         
         # # # # # # # # # # #
@@ -123,10 +131,11 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # # # # # # # # # # # # # # # # # #
         # 4e) Evaluate Stopping Criteria  #
         # # # # # # # # # # # # # # # # # #
-        stoppingCriteria = toStop(statBox)
+        # stoppingCriteria = toStop(statBox)
+        print "Stopping criteria disabled",
         #stoppingCriteria = False
-        
-        
+
+
     
 
 

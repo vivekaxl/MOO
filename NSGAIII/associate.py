@@ -22,8 +22,21 @@ def perpendicular_distance(pointa, pointb):
     base = mag
     return (lengthb ** 2 - base ** 2) ** 0.5
 
+"""
+Perpendicular distance between point a and point b, Adapted from Dr. Chiang's code
+"""
+def perpendicular_distance2(pointa, pointb):
+    numerator = 0
+    denominator = 0
+    for d, p in zip(pointa, pointb):
+        numerator += d * p
+        denominator += d ** 2
+    k = numerator/denominator
+    d = sum([((k * pointa[i]) - pointb[i]) ** 2 for i in xrange(len(pointa))])
+    return d ** 0.5
 
-def associate(population, lpopulation, reference_points):
+
+def associate(population, reference_points):
     """
     :param population:  list of jmoo_individuals
     :param reference_points: list of reference_points
@@ -32,25 +45,18 @@ def associate(population, lpopulation, reference_points):
     for individual in population:
         temp = []
         for point in reference_points:
-            temp.append([point.id, perpendicular_distance(point.coordinates, individual.fitness.fitness)])
+            temp.append([point.id, perpendicular_distance(point.coordinates, individual.normalized)])
+
         # closed ref point
         nearest_ref_point = sorted(temp, key=lambda x: x[1])[0]
+
         individual.closest_ref = nearest_ref_point[0]
         individual.closest_ref_dist = nearest_ref_point[1]
-
-    for individual in lpopulation:
-        temp = []
-        for point in reference_points:
-            temp.append([point.id, perpendicular_distance(point.coordinates, individual.fitness.fitness)])
-        # closed ref point
-        nearest_ref_point = sorted(temp, key=lambda x: x[1])[0]
-        individual.closest_ref = nearest_ref_point[0]
-        individual.closest_ref_dist = nearest_ref_point[1]
-
-    return population, lpopulation
+    return population
 
 
 if __name__ == "__main__":
     a = [1, -2, 3]
     b = [2, 4, 3]
     print perpendicular_distance(a, b)
+    print perpendicular_distance2(a, b)

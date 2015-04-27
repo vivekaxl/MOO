@@ -41,6 +41,9 @@ class jmoo_individual:
         s += "fitness: " + str(ind.fitness) + "\n"
         return s
 
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
     def evaluate(ind):
         if ind.fitness: 
             ind.fitness.setFitness( ind.problem.evaluate(ind.decisionValues) )

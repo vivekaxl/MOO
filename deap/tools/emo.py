@@ -14,6 +14,7 @@ if parentdir not in sys.path:
     sys.path.insert(0, parentdir)
 from normalize import normalize
 from ref_point import cover
+from ref_point_2 import generate_reference_points
 from associate import associate
 from niche import niche_counting, niching
 
@@ -44,48 +45,53 @@ def selNSGA3(problem, individuals, k):
     reference-point-based nondominated sorting approach, part i: Solving problems with box constraints."x
     Evolutionary Computation, IEEE Transactions on 18.4 (2014): 577-601.
     """
+
     #print "Length of individuals: ", len(individuals)
 
 
     pareto_fronts = sortNondominated(individuals, k)
-    if len(pareto_fronts) == 1 :
-        chosen = list(pareto_fronts[-1][:k])
-        print "Length of the pareto front: ", len(chosen)
-        population =[]
-        for i,dIndividual in enumerate(chosen):
+    f_l_no = len(pareto_fronts) - 1
+    P_t_1_no = len(list(chain(*pareto_fronts[:-1])))
+    total_points_returned = len(list(chain(*pareto_fronts)))
+    population =[]
+
+    for front_no, front in enumerate(pareto_fronts):
+        for i, dIndividual in enumerate(front):
             cells = []
             for j in xrange(len(dIndividual)):
                 cells.append(dIndividual[j])
             population.append(jmoo_individual(problem, cells, dIndividual.fitness.values))
-        return population
-    else:
-        chosen = list(chain(*pareto_fronts[:-1]))
+            population[-1].front_no = front_no
 
-    last_level = list(chain(*pareto_fronts[-1:]))
-    print ">>>>>>>>>>>>>>>>>LastLevel: ", len(chosen), len(last_level), len(individuals)
-    assert(len(chosen) + len(last_level) >= k), "length fronts[:-1] should be same as chosen"
-    k -= len(chosen)
-    reference_points = cover(len(problem.objectives))
+    Z_s = cover(len(problem.objectives))
+    Z_a = None
+    Z_r = None
 
-    # print "Length of the reference point: ", len(reference_points)
-    # pdb.set_trace()
+    if total_points_returned == k:
+        return normalize(problem, population, Z_r, Z_s, Z_a)
 
-    population, lpopulation = normalize(problem, chosen, last_level)
-
-    # print "Length of the population after normalize: ", len(population)
-    # pdb.set_trace()
-
-    population, lpopulation = associate(population, lpopulation, reference_points)
-
-    # print "Length of the population after normalize: ", len(population)
-    # pdb.set_trace()
-
-    population = niching(k, len(reference_points), population, lpopulation)
-    assert(len(population) == jmoo_properties.MU), "Length is mismatched"
+    # S_t = P_t_1 + pareto_fronts[-1]
 
 
+    K = k - P_t_1_no
 
-    return population
+    # Get the reference points
+
+
+    population = normalize(problem, population, Z_r, Z_s, Z_a)
+    population = associate(population, Z_s)
+
+    f_l = []
+    P_t_1 = []
+    for pop in population:
+        if pop.front_no == f_l_no:
+            f_l.append(pop)
+        else:
+            P_t_1.append(pop)
+    assert(len(P_t_1) == P_t_1_no), "Something's wrong"
+    P_t_1 = niching(K, len(Z_s), P_t_1, f_l)
+    assert(len(P_t_1) == jmoo_properties.MU), "Length is mismatched"
+    return P_t_1
 
 
 
@@ -149,6 +155,7 @@ def sortNondominated(individuals, k, first_front_only=False):
     """
     if k == 0:
         return []
+    assert(len(individuals) == jmoo_properties.MU * 2), "Population size should be 2*MU"
 
     map_fit_ind = defaultdict(list)
 

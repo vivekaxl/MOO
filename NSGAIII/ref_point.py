@@ -4,6 +4,11 @@ class reference_point:
         self.id = id
         self.coordinates = coordinates
 
+    def __str__(self):
+        s = "id: " + str(self.id) + "\n"
+        s += "coordinates: " + str(self.coordinates) + "\n"
+        return s
+
 def get_ref_points(root):
     ref_points = []
     assert(root.data == -1 and root.level == 0), "Supplied node is not root"
@@ -16,7 +21,7 @@ def get_ref_points(root):
                 temp = vertex
                 points = []
                 while temp is not None:
-                    points = [round(temp.data, 2)] + points
+                    points = [round(temp.data, 5)] + points
                     temp = temp.parent
                 ref_points.append(reference_point(count, points))
                 count += 1
@@ -68,6 +73,11 @@ def tree(node, n, p, level = 0):
     else:
         return
 
+def transform_points_id(start, population):
+    for i, point in enumerate(population):
+        point.id = start + i
+    return population
+
 def cover(n):
     from scipy.misc import comb
     if n <= 5:
@@ -80,27 +90,52 @@ def cover(n):
     else:
         lst = []
         combination = 0
-        for p in [3, 2]:
-            root = Node(-1)
-            tree(root, n, p)
-            lst.extend(get_ref_points(root))
-            combination += comb(n + p - 1, p)
+        if n == 8: P = [3,2]
+        elif n == 10: P = [3, 2]
+        elif n == 15: P = [2, 1]
+        else:
+            print "Not ready to handle this"
+            exit()
+
+        # generate outer reference points
+        p = P[0]
+        root = Node(-1)
+        tree(root, n, p)
+        lst.extend(get_ref_points(root))
+        combination = int(comb(n + p - 1, p))
         assert(len(lst) == combination), "Length of the lst should be equal to combination"
 
+        temp = []
+        p = P[1]
+        root = Node(-1)
+        tree(root, n, p)
+        temp.extend(get_ref_points(root))
+        temp = transform_points_id(len(lst), temp)
+        combination = int(comb(n + p - 1, p))
+        assert(len(temp) == combination), "Length of the temp should be equal to combination"
+        center = 1/n
+        for point in temp:
+            for obj in point.coordinates:
+                old = obj
+                obj = (center + obj)/2
+                assert(obj != old), "something's wrong"
+
+        lst.extend(temp)
+    f = open("generation.txt", "w")
     for l in lst:
-        assert(round(sum(l.coordinates), 1) == 1), "sum of l should be 1"
-    # print "length of the cover: ", len(lst)
+        for ll in l.coordinates:
+            f.write(str(ll) + " ")
+        f.write("\n")
+    f.close()
     return lst
 
 # -------------------------- Testing -------------------------- #
 
 def _get_ref_points():
-    for x in xrange(100):
-        # print ".",
-        import random
-        a = random.randint(3, 7)
-        b = random.randint(a, 10)
-        cover(a, b)
+    for i in cover(15):
+        for xx in i.coordinates:
+            print xx,
+        print
 
 
 if __name__ == "__main__":

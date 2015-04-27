@@ -40,10 +40,21 @@ from IGD import IGD
 
 import random
 import jmoo_preprocessor
+import jmoo_properties
 any = random.uniform
 normal= random.gauss
 seed  = random.seed
 
+def readpf(problem):
+    filename = "./PF/" + problem.name + "(" + str(len(problem.objectives)) + ")-PF.txt"
+    f = open(filename, "r")
+    true_PF = []
+    for line in f:
+        temp = []
+        for x in line.split():
+            temp.append(float(x))
+        true_PF.append(temp)
+    return true_PF
 
 def sometimes(p) :
   "Returns True at probability 'p;"
@@ -176,7 +187,7 @@ class JMOO:
         representatives = []                        # List of resulting final generations (stat boxe datatype)
         zOut = "<Experiment>\n"
         for problem in self.tests.problems:
-              
+            jmoo_properties.MU = jmoo_properties.population_size[problem.name.split("_")[-1]]
             zOut += "<Problem name = '" + problem.name + "'>\n"
             
             for algorithm in self.tests.algorithms:
@@ -210,7 +221,8 @@ class JMOO:
                 for s in strings: fa.write(s + ",")
                 fa.write("\n")
                 fa.close()
-                
+
+                IGD_Values = []
                 # Repeat Core
                 for repeat in range(repeats):
                     
@@ -223,15 +235,13 @@ class JMOO:
                     statBox = jmoo_evo(problem, algorithm)
                     end = time.time()
 
-                    true_PF = readpf(problem)
-                    approximate = []
-                    for individual in statBox.box[-1].fitnesses:
+                    approx = []
+                    for pop in statBox.box[-1].population:
                         temp = []
-                        for obj, x in zip(problem.objectives, individual):
-                            temp.append((x - obj.low)/(obj.up - obj.low))
-                        approximate.append(temp)
-
-                    print IGD(approximate, true_PF)
+                        for n in pop.fitness.fitness: temp.append(n)
+                        approx.append(temp)
+                    true_pf = readpf(statBox.problem)
+                    IGD_Values.append(IGD(approx, true_pf))
 
 
 
@@ -314,7 +324,14 @@ class JMOO:
                     # Finish
                     zOut += "</Run>\n"
                     print " # Finished: Celebrate! # " + " Time taken: " + str("%10.5f" % (end-start)) + " seconds."
-                    
+
+
+                file_name = "./IGD/IGD_Values" + str(problem.name) + "-d-" + str(len(problem.decisions)) + "-o-" + str(len(problem.objectives)) + ".txt"
+                fd = open(file_name, "a")
+                for igd in IGD_Values:
+                    fd.write(str(igd) + "\n")
+                fd.close()
+
                 zOut += "</Algorithm>\n"
             zOut += "</Problem>\n"
         zOut += "</Experiment>\n"
@@ -359,6 +376,8 @@ class JMOO:
         vOut = "<Experiment>\n"
 
         for problem in self.tests.problems:
+
+
 
             vOut += "<Problem name = '" + problem.name + "'>\n"
 

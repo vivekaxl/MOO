@@ -1,17 +1,20 @@
 <Experiment>
-<Problem name = 'DTLZ1'>
+<Problem name = 'DTLZ1_12_8'>
 <Algorithm name = 'NSGA3'>
 <Run id = '1'>
 <Summary>
-<NumEvals>111936</NumEvals>
-<RunTime>179.504029036</RunTime>
-<IBD>0.818730768864</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-<f2>0.0</f2>
-<f3>0.0</f3>
-<f4>0.0</f4>
-<f5>0.50177486874</f5>
+<NumEvals>31044</NumEvals>
+<RunTime>827.496401072</RunTime>
+<IBD>0.896153278826</IBD>
+<IBS>0.00350141895976</IBS>
+<f1>1.4204376849e-15</f1>
+<f2>4.08150368962e-13</f2>
+<f3>8.71878561465e-12</f3>
+<f4>8.06693566646e-13</f4>
+<f5>3.64594321521e-14</f5>
+<f6>4.43396740039e-13</f6>
+<f7>2.47927432419e-12</f7>
+<f8>0.843964253719</f8>
 </Summary></Run>
 </Algorithm>
 </Problem>

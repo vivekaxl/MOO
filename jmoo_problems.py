@@ -672,7 +672,7 @@ class osyczka2(jmoo_problem):
 class dtlz1(jmoo_problem):
     "DTLZ1"
     def __init__(prob, numDecs=5, numObjs=2):
-        prob.name = "DTLZ1"
+        prob.name = "DTLZ1_" + str(numDecs) + "_" + str(numObjs)
         names = ["x"+str(i+1) for i in range(numDecs)]
         lows =  [0.0 for i in range(numDecs)]
         ups =   [1.0 for i in range(numDecs)]
@@ -688,9 +688,9 @@ class dtlz1(jmoo_problem):
         x = []
         for i in range(0, len(prob.decisions)):
             x.append(prob.decisions[i].value)
-            
+
         for i in range(len(prob.decisions) - k, len(prob.decisions)):
-            g += (x[i] - 0.5)*(x[i] - 0.5) - cos(20.0 * pi * ( x[i] - 0.5));
+            g += (x[i] - 0.5)**2 - cos(20.0 * pi * (x[i] - 0.5))
         
         g = 100 * (k + g)
         
@@ -701,9 +701,11 @@ class dtlz1(jmoo_problem):
         for i in range(0, len(prob.objectives)):
             for j in range(0, len(prob.objectives) - (i+1)):
                 f[i] *= x[j];
-                if not (i == 0):
-                    aux = len(prob.objectives) - (i+1)
-                    f[i] *= 1 - x[aux]
+            if not (i == 0):
+                aux = len(prob.objectives) - (i+1)
+                f[i] *= 1 - x[aux]
+
+
         
         for i in range(0, len(prob.objectives)):            
             prob.objectives[i].value = f[i]  
@@ -715,7 +717,7 @@ class dtlz1(jmoo_problem):
 class dtlz2(jmoo_problem):
     "DTLZ2"
     def __init__(prob, numDecs=10, numObjs=2):
-        prob.name = "DTLZ2"
+        prob.name = "DTLZ2_" + str(numDecs) + "_" + str(numObjs)
         names = ["x"+str(i+1) for i in range(numDecs)]
         lows =  [0.0 for i in range(numDecs)]
         ups =   [1.0 for i in range(numDecs)]
@@ -733,7 +735,7 @@ class dtlz2(jmoo_problem):
             x.append(prob.decisions[i].value)
             
         for i in range(len(prob.decisions) - k, len(prob.decisions)):
-            g += (x[i] - 0.5)*(x[i] - 0.5);
+            g += (x[i] - 0.5)*(x[i] - 0.5)
         
         
         
@@ -744,10 +746,10 @@ class dtlz2(jmoo_problem):
         for i in range(0, len(prob.objectives)):
             for j in range(0, len(prob.objectives) - (i+1)):
                 f[i] *= cos(x[j]*0.5*pi);
-                if not (i == 0):
-                    aux = len(prob.objectives) - (i+1)
-                    f[i] *= sin(x[aux]*0.5*pi)
-        
+            if not (i == 0):
+                aux = len(prob.objectives) - (i+1)
+                f[i] *= sin(x[aux]*0.5*pi)
+
         for i in range(0, len(prob.objectives)):            
             prob.objectives[i].value = f[i]  
 
@@ -758,7 +760,7 @@ class dtlz2(jmoo_problem):
 class dtlz3(jmoo_problem):
     "DTLZ3"
     def __init__(prob, numDecs=10, numObjs=2):
-        prob.name = "DTLZ3"
+        prob.name = "DTLZ3_" + str(numDecs) + "_" + str(numObjs)
         names = ["x"+str(i+1) for i in range(numDecs)]
         lows =  [0.0 for i in range(numDecs)]
         ups =   [1.0 for i in range(numDecs)]
@@ -776,7 +778,7 @@ class dtlz3(jmoo_problem):
             x.append(prob.decisions[i].value)
             
         for i in range(len(prob.decisions) - k, len(prob.decisions)):
-            g += (x[i] - 0.5)*(x[i] - 0.5) - cos(20.0 * pi * (x[i] - 0.5));
+            g += (x[i] - 0.5)**2 - cos(20.0 * pi * (x[i] - 0.5))
         
         g = 100 * (k + g)
         
@@ -786,10 +788,11 @@ class dtlz3(jmoo_problem):
         
         for i in range(0, len(prob.objectives)):
             for j in range(0, len(prob.objectives) - (i+1)):
-                f[i] *= cos(x[j]*0.5*pi);
-                if not (i == 0):
-                    aux = len(prob.objectives) - (i+1)
-                    f[i] *= sin(x[aux]*0.5*pi)
+                f[i] *= cos(x[j]*0.5*pi)
+            if not (i == 0):
+                aux = len(prob.objectives) - (i+1)
+                f[i] *= sin(x[aux]*0.5*pi)
+
         
         for i in range(0, len(prob.objectives)):            
             prob.objectives[i].value = f[i]  
@@ -801,7 +804,7 @@ class dtlz3(jmoo_problem):
 class dtlz4(jmoo_problem):
     "DTLZ4"
     def __init__(prob, numDecs=10, numObjs=2):
-        prob.name = "DTLZ4"
+        prob.name = "DTLZ4_" + str(numDecs) + "_" + str(numObjs)
         names = ["x"+str(i+1) for i in range(numDecs)]
         lows =  [0.0 for i in range(numDecs)]
         ups =   [1.0 for i in range(numDecs)]
@@ -829,9 +832,9 @@ class dtlz4(jmoo_problem):
         for i in range(0, len(prob.objectives)):
             for j in range(0, len(prob.objectives) - (i+1)):
                 f[i] *= cos((x[j]**alpha) * (pi/2.0))
-                if not (i == 0):
-                    aux = len(prob.objectives) - (i+1)
-                    f[i] *= sin( (x[aux]**alpha) * (pi/2.0))
+            if not (i == 0):
+                aux = len(prob.objectives) - (i+1)
+                f[i] *= sin( (x[aux]**alpha) * (pi/2.0))
         
         for i in range(0, len(prob.objectives)):            
             prob.objectives[i].value = f[i]  
@@ -875,9 +878,9 @@ class dtlz5(jmoo_problem):
         for i in range(0, len(prob.objectives)):
             for j in range(0, len(prob.objectives) - (i+1)):
                 f[i] *= cos(theta[j])
-                if not (i == 0):
-                    aux = len(prob.objectives) - (i+1)
-                    f[i] *= sin(theta[aux])
+            if not (i == 0):
+                aux = len(prob.objectives) - (i+1)
+                f[i] *= sin(theta[aux])
         
         for i in range(0, len(prob.objectives)):            
             prob.objectives[i].value = f[i]  
@@ -921,9 +924,9 @@ class dtlz6(jmoo_problem):
         for i in range(0, len(prob.objectives)):
             for j in range(0, len(prob.objectives) - (i+1)):
                 f[i] *= cos(theta[j]);
-                if not (i == 0):
-                    aux = len(prob.objectives) - (i+1)
-                    f[i] *= sin(theta[aux])
+            if not (i == 0):
+                aux = len(prob.objectives) - (i+1)
+                f[i] *= sin(theta[aux])
         
         for i in range(0, len(prob.objectives)):            
             prob.objectives[i].value = f[i]  

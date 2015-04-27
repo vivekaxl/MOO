@@ -34,6 +34,26 @@ from jmoo_properties import *
 from utility import *
 from deap.tools.support import ParetoFront
 
+import os, inspect, sys
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0], "Techniques")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+
+from IGD import IGD
+
+def readpf(problem):
+    # print problem.name.split("_")[0]
+    filename = "./PF/" + problem.name.split("_")[0] + "(" + str(len(problem.objectives)) + ")-PF.txt"
+    f = open(filename, "r")
+    true_PF = []
+    for line in f:
+        temp = []
+        for x in line.split():
+            temp.append(float(x))
+        true_PF.append(temp)
+    return true_PF
+
+
 class jmoo_stats:
     "A single stat box - a simple record"
     def __init__(stats, population, fitnesses, fitnessMedians, fitnessSpreads, numEval, gen, IBD, IBS, changes):
@@ -122,6 +142,7 @@ class jmoo_stats_box:
         # Print Option
         if printOption == True:
             outString = ""
+            approximate = []
             
             if initial:
                 outString += str(statBox.numEval) + ","
@@ -142,12 +163,35 @@ class jmoo_stats_box:
                     if changes[-1] < statBox.bests[o]: 
                         statBox.bests[o] = changes[-1]
                         statBox.bests_actuals[o] = med
-                    outString += str("%8.4f" % med) + "," + change + "," + str("%8.4f" % spr) + ","
+                    outString += str("|%8.4f" % med) + "," + change + "," + str("%8.4f" % spr) + "|"
                     if statBox.numEval in statBox.foam[o]: statBox.foam[o][statBox.numEval].append(change)
                     else: statBox.foam[o][statBox.numEval] = [change]
                 outString += str("%8.4f" % IBD) + "," + percentChange(IBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS)
-                
-            print outString  + ", violations: " + str("%4.1f" % violationsPercent)
+
+
+            true_PF = readpf(statBox.problem)
+            for individual in population:
+                temp = []
+                for x in individual.fitness.fitness: temp.append(round(x, 5))
+                approximate.append(temp)
+
+            normalized_median = []
+            for i in xrange(len(statBox.problem.objectives)):
+                normalized_median.append(median([individual.normalized[i] for individual in population]))
+
+
+
+
+
+
+
+
+            if initial:
+                print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD(approximate, true_PF))
+            else:
+                # print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD(approximate, true_PF))
+                # print str(statBox.numEval) + "|IGD: |" + str(IGD(approximate, true_PF)) + "|Fitness:| ", normalized_median
+                print IGD(approximate, true_PF)#, "|Fitness: |", fitnessMedians
             fa.write(outString + "\n")
         
             

@@ -67,25 +67,28 @@ def get_extreme_points(problem, population):
 def maxpoints(problem, population):
     # print "MX Length of the population: ", len(population)
     assert(len(population) != 1), "Length of population can't be 1"
-    maxp = [-1e32 if x.lismore is True else 1e32 for x in problem.objectives]
-    for individual in population:
-        for i, obj in enumerate(individual.fitness.fitness):
-            if problem.objectives[i].lismore is True:
-                if obj > maxp[i]:
-                    maxp[i] = obj
-            else:
-                if obj < maxp[i]:
-                    maxp[i] = obj
+    maxp = []
+    for o in xrange(len(problem.objectives)):
+        maxp.append(sorted([individual.fitness.fitness[o] for individual in population], reverse=True)[0])
+        # for i, obj in enumerate(individual.translated):
+        #     if problem.objectives[i].lismore is True:
+        #         if obj > maxp[i]:
+        #             maxp[i] = obj
+        #     else:
+        #         if obj < maxp[i]:
+        #             maxp[i] = obj
     # print "maxp: ", maxp
     return maxp
 
-def final_normalize(problem, intercepts, utopia, population):
-    # print "Intercepts: ", intercepts
-    # print "Utopia: ", utopia
+def final_normalize(intercepts, utopia, population):
     for individual in population:
         temp = []
         for no, (i, u) in enumerate(zip(intercepts, utopia)):
-            temp.append(individual.translated[no] / (i - u + 0.00000001))
+            # if i == u: print "oo o"
+            if abs(i - u) > 1e-10:
+                temp.append(individual.translated[no] / float(i - u))
+            else:
+                temp.append(individual.translated[no] / 1e-10)   # hacks from Dr Chiang, avoid div 0
         individual.normalized = temp
     return population
 
@@ -118,7 +121,7 @@ def gauss_elimination(A):
 
         # Make all rows below this one 0 in current column
         for k in range(i+1, n):
-            c = -A[k][i]/A[i][i]
+            c = -A[k][i]/(A[i][i] + 1e-6)
             for j in range(i, n+1):
                 if i == j:
                     A[k][j] = 0
@@ -128,59 +131,97 @@ def gauss_elimination(A):
     # Solve equation Ax=b for an upper triangular matrix A
     x = [0 for i in range(n)]
     for i in range(n-1, -1, -1):
-        x[i] = A[i][n]/A[i][i]
+        x[i] = A[i][n]/(A[i][i] + 1e-6)
         for k in range(i-1, -1, -1):
             A[k][n] -= A[k][i] * x[i]
+    # for o in x:
+    #     try:
+    #         assert( o != 0)," something's wrong"
+    #     except:
+    #         print x
+    #         print A
+    #         assert( o != 0)," something's wrong"
     return x
 
 
-def normalize(problem, already_chosen, last_level):
-    # print "Normalize : length: ", len(already_chosen)
-    population = []
-    lpopulation = []
-    for i,dIndividual in enumerate(already_chosen):
-        cells = []
-        for j in xrange(len(dIndividual)):
-            cells.append(dIndividual[j])
-        population.append(jmoo_individual(problem, cells, dIndividual.fitness.values))
+def compute_asf(individual, weights):
+    assert(len(individual.translated) == len(weights)), "Something's wrong"
+    return max([float(o/w) for o, w in zip(individual.fitness.fitness, weights)])
 
-    for i,dIndividual in enumerate(last_level):
-        cells = []
-        for j in xrange(len(dIndividual)):
-            cells.append(dIndividual[j])
-        lpopulation.append(jmoo_individual(problem, cells, dIndividual.fitness.values))
+def compute_extreme_points(problem, S_t, objective_number):
+    # construct weights
+    weight = [1e-6 for _ in xrange(len(problem.objectives))]
+    weight[objective_number] = 1
+    assert(len(problem.objectives) == len(weight)), "There is a length mismatch"
 
-    assert(len(already_chosen) == len(population)), "The length of the already_chosen and population should the same"
-    objectives = [list(individual.fitness.fitness) for individual in population + lpopulation]
-    utopia = find_ideal_points(problem, objectives)
-    # print "Utopia: ", utopia
-    population = translate_objectives(problem, population, utopia)
-    lpopulation = translate_objectives(problem, lpopulation, utopia)
-    # assert(len(t_population) == len(population)), "The length of the population and translated should be the same"
+    #compute ASF
+    return sorted([(compute_asf(individual, weight), individual) for individual in S_t if individual.front_no == 0], key=lambda x: x[0])[0][1]
 
-    extreme_points = get_extreme_points(problem, population + lpopulation)
-    # Duplicate exists. So solving it using Dr. Chiang's approach
-    # <http://web.ntnu.edu.tw/~tcchiang/publications/nsga3cpp/nsga3cpp-validation.htm>
-    # print "extreme points: ", extreme_points
+
+
+def normalize(problem, population, Z_r, Z_s, Z_a):
+
+    extreme_points = []
+    ideal_points = []
+
+    # adding new field called translated to all the members of the population
+    for pop in population:
+        pop.translated = []
+        pop.normalized = []
+
+
+    """
+    1. Find the ideal point
+    2. Translate the objectives by substracting the min value from the objective function
+    """
+    for i in xrange(len(problem.objectives)):
+        z_j_min = min([individual.fitness.fitness[i] for individual in population if individual.front_no == 0])
+        ideal_points.append(z_j_min)
+        for index, individual in enumerate(population):
+            individual.translated.append(individual.fitness.fitness[i] - z_j_min)
+
+
+    for i in xrange(len(problem.objectives)):
+        extreme_points.append(compute_extreme_points(problem, population, i))
+
     if len(extreme_points) != len(deduplicate(extreme_points)):
         # print "Duplicate exists",
-        intercepts = maxpoints(problem, population + lpopulation)
+        print "-" * 20 + ">"
+        a = [0 for _ in problem.objectives]
+        # for i, obj in enumerate(problem.objectives):
+        #     a[i] = extreme_points[i].fitness.fitness[i]  # Changed using Dr. Chiang's code
+        a = maxpoints(problem, population)
+        # print a
+        # exit()
     else:
+        # print "-" * 20 + ">"
+        # Calculate the intercepts (Gaussian elimination)
         from fractions import Fraction
         n = len(extreme_points)
         A = [[0 for j in range(n+1)] for i in range(n)]
         for i in xrange(n):
-            for j in xrange(n):
-                A[i][j] = Fraction(extreme_points[i][j])
-        for i in xrange(n):
-            A[i][n] = Fraction(1)
-        intercepts = gauss_elimination(A)
-
-    population = final_normalize(problem, intercepts, utopia, population)
-    lpopulation = final_normalize(problem, intercepts, utopia, lpopulation)
-
-    # need to allows users to pass reference points
-
-    return population, lpopulation
+            for j in xrange(n): A[i][j] = Fraction(extreme_points[i].fitness.fitness[j])
+            A[i][n] = Fraction(1/1)
+        a = [float(1/(aa)) for aa in gauss_elimination(A)]
+        # for e in extreme_points:
+        #     print e.fitness.fitness
+        # import time
+        # time.sleep(1)
+    population = final_normalize(a, ideal_points, population)
 
 
+    return population
+
+if __name__ == "__main__":
+    A = [[0 for _ in xrange(4)] for _ in xrange(3)]
+    print A
+    for i, x in enumerate([-1, 1, 2]):
+        A[0][i] = x
+    for i, x in enumerate([2, 0, -3]):
+        A[1][i] = x
+    for i, x in enumerate([5, 1, -2]):
+        A[2][i] = x
+    A[0][3] = 1
+    A[1][3] = 1
+    A[2][3] = 1
+    gauss_elimination(A)

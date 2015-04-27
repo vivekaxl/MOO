@@ -7,6 +7,7 @@ from euclidean_distance import euclidean_distance
 
 
 def IGD(approximation_points, original_points):
+
     summ = 0
     for o in original_points:
         min_distance = 1e32

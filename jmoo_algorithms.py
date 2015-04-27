@@ -31,7 +31,7 @@ from deap import base
 from deap import creator
 from deap import tools
 
-import os,sys,inspect
+import os, sys, inspect
 
 def do_nothing_initializer(problem, population):
     return population, 0
@@ -126,8 +126,8 @@ class jmoo_NSGAIII:
     def __init__(self, color="Black"):
         self.name = "NSGA3"
         self.initializer = None
-        self.selector = selTournament
-        self.adjustor = crossoverAndMutation
+        self.selector = nsgaiii_selector
+        self.adjustor = nsgaiii_sbx
         self.recombiner = nsgaiii_recombine
         self.color = color
         self.type = '*'
