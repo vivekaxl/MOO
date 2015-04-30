@@ -107,10 +107,16 @@ print "VSCHART: ", vschart
 
 # Build new initial populations if suggested.  Before tests can be performed, a problem requires an initial dataset.
 if build_new_pop:
-    for problem in problems:
-        print problem.name.split("_")[-1]
-        jmoo_properties.PSI = jmoo_properties.max_generation[problem.name]
-        initialPopulation(problem, population_size[problem.name.split("_")[-1]])
+    # Thought this if condition is not important but I am just sticking to the NSGA paper
+    if "NSGA3" not in [algorithm.name for algorithm in algorithms]:
+        for problem in problems:
+            initialPopulation(problem, MU)
+    else:
+        # This was added specifically for NSGA-III
+        for problem in problems:
+            print problem.name.split("_")[-1]
+            jmoo_properties.PSI = jmoo_properties.max_generation[problem.name]
+            initialPopulation(problem, population_size[problem.name.split("_")[-1]])
         
 # Wrap the tests in the jmoo core framework
 if not vschart:

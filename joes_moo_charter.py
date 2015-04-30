@@ -278,13 +278,13 @@ def joes_charter_reporter(problems, algorithms, tag=""):
     
     #"""
        
-    f, axarr = plt.subplots(4, len(prob.objectives))   #for dtlz123456
+    f, axarr = plt.subplots(1, len(prob.objectives))   #for dtlz123456
     #f, axarr = plt.subplots(3, len(prob.objectives)-1)   #for pom3abc
     #f, axarr = plt.subplots(3, len(prob.objectives))   #for xomo gr fl o2
     F = gcf()
     DefaultSize = F.get_size_inches()
     F.set_size_inches( (DefaultSize[0]*1.5, DefaultSize[1]) )
-    for p,prob in enumerate(problems):
+    for p, prob in enumerate(problems):
                 #f, axarr = plt.subplots(len(prob.objectives)+1, len(prob.objectives))
                 
     
@@ -369,22 +369,22 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                                     else:
                                         smallslist.append(    min(min(scores[eval]), min(smallslist))  )
                             
-                            if oo==0: axarr[p][oo].set_ylabel(prob.name + "\n_o"+str(len(prob.objectives)), fontweight='bold', fontsize=14)
-                            if p ==0: axarr[p][oo].set_title(prob.objectives[oo].name, fontweight='bold', fontsize=14)
-                            if p ==(len(problems)-1): axarr[p][oo].set_xlabel("(Log) NumEvals")
-                            ax2 = axarr[p][oo].twinx()
+                            if oo==0: axarr[oo].set_ylabel(prob.name + "\n_o"+str(len(prob.objectives)), fontweight='bold', fontsize=14)
+                            if p ==0: axarr[oo].set_title(prob.objectives[oo].name, fontweight='bold', fontsize=14)
+                            if p ==(len(problems)-1): axarr[oo].set_xlabel("(Log) NumEvals")
+                            ax2 = axarr[oo].twinx()
                             ax2.get_yaxis().set_ticks([])
                             if oo==(len(prob.objectives)-1): ax2.set_ylabel("Quality")
                             #print scorelist
-                            axarr[p][oo].plot(keylist, scorelist, linestyle='None', marker=alg.type, color=alg.color, markersize=7, markeredgecolor='none') #MARKER PLOTS
+                            axarr[oo].plot(keylist, scorelist, linestyle='None', marker=alg.type, color=alg.color, markersize=7, markeredgecolor='none') #MARKER PLOTS
                             #axarr[p][oo].plot([min(keylist)]+keylist, [100]+smallslist, color=alg.color) #BOTTOMLINE
-                            axarr[p][oo].plot([x for x in range(0,10000,10)], [100 for x in range(0,10000,10)], color="Black") #BASELINE
-                            axarr[p][oo].set_autoscale_on(True)
-                            axarr[p][oo].set_xlim([-10, 10000])
+                            axarr[oo].plot([x for x in range(0,10000,10)], [100 for x in range(0,10000,10)], color="Black") #BASELINE
+                            axarr[oo].set_autoscale_on(True)
+                            axarr[oo].set_xlim([-10, 10000])
                             #axarr[p][oo].set_ylim([20, 160])# -- xomo
                             #axarr[p][oo].set_ylim([-5, 115])
-                            axarr[p][oo].set_ylim([min(scorelist) - 0.1, max(scorelist) + 0.1])# -- tera
-                            axarr[p][oo].set_xscale('log', nonposx='clip')
+                            axarr[oo].set_ylim([min(scorelist) - 0.1, max(scorelist) + 0.1])# -- tera
+                            axarr[oo].set_xscale('log', nonposx='clip')
                         
                             
     if not os.path.isdir('charts/' + date_folder_prefix):

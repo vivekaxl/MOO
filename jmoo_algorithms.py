@@ -56,6 +56,11 @@ if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 from nsgaiii_components import *
 
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"ANYWHERE")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+from anywhere_components import *
+
     
 from jmoo_individual import *
 
@@ -129,6 +134,16 @@ class jmoo_NSGAIII:
         self.selector = nsgaiii_selector
         self.adjustor = nsgaiii_sbx
         self.recombiner = nsgaiii_recombine
+        self.color = color
+        self.type = '*'
+
+class jmoo_ANYWHERE:
+    def __init__(self, color="Black"):
+        self.name = "ANYWHERE"
+        self.initializer = None
+        self.selector = anywhere_selector
+        self.adjustor = anywhere_mutate
+        self.recombiner = anywhere_recombine
         self.color = color
         self.type = '*'
 

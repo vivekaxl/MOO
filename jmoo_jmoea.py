@@ -65,8 +65,12 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     # # # # # # # # # # # # # # # #
     # 2) Load Initial Population  #
     # # # # # # # # # # # # # # # #
-    MU = population_size[problem.name.split("_")[-1]]
-    population = problem.loadInitialPopulation(MU)
+    # Though this is not important I am sticking to NSGA3 paper
+    if algorithm.name == "NSGA3":
+        jmoo_properties.PSI = jmoo_properties.max_generation[problem.name]
+        jmoo_properties.MU = population_size[problem.name.split("_")[-1]]
+
+    population = problem.loadInitialPopulation(jmoo_properties.MU)
     print "Length of population: ", len(population)
 
 
@@ -86,10 +90,8 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     # # # # # # # # # # # # # # #
     # 4) Generational Evolution #
     # # # # # # # # # # # # # # #
-
-    PSI = jmoo_properties.max_generation[problem.name]
     
-    while gen < PSI and stoppingCriteria == False:
+    while gen < jmoo_properties.PSI and stoppingCriteria is False:
         gen+= 1
         print "||" + str(gen) + "||",
         # # # # # # # # #
@@ -132,8 +134,8 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # 4e) Evaluate Stopping Criteria  #
         # # # # # # # # # # # # # # # # # #
         stoppingCriteria = toStop(statBox)
-        print "Stopping criteria disabled",
-        #stoppingCriteria = False
+        # print "Stopping criteria disabled",
+        stoppingCriteria = False
 
 
     

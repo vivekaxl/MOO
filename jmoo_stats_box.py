@@ -98,6 +98,15 @@ class jmoo_stats_box:
 
 
         fitnesses = [individual.fitness.fitness for individual in population if individual.valid]
+        # Debug
+        import time
+        f_name = "./tmp/generation_" + str(time.time()) + ".txt"
+        f_file = open(f_name, "w")
+        for pop in fitnesses:
+            for p in pop:
+                f_file.write(str(round(p, 3)) + " ")
+            f_file.write("\n")
+        f_file.close()
 
 
         
@@ -163,7 +172,7 @@ class jmoo_stats_box:
                     if changes[-1] < statBox.bests[o]: 
                         statBox.bests[o] = changes[-1]
                         statBox.bests_actuals[o] = med
-                    outString += str("|%8.4f" % med) + "," + change + "," + str("%8.4f" % spr) + "|"
+                    outString += str("%8.4f" % med) + "," + change + "," + str("%8.4f" % spr) + ","
                     if statBox.numEval in statBox.foam[o]: statBox.foam[o][statBox.numEval].append(change)
                     else: statBox.foam[o][statBox.numEval] = [change]
                 outString += str("%8.4f" % IBD) + "," + percentChange(IBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS)
@@ -175,9 +184,9 @@ class jmoo_stats_box:
                 for x in individual.fitness.fitness: temp.append(round(x, 5))
                 approximate.append(temp)
 
-            normalized_median = []
-            for i in xrange(len(statBox.problem.objectives)):
-                normalized_median.append(median([individual.normalized[i] for individual in population]))
+            # normalized_median = []
+            # for i in xrange(len(statBox.problem.objectives)):
+            #     normalized_median.append(median([individual.normalized[i] for individual in population]))
 
 
 
@@ -191,7 +200,7 @@ class jmoo_stats_box:
             else:
                 # print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD(approximate, true_PF))
                 # print str(statBox.numEval) + "|IGD: |" + str(IGD(approximate, true_PF)) + "|Fitness:| ", normalized_median
-                print IGD(approximate, true_PF)#, "|Fitness: |", fitnessMedians
+                print IGD(approximate, true_PF), "|Fitness: |", fitnessMedians
             fa.write(outString + "\n")
         
             

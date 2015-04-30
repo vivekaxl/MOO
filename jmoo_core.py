@@ -180,19 +180,20 @@ class JMOO:
         self.reports = reports
         
     def doTests(self):
-        
+
         sc2 = open(DATA_PREFIX + SUMMARY_RESULTS + DATA_SUFFIX, 'w')
 
         # Main control loop
         representatives = []                        # List of resulting final generations (stat boxe datatype)
         zOut = "<Experiment>\n"
         for problem in self.tests.problems:
-            jmoo_properties.MU = jmoo_properties.population_size[problem.name.split("_")[-1]]
+
             zOut += "<Problem name = '" + problem.name + "'>\n"
             
             for algorithm in self.tests.algorithms:
                 
-                
+                if algorithm.name == "NSGAIII":
+                    jmoo_properties.MU = jmoo_properties.population_size[problem.name.split("_")[-1]]
                 zOut += "<Algorithm name = '" + algorithm.name + "'>\n"
                 
                 print "#<------- " + problem.name + " + " + algorithm.name + " ------->#"
@@ -326,7 +327,8 @@ class JMOO:
                     print " # Finished: Celebrate! # " + " Time taken: " + str("%10.5f" % (end-start)) + " seconds."
 
 
-                file_name = "./IGD/IGD_Values" + str(problem.name) + "-d-" + str(len(problem.decisions)) + "-o-" + str(len(problem.objectives)) + ".txt"
+                file_name = "./IGD/IGD_Values" + str(problem.name) + "-d-" + str(len(problem.decisions)) + "-o-" + str(len(problem.objectives))\
+                            + " -a-" + str(algorithm.name) + ".txt"
                 fd = open(file_name, "a")
                 for igd in IGD_Values:
                     fd.write(str(igd) + "\n")
