@@ -98,15 +98,15 @@ class jmoo_stats_box:
 
 
         fitnesses = [individual.fitness.fitness for individual in population if individual.valid]
-        # Debug
-        import time
-        f_name = "./tmp/generation_" + str(time.time()) + ".txt"
-        f_file = open(f_name, "w")
-        for pop in fitnesses:
-            for p in pop:
-                f_file.write(str(round(p, 3)) + " ")
-            f_file.write("\n")
-        f_file.close()
+        # # Debug
+        # import time
+        # f_name = "./tmp/generation_" + str(time.time()) + ".txt"
+        # f_file = open(f_name, "w")
+        # for pop in fitnesses:
+        #     for p in pop:
+        #         f_file.write(str(round(p, 3)) + " ")
+        #     f_file.write("\n")
+        # f_file.close()
 
 
         

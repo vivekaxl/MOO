@@ -54,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jmoo_stats_box.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jmoo_stats_box.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-79.81481" vertical-offset="710" max-vertical-offset="4140">
-              <caret line="198" column="95" selection-start-line="198" selection-start-column="92" selection-end-line="198" selection-end-column="95" />
+            <state vertical-scroll-proportion="0.44807693" vertical-offset="1252" max-vertical-offset="4140">
+              <caret line="106" column="24" selection-start-line="106" selection-start-column="24" selection-end-line="106" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -84,10 +84,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jmoo_core.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jmoo_core.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jmoo_core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44807693" vertical-offset="4717" max-vertical-offset="10800">
+            <state vertical-scroll-proportion="-8.62963" vertical-offset="4717" max-vertical-offset="10800">
               <caret line="330" column="57" selection-start-line="330" selection-start-column="57" selection-end-line="330" selection-end-column="57" />
               <folding />
             </state>
@@ -180,10 +180,10 @@
         <option value="$PROJECT_DIR$/ANYWHERE/anywhere_components.py" />
         <option value="$PROJECT_DIR$/ANYWHERE/Helper/nudge.py" />
         <option value="$PROJECT_DIR$/joes_moo_charter.py" />
-        <option value="$PROJECT_DIR$/jmoo_stats_box.py" />
         <option value="$PROJECT_DIR$/jmoo_properties.py" />
         <option value="$PROJECT_DIR$/jmoo_jmoea.py" />
         <option value="$PROJECT_DIR$/jmoo_core.py" />
+        <option value="$PROJECT_DIR$/jmoo_stats_box.py" />
       </list>
     </option>
   </component>
@@ -455,7 +455,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30889422" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -859,14 +859,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-79.81481" vertical-offset="710" max-vertical-offset="4140">
-          <caret line="198" column="95" selection-start-line="198" selection-start-column="92" selection-end-line="198" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1529" max-vertical-offset="2460">
@@ -893,8 +885,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44807693" vertical-offset="4717" max-vertical-offset="10800">
+        <state vertical-scroll-proportion="-8.62963" vertical-offset="4717" max-vertical-offset="10800">
           <caret line="330" column="57" selection-start-line="330" selection-start-column="57" selection-end-line="330" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44807693" vertical-offset="1252" max-vertical-offset="4140">
+          <caret line="106" column="24" selection-start-line="106" selection-start-column="24" selection-end-line="106" selection-end-column="24" />
           <folding />
         </state>
       </provider>
