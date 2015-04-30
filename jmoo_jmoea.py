@@ -131,7 +131,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # # # # # # # # # # # # # # # # # #
         # 4e) Evaluate Stopping Criteria  #
         # # # # # # # # # # # # # # # # # #
-        # stoppingCriteria = toStop(statBox)
+        stoppingCriteria = toStop(statBox)
         print "Stopping criteria disabled",
         #stoppingCriteria = False
 
