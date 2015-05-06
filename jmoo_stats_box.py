@@ -30,7 +30,7 @@
 import math
 import jmoo_algorithms
 from jmoo_individual import *
-from jmoo_properties import *
+import jmoo_properties
 from utility import *
 from deap.tools.support import ParetoFront
 
@@ -83,7 +83,14 @@ class jmoo_stats_box:
     
     def update(statBox, population, gen, numNewEvals, initial = False, printOption=True):
         "add a stat box - compute the statistics first"
-        filename = "data/results_"+statBox.problem.name + "-p" + str(len(population)) + "-d" + str(len(statBox.problem.decisions)) + "-o" + str(len(statBox.problem.objectives))+"_"+statBox.alg.name+".datatable"
+        if "ANYWHERE" in statBox.alg.name:
+            filename = "data/results_"+statBox.problem.name + "-p" + str(len(population)) + "-d" + \
+                       str(len(statBox.problem.decisions)) + "-o" + str(len(statBox.problem.objectives))+\
+                       "_" + statBox.alg.name + "_" + str(jmoo_properties.ANYWHERE_POLES) +".datatable"
+        else:
+            filename = "data/results_"+statBox.problem.name + "-p" + str(len(population)) + "-d" + \
+                       str(len(statBox.problem.decisions)) + "-o" + str(len(statBox.problem.objectives))+\
+                       "_"+statBox.alg.name+".datatable"
         fa = open(filename, 'a')
         
         # Calculate percentage of violations
@@ -98,19 +105,7 @@ class jmoo_stats_box:
 
 
         fitnesses = [individual.fitness.fitness for individual in population if individual.valid]
-        # # Debug
-        # import time
-        # f_name = "./tmp/generation_" + str(time.time()) + ".txt"
-        # f_file = open(f_name, "w")
-        # for pop in fitnesses:
-        #     for p in pop:
-        #         f_file.write(str(round(p, 3)) + " ")
-        #     f_file.write("\n")
-        # f_file.close()
 
-
-        
-                
         # Split Columns into Lists
         fitnessColumns = [[fit[i] for fit in fitnesses] for i,obj in enumerate(statBox.problem.objectives)]
 
@@ -155,7 +150,9 @@ class jmoo_stats_box:
             
             if initial:
                 outString += str(statBox.numEval) + ","
-                for med,spr,initmed,obj,o in zip(statBox.referencePoint, [0 for x in statBox.problem.objectives], statBox.referencePoint, statBox.problem.objectives, range(len(statBox.problem.objectives))):
+                for med, spr, initmed, obj, o in zip(statBox.referencePoint, [0 for x in statBox.problem.objectives],
+                                                 statBox.referencePoint, statBox.problem.objectives,
+                                                 range(len(statBox.problem.objectives))):
                     change = percentChange(med, initmed, obj.lismore, obj.low, obj.up)
                     changes.append(float(change.strip("%")))
                     statBox.bests[o] = changes[-1]
@@ -166,7 +163,8 @@ class jmoo_stats_box:
                 outString += str("%8.4f" % IBD) + "," + percentChange(statBox.referenceIBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS)
             else:
                 outString += str(statBox.numEval) + ","
-                for med,spr,initmed,obj,o in zip(best_fitness, fitnessSpreads, statBox.referencePoint,statBox.problem.objectives,range(len(statBox.problem.objectives))):
+                for med, spr, initmed, obj, o in zip(best_fitness, fitnessSpreads, statBox.referencePoint,
+                                                 statBox.problem.objectives, range(len(statBox.problem.objectives))):
                     change = percentChange(med, initmed, obj.lismore, obj.low, obj.up)
                     changes.append(float(change.strip("%")))
                     if changes[-1] < statBox.bests[o]: 
@@ -183,17 +181,6 @@ class jmoo_stats_box:
                 temp = []
                 for x in individual.fitness.fitness: temp.append(round(x, 5))
                 approximate.append(temp)
-
-            # normalized_median = []
-            # for i in xrange(len(statBox.problem.objectives)):
-            #     normalized_median.append(median([individual.normalized[i] for individual in population]))
-
-
-
-
-
-
-
 
             if initial:
                 print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD(approximate, true_PF))

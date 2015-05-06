@@ -114,9 +114,10 @@ if build_new_pop:
     else:
         # This was added specifically for NSGA-III
         for problem in problems:
-            print problem.name.split("_")[-1]
-            jmoo_properties.PSI = jmoo_properties.max_generation[problem.name]
-            initialPopulation(problem, population_size[problem.name.split("_")[-1]])
+            # Only for nsga3 experiments
+            # initialPopulation(problem, population_size[problem.name.split("_")[-1]])
+            initialPopulation(problem, MU)
+
         
 # Wrap the tests in the jmoo core framework
 if not vschart:

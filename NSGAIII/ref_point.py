@@ -111,15 +111,17 @@ def cover(n):
         tree(root, n, p)
         temp.extend(get_ref_points(root))
         temp = transform_points_id(len(lst), temp)
+        # checkout the new kdebs paper to change the reference point selection
         combination = int(comb(n + p - 1, p))
         assert(len(temp) == combination), "Length of the temp should be equal to combination"
-        center = 1/n
-        for point in temp:
-            for obj in point.coordinates:
+        # center = 1/n
+        points_inner_layer = len(temp)
+        tau = 0.5
+        for j, point in enumerate(temp):
+            for i, obj in enumerate(point.coordinates):
                 old = obj
-                obj = (center + obj)/2
-                assert(obj != old), "something's wrong"
-
+                temp[j].coordinates[i] = round(((1 - tau)/points_inner_layer) + tau * obj, 3)
+                assert(old != point.coordinates[i]), "something's wrong"
         lst.extend(temp)
     f = open("generation.txt", "w")
     for l in lst:

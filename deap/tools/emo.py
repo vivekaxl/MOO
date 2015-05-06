@@ -63,6 +63,7 @@ def selNSGA3(problem, individuals, k):
             population.append(jmoo_individual(problem, cells, dIndividual.fitness.values))
             population[-1].front_no = front_no
 
+    print ">" * 10
     Z_s = cover(len(problem.objectives))
     Z_a = None
     Z_r = None

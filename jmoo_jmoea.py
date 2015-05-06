@@ -66,9 +66,10 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     # 2) Load Initial Population  #
     # # # # # # # # # # # # # # # #
     # Though this is not important I am sticking to NSGA3 paper
-    if algorithm.name == "NSGA3":
-        jmoo_properties.PSI = jmoo_properties.max_generation[problem.name]
-        jmoo_properties.MU = population_size[problem.name.split("_")[-1]]
+    # if algorithm.name == "NSGA3":
+    #     print "-"*20 + "boom"
+    #     jmoo_properties.PSI = jmoo_properties.max_generation[problem.name]
+    #     jmoo_properties.MU = population_size[problem.name.split("_")[-1]]
 
     population = problem.loadInitialPopulation(jmoo_properties.MU)
     print "Length of population: ", len(population)
@@ -134,8 +135,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # 4e) Evaluate Stopping Criteria  #
         # # # # # # # # # # # # # # # # # #
         stoppingCriteria = toStop(statBox)
-        # print "Stopping criteria disabled",
-        stoppingCriteria = False
+
 
 
     

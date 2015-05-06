@@ -46,13 +46,17 @@ from diabaties import *
 
 # JMOO Experimental Definitions
 algorithms = [
-              jmoo_GALE(),
-              jmoo_NSGAII(),
-              jmoo_SPEA2(),
-              jmoo_DE(),
+              # jmoo_GALE(),
+              # jmoo_NSGAII(),
+              # jmoo_SPEA2(),
+              # jmoo_DE(),
               # jmoo_MOEAD(),
               # jmoo_NSGAIII(),
-                jmoo_ANYWHERE()
+              #  jmoo_ANYWHERE(),
+              #   jmoo_ANYWHERE2()
+    jmoo_ANYWHERE2_10(),
+              jmoo_ANYWHERE2_20(),
+              jmoo_ANYWHERE2_40()
 
               ]
 
@@ -60,24 +64,25 @@ algorithms = [
 
 
 problems =[
-    dtlz1(9, 5),
-    dtlz2(14, 5),
-    dtlz3(14, 5), dtlz4(14, 5),
-    dtlz1(7, 3),
-    dtlz2(12, 3),
-    dtlz3(12, 3),
-    dtlz4(12, 3),
-    dtlz1(12, 8),
-    dtlz2(17, 8),
-    dtlz3(17, 8),
+    # dtlz1(9, 5),
+    # dtlz2(14, 5),
+    # dtlz3(14, 5),
+    # dtlz4(14, 5),
+    # dtlz1(7, 3),
+    # dtlz2(12, 3),
+    # dtlz3(12, 3),
+    # dtlz4(12, 3),
+    # dtlz1(12, 8),
+    # dtlz2(17, 8),
+    # dtlz3(17, 8),
     dtlz4(17, 8),
-    dtlz1(14, 10), dtlz2(19, 10),
-    dtlz3(19, 10),
-    dtlz4(19, 10),
-    dtlz1(19, 15),
-    dtlz2(24, 15),
-    dtlz3(24, 15),
-    dtlz4(24, 15)
+    # dtlz1(14, 10), dtlz2(19, 10),
+    # dtlz3(19, 10),
+    # dtlz4(19, 10),
+    # dtlz1(19, 15),
+    # dtlz2(24, 15),
+    # dtlz3(24, 15),
+    # dtlz4(24, 15)
     # #, fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
     #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
@@ -87,22 +92,22 @@ problems =[
 
 ]
 
-population_size = {
-    "3": 92,
-    "5": 212,
-    "8": 156,
-    "10": 276,
-    "15": 136
+# population_size = {
+#     "3": 92,
+#     "5": 212,
+#     "8": 156,
+#     "10": 276,
+#     "15": 136
+#
+# }
 
-}
-
-max_generation = {
-    "DTLZ1_9_5": 600, "DTLZ2_14_5": 350, "DTLZ3_14_5": 1000, "DTLZ4_14_5": 1000,
-    "DTLZ1_7_3": 400, "DTLZ2_12_3": 250, "DTLZ3_12_3": 1000, "DTLZ4_12_3": 600,
-    "DTLZ1_12_8": 750, "DTLZ2_17_8": 500, "DTLZ3_17_8": 1000, "DTLZ4_17_8": 1250,
-    "DTLZ1_14_10": 1000, "DTLZ2_19_10": 750, "DTLZ3_19_10": 1500, "DTLZ4_19_10": 2000,
-    "DTLZ1_19_15": 1500, "DTLZ2_24_15": 1000, "DTLZ3_24_15": 2000, "DTLZ4_24_15": 3000
-                   }
+# max_generation = {
+#     "DTLZ1_9_5": 600, "DTLZ2_14_5": 350, "DTLZ3_14_5": 1000, "DTLZ4_14_5": 1000,
+#     "DTLZ1_7_3": 400, "DTLZ2_12_3": 250, "DTLZ3_12_3": 1000, "DTLZ4_12_3": 600,
+#     "DTLZ1_12_8": 750, "DTLZ2_17_8": 500, "DTLZ3_17_8": 1000, "DTLZ4_17_8": 1250,
+#     "DTLZ1_14_10": 1000, "DTLZ2_19_10": 750, "DTLZ3_19_10": 1500, "DTLZ4_19_10": 2000,
+#     "DTLZ1_19_15": 1500, "DTLZ2_24_15": 1000, "DTLZ3_24_15": 2000, "DTLZ4_24_15": 3000
+#                    }
 
 build_new_pop = False                                       # Whether or not to rebuild the initial population
 
@@ -128,7 +133,7 @@ MOEAD_CF = 1.0
 
 # Properties of Anywhere
 ANYWHERE_EXPLOSION = 5
-ANYWHERE_POLES = 20
+ANYWHERE_POLES = 5
 
 # Properties of NSGAIII
 # NSGA3_P = 5 # not required anymore since this is not strictly followed. Looked at nsga3 paper section V

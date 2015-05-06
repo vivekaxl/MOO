@@ -21,13 +21,30 @@ def find_extreme(one, population):
         temp.append([temp_distance, individual])
     return sorted(temp, key=lambda x: x[0], reverse=True)[0][1]
 
+
+def look_for_duplicates(element, lst, field=lambda x: x):
+    for l in lst:
+        if field(element) == field(l):
+            return True
+    return False
+
 def find_poles(population):
     poles = []
+    #remove duplicates
+    temp_poles = []
     for _ in xrange(jmoo_properties.ANYWHERE_POLES):
         while True:
             one = random.choice(population)
             east = find_extreme(one, population)
             west = find_extreme(east, population)
-            if east != west and east != one and west != one: break
+            if east != west and east != one and west != one and east not in list(temp_poles) and west not in list(temp_poles): break
         poles.append([east, west])
+        if look_for_duplicates(east, temp_poles) is False:
+            temp_poles.append(east)
+        else:
+            assert(True),"Something'S wrong"
+        if look_for_duplicates(west, temp_poles, lambda x: x.decisionValues) is False:
+            temp_poles.append(west)
+        else:
+            assert(True),"Something'S wrong"
     return poles

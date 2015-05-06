@@ -192,8 +192,8 @@ class JMOO:
             
             for algorithm in self.tests.algorithms:
                 
-                if algorithm.name == "NSGAIII":
-                    jmoo_properties.MU = jmoo_properties.population_size[problem.name.split("_")[-1]]
+                # if algorithm.name == "NSGAIII":
+                #     jmoo_properties.MU = jmoo_properties.population_size[problem.name.split("_")[-1]]
                 zOut += "<Algorithm name = '" + algorithm.name + "'>\n"
                 
                 print "#<------- " + problem.name + " + " + algorithm.name + " ------->#"
