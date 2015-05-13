@@ -54,3 +54,4 @@ def rearrange(problem, midpoint, stars):
         east, west = better(problem, east, west)  # east is better than west
         evaluated_stars.append(Poles(i, east, west))
     return evaluated_stars
+

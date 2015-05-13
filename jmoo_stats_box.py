@@ -39,7 +39,7 @@ cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(insp
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 
-from IGD import IGD
+import IGD_Calculation
 
 def readpf(problem):
     # print problem.name.split("_")[0]
@@ -83,14 +83,9 @@ class jmoo_stats_box:
     
     def update(statBox, population, gen, numNewEvals, initial = False, printOption=True):
         "add a stat box - compute the statistics first"
-        if "ANYWHERE" in statBox.alg.name:
-            filename = "data/results_"+statBox.problem.name + "-p" + str(len(population)) + "-d" + \
-                       str(len(statBox.problem.decisions)) + "-o" + str(len(statBox.problem.objectives))+\
-                       "_" + statBox.alg.name + "_" + str(jmoo_properties.ANYWHERE_POLES) +".datatable"
-        else:
-            filename = "data/results_"+statBox.problem.name + "-p" + str(len(population)) + "-d" + \
-                       str(len(statBox.problem.decisions)) + "-o" + str(len(statBox.problem.objectives))+\
-                       "_"+statBox.alg.name+".datatable"
+        filename = "data/results_"+statBox.problem.name + "-p" + str(len(population)) + "-d" + \
+                   str(len(statBox.problem.decisions)) + "-o" + str(len(statBox.problem.objectives))+\
+                   "_"+statBox.alg.name+".datatable"
         fa = open(filename, 'a')
         
         # Calculate percentage of violations
@@ -133,20 +128,32 @@ class jmoo_stats_box:
             best_fitness = fitnessMedians
         lossInQualities = [item["qual"] for item in lossInQualities]
         #best_fitness = [min(fitCol) for fitCol in fitnessColumns if len(fitCol) > 0]
-        
+
+        # + IGD Calculation: This would only work if the true PF is known.
+        approximate = []
+        true_PF = readpf(statBox.problem)
+        for individual in population:
+            temp = []
+            for x in individual.fitness.fitness: temp.append(round(x, 5))
+            approximate.append(temp)
+        # - IGD Calculation
+
         IBD = median(lossInQualities)
         IBS = spread(lossInQualities)
+        IGD = IGD_Calculation.IGD(approximate, true_PF)
         
         if initial == True:
             IBD = 1.0
             statBox.referenceIBD = 1.0
+            # TODO: Need to come up with an smart way to assign reference IGD: This is stupid I ran into the problems
+            # with this
+            statBox.referenceIGD = 1e30
         
         
         changes = []
         # Print Option
         if printOption == True:
             outString = ""
-            approximate = []
             
             if initial:
                 outString += str(statBox.numEval) + ","
@@ -160,7 +167,8 @@ class jmoo_stats_box:
                     outString += str("%8.4f" % med) + "," + change + "," + str("%8.4f" % spr) + ","
                     if statBox.numEval in statBox.foam[o]: statBox.foam[o][statBox.numEval].append(change)
                     else: statBox.foam[o][statBox.numEval] = [change]
-                outString += str("%8.4f" % IBD) + "," + percentChange(statBox.referenceIBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS)
+                outString += str("%8.4f" % IBD) + "," + percentChange(statBox.referenceIBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS) + ","
+                outString += str("%8.4f" % IGD) + "," + percentChange(statBox.referenceIGD, statBox.referenceIGD, True, 0, 1e3)
             else:
                 outString += str(statBox.numEval) + ","
                 for med, spr, initmed, obj, o in zip(best_fitness, fitnessSpreads, statBox.referencePoint,
@@ -173,21 +181,18 @@ class jmoo_stats_box:
                     outString += str("%8.4f" % med) + "," + change + "," + str("%8.4f" % spr) + ","
                     if statBox.numEval in statBox.foam[o]: statBox.foam[o][statBox.numEval].append(change)
                     else: statBox.foam[o][statBox.numEval] = [change]
-                outString += str("%8.4f" % IBD) + "," + percentChange(IBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS)
+                outString += str("%8.4f" % IBD) + "," + percentChange(IBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS) + ","
+                outString += str("%8.4f" % IGD) + "," + percentChange(IGD, statBox.referenceIGD, True, 0, 1e3)
 
 
-            true_PF = readpf(statBox.problem)
-            for individual in population:
-                temp = []
-                for x in individual.fitness.fitness: temp.append(round(x, 5))
-                approximate.append(temp)
+
 
             if initial:
-                print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD(approximate, true_PF))
+                print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD_Calculation.IGD(approximate, true_PF))
             else:
                 # print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD(approximate, true_PF))
                 # print str(statBox.numEval) + "|IGD: |" + str(IGD(approximate, true_PF)) + "|Fitness:| ", normalized_median
-                print IGD(approximate, true_PF), "|Fitness: |", fitnessMedians
+                print "|Fitness: |", fitnessMedians
             fa.write(outString + "\n")
         
             

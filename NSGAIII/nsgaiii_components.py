@@ -25,7 +25,7 @@ def nsgaiii_selector(problem, population):
 def nsgaiii_sbx(problem, population):
     from random import choice
     mutants = []
-    for _ in xrange(len(population)/2):
+    for _ in xrange((len(population)/2)+1):
         father = choice(population)
         while True:
             mother = choice(population)

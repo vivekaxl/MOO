@@ -5,12 +5,16 @@ if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 
 from euclidean_distance import euclidean_distance
-
+from ndimes import generate_direction
+from perpendicular_distance import perpendicular_distance
+from geometry import find_extreme_point, find_midpoint
+from better import rearrange
 
 cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"../../")))
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 import jmoo_properties
+from jmoo_individual import jmoo_individual
 
 
 def find_extreme(one, population):
@@ -48,3 +52,25 @@ def find_poles(population):
         else:
             assert(True),"Something'S wrong"
     return poles
+
+
+def find_poles2(problem, population):
+    poles = []
+    min_point, max_point = find_extreme_point([pop.decisionValues for pop in population])
+    mid_point = find_midpoint(min_point, max_point)
+    directions = generate_direction(len(problem.decisions), jmoo_properties.ANYWHERE_POLES * 2, mid_point)
+    mid_point = jmoo_individual(problem, mid_point, None)
+    for direction in directions:
+        mine = -1e32
+        temp_pole = None
+        for pop in population:
+            y = perpendicular_distance(direction, pop.decisionValues)
+            c = euclidean_distance(pop.decisionValues, [0 for _ in problem.decisions])
+            if (c-y) > mine:
+                temp_pole = pop
+                mine = (c-y)
+        poles.append(temp_pole)
+    stars = rearrange(problem, mid_point, poles)
+    return stars
+
+

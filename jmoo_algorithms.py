@@ -95,7 +95,7 @@ class jmoo_SPEA2:
         self.adjustor = crossoverAndMutation
         self.recombiner = selSPEA2
         self.color = color
-        self.type = '.'
+        self.type = 'h'
         
 class jmoo_GALE:
     def __init__(self, color="Red"):
@@ -125,7 +125,7 @@ class jmoo_MOEAD:
         self.adjustor = moead_mutate
         self.recombiner = moead_recombine
         self.color = color
-        self.type = 'o'
+        self.type = '*'
 
 class jmoo_NSGAIII:
     def __init__(self, color="green"):
@@ -135,57 +135,27 @@ class jmoo_NSGAIII:
         self.adjustor = nsgaiii_sbx
         self.recombiner = nsgaiii_recombine
         self.color = color
-        self.type = 'o'
+        self.type = 'p'
 
 class jmoo_ANYWHERE:
     def __init__(self, color="Yellow"):
         self.name = "ANYWHERE"
         self.initializer = None
-        self.selector = anywhere_selector
+        self.selector = anywhere2_selector
         self.adjustor = anywhere_mutate
         self.recombiner = anywhere_recombine
         self.color = color
-        self.type = 'o'
+        self.type = '*'
 
 class jmoo_ANYWHERE2:
-    def __init__(self, color="Green"):
+    def __init__(self, color="Yellow"):
         self.name = "ANYWHERE2"
         self.initializer = None
-        self.selector = anywhere2_selector
+        self.selector = anywhere3_selector
         self.adjustor = anywhere_mutate
         self.recombiner = anywhere_recombine
         self.color = color
-        self.type = '.'
-
-class jmoo_ANYWHERE2_40:
-    def __init__(self, color="Green"):
-        self.name = "ANYWHERE2_40"
-        self.initializer = None
-        self.selector = anywhere2_selector
-        self.adjustor = anywhere_mutate
-        self.recombiner = anywhere_recombine
-        self.color = color
-        self.type = '.'
-
-class jmoo_ANYWHERE2_20:
-    def __init__(self, color="Green"):
-        self.name = "ANYWHERE2_10"
-        self.initializer = None
-        self.selector = anywhere2_selector
-        self.adjustor = anywhere_mutate
-        self.recombiner = anywhere_recombine
-        self.color = color
-        self.type = '.'
-
-class jmoo_ANYWHERE2_10:
-    def __init__(self, color="Green"):
-        self.name = "ANYWHERE2_5"
-        self.initializer = None
-        self.selector = anywhere2_selector
-        self.adjustor = anywhere_mutate
-        self.recombiner = anywhere_recombine
-        self.color = color
-        self.type = '.'
+        self.type = 'p'
 
 
 class Bin:
@@ -435,10 +405,11 @@ def default_toStop(statBox):
 def bstop(statBox):
     stop = True
     for o,obj in enumerate(statBox.problem.objectives):
-        if statBox.box[-1].changes[o] <= statBox.bests[o]: stop = False
+        if statBox.box[-1].changes[o] <= statBox.bests[o]: stop = False # TODO: Removed the = sign
     
     if stop == True:
         statBox.lives += -1
+        print "#"*20
         
     return stop and statBox.lives == 0
 

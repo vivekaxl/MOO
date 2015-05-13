@@ -779,7 +779,7 @@ class dtlz3(jmoo_problem):
             
         for i in range(len(prob.decisions) - k, len(prob.decisions)):
             g += (x[i] - 0.5)**2 - cos(20.0 * pi * (x[i] - 0.5))
-        
+        assert(k == 10), "Against the recommendation of Deb's paper"
         g = 100 * (k + g)
         
         f = []
@@ -792,7 +792,6 @@ class dtlz3(jmoo_problem):
             if not (i == 0):
                 aux = len(prob.objectives) - (i+1)
                 f[i] *= sin(x[aux]*0.5*pi)
-
         
         for i in range(0, len(prob.objectives)):            
             prob.objectives[i].value = f[i]  
@@ -817,14 +816,14 @@ class dtlz4(jmoo_problem):
         k = len(prob.decisions) - len(prob.objectives) + 1
         g = 0.0
         alpha = 100.0
-        
+
         x = []
         for i in range(0, len(prob.decisions)):
             x.append(prob.decisions[i].value)
-            
+
         for i in range(len(prob.decisions) - k, len(prob.decisions)):
-            g += (x[i] - 0.5)*(x[i] - 0.5)
-        
+            g += (x[i] - 0.5)**2
+
         f = []
         for i in range(0, len(prob.objectives)):
             f.append(1.0 + g)
@@ -834,7 +833,7 @@ class dtlz4(jmoo_problem):
                 f[i] *= cos((x[j]**alpha) * (pi/2.0))
             if not (i == 0):
                 aux = len(prob.objectives) - (i+1)
-                f[i] *= sin( (x[aux]**alpha) * (pi/2.0))
+                f[i] *= sin((x[aux]**alpha) * (pi/2.0))
         
         for i in range(0, len(prob.objectives)):            
             prob.objectives[i].value = f[i]  

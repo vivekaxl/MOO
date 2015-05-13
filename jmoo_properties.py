@@ -46,17 +46,13 @@ from diabaties import *
 
 # JMOO Experimental Definitions
 algorithms = [
-              # jmoo_GALE(),
-              # jmoo_NSGAII(),
+              jmoo_GALE(),
+              jmoo_NSGAII(),
               # jmoo_SPEA2(),
               # jmoo_DE(),
-              # jmoo_MOEAD(),
-              # jmoo_NSGAIII(),
-              #  jmoo_ANYWHERE(),
-              #   jmoo_ANYWHERE2()
-    jmoo_ANYWHERE2_10(),
-              jmoo_ANYWHERE2_20(),
-              jmoo_ANYWHERE2_40()
+              jmoo_MOEAD(),
+              jmoo_NSGAIII(),
+                jmoo_ANYWHERE(),
 
               ]
 
@@ -75,14 +71,14 @@ problems =[
     # dtlz1(12, 8),
     # dtlz2(17, 8),
     # dtlz3(17, 8),
-    dtlz4(17, 8),
+    # dtlz4(17, 8),
     # dtlz1(14, 10), dtlz2(19, 10),
     # dtlz3(19, 10),
     # dtlz4(19, 10),
     # dtlz1(19, 15),
     # dtlz2(24, 15),
     # dtlz3(24, 15),
-    # dtlz4(24, 15)
+    dtlz4(24, 15)
     # #, fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
     #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
@@ -100,7 +96,7 @@ problems =[
 #     "15": 136
 #
 # }
-
+#
 # max_generation = {
 #     "DTLZ1_9_5": 600, "DTLZ2_14_5": 350, "DTLZ3_14_5": 1000, "DTLZ4_14_5": 1000,
 #     "DTLZ1_7_3": 400, "DTLZ2_12_3": 250, "DTLZ3_12_3": 1000, "DTLZ4_12_3": 600,
@@ -113,9 +109,9 @@ build_new_pop = False                                       # Whether or not to 
 
 
 # JMOO Universal Properties
-repeats = 10    #Repeats of each MOEA
+repeats = 1   #Repeats of each MOEA
 MU      = 100   #Population Size
-PSI     = 20    #Maximum number of generations
+PSI     = 400    #Maximum number of generations
 
 # Properties of GALE
 GAMMA   = 0.15  #Constrained Mutation Parameter
@@ -133,7 +129,7 @@ MOEAD_CF = 1.0
 
 # Properties of Anywhere
 ANYWHERE_EXPLOSION = 5
-ANYWHERE_POLES = 5
+ANYWHERE_POLES = 5  # number of actual poles is 2 * ANYWHERE_POLES
 
 # Properties of NSGAIII
 # NSGA3_P = 5 # not required anymore since this is not strictly followed. Looked at nsga3 paper section V

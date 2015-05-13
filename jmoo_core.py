@@ -36,7 +36,7 @@ cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(insp
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 
-from IGD import IGD
+from IGD_Calculation import IGD
 
 import random
 import jmoo_preprocessor
@@ -142,7 +142,8 @@ class jmoo_chart_report:
     def __init__(self,tests):
         self.tests = tests
     def doit(self,tagnote=""):
-        joes_charter_reporter(self.tests.problems, self.tests.algorithms, tag=tagnote)
+        for problem in self.tests.problems:
+            joes_charter_reporter([problem], self.tests.algorithms, tag=tagnote)
 
 class jmoo_df_report:
     def __init__(self, tag="stats", tests = None):
@@ -218,7 +219,10 @@ class JMOO:
                 # - 
                 
                 fa = open("data/results_"+filename, 'w')
-                strings = ["NumEval"] + [obj.name + "_median,(%chg)," + obj.name + "_spread" for obj in problem.objectives] + ["IBD,(%chg), IBS"]
+                strings = ["NumEval"] \
+                          + [obj.name + "_median,(%chg),"
+                             + obj.name + "_spread" for obj in problem.objectives]\
+                          + ["IBD,(%chg), IBS"] + ["IGD,(%chg)"]
                 for s in strings: fa.write(s + ",")
                 fa.write("\n")
                 fa.close()

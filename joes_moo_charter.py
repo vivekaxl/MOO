@@ -132,9 +132,11 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                             if n in foam[p][a][o]: foam[p][a][o][n].append(float(data[p][a][o*3+2][-1]))
                             else: foam[p][a][o][n] = [float(data[p][a][o*3+2][-1])]         
                     """ 
-                        
-                        
-                        
+
+
+
+
+
     fignum = 0
     colors = ['r', 'b', 'g']
     from matplotlib.font_manager import FontProperties
@@ -338,13 +340,13 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                             ax2 = axarr[oo].twinx()
                             ax2.get_yaxis().set_ticks([])
                             if oo==(len(prob.objectives)-1): ax2.set_ylabel("Quality")
-                            #print scorelist
-                            print "-" *30
-                            print alg.name, o
-                            print keylist
-                            print scorelist
-                            print min(scorelist) - 0.1, max(scorelist) + 0.1
-                            axarr[oo].plot(keylist, scorelist, label=alg.name, linestyle='None', marker=alg.type, color=alg.color, markersize=7, markeredgecolor='none') #MARKER PLOTS
+                            # #print scorelist
+                            # print "-" *30
+                            # print alg.name, o
+                            # print keylist
+                            # print scorelist
+                            # print min(scorelist) - 0.1, max(scorelist) + 0.1
+                            axarr[oo].plot(keylist, scorelist, label=alg.name, marker=alg.type, color=alg.color, markersize=7, markeredgecolor='none') #MARKER PLOTS
                             #axarr[p][oo].plot([min(keylist)]+keylist, [100]+smallslist, color=alg.color) #BOTTOMLINE
                             axarr[oo].plot([x for x in range(0,10000,10)], [100 for x in range(0,10000,10)], color="Black") #BASELINE
                             min_yaxis = min(min(scorelist), min_yaxis)
@@ -368,7 +370,55 @@ def joes_charter_reporter(problems, algorithms, tag=""):
 
     plt.savefig('charts/' + date_folder_prefix + '/figure' + str("%02d" % fignum) + "_" + prob.name + "_" + tag + '.png', dpi=100)
     cla()
+    clf()
+    close()
     #show()
+
+    #--- For IGD -- Values #
+    min_number = 1e32
+    max_number = -1e32
+
+    for p,prob in enumerate(problems):
+        for a,alg in enumerate(algorithms):
+
+            # to handle multiple runs
+            scores = {}
+            for score,eval in zip(data[p][a][-2], data[p][a][0]):
+                # print score
+                if eval in scores: scores[eval].append(score)
+                else: scores[eval] = [score]
+
+            score_list = []
+            try:
+                for eval in sorted(data[p][a][0]):
+                    score_list.append(median(scores[int(eval)]))
+            except:
+                import traceback
+                traceback.print_exc()
+                print scores.keys()
+                exit()
+
+            # for xx, yy in zip(data[p][a][0], score_list):
+            #     print xx, yy
+            # exit()
+
+
+            plt.plot(sorted(data[p][a][0]), score_list, label=alg.name, marker=alg.type, color=alg.color) #MARKER PLOTS )
+            min_number = min(min(data[p][a][-2]), min_number)
+            max_number = max(max(data[p][a][-2]), max_number)
+            #max_number = 10
+
+
+
+    plt.xlabel('Generations')
+    plt.ylabel('IGD')
+    plt.title('Variation of IGD')
+    plt.legend()
+    print min_number, max_number
+    plt.ylim([min_number - 1, max_number + 1])# -- tera
+    plt.savefig('charts/' + date_folder_prefix + '/figure' + str("%02d" % fignum) + "_" + prob.name + "_" + "IGD" + '.png', dpi=100)
+    cla()
+
 
 
 

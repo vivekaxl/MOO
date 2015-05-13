@@ -156,7 +156,7 @@ def sortNondominated(individuals, k, first_front_only=False):
     """
     if k == 0:
         return []
-    assert(len(individuals) == jmoo_properties.MU * 2), "Population size should be 2*MU"
+
 
     map_fit_ind = defaultdict(list)
 

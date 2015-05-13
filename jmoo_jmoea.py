@@ -75,11 +75,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     print "Length of population: ", len(population)
 
 
-    # # # # # # # # # # # # # # # #
-    # 2.1) Special Initialization #
-    # # # # # # # # # # # # # # # #
-    if algorithm.initializer is not None:
-        population, numeval = algorithm.initializer(problem, population)
+
 
 
 
@@ -87,6 +83,13 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     # 3) Collect Initial Stats  #
     # # # # # # # # # # # # # # #
     statBox.update(population, 0, numeval, initial=True)
+
+    # # # # # # # # # # # # # # # #
+    # 3.1) Special Initialization #
+    # # # # # # # # # # # # # # # #
+    if algorithm.initializer is not None:
+        # TODO:fix MOEAD
+        population, numeval = algorithm.initializer(problem, population)
     
     # # # # # # # # # # # # # # #
     # 4) Generational Evolution #
@@ -128,6 +131,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # # # # # # # # # # #
         statBox.update(population, gen, numNewEvals)
         #for row in population: print row.valid
+        print statBox.bests
         
         
             
