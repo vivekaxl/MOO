@@ -25,3 +25,6 @@ SMOTE_BINARY_CLASSIFICATION = True  # consider all the rows as either bugs or no
 CULLING = False  # having a culling policy in check pd = 66 and pf = 33
 NEW_DE = False   # traditional DE algorithm
 
+
+IGDMEASURE = False   # USE IGD CALCULATION
+

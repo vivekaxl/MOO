@@ -240,13 +240,13 @@ class JMOO:
                     statBox = jmoo_evo(problem, algorithm)
                     end = time.time()
 
-                    approx = []
-                    for pop in statBox.box[-1].population:
-                        temp = []
-                        for n in pop.fitness.fitness: temp.append(n)
-                        approx.append(temp)
-                    true_pf = readpf(statBox.problem)
-                    IGD_Values.append(IGD(approx, true_pf))
+                    # approx = []
+                    # for pop in statBox.box[-1].population:
+                    #     temp = []
+                    #     for n in pop.fitness.fitness: temp.append(n)
+                    #     approx.append(temp)
+                    # true_pf = readpf(statBox.problem)
+                    # IGD_Values.append(IGD(approx, true_pf))
 
 
 

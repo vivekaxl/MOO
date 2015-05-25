@@ -288,7 +288,7 @@ def joes_charter_reporter(problems, algorithms, tag=""):
     #
     # #"""
        
-    f, axarr = plt.subplots(1, len(prob.objectives))   #for dtlz123456
+    f, axarr = plt.subplots(1, len(prob.objectives), squeeze=False)   #for dtlz123456
     #f, axarr = plt.subplots(3, len(prob.objectives)-1)   #for pom3abc
     #f, axarr = plt.subplots(3, len(prob.objectives))   #for xomo gr fl o2
     F = gcf()

@@ -1,123 +1,14 @@
 <Experiment>
-<Problem name = 'DTLZ4_24_15'>
-<Algorithm name = 'GALE'>
+<Problem name = 'NRP_50_5_5_20_120'>
+<Algorithm name = 'DE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>3413</NumEvals>
-<RunTime>144.342816114</RunTime>
-<IBD>0.996622400707</IBD>
-<IBS>0.00800689188413</IBS>
-<f1>1.45514820264</f1>
-<f2>1.67088757696e-17</f2>
-<f3>7.08509238278e-71</f3>
-<f4>1.13384419001e-53</f4>
-<f5>1.65222216534e-44</f5>
-<f6>1.31968366685e-45</f6>
-<f7>5.53053962273e-90</f7>
-<f8>7.82594448105e-12</f8>
-<f9>1.0271365357e-15</f9>
-<f10>3.75331727952e-135</f10>
-<f11>1.67839645798e-78</f11>
-<f12>3.74139336455e-16</f12>
-<f13>0.0242616622983</f13>
-<f14>1.43754009281e-53</f14>
-<f15>1.32753521816e-137</f15>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'NSGAII'>
-<Run id = '1'>
-<Summary>
-<NumEvals>0</NumEvals>
-<RunTime>80.8849709034</RunTime>
-<IBD>1.0</IBD>
-<IBS>0</IBS>
-<f1>0</f1>
-<f2>0</f2>
-<f3>0</f3>
-<f4>0</f4>
-<f5>0</f5>
-<f6>0</f6>
-<f7>0</f7>
-<f8>0</f8>
-<f9>0</f9>
-<f10>0</f10>
-<f11>0</f11>
-<f12>0</f12>
-<f13>0</f13>
-<f14>0</f14>
-<f15>0</f15>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'MOEAD'>
-<Run id = '1'>
-<Summary>
-<NumEvals>0</NumEvals>
-<RunTime>85.7596070766</RunTime>
-<IBD>1.0</IBD>
-<IBS>0</IBS>
-<f1>0</f1>
-<f2>0</f2>
-<f3>0</f3>
-<f4>0</f4>
-<f5>0</f5>
-<f6>0</f6>
-<f7>0</f7>
-<f8>0</f8>
-<f9>0</f9>
-<f10>0</f10>
-<f11>0</f11>
-<f12>0</f12>
-<f13>0</f13>
-<f14>0</f14>
-<f15>0</f15>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'NSGA3'>
-<Run id = '1'>
-<Summary>
-<NumEvals>0</NumEvals>
-<RunTime>306.065360069</RunTime>
-<IBD>1.0</IBD>
-<IBS>0</IBS>
-<f1>0</f1>
-<f2>0</f2>
-<f3>0</f3>
-<f4>0</f4>
-<f5>0</f5>
-<f6>0</f6>
-<f7>0</f7>
-<f8>0</f8>
-<f9>0</f9>
-<f10>0</f10>
-<f11>0</f11>
-<f12>0</f12>
-<f13>0</f13>
-<f14>0</f14>
-<f15>0</f15>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'ANYWHERE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>450</NumEvals>
-<RunTime>227.495709896</RunTime>
-<IBD>0.998860881348</IBD>
-<IBS>0.000842801901897</IBS>
-<f1>1.0</f1>
-<f2>1.23913981227e-30</f2>
-<f3>1.23913981227e-30</f3>
-<f4>1.23913981227e-30</f4>
-<f5>1.23913981227e-30</f5>
-<f6>1.23913981227e-30</f6>
-<f7>1.23913981227e-30</f7>
-<f8>1.23913981227e-30</f8>
-<f9>1.23913981227e-30</f9>
-<f10>1.23913981227e-30</f10>
-<f11>1.23913981227e-30</f11>
-<f12>1.23913981227e-30</f12>
-<f13>1.23913981227e-30</f13>
-<f14>1.23913981227e-30</f14>
-<f15>1.23913981227e-30</f15>
+<NumEvals>19600</NumEvals>
+<RunTime>798.5575068</RunTime>
+<IBD>0.624526604608</IBD>
+<IBS>0.00920727496784</IBS>
+<f1>5278</f1>
+<f2>49</f2>
 </Summary></Run>
 </Algorithm>
 </Problem>

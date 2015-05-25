@@ -33,6 +33,7 @@ from jmoo_individual import *
 import jmoo_properties
 from utility import *
 from deap.tools.support import ParetoFront
+from jmoo_preprocessor import IGDMEASURE
 
 import os, inspect, sys
 cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0], "Techniques")))
@@ -130,24 +131,27 @@ class jmoo_stats_box:
         #best_fitness = [min(fitCol) for fitCol in fitnessColumns if len(fitCol) > 0]
 
         # + IGD Calculation: This would only work if the true PF is known.
-        approximate = []
-        true_PF = readpf(statBox.problem)
-        for individual in population:
-            temp = []
-            for x in individual.fitness.fitness: temp.append(round(x, 5))
-            approximate.append(temp)
+        if IGDMEASURE is True:
+            approximate = []
+            true_PF = readpf(statBox.problem)
+            for individual in population:
+                temp = []
+                for x in individual.fitness.fitness: temp.append(round(x, 5))
+                approximate.append(temp)
         # - IGD Calculation
 
         IBD = median(lossInQualities)
         IBS = spread(lossInQualities)
-        IGD = IGD_Calculation.IGD(approximate, true_PF)
+        if IGDMEASURE is True:
+            IGD = IGD_Calculation.IGD(approximate, true_PF)
         
         if initial == True:
             IBD = 1.0
             statBox.referenceIBD = 1.0
             # TODO: Need to come up with an smart way to assign reference IGD: This is stupid I ran into the problems
             # with this
-            statBox.referenceIGD = 1e30
+            if IGDMEASURE is True:
+                statBox.referenceIGD = 1e30
         
         
         changes = []
@@ -167,8 +171,9 @@ class jmoo_stats_box:
                     outString += str("%8.4f" % med) + "," + change + "," + str("%8.4f" % spr) + ","
                     if statBox.numEval in statBox.foam[o]: statBox.foam[o][statBox.numEval].append(change)
                     else: statBox.foam[o][statBox.numEval] = [change]
-                outString += str("%8.4f" % IBD) + "," + percentChange(statBox.referenceIBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS) + ","
-                outString += str("%8.4f" % IGD) + "," + percentChange(statBox.referenceIGD, statBox.referenceIGD, True, 0, 1e3)
+                outString += str("%8.4f" % IBD) + "," + percentChange(statBox.referenceIBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS)
+                if IGDMEASURE is True:
+                    outString += "," + str("%8.4f" % IGD) + "," + percentChange(statBox.referenceIGD, statBox.referenceIGD, True, 0, 1e3)
             else:
                 outString += str(statBox.numEval) + ","
                 for med, spr, initmed, obj, o in zip(best_fitness, fitnessSpreads, statBox.referencePoint,
@@ -181,14 +186,17 @@ class jmoo_stats_box:
                     outString += str("%8.4f" % med) + "," + change + "," + str("%8.4f" % spr) + ","
                     if statBox.numEval in statBox.foam[o]: statBox.foam[o][statBox.numEval].append(change)
                     else: statBox.foam[o][statBox.numEval] = [change]
-                outString += str("%8.4f" % IBD) + "," + percentChange(IBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS) + ","
-                outString += str("%8.4f" % IGD) + "," + percentChange(IGD, statBox.referenceIGD, True, 0, 1e3)
+                outString += str("%8.4f" % IBD) + "," + percentChange(IBD, statBox.referenceIBD, True, 0, 1) + "," + str("%8.4f" % IBS)
+                if IGDMEASURE is True:
+                    outString += "," + str("%8.4f" % IGD) + "," + percentChange(IGD, statBox.referenceIGD, True, 0, 1e3)
 
 
 
 
             if initial:
-                print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD_Calculation.IGD(approximate, true_PF))
+                if IGDMEASURE is True:
+                    print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD_Calculation.IGD(approximate, true_PF))
+                else: print outString  + ", violations: " + str("%4.1f" % violationsPercent)
             else:
                 # print outString  + ", violations: " + str("%4.1f" % violationsPercent) + "||IGD: " + str(IGD(approximate, true_PF))
                 # print str(statBox.numEval) + "|IGD: |" + str(IGD(approximate, true_PF)) + "|Fitness:| ", normalized_median
