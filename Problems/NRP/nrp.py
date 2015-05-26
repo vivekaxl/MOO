@@ -16,10 +16,10 @@ class NRP(jmoo_problem):
         self.name = "NRP_" + str(requirements) + "_" + str(releases) + "_" + str(clients) + "_" +str(density) \
                     + "_" + str(budget)
         names = ["x"+str(i+1) for i in range(requirements)] # |x_i + y_i|
-        lows =  [-1 for i in xrange(2 * requirements)]
+        lows =  [-1 for i in xrange(requirements)]
         ups =   [(releases-1) for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
-        self.objectives = [jmoo_objective("f1", False), jmoo_objective("f2", False)]  # single objective nrp
+        self.objectives = [jmoo_objective("f1", False)]#, jmoo_objective("f2", False)]  # single objective nrp
         self.trequirements = requirements
         self.treleases = releases
         self.tclients = clients
@@ -37,13 +37,13 @@ class NRP(jmoo_problem):
         temp = []
         for _ in xrange(int(self.tdensity * self.trequirements * 0.01)):
             while True:
-                row = randint(0, self.trequirements)
-                col = randint(0, self.trequirements)
+                row = randint(0, self.trequirements -1)
+                col = randint(0, self.trequirements -1)
                 t = row * 1000 + col
                 if t not in temp:
                     temp.append(t)
                     break
-        print "Done"
+        # print "Done"
         for t in temp:
             precedence[int(t/1000)][int(t%1000)] = 1
         return precedence
@@ -72,11 +72,12 @@ class NRP(jmoo_problem):
                 assert(self.requirement[y].id == y), "Indexing Error!"
                 assert(x_i[i] <= self.treleases)
                 cost[x_i[i]] += self.requirement[i].cost
-        print cost, [b.budget for b in self.release], sum(cost), sum([b.budget for b in self.release])
+        # print cost, [b.budget for b in self.release], sum(cost), sum([b.budget for b in self.release])
+        extra = 0
         for c, b in zip(cost, self.release):
             if c > b.budget:
-                return False
-        return True
+                extra -= (c- b.budget)
+        return extra
 
     def constraint2(self, x_i, y_i):
         for y in y_i:
@@ -96,15 +97,20 @@ class NRP(jmoo_problem):
 
 
     def evaluate(self, input = None):
+
         if input:
-            x_i = [int(round(float(no), 0)) for no in input[:self.trequirements]]  # when is r_i is implented
-            y_i = [1 if x != -1 else 0 for x in x_i]  # whether r_i would be implented
-            if self.constraint1(x_i, y_i) is False:
+            x_i = [int(round(float(no), 0)) for no in input[:self.trequirements]]  # when is r_i is implemented
+            y_i = [1 if x != -1 else 0 for x in x_i]  # whether r_i would be implemented
+            # print input
+            temp = self.constraint1(x_i, y_i)  # This is dirty need to know a better trick
+            if temp != 0:
                 # print ">" * 10 + "0"
-                return [0, 0]
+                # print ">" * 20 + "CONDITION 1"
+                return [temp]
             elif self.constraint2(x_i, y_i) is False:
                 # print "@" * 10 + "0"
-                return [0, 0]
+                # print ">" * 20 + "CONDITION 2"
+                return [0]
             else:
                 return_score = 0
                 for i in xrange(self.trequirements):
@@ -113,12 +119,14 @@ class NRP(jmoo_problem):
                     return_score += (score * (self.treleases - x + 1) - self.requirement[i].risk) * y_i[i]
 
                     # exit()
-                print ">" * 10 , return_score
-                import time
-                time.sleep(0.2)
-                return [return_score, sum(y_i)]
+                # print ">" * 10 , return_score
+                # import time
+                # time.sleep(0.2)
+                # print "$"*20, return_score
+                return [return_score]
         else:
             assert(False), "BOOM"
+            exit()
 
     def evalConstraints(prob,input = None):
         return False

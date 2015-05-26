@@ -97,7 +97,6 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
     
     while gen < jmoo_properties.PSI and stoppingCriteria is False:
         gen+= 1
-        print "||" + str(gen) + "||",
         # # # # # # # # #
         # 4a) Selection #
         # # # # # # # # #
@@ -109,7 +108,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         selectees, evals = algorithm.selector(problem, population)
         numNewEvals = evals
         
-        
+
         #raw_input("Press any Key")
         # # # # # # # # # #
         # 4b) Adjustment  #
@@ -131,20 +130,23 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # # # # # # # # # # #
         statBox.update(population, gen, numNewEvals)
         #for row in population: print row.valid
-        print statBox.bests
+        # print statBox.bests
         
         
             
         # # # # # # # # # # # # # # # # # #
         # 4e) Evaluate Stopping Criteria  #
         # # # # # # # # # # # # # # # # # #
-        stoppingCriteria = toStop(statBox)
+        # stoppingCriteria = toStop(statBox)
+        stoppingCriteria = False
 
 
 
     
 
-
-
-    #return the representative generation
+    # print "=" * 30
+    print len(statBox.box[-1].population)
+    for pop in statBox.box[-1].population:
+        print pop.fitness.fitness
+    # return the representative generation
     return statBox

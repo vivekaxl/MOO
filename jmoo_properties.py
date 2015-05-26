@@ -55,10 +55,10 @@ algorithms = [
               # jmoo_GALE(),
               # jmoo_NSGAII(),
               # # jmoo_SPEA2(),
-              jmoo_DE(),
+              # jmoo_DE(),
               # jmoo_MOEAD(),
               # jmoo_NSGAIII(),
-              #   jmoo_ANYWHERE(),
+                jmoo_ANYWHERE(),
 
               ]
 
@@ -118,7 +118,7 @@ build_new_pop = False                                       # Whether or not to 
 # JMOO Universal Properties
 repeats = 1   #Repeats of each MOEA
 MU      = 100   #Population Size
-PSI     = 100    #Maximum number of generations
+PSI     = 20    #Maximum number of generations
 
 # Properties of GALE
 GAMMA   = 0.15  #Constrained Mutation Parameter
@@ -136,7 +136,7 @@ MOEAD_CF = 1.0
 
 # Properties of Anywhere
 ANYWHERE_EXPLOSION = 5
-ANYWHERE_POLES = 5  # number of actual poles is 2 * ANYWHERE_POLES
+ANYWHERE_POLES = 20  # number of actual poles is 2 * ANYWHERE_POLES
 
 # Properties of NSGAIII
 # NSGA3_P = 5 # not required anymore since this is not strictly followed. Looked at nsga3 paper section V

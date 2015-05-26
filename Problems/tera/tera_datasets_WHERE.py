@@ -13,8 +13,9 @@ from smote import smote
 from jmoo_preprocessor import PDPF, ABCD, GF, ACC, SMOTE
 
 
-cmd_subfolder = "/Users/viveknair/jmoo-jmoo_v2/WHERE"  # This needs to be changed
-sys.path.insert(0, cmd_subfolder)
+parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"../../WHERE")))
+if parentdir not in sys.path:
+    sys.path.insert(0, parentdir)
 from main import *
 
 prefix = "tera/"

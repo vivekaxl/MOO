@@ -15,6 +15,7 @@ class Poles:
         return str(self.__dict__)
 
 def better(problem,individual,mutant):
+
     if len(individual.fitness.fitness) > 1:
         weights = []
         for obj in problem.objectives:
@@ -47,8 +48,14 @@ def better(problem,individual,mutant):
 
 def rearrange(problem, midpoint, stars):
     evaluated_stars = []
+    unique_data = [list(x) for x in set(tuple(x) for x in [p.decisionValues for p in stars])]
+    print "Length of stars: ", len(unique_data)
     stars = [[midpoint, point] for point in stars]
+
+
+
     for i, (east, west) in enumerate(stars):
+        # print east.fitness.fitness, west.fitness.fitness
         if east.fitness.fitness is None: east.evaluate()
         if west.fitness.fitness is None: west.evaluate()
         east, west = better(problem, east, west)  # east is better than west

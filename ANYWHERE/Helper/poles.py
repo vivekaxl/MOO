@@ -32,7 +32,7 @@ def look_for_duplicates(element, lst, field=lambda x: x):
             return True
     return False
 
-def find_poles(population):
+def find_poles(problem, population):
     poles = []
     #remove duplicates
     temp_poles = []
@@ -42,7 +42,8 @@ def find_poles(population):
             east = find_extreme(one, population)
             west = find_extreme(east, population)
             if east != west and east != one and west != one and east not in list(temp_poles) and west not in list(temp_poles): break
-        poles.append([east, west])
+        poles.append(east)
+        poles.append(west)
         if look_for_duplicates(east, temp_poles) is False:
             temp_poles.append(east)
         else:
@@ -51,7 +52,13 @@ def find_poles(population):
             temp_poles.append(west)
         else:
             assert(True),"Something'S wrong"
-    return poles
+
+    min_point, max_point = find_extreme_point([pop.decisionValues for pop in poles])
+    mid_point = find_midpoint(min_point, max_point)
+    mid_point = jmoo_individual(problem, mid_point, None)
+    stars = rearrange(problem, mid_point, poles)
+    return stars
+
 
 
 def find_poles2(problem, population):
@@ -65,11 +72,12 @@ def find_poles2(problem, population):
         temp_pole = None
         for pop in population:
             y = perpendicular_distance(direction, pop.decisionValues)
-            c = euclidean_distance(pop.decisionValues, [0 for _ in problem.decisions])
+            c = euclidean_distance(pop.decisionValues, [0 for _ in xrange(len(problem.decisions))])
             if (c-y) > mine:
                 temp_pole = pop
                 mine = (c-y)
         poles.append(temp_pole)
+
     stars = rearrange(problem, mid_point, poles)
     return stars
 
