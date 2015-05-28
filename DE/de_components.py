@@ -113,7 +113,7 @@ def de_selector(problem, individuals):
     for individual in individuals:
         if not individual.valid:
             individual.evaluate()
-    no_evals = len(individuals)
+    no_evals = 0
     #print "Length of population: ", len(individuals)
     #print "F: ", jmoo_properties.F
     #print "CF: ", jmoo_properties.CF

@@ -76,7 +76,7 @@ class NRP(jmoo_problem):
         extra = 0
         for c, b in zip(cost, self.release):
             if c > b.budget:
-                extra -= (c- b.budget)
+                extra -= (c - b.budget)
         return extra
 
     def constraint2(self, x_i, y_i):
@@ -99,30 +99,21 @@ class NRP(jmoo_problem):
     def evaluate(self, input = None):
 
         if input:
-            x_i = [int(round(float(no), 0)) for no in input[:self.trequirements]]  # when is r_i is implemented
+            input = input[:self.trequirements]
+            x_i = [int(round(float(no), 0)) for no in input]  # when is r_i is implemented
             y_i = [1 if x != -1 else 0 for x in x_i]  # whether r_i would be implemented
-            # print input
+            assert(len(x_i) == len(y_i)), "Both the list should be of the same size"
             temp = self.constraint1(x_i, y_i)  # This is dirty need to know a better trick
             if temp != 0:
-                # print ">" * 10 + "0"
-                # print ">" * 20 + "CONDITION 1"
                 return [temp]
             elif self.constraint2(x_i, y_i) is False:
-                # print "@" * 10 + "0"
-                # print ">" * 20 + "CONDITION 2"
                 return [0]
             else:
                 return_score = 0
                 for i in xrange(self.trequirements):
                     score = sum([j.importance[i] * j.weight for j in self.client])
-                    x = self.treleases - x_i[i]
+                    x = x_i[i]
                     return_score += (score * (self.treleases - x + 1) - self.requirement[i].risk) * y_i[i]
-
-                    # exit()
-                # print ">" * 10 , return_score
-                # import time
-                # time.sleep(0.2)
-                # print "$"*20, return_score
                 return [return_score]
         else:
             assert(False), "BOOM"

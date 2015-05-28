@@ -81,4 +81,13 @@ def find_poles2(problem, population):
     stars = rearrange(problem, mid_point, poles)
     return stars
 
+def find_poles3(problem, population):
+    poles = []
+    min_point, max_point = find_extreme_point([pop.decisionValues for pop in population])
+    mid_point = find_midpoint(min_point, max_point)
+    directions = [population[i] for i in sorted(random.sample(xrange(len(population)), jmoo_properties.ANYWHERE_POLES * 2)) ]
+    mid_point = jmoo_individual(problem, mid_point, None)
+    stars = rearrange(problem, mid_point, directions)
+    return stars
+
 

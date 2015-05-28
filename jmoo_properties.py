@@ -42,6 +42,12 @@ if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 from nrp import *
 
+
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/MONRP")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+from monrp import *
+
 cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/sklearn_dataset")))
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
@@ -59,6 +65,7 @@ algorithms = [
               # jmoo_MOEAD(),
               # jmoo_NSGAIII(),
                 jmoo_ANYWHERE(),
+              # jmoo_ANYWHERE2(),
 
               ]
 
@@ -86,6 +93,7 @@ problems =[
     # dtlz3(24, 15),
     # dtlz4(24, 15)
     NRP(50, 5, 5, 20, 120)
+    # MONRP(50, 5, 5, 20, 120)
     # #, fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
     #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
@@ -118,7 +126,7 @@ build_new_pop = False                                       # Whether or not to 
 # JMOO Universal Properties
 repeats = 1   #Repeats of each MOEA
 MU      = 100   #Population Size
-PSI     = 20    #Maximum number of generations
+PSI     = 10    #Maximum number of generations
 
 # Properties of GALE
 GAMMA   = 0.15  #Constrained Mutation Parameter

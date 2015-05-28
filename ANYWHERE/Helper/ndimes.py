@@ -29,7 +29,8 @@ if __name__ == "__main__":
     no_points = 40
     import matplotlib.pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
-    points = generate_direction(dimension, no_points)
+    points = generate_direction(dimension, no_points, [0, 0, 0])
+    # print points
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')

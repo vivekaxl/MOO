@@ -288,7 +288,7 @@ def joes_charter_reporter(problems, algorithms, tag=""):
     #
     # #"""
        
-    f, axarr = plt.subplots(1, len(prob.objectives), squeeze=False)   #for dtlz123456
+    f, axarr = plt.subplots(1, len(prob.objectives))   #for dtlz123456
     #f, axarr = plt.subplots(3, len(prob.objectives)-1)   #for pom3abc
     #f, axarr = plt.subplots(3, len(prob.objectives))   #for xomo gr fl o2
     F = gcf()
@@ -374,50 +374,50 @@ def joes_charter_reporter(problems, algorithms, tag=""):
     close()
     #show()
 
-    #--- For IGD -- Values #
-    min_number = 1e32
-    max_number = -1e32
-
-    for p,prob in enumerate(problems):
-        for a,alg in enumerate(algorithms):
-
-            # to handle multiple runs
-            scores = {}
-            for score,eval in zip(data[p][a][-2], data[p][a][0]):
-                # print score
-                if eval in scores: scores[eval].append(score)
-                else: scores[eval] = [score]
-
-            score_list = []
-            try:
-                for eval in sorted(data[p][a][0]):
-                    score_list.append(median(scores[int(eval)]))
-            except:
-                import traceback
-                traceback.print_exc()
-                print scores.keys()
-                exit()
-
-            # for xx, yy in zip(data[p][a][0], score_list):
-            #     print xx, yy
-            # exit()
-
-
-            plt.plot(sorted(data[p][a][0]), score_list, label=alg.name, marker=alg.type, color=alg.color) #MARKER PLOTS )
-            min_number = min(min(data[p][a][-2]), min_number)
-            max_number = max(max(data[p][a][-2]), max_number)
-            #max_number = 10
-
-
-
-    plt.xlabel('Generations')
-    plt.ylabel('IGD')
-    plt.title('Variation of IGD')
-    plt.legend()
-    print min_number, max_number
-    plt.ylim([min_number - 1, max_number + 1])# -- tera
-    plt.savefig('charts/' + date_folder_prefix + '/figure' + str("%02d" % fignum) + "_" + prob.name + "_" + "IGD" + '.png', dpi=100)
-    cla()
+    # #--- For IGD -- Values #
+    # min_number = 1e32
+    # max_number = -1e32
+    #
+    # for p,prob in enumerate(problems):
+    #     for a,alg in enumerate(algorithms):
+    #
+    #         # to handle multiple runs
+    #         scores = {}
+    #         for score,eval in zip(data[p][a][-2], data[p][a][0]):
+    #             # print score
+    #             if eval in scores: scores[eval].append(score)
+    #             else: scores[eval] = [score]
+    #
+    #         score_list = []
+    #         try:
+    #             for eval in sorted(data[p][a][0]):
+    #                 score_list.append(median(scores[int(eval)]))
+    #         except:
+    #             import traceback
+    #             traceback.print_exc()
+    #             print scores.keys()
+    #             exit()
+    #
+    #         # for xx, yy in zip(data[p][a][0], score_list):
+    #         #     print xx, yy
+    #         # exit()
+    #
+    #
+    #         plt.plot(sorted(data[p][a][0]), score_list, label=alg.name, marker=alg.type, color=alg.color) #MARKER PLOTS )
+    #         min_number = min(min(data[p][a][-2]), min_number)
+    #         max_number = max(max(data[p][a][-2]), max_number)
+    #         #max_number = 10
+    #
+    #
+    #
+    # plt.xlabel('Generations')
+    # plt.ylabel('IGD')
+    # plt.title('Variation of IGD')
+    # plt.legend()
+    # print min_number, max_number
+    # plt.ylim([min_number - 1, max_number + 1])# -- tera
+    # plt.savefig('charts/' + date_folder_prefix + '/figure' + str("%02d" % fignum) + "_" + prob.name + "_" + "IGD" + '.png', dpi=100)
+    # cla()
 
 
 

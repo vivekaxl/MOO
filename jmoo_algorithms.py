@@ -141,14 +141,14 @@ class jmoo_ANYWHERE:
     def __init__(self, color="Yellow"):
         self.name = "ANYWHERE"
         self.initializer = None
-        self.selector = anywhere2_selector
+        self.selector = anywhere_selector
         self.adjustor = anywhere_mutate
         self.recombiner = anywhere_recombine
         self.color = color
         self.type = '*'
 
 class jmoo_ANYWHERE2:
-    def __init__(self, color="Yellow"):
+    def __init__(self, color="Green"):
         self.name = "ANYWHERE2"
         self.initializer = None
         self.selector = anywhere3_selector

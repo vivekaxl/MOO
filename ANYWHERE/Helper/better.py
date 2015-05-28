@@ -36,8 +36,8 @@ def better(problem,individual,mutant):
     else:
         assert(len(individual.fitness.fitness) == len(mutant.fitness.fitness)), "length of the objectives are not equal"
         if problem.objectives[-1].lismore:
-            indi = 100 - individual.fitness.fitness[-1]
-            mut = 100 - mutant.fitness.fitness[-1]
+            indi = 1e10 - individual.fitness.fitness[-1]
+            mut = 1e10 - mutant.fitness.fitness[-1]
         else:
             indi = individual.fitness.fitness[-1]
             mut = mutant.fitness.fitness[-1]
