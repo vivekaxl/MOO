@@ -352,11 +352,12 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                             min_yaxis = min(min(scorelist), min_yaxis)
                             max_yaxis = max(max(scorelist), max_yaxis)
                             axarr[oo].set_autoscale_on(True)
-                            axarr[oo].set_xlim([-10, 10000])
+                            axarr[oo].set_xlim([-10, 1000])
 
                             #axarr[p][oo].set_ylim([20, 160])# -- xomo
                             #axarr[p][oo].set_ylim([-5, 115])
                             axarr[oo].set_ylim([min_yaxis - 0.1, max_yaxis + 0.1])# -- tera
+                            # axarr[oo].set_ylim([int(min_yaxis*0.9), int(max_yaxis*1.1)])  # NRP/MONRP
                             axarr[oo].set_xscale('log', nonposx='clip')
                             if oo == 0:
                                 axarr[oo].legend(loc='best')

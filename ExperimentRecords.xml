@@ -1,13 +1,51 @@
 <Experiment>
 <Problem name = 'NRP_50_5_5_20_120'>
-<Algorithm name = 'ANYWHERE'>
+<Algorithm name = 'GALE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>18</NumEvals>
-<RunTime>52.8244898319</RunTime>
-<IBD>0.387930629226</IBD>
-<IBS>0.0136815788486</IBS>
-<f1>998</f1>
+<NumEvals>53</NumEvals>
+<RunTime>5.64804410934</RunTime>
+<IBD>0.71657124336</IBD>
+<IBS>0.141687899116</IBS>
+<f1>5960</f1>
+<f2>731</f2>
+<f3>595</f3>
+</Summary></Run>
+</Algorithm>
+<Algorithm name = 'MOEAD'>
+<Run id = '1'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.903640031815</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+<f2>0</f2>
+<f3>0</f3>
+</Summary></Run>
+</Algorithm>
+<Algorithm name = 'NSGA3'>
+<Run id = '1'>
+<Summary>
+<NumEvals>1120</NumEvals>
+<RunTime>2.1689620018</RunTime>
+<IBD>0.725380259686</IBD>
+<IBS>0.00333586214073</IBS>
+<f1>6738.0</f1>
+<f2>731.0</f2>
+<f3>595.0</f3>
+</Summary></Run>
+</Algorithm>
+<Algorithm name = 'ANYWHERE2'>
+<Run id = '1'>
+<Summary>
+<NumEvals>34</NumEvals>
+<RunTime>18.9749031067</RunTime>
+<IBD>0.725628877448</IBD>
+<IBS>0.00981449611586</IBS>
+<f1>5726</f1>
+<f2>731</f2>
+<f3>595</f3>
 </Summary></Run>
 </Algorithm>
 </Problem>

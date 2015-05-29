@@ -58,14 +58,14 @@ from diabaties import *
 
 # JMOO Experimental Definitions
 algorithms = [
-              # jmoo_GALE(),
+              jmoo_GALE(),
               # jmoo_NSGAII(),
               # # jmoo_SPEA2(),
               # jmoo_DE(),
-              # jmoo_MOEAD(),
-              # jmoo_NSGAIII(),
-                jmoo_ANYWHERE(),
-              # jmoo_ANYWHERE2(),
+              jmoo_MOEAD(),
+              jmoo_NSGAIII(),
+              #   jmoo_ANYWHERE(),
+              jmoo_ANYWHERE2(),
 
               ]
 
@@ -92,8 +92,8 @@ problems =[
     # dtlz2(24, 15),
     # dtlz3(24, 15),
     # dtlz4(24, 15)
-    NRP(50, 5, 5, 20, 120)
-    # MONRP(50, 5, 5, 20, 120)
+    # NRP(50, 5, 5, 20, 120)
+    MONRP(50, 5, 5, 20, 120)
     # #, fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
     #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
