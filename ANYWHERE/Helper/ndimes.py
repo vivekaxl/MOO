@@ -8,7 +8,7 @@ import numpy
 
 def ndes_generate_direction(points, midpoint):
     r = sum([point**2 for point in points])**0.5
-    temp = [(point/r) + midpoint[i] for i, point in enumerate(points)]
+    temp = [(point/r) for i, point in enumerate(points)]
     return temp
 
 def generate_direction(dimension, no_points, midpoint):

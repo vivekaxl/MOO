@@ -3,11 +3,11 @@
 <Algorithm name = 'ANYWHERE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>0</NumEvals>
-<RunTime>30.8423521519</RunTime>
-<IBD>1.0</IBD>
-<IBS>0</IBS>
-<f1>0</f1>
+<NumEvals>18</NumEvals>
+<RunTime>52.8244898319</RunTime>
+<IBD>0.387930629226</IBD>
+<IBS>0.0136815788486</IBS>
+<f1>998</f1>
 </Summary></Run>
 </Algorithm>
 </Problem>

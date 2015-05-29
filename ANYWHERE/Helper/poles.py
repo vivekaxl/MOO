@@ -60,26 +60,57 @@ def find_poles(problem, population):
     return stars
 
 
-
 def find_poles2(problem, population):
-    poles = []
-    min_point, max_point = find_extreme_point([pop.decisionValues for pop in population])
-    mid_point = find_midpoint(min_point, max_point)
-    directions = generate_direction(len(problem.decisions), jmoo_properties.ANYWHERE_POLES * 2, mid_point)
-    mid_point = jmoo_individual(problem, mid_point, None)
+    def midpoint(population):
+        def median(lst):
+            import numpy
+            return numpy.median(numpy.array(lst))
+
+        mdpnt = []
+        for dec in xrange(len(population[0].decisionValues)):
+            mdpnt.append(median([pop.decisionValues[dec] for pop in population]))
+        assert(len(mdpnt) == len(population[0].decisionValues)), "Something's wrong"
+        # print mdpnt
+        return jmoo_individual(problem, mdpnt, None)
+
+    def generate_directions(problem):
+        def gen(point):
+            r = sum([pp**2 for pp in point])**0.5
+            return [round(p/r,3) for p in point]
+        coordinates = [gen([random.uniform(0, 1) for _ in xrange(len(problem.decisions))]) for _ in xrange(jmoo_properties.ANYWHERE_POLES * 2)]
+        for co in coordinates:
+            assert(int(round(euclidean_distance(co, [0 for _ in xrange(len(problem.decisions))]))) == 1), "Something's wrong"
+        return coordinates
+
+
+
+
+    # find midpoint
+    mid_point = midpoint(population)
+    # find directions
+    directions = generate_directions(problem)
+    # draw a star
+    poles =[]
     for direction in directions:
         mine = -1e32
         temp_pole = None
         for pop in population:
-            y = perpendicular_distance(direction, pop.decisionValues)
-            c = euclidean_distance(pop.decisionValues, [0 for _ in xrange(len(problem.decisions))])
-            if (c-y) > mine:
+            transformed_dec = [(p-m) for p, m in zip(pop.decisionValues, mid_point.decisionValues)]
+            y = perpendicular_distance(direction, transformed_dec)
+            c = euclidean_distance(transformed_dec, [0 for _ in xrange(len(problem.decisions))])
+            # print c, y
+            if mine < (c-y):
+                mine = c - y
                 temp_pole = pop
-                mine = (c-y)
         poles.append(temp_pole)
 
     stars = rearrange(problem, mid_point, poles)
     return stars
+
+
+
+    # return stars
+
 
 def find_poles3(problem, population):
     poles = []
