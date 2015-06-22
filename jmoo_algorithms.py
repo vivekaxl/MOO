@@ -128,7 +128,7 @@ class jmoo_MOEAD:
         self.type = '*'
 
 class jmoo_NSGAIII:
-    def __init__(self, color="green"):
+    def __init__(self, color="blue"):
         self.name = "NSGA3"
         self.initializer = None
         self.selector = nsgaiii_selector
