@@ -34,24 +34,26 @@ class cpm_apache(jmoo_problem):
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
         self.objectives = [jmoo_objective("f1", False)]
-        self.data = read_csv(self.filename, cpm_apache_data_frame)
+        self.data = read_csv(self.filename)
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data()
-        self.CART = tree.DecisionTreeRegressor().fit(self.training_dependent, self.training_independent)
+        self.CART = tree.DecisionTreeRegressor()
+        self.CART = self.CART.fit(self.training_dependent, self.training_independent)
 
     def get_training_data(self, percentage = 0.5):
         from random import sample
         random_selection = sample(self.data, int(len(self.data) * percentage))
-        self.get_testing_data([x.id for x in random_selection])
-        return [row[:-1] for row in random_selection], [row[-1] for row in random_selection]
+        self.get_testing_data([x[0] for x in random_selection])
+        return [row[1:-1] for row in random_selection], [row[-1] for row in random_selection]
 
     def get_testing_data(self, list):
         testing_data = []
         for row in self.data:
-            if row.id not in list:
+            if row[0] not in list:
                 testing_data.append(row)
-        self.testing_independent = [row[:-1] for row in testing_data]
+        self.testing_independent = [row[1:-1] for row in testing_data]
         self.testing_dependent = [row[-1] for row in testing_data]
+        the cart is not working
 
     def test_data(self):
         prediction = self.CART(self.testing_independent)
