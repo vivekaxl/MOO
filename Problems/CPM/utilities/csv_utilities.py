@@ -11,7 +11,7 @@ def read_csv(filename):
     reader = csv.reader(f)
     for i,row in enumerate(reader):
         if i == 0 : continue  # Header
-        data.append([i-1]+row)
+        data.append([i-1]+[1 if x =="Y" else 0 for x in row[:-1]] + [row[-1]])
     return data
 
 

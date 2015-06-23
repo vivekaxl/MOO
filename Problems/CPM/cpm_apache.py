@@ -38,7 +38,7 @@ class cpm_apache(jmoo_problem):
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data()
         self.CART = tree.DecisionTreeRegressor()
-        self.CART = self.CART.fit(self.training_dependent, self.training_independent)
+        self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
     def get_training_data(self, percentage = 0.5):
         from random import sample
@@ -53,10 +53,9 @@ class cpm_apache(jmoo_problem):
                 testing_data.append(row)
         self.testing_independent = [row[1:-1] for row in testing_data]
         self.testing_dependent = [row[-1] for row in testing_data]
-        the cart is not working
 
     def test_data(self):
-        prediction = self.CART(self.testing_independent)
+        prediction = self.CART.predict(self.testing_independent)
         print len(prediction), len(self.testing_dependent)
 
 
