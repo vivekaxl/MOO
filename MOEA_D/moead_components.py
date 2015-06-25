@@ -89,26 +89,26 @@ def mutate(problem, individual, rate):
     eta_m = 20
     for i, decision in enumerate(problem.decisions):
         if random.random() <= rate:
-        y = individual[i]
-        yl = decision.low
-        yu = decision.up
+            y = individual[i]
+            yl = decision.low
+            yu = decision.up
 
-        delta1 = (y - yl) / (yu - yl)
-        delta2 = (yu - y) / (yu - yl)
+            delta1 = (y - yl) / (yu - yl)
+            delta2 = (yu - y) / (yu - yl)
 
-        rnd = random.random()
-        mut_pow = 1 / (eta_m + 1)
+            rnd = random.random()
+            mut_pow = 1 / (eta_m + 1)
 
-        if rnd <= 0.5:
-            xy = 1 - delta1
-            val = 2.0 * rnd + (1 - 2.0 * rnd) + xy ** (eta_m + 1.0)
-            deltaq = (val ** mut_pow) - 1
-        else:
-            xy = 1 - delta2
-            val = 2.0 * (1.0 - rnd) + 2.0 * (rnd - 0.5) + xy ** (eta_m + 1.0)
-            deltaq = 1.0 - (val ** mut_pow)
+            if rnd <= 0.5:
+                xy = 1 - delta1
+                val = 2.0 * rnd + (1 - 2.0 * rnd) + xy ** (eta_m + 1.0)
+                deltaq = (val ** mut_pow) - 1
+            else:
+                xy = 1 - delta2
+                val = 2.0 * (1.0 - rnd) + 2.0 * (rnd - 0.5) + xy ** (eta_m + 1.0)
+                deltaq = 1.0 - (val ** mut_pow)
 
-            individual[i] = trim(y + deltaq * (yu - yl), decision.low, decision.up)
+                individual[i] = trim(y + deltaq * (yu - yl), decision.low, decision.up)
 
     return individual
 

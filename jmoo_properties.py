@@ -37,6 +37,11 @@ from tera_datasets_WHERE import *
 from tera_dataset_RF import *
 
 
+cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems")))
+if cmd_subfolder not in sys.path:
+    sys.path.insert(0, cmd_subfolder)
+from CPM.cpm import *
+
 cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/NRP")))
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
@@ -62,10 +67,10 @@ algorithms = [
               # jmoo_NSGAII(),
               # # jmoo_SPEA2(),
               # jmoo_DE(),
-              jmoo_MOEAD(),
-              jmoo_NSGAIII(),
-              #   jmoo_ANYWHERE(),
-              jmoo_ANYWHERE2(),
+              # jmoo_MOEAD(),
+              # jmoo_NSGAIII(),
+              # #   jmoo_ANYWHERE(),
+              # jmoo_ANYWHERE2(),
 
               ]
 
@@ -93,7 +98,8 @@ problems =[
     # dtlz3(24, 15),
     # dtlz4(24, 15)
     # NRP(50, 5, 5, 20, 120)
-    MONRP(50, 5, 5, 20, 120)
+    #MONRP(50, 5, 5, 20, 120)
+    cpm_apache()
     # #, fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
     #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),
