@@ -26,7 +26,7 @@ class cpm_apache_data_frame:
         self.Performance = list[9]
 
 class cpm(jmoo_problem):
-    def get_training_data(self, percentage = 0.6):
+    def get_training_data(self, percentage = 0.8):
         from random import sample
         random_selection = sample(self.data, int(len(self.data) * percentage))
         self.get_testing_data([x[0] for x in random_selection])
@@ -51,7 +51,6 @@ class cpm(jmoo_problem):
         print len(self.data)
 
     def evaluate(self, input = None):
-        print len(input), len(self.decisions)
         if input:
             for i,decision in enumerate(self.decisions):
                 decision.value = input[i]
@@ -68,6 +67,7 @@ class cpm(jmoo_problem):
         return False
 
 class cpm_apache(cpm):
+    # def __init__(self, requirements=9, fraction=0.5, name="CPM_APACHE", filename="./data/Apache_AllMeasurements.csv"):
     def __init__(self, requirements=9, fraction=0.5, name="CPM_APACHE", filename="./Problems/CPM/data/Apache_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
@@ -83,7 +83,8 @@ class cpm_apache(cpm):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_BDBC(cpm):
-    def __init__(self, requirements=9, fraction=0.5, name="CPM_BDBC", filename="./Problems/CPM/data/BDBC_AllMeasurements.csv"):
+    # def __init__(self, requirements=9, fraction=0.5, name="CPM_BDBC", filename="./data/BDBC_AllMeasurements.csv"):
+    def __init__(self, requirements=18, fraction=0.5, name="CPM_BDBC", filename="./Problems/CPM/data/BDBC_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -97,9 +98,9 @@ class cpm_BDBC(cpm):
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
-
 class cpm_BDBJ(cpm):
-    def __init__(self, requirements=9, fraction=0.5, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
+    # def __init__(self, requirements=9, fraction=0.5, name="CPM_BDBJ", filename="./data/BDBJ_AllMeasurements.csv"):
+    def __init__(self, requirements=26, fraction=0.5, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -114,7 +115,8 @@ class cpm_BDBJ(cpm):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_LLVM(cpm):
-    def __init__(self, requirements=9, fraction=0.5, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
+    # def __init__(self, requirements=9, fraction=0.5, name="CPM_LLVM", filename="./data/LLVM_AllMeasurements.csv"):
+    def __init__(self, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -129,7 +131,8 @@ class cpm_LLVM(cpm):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_SQL_100(cpm):
-    def __init__(self, requirements=9, fraction=0.5, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
+    # def __init__(self, requirements=9, fraction=0.5, name="CPM_SQL_100", filename="./data/SQL_100testing.csv"):
+    def __init__(self, requirements=39, fraction=0.5, name="CPM_SQL_100", filename="./Problems/CPM/data/SQL_100testing.csv"):
         self.name = name
         self.filename = filename
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -144,7 +147,8 @@ class cpm_SQL_100(cpm):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_SQL_4553(cpm):
-    def __init__(self, requirements=9, fraction=0.5, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
+    # def __init__(self, requirements=9, fraction=0.5, name="CPM_SQL_4553", filename="./data/SQL_4553training.csv"):
+    def __init__(self, requirements=39, fraction=0.5, name="CPM_SQL_4553", filename="./Problems/CPM/data/SQL_4553training.csv"):
         self.name = name
         self.filename = filename
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -159,7 +163,8 @@ class cpm_SQL_4553(cpm):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_X264(cpm):
-    def __init__(self, requirements=9, fraction=0.5, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
+    # def __init__(self, requirements=9, fraction=0.5, name="cpm_X264", filename="./data/X264_AllMeasurements.csv"):
+    def __init__(self, requirements=16, fraction=0.5, name="cpm_X264", filename="./Problems/CPM/data/X264_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -173,15 +178,37 @@ class cpm_X264(cpm):
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
-def performance_test():
+
+class data_container:
+    def __init__(self, fraction, value):
+        self.fraction = fraction
+        self.value = value
+
+def performance_test(dataset):
     repeat = 10
-    for x in [i * 0.01 for i in xrange(50,100)]:
-        print x,
+    scores = []
+    for x in [i * 0.01 for i in xrange(50, 100)]:
         temp_store = []
         for p in xrange(repeat):
-            problem = cpm_X264(fraction=x)
+            problem = dataset(fraction=x)
             temp_store.append(problem.test_data())
-        print sum(temp_store)/len(temp_store)
+        scores.append(data_container(x, sum(temp_store)/len(temp_store)))
+
+    draw([x.fraction for x in scores], [x.value for x in scores], problem.name)
+
+def draw(listx, listy, name):
+    import pylab as pl
+    pl.plot(listx, listy)
+    pl.xlim(min(listx) * 0.9, max(listx) * 1.1)
+    pl.ylim(min(listy) * 0.9, max(listy) * 1.1)
+    pl.xlabel('Training set range')
+    pl.ylabel('MRE variation over 10 repeats')
+    pl.title(name)
+    pl.savefig("./figures/" + name + ".png")
+
 
 if __name__ == "__main__":
-    performance_test()
+    problems = [cpm_SQL_4553]# [cpm_apache, cpm_BDBC, cpm_BDBJ, cpm_LLVM, cpm_SQL_100, cpm_SQL_4553, cpm_X264]
+    for problem in problems:
+        print problem
+        performance_test(problem)

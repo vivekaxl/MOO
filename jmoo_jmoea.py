@@ -107,7 +107,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         problem.referencePoint = statBox.referencePoint
         selectees, evals = algorithm.selector(problem, population)
         numNewEvals = evals
-        
+
 
         #raw_input("Press any Key")
         # # # # # # # # # #
@@ -115,6 +115,8 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # # # # # # # # # #
         selectees, evals = algorithm.adjustor(problem, selectees)
         numNewEvals += evals
+
+
         
         # # # # # # # # # # #
         # 4c) Recombination #
@@ -123,7 +125,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         population, evals = algorithm.recombiner(problem, population, selectees, MU)
         numNewEvals += evals
 
-        
+
         
         # # # # # # # # # # #
         # 4d) Collect Stats #
@@ -137,16 +139,16 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         # # # # # # # # # # # # # # # # # #
         # 4e) Evaluate Stopping Criteria  #
         # # # # # # # # # # # # # # # # # #
-        # stoppingCriteria = toStop(statBox)
-        stoppingCriteria = False
+        stoppingCriteria = toStop(statBox)
+        # stoppingCriteria = False
 
 
 
     
 
     # print "=" * 30
-    print len(statBox.box[-1].population)
-    for pop in statBox.box[-1].population:
-        print pop.fitness.fitness
+    # print len(statBox.box[-1].population)
+    # for pop in statBox.box[-1].population:
+    #     print pop.fitness.fitness
     # return the representative generation
     return statBox

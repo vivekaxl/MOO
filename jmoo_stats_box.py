@@ -227,7 +227,7 @@ def changeFromOld(new, old, lismore, low, up):
         new = abs(new)
         old = abs(old)
     else: ourlismore = lismore
-    # if new == 0 or old == 0: return 0 if ourlismore else 110
+    # if new == 0 or old == 0: return 0 if ourlprintismore else 110
     new = normalize(new, low, up)
     old = normalize(old, low, up)
     if old == 0: x = 0
