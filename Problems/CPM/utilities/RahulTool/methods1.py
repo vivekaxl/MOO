@@ -79,13 +79,19 @@ def createTbl(
   return newTable(tbl, headerLabel, Rows)
 
 
+def wrapper_createTbl(dir):
+  return createTbl([dir], _smote=False)
+
+
 def test_createTbl():
-  import os
-  print(os.getcwd())
   dir = '../../data/Apache_AllMeasurements.csv'
   newTbl = createTbl([dir], _smote=False)
-  newTblSMOTE = createTbl([dir], _smote=True)
-  print(len(newTbl._rows), len(newTblSMOTE._rows))
+  # import pdb
+  # pdb.set_trace()
+  print(len(newTbl._rows))
+  # print [x.cells for x in newTbl._rows]
+  print len(set([z[-1] for z in map(lambda x: x.cells, newTbl._rows)]))
+
 
 
 def drop(test, tree):

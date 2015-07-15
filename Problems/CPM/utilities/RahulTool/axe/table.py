@@ -34,9 +34,11 @@ def row(file,skip= The.reader.skip):
 ## Read Headers and Rows
 def table(source, rows = True, contents = row):
   t = table0(source)
-  for n,cells in contents(source):  
+  for n,cells in contents(source):
     if n == 0 : head(cells,t) 
-    else      : body(cells,t,rows) 
+    else      :
+      cells = [1 if x == 'Y' else 0 for x in cells[:-1]] + cells[-1:]
+      body(cells,t,rows)
   #print ">>>>", t.headers
   return t
 
@@ -70,6 +72,7 @@ def body(cells,t,keep=True):
     cell = cells[header.col]
     #print n,"!",cell,"!"
     if not cell == The.reader.missing:
+      #print header, cell
       header + cell
   if keep: 
     new = Row(cells)

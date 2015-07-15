@@ -1,4 +1,4 @@
-Base,HostnameLookups,KeepAlive,EnableSendfile,FollowSymLinks,AccessLog,ExtendedStatus,InMemory,Handle,Performance
+$Base,$HostnameLookups,$KeepAlive,$EnableSendfile,$FollowSymLinks,$AccessLog,$ExtendedStatus,$InMemory,$Handle,$<Performance
 Y,N,N,N,N,N,N,N,N,1200
 Y,N,Y,N,Y,N,N,N,N,2100
 Y,N,Y,Y,N,N,Y,Y,N,2310

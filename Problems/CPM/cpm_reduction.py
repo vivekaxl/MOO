@@ -3,14 +3,93 @@ import sys, os, inspect
 parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"../../")))
 if parentdir not in sys.path:
     sys.path.insert(0, parentdir)
+
+parentdir = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"../../Techniques")))
+if parentdir not in sys.path:
+    sys.path.insert(0, parentdir)
 from jmoo_objective import *
 from jmoo_decision import *
 from jmoo_problem import jmoo_problem
+from euclidean_distance import euclidean_distance
 from Problems.CPM.utilities.csv_utilities import read_csv
-from Problems.CPM.utilities.lib import data
-from Problems.CPM.utilities.where_utilities import launchWhere2
+
 from sklearn import tree
 import itertools
+
+def equal_list(lista, listb):
+    print lista
+    print listb
+    assert(len(lista) == len(listb)), "Not a valid comparison"
+    for i, j in zip(lista, listb):
+        if i == j: pass
+        else: return False
+    return True
+
+def WHEREDataTransformation(filename):
+    from utilities.RahulTool.methods1 import wrapper_createTbl
+    # The data has to be access using this attribute table._rows.cells
+    transformed_table = [[int(z) for z in x.cells[:-1]] + x.cells[-1:] for x in wrapper_createTbl(filename)._rows]
+    cluster_numbers = set(map(lambda x: x[-1], transformed_table))
+    print "Length: ", len(cluster_numbers)
+
+    # separating clusters
+    # the element looks like [clusterno, rows]
+    cluster_table = []
+    for number in cluster_numbers:
+        cluster_table.append([number]+ [filter(lambda x: x[-1] == number, transformed_table)])
+    return cluster_table
+
+def east_west_where(filename):
+    def furthest(one, all_members):
+        ret = None
+        ret_distance = -1 * 1e10
+        for member in all_members:
+            if equal_list(one, member) is True: continue
+            else:
+                temp = euclidean_distance(one, member)
+                if temp > ret_distance:
+                    ret = member
+                    ret_distance = temp
+        return ret
+    from random import choice
+    cluster_table = WHEREDataTransformation(filename)
+    ret = []
+    for cluster in cluster_table:
+        cluster[-1] = [c[:-1] for c in cluster[-1]]
+        one = choice(cluster[-1])
+        east = furthest(one, cluster[-1])
+        west = furthest(east, cluster[-1])
+        ret.append(east)
+        ret.append(west)
+
+    return ret
+#
+# def median_where(self, filename):
+#     #TODO
+#
+# def exemplar_where(self, filename):
+#     # todo
+#
+# def mean_where(self, filename):
+#     # todo
+#
+# def base_line(self, filename):
+#     #todo
+
+temp_file_name = "temp_file.csv"
+def temp_file_generation(header, listoflist):
+    import csv
+    with open(temp_file_name, 'w') as fwrite:
+        writer = csv.writer(fwrite, delimiter=',')
+        writer.writerow(header)
+        for l in listoflist: writer.writerow(l)
+
+def temp_file_removal():
+    os.remove(temp_file_name)
+
+
+
+
 
 class cpm_apache_data_frame:
     newid = itertools.count().next
@@ -27,29 +106,23 @@ class cpm_apache_data_frame:
         self.Handle = list[8]
         self.Performance = list[9]
 
+
 class cpm_reduction(jmoo_problem):
-    def WHEREDataTransformation(self, filename):
-        header, dataread = read_csv(filename, header=True)
-        # print header
-        dataread = [x[1:] for x in dataread]
-        # print dataread
-        datasent = data(indep=header[:-1], less=header[-1:], _rows=dataread)
-        print launchWhere2(datasent)
-        exit()
-        #i have the data and header and now I need to put in into data and pass it to the where function
-
-
-    def get_training_data(self, filename, percentage=0.8):
-        self.WHEREDataTransformation(filename)
-        get_clusters(self.data)
+    def get_training_data(self, filename, percentage=0.8, method=east_west_where):
         from random import sample
         random_selection = sample(self.data, int(len(self.data) * percentage))
         self.get_testing_data([x[0] for x in random_selection])
-        dependent_variables = [row[1:-1] for row in random_selection]
 
-    def get_clusters_train(train):
-            get_clusters(train)
+        print random_selection
+        exit()
 
+
+        temp_file_generation(self.header, random_selection)
+        exit()
+        training = method(temp_file_name)
+        temp_file_removal()
+        exit()
+        return [row[:-1] for row in training], [row[-1] for row in training]
 
     def get_testing_data(self, list):
         testing_data = []
@@ -95,7 +168,7 @@ class cpm_apache_training_reduction(cpm_reduction):
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
         self.objectives = [jmoo_objective("f1", True)]
-        self.data = read_csv(self.filename)
+        self.header, self.data = read_csv(self.filename, header=True)
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data(filename, fraction)
         self.CART = tree.DecisionTreeRegressor()
@@ -228,7 +301,7 @@ def draw(listx, listy, name):
 # This is a function that would help to generate numbers to compare the elbow (trade off between amount of training
 # and accuracy)
 if __name__ == "__main__":
-    problems = [cpm_SQL_4553, cpm_apache, cpm_BDBC, cpm_BDBJ, cpm_LLVM, cpm_SQL_100, cpm_SQL_4553, cpm_X264]
+    problems = [cpm_apache_training_reduction]#[cpm_SQL_4553, cpm_apache, cpm_BDBC, cpm_BDBJ, cpm_LLVM, cpm_SQL_100, cpm_SQL_4553, cpm_X264]
     for problem in problems:
         print problem
         performance_test(problem)

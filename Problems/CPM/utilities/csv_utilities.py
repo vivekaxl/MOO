@@ -5,7 +5,6 @@ def transform(filename):
 
 def read_csv(filename, header=False):
     data = []
-    print filename
     f = open(filename, 'rb')
     reader = csv.reader(f)
     for i,row in enumerate(reader):
