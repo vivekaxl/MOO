@@ -1163,21 +1163,21 @@ class B(Range):
       o.rval = random.random()
     return -0.036 * x + 1.1 - 0.1*o.rval - 0.05
 
-import os
-import sys
-def coced0(output=os.environ["HOME"]+"/tmp",
-           data = "./data",
-           model=None):
-  if not model:
-    if len(sys.argv) > 1:
-      model = sys.argv[1]
-    else:
-      model="flight"
-  _c = Cocomo(data + '/' + model)
-  _c.xys(verbose=False)
-  out = output + "/" + model + ".csv"
-  _c.trials(out=out,verbose=False)
-  sys.stderr.write("# see" + out + "\n")
+# import os
+# import sys
+# def coced0(output=os.environ["HOME"]+"/tmp",
+#            data = "./data",
+#            model=None):
+#   if not model:
+#     if len(sys.argv) > 1:
+#       model = sys.argv[1]
+#     else:
+#       model="flight"
+#   _c = Cocomo(data + '/' + model)
+#   _c.xys(verbose=False)
+#   out = output + "/" + model + ".csv"
+#   _c.trials(out=out,verbose=False)
+#   sys.stderr.write("# see" + out + "\n")
 
 
 #coced0()

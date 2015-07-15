@@ -7,7 +7,8 @@ from jmoo_objective import *
 from jmoo_decision import *
 from jmoo_problem import jmoo_problem
 from Problems.CPM.utilities.csv_utilities import read_csv
-from Problems.CPM.utilities.where_utilities import get_clusters
+from Problems.CPM.utilities.lib import data
+from Problems.CPM.utilities.where_utilities import launchWhere2
 from sklearn import tree
 import itertools
 
@@ -27,8 +28,19 @@ class cpm_apache_data_frame:
         self.Performance = list[9]
 
 class cpm_reduction(jmoo_problem):
-    def get_training_data(self, train, percentage=0.8):
+    def WHEREDataTransformation(self, filename):
+        header, dataread = read_csv(filename, header=True)
+        # print header
+        dataread = [x[1:] for x in dataread]
+        # print dataread
+        datasent = data(indep=header[:-1], less=header[-1:], _rows=dataread)
+        print launchWhere2(datasent)
+        exit()
+        #i have the data and header and now I need to put in into data and pass it to the where function
 
+
+    def get_training_data(self, filename, percentage=0.8):
+        self.WHEREDataTransformation(filename)
         get_clusters(self.data)
         from random import sample
         random_selection = sample(self.data, int(len(self.data) * percentage))

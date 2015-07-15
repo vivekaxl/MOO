@@ -30,7 +30,7 @@ class cpm(jmoo_problem):
         from random import sample
         random_selection = sample(self.data, int(len(self.data) * percentage))
         self.get_testing_data([x[0] for x in random_selection])
-        return [row[1:-1] for row in random_selection], [row[-1] for row in random_selection]
+        return [row[:-1] for row in random_selection], [row[-1] for row in random_selection]
 
     def get_testing_data(self, list):
         testing_data = []

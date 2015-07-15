@@ -18,8 +18,9 @@ from settings import *
 
 from csv_utilities import read_csv
 
-
-# MODEL =  nasa93.nasa93
+def dummy():
+  return 1
+MODEL = dummy # This is a dummy statement and this won't work
 
 """
 
@@ -343,20 +344,19 @@ def scores(m,it):
     it.scored = True
   return it.score
 
-def get_clusters(rows, settings=None, verbose=False):
-    I need to add a function which would convert a file into george's data structure
-    print(rows)
-    exit()
-    global The
-    The=defaults()
-    The.what.update(verbose = verbose)
-    if settings is None:
-        m.settings = peekSettings().defaults.update(
+def launchWhere2(m, settings=None, rows=None, verbose=False):
+  if not rows:
+    rows = m._rows
+  global The
+  The=defaults()
+  The.what.update(verbose = verbose)
+  if settings is None:
+    m.settings = peekSettings().defaults.update(
                minSize = int(len(rows)**0.5),
                prune   = False)
-    else :
-        m.settings = settings
-    return where2(m, rows,verbose = verbose)
+  else :
+    m.settings = settings
+  return where2(m, rows,verbose = verbose)
 
 """
 
@@ -509,6 +509,7 @@ def _where(m=MODEL):
 ## Start-up Actions
 
 """
+
 if __name__ == '__main__':
   seed(1)
   model = MODEL()
