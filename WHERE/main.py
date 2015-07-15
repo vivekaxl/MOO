@@ -419,11 +419,15 @@ def buildtdiv(tbl):
 # We start at hereee!
 #++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+def test_cpm(train):
+    m, sym2num = csv2py(train)
+    print m
+    num2sym = dict(zip(sym2num.values(), sym2num.keys()))
+    Init(m)  # init The class
+    exit()
+
 
 def run(train, test):
-  # random.seed(1)
-  # data = o(src = "data/nasa93train.csv")
-  #print "Started"
   testdata, actual = buildtestdata1(test)
   m, sym2num = csv2py(train)
   num2sym = dict(zip(sym2num.values(), sym2num.keys()))
@@ -459,10 +463,6 @@ def where2Tuning(listpoints):
 
   The.option.showWhere = False
   The.option.showDTree = False
-  # The.data.train =["./data/ant/ant-1.3.csv"]
-  # The.data.predict ="./data/ant/ant-1.4.csv"
-  # The.data.train =["./data/nasa93.csv"]
-  # The.data.predict ="./data/nasa93.csv"
   score = run(The.data.train, The.data.predict)
   return score
 
@@ -486,7 +486,6 @@ class TunedWhere(ModelBasic):
 
   def f1(self,listpoints,num=0):
     global The
-    #listpoints = [0.3965905414713251, 9.624382927762754, 0.6769956877989992, 0.13479337989644946, 5.76365530570447, 5.687487654238003, 0.8059646839147693, 0.2613611026859818, 0.7659854934875122]
     assert(len(listpoints) != 0),"parameters are empty"
     The.tree.infoPrune = float(listpoints[0])
     The.tree.min = int(listpoints[1])

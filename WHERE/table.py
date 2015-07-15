@@ -75,7 +75,10 @@ def contents(file, sep= The.reader.sep, bad= The.reader.bad, k=3):
         for n,line in enumerate(f):
             line = re.sub(bad,"",line) # kill white space
             if n != 0:
-                ret.append((n, [float(x) for x in line.split(sep)[k:]]))
+                try:
+                    ret.append((n, [float(x) for x in line.split(sep)[k:]]))
+                except:
+                    ret.append((n, [1 if x == 'Y' else 0 for x in line.split(sep)[k:]]))
             else:
                 ret.append([n, line.split(sep)[k:]])
 

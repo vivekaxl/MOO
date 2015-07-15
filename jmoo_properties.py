@@ -41,6 +41,7 @@ cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(insp
 if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 from CPM.cpm import *
+from CPM.cpm_reduction import *
 
 cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe()))[0],"Problems/NRP")))
 if cmd_subfolder not in sys.path:
@@ -99,8 +100,8 @@ problems =[
     # dtlz4(24, 15)
     # NRP(50, 5, 5, 20, 120)
     #MONRP(50, 5, 5, 20, 120)
-    cpm_apache(),cpm_X264(), cpm_SQL_4553(), cpm_SQL_100(), cpm_LLVM(), cpm_BDBJ(), cpm_BDBC()
-
+    # cpm_apache(),cpm_X264(), cpm_SQL_4553(), cpm_SQL_100(), cpm_LLVM(), cpm_BDBJ(), cpm_BDBC()
+cpm_apache_training_reduction()
     # #, fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
     #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),

@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jmoo_properties.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jmoo_properties.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.328125" vertical-offset="2244" max-vertical-offset="2820">
-              <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="139" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="2835">
+              <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
               <folding>
                 <element signature="e#1078#1107#0" expanded="true" />
               </folding>
@@ -46,85 +46,58 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jmoo_core.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_core.py">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WHERE/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.0" vertical-offset="3288" max-vertical-offset="10860">
-              <caret line="239" column="33" selection-start-line="239" selection-start-column="33" selection-end-line="239" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jmoo_jmoea.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_jmoea.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1284" max-vertical-offset="2295">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jmoo_algorithms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_algorithms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1334" max-vertical-offset="6585">
-              <caret line="137" column="22" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jmoo_stats_box.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-32.11111" vertical-offset="1998" max-vertical-offset="4140">
-              <caret line="199" column="30" selection-start-line="199" selection-start-column="24" selection-end-line="199" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cpm.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.222222" vertical-offset="558" max-vertical-offset="3255">
-              <caret line="52" column="37" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
+            <state vertical-scroll-proportion="-7.111111" vertical-offset="6183" max-vertical-offset="8970">
+              <caret line="425" column="8" selection-start-line="425" selection-start-column="4" selection-end-line="425" selection-end-column="8" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#9273#9369#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="X264_AllMeasurements.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Problems/CPM/data/X264_AllMeasurements.csv">
+      <file leaf-file-name="where_utilities.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/where_utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17385">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.359375" vertical-offset="4983" max-vertical-offset="7830">
+              <caret line="346" column="84" selection-start-line="346" selection-start-column="84" selection-end-line="346" selection-end-column="84" />
+              <folding>
+                <element signature="e#168#214#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1707" max-vertical-offset="2370">
+              <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SQL_4553training.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Problems/CPM/data/SQL_4553training.csv">
+      <file leaf-file-name="csv_utilities.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/csv_utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="68400">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="78" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SQL_100testing.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Problems/CPM/data/SQL_100testing.csv">
+      <file leaf-file-name="cpm_reduction.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_reduction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1605">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="78" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="3420">
+              <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -134,11 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/GALE/gale_components.py" />
-        <option value="$PROJECT_DIR$/deap/tools/mutation.py" />
-        <option value="$PROJECT_DIR$/Techniques/euclidean_distance.py" />
-        <option value="$PROJECT_DIR$/deap/base.py" />
-        <option value="$PROJECT_DIR$/jmoo_problem.py" />
         <option value="$PROJECT_DIR$/NSGAIII/polynomial_mutation.py" />
         <option value="$PROJECT_DIR$/NSGAIII/ref_point_2.py" />
         <option value="$PROJECT_DIR$/NSGAIII/binary_crossover.py" />
@@ -181,10 +149,15 @@
         <option value="$PROJECT_DIR$/MOEA_D/moead_components.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/utilities/csv_utilities.py" />
         <option value="$PROJECT_DIR$/joes_moo_charter.py" />
-        <option value="$PROJECT_DIR$/jmoo_properties.py" />
         <option value="$PROJECT_DIR$/jmoo_stats_box.py" />
-        <option value="$PROJECT_DIR$/Problems/CPM/cpm.py" />
         <option value="$PROJECT_DIR$/jmoo_jmoea.py" />
+        <option value="$PROJECT_DIR$/Problems/CPM/cpm.py" />
+        <option value="$PROJECT_DIR$/jmoo_properties.py" />
+        <option value="$PROJECT_DIR$/WHERE/table.py" />
+        <option value="$PROJECT_DIR$/WHERE/main.py" />
+        <option value="$PROJECT_DIR$/Problems/CPM/cpm_reduction.py" />
+        <option value="$PROJECT_DIR$/Problems/CPM/utilities/settings.py" />
+        <option value="$PROJECT_DIR$/Problems/CPM/utilities/where_utilities.py" />
       </list>
     </option>
   </component>
@@ -215,7 +188,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -284,16 +256,17 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
+              <option name="myItemId" value="utilities" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/GIT/CodeLab" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/viveknair/jmoo-jmoo_v2/jmoo_properties.py&#10;initi&#9;null&#9;null&#10;row&#9;null&#9;null&#10;jmoo_te&#9;null&#9;null&#10;stats&#9;null&#9;null&#10;any&#9;null&#9;null" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -307,8 +280,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Problems/CPM/utilities" />
       <recent name="$PROJECT_DIR$/Problems/CPM" />
+      <recent name="$PROJECT_DIR$/Problems/CPM/utilities" />
       <recent name="$PROJECT_DIR$/Problems/CPM/data" />
       <recent name="$PROJECT_DIR$/ANYWHERE/Helper" />
       <recent name="$PROJECT_DIR$/" />
@@ -474,7 +447,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -483,19 +456,19 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21212122" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -530,48 +503,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ANYWHERE/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="547">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Techniques/IGD_Calculation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
-          <caret line="14" column="43" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NSGAIII/associate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.055045873" vertical-offset="0" max-vertical-offset="1005">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="22" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NSGAIII/normalize.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.357798" vertical-offset="0" max-vertical-offset="3480">
-          <caret line="123" column="41" selection-start-line="123" selection-start-column="41" selection-end-line="123" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_problem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1965">
-          <caret line="38" column="22" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utility.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33211008" vertical-offset="2729" max-vertical-offset="3975">
-          <caret line="196" column="4" selection-start-line="196" selection-start-column="4" selection-end-line="196" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GALE/fastmap/Moo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="910" max-vertical-offset="2775">
@@ -590,13 +521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
           <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/tera/tera_datasets_WHERE.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53571427" vertical-offset="0" max-vertical-offset="11265">
-          <caret line="15" column="129" selection-start-line="15" selection-start-column="129" selection-end-line="15" selection-end-column="129" />
         </state>
       </provider>
     </entry>
@@ -737,15 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1125" max-vertical-offset="4920">
           <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="110" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/csv_utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -753,7 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="979" max-vertical-offset="2625">
           <caret line="78" column="29" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -761,7 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4200" max-vertical-offset="12255">
           <caret line="319" column="8" selection-start-line="319" selection-start-column="8" selection-end-line="319" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -769,7 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.777778" vertical-offset="3843" max-vertical-offset="6330">
           <caret line="290" column="29" selection-start-line="290" selection-start-column="29" selection-end-line="290" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -777,9 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1737" max-vertical-offset="2340">
           <caret line="101" column="12" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="46" />
-          <folding>
-            <element signature="e#2#33#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -787,9 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.4129354" vertical-offset="1227" max-vertical-offset="2130">
           <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding>
-            <element signature="e#2#33#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -797,7 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5737977" vertical-offset="1724" max-vertical-offset="2520">
           <caret line="138" column="31" selection-start-line="137" selection-start-column="22" selection-end-line="138" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -805,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="2985">
           <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -813,7 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="38505">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -821,7 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2805">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -829,7 +731,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15465">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -837,7 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1605">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -845,7 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="68400">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,15 +752,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17385">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-32.11111" vertical-offset="1998" max-vertical-offset="4140">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1998" max-vertical-offset="4140">
           <caret line="199" column="30" selection-start-line="199" selection-start-column="24" selection-end-line="199" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -869,26 +766,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1949" max-vertical-offset="6585">
           <caret line="137" column="22" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.0" vertical-offset="3288" max-vertical-offset="10860">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3288" max-vertical-offset="10860">
           <caret line="239" column="33" selection-start-line="239" selection-start-column="33" selection-end-line="239" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.222222" vertical-offset="558" max-vertical-offset="3255">
-          <caret line="52" column="37" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#9273#9369#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -896,7 +780,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1284" max-vertical-offset="2295">
           <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/tera/tera_datasets_WHERE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.111111" vertical-offset="3078" max-vertical-offset="11160">
+          <caret line="225" column="26" selection-start-line="225" selection-start-column="17" selection-end-line="225" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -910,10 +800,83 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.328125" vertical-offset="2244" max-vertical-offset="2820">
-          <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="139" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="2835">
+          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
           <folding>
             <element signature="e#1078#1107#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2487" max-vertical-offset="3270">
+          <caret line="175" column="65" selection-start-line="175" selection-start-column="65" selection-end-line="175" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#9266#9362#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WHERE/table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="393" max-vertical-offset="2940">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WHERE/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.111111" vertical-offset="6183" max-vertical-offset="8970">
+          <caret line="425" column="8" selection-start-line="425" selection-start-column="4" selection-end-line="425" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WHERE/where2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.333333" vertical-offset="5658" max-vertical-offset="7170">
+          <caret line="404" column="8" selection-start-line="404" selection-start-column="8" selection-end-line="404" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/csv_utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_reduction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="3420">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1707" max-vertical-offset="2370">
+          <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/where_utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.359375" vertical-offset="4983" max-vertical-offset="7830">
+          <caret line="346" column="84" selection-start-line="346" selection-start-column="84" selection-end-line="346" selection-end-column="84" />
+          <folding>
+            <element signature="e#168#214#0" expanded="true" />
           </folding>
         </state>
       </provider>

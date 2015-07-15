@@ -75,7 +75,7 @@ class cpm_apache(cpm):
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
-        self.objectives = [jmoo_objective("f1", False)]
+        self.objectives = [jmoo_objective("f1", True)]
         self.data = read_csv(self.filename)
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data(fraction)
@@ -91,7 +91,7 @@ class cpm_BDBC(cpm):
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
-        self.objectives = [jmoo_objective("f1", False)]
+        self.objectives = [jmoo_objective("f1", True)]
         self.data = read_csv(self.filename)
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data(fraction)
@@ -107,7 +107,7 @@ class cpm_BDBJ(cpm):
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
-        self.objectives = [jmoo_objective("f1", False)]
+        self.objectives = [jmoo_objective("f1", True)]
         self.data = read_csv(self.filename)
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data(fraction)
@@ -123,7 +123,7 @@ class cpm_LLVM(cpm):
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
-        self.objectives = [jmoo_objective("f1", False)]
+        self.objectives = [jmoo_objective("f1", True)]
         self.data = read_csv(self.filename)
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data(fraction)
@@ -139,7 +139,7 @@ class cpm_SQL_100(cpm):
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
-        self.objectives = [jmoo_objective("f1", False)]
+        self.objectives = [jmoo_objective("f1", True)]
         self.data = read_csv(self.filename)
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data(fraction)
@@ -155,7 +155,7 @@ class cpm_SQL_4553(cpm):
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
-        self.objectives = [jmoo_objective("f1", False)]
+        self.objectives = [jmoo_objective("f1", True)]
         self.data = read_csv(self.filename)
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data(fraction)
@@ -171,7 +171,7 @@ class cpm_X264(cpm):
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
-        self.objectives = [jmoo_objective("f1", False)]
+        self.objectives = [jmoo_objective("f1", True)]
         self.data = read_csv(self.filename)
         self.testing_independent, self.testing_dependent = [], []
         self.training_independent, self.training_dependent = self.get_training_data(fraction)
@@ -206,9 +206,10 @@ def draw(listx, listy, name):
     pl.title(name)
     pl.savefig("./figures/" + name + ".png")
 
-
+# This is a function that would help to generate numbers to compare the elbow (trade off between amount of training
+# and accuracy)
 if __name__ == "__main__":
-    problems = [cpm_SQL_4553]# [cpm_apache, cpm_BDBC, cpm_BDBJ, cpm_LLVM, cpm_SQL_100, cpm_SQL_4553, cpm_X264]
+    problems = [cpm_SQL_4553, cpm_apache, cpm_BDBC, cpm_BDBJ, cpm_LLVM, cpm_SQL_100, cpm_SQL_4553, cpm_X264]
     for problem in problems:
         print problem
         performance_test(problem)
