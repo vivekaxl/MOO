@@ -143,6 +143,8 @@ if dfrankOnly is True:
 if not vschart:
     core = JMOO(tests, reports)
 
+import pdb
+pdb.set_trace()
 print "here"
 # Perform the tests
 if df and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not versionspace and not vschart:
@@ -152,7 +154,7 @@ if not reportOnly and optimization:
     core.doTests()
 
 if versionspace and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not vschart:
-    version_space_search(core)
+    version_space_searcsh(core)
 
 if vschart and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not versionspace:
     print "there"

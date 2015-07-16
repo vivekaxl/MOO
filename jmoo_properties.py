@@ -101,7 +101,9 @@ problems =[
     # NRP(50, 5, 5, 20, 120)
     #MONRP(50, 5, 5, 20, 120)
     # cpm_apache(),cpm_X264(), cpm_SQL_4553(), cpm_SQL_100(), cpm_LLVM(), cpm_BDBJ(), cpm_BDBC()
-cpm_apache_training_reduction()
+cpm_apache_training_reduction(treatment=0), cpm_X264(treatment=0), cpm_SQL_4553(treatment=0), cpm_SQL_100(treatment=0), cpm_LLVM(treatment=0),
+    cpm_BDBJ(treatment=0), cpm_BDBC(treatment=0)
+
     # #, fonseca(3), srinivas(), schaffer(), osyczka2(),# water()
     #diabeties()
        #camel(), ant(),  forrest(), ivy(), jedit(), lucene(), poi(), synapse(), velocity(), xerces(),

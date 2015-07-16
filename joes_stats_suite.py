@@ -66,6 +66,8 @@ def joes_stats_reporter(problems, algorithms, tag=""):
         reports = []
         for a,algorithm in enumerate(algorithms):
             filename = DATA_PREFIX + SUMMARY_RESULTS+problem.name + "-p" + str(MU) + "-d" + str(len(problem.decisions)) + "-o" + str(len(problem.objectives))+"_"+algorithm.name+DATA_SUFFIX
+            print filename
+            exit()
             finput = open(filename, 'rb')
             reader = csv.reader(finput, delimiter=',')
             

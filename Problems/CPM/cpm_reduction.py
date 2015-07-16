@@ -167,11 +167,15 @@ class cpm_reduction(jmoo_problem):
     def evalConstraints(prob,input = None):
         return False
 
+import os
+print os.getcwd()
 class cpm_apache_training_reduction(cpm_reduction):
-    def __init__(self, treatment, requirements=9, fraction=0.5, name="CPM_APACHE", filename="./data/Apache_AllMeasurements.csv"):
-    # def __init__(self, requirements=9, fraction=0.5, name="CPM_APACHE", filename="./Problems/CPM/data/Apache_AllMeasurements.csv"):
+    # def __init__(self, treatment=east, requirements=9, fraction=0.5, name="CPM_APACHE", filename="./data/Apache_AllMeasurements.csv"):
+    def __init__(self, treatment=None, requirements=9, fraction=0.5, name="CPM_APACHE", filename="./Problems/CPM/data/Apache_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
+        if treatment is None: treatment = east_west_where
+        elif treatment == 0: treatment = base_line
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
@@ -184,10 +188,12 @@ class cpm_apache_training_reduction(cpm_reduction):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_BDBC(cpm_reduction):
-    def __init__(self, treatment, requirements=18, fraction=0.5, name="CPM_BDBC", filename="./data/BDBC_AllMeasurements.csv"):
-    # def __init__(self, requirements=18, fraction=0.5, name="CPM_BDBC", filename="./Problems/CPM/data/BDBC_AllMeasurements.csv"):
+    # def __init__(self, treatment, requirements=18, fraction=0.5, name="CPM_BDBC", filename="./data/BDBC_AllMeasurements.csv"):
+    def __init__(self, treatment=None, requirements=18, fraction=0.5, name="CPM_BDBC", filename="./Problems/CPM/data/BDBC_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
+        if treatment is None: treatment = east_west_where
+        elif treatment == 0: treatment = base_line
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
@@ -200,10 +206,12 @@ class cpm_BDBC(cpm_reduction):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_BDBJ(cpm_reduction):
-    def __init__(self, treatment, requirements=26, fraction=0.5, name="CPM_BDBJ", filename="./data/BDBJ_AllMeasurements.csv"):
-    # def __init__(self, requirements=26, fraction=0.5, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
+    # def __init__(self, treatment, requirements=26, fraction=0.5, name="CPM_BDBJ", filename="./data/BDBJ_AllMeasurements.csv"):
+    def __init__(self, treatment=None, requirements=26, fraction=0.5, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
+        if treatment is None: treatment = east_west_where
+        elif treatment == 0: treatment = base_line
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
@@ -216,10 +224,12 @@ class cpm_BDBJ(cpm_reduction):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_LLVM(cpm_reduction):
-    def __init__(self, treatment, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./data/LLVM_AllMeasurements.csv"):
-    # def __init__(self, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
+    # def __init__(self, treatment, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./data/LLVM_AllMeasurements.csv"):
+    def __init__(self, treatment=None, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
+        if treatment is None: treatment = east_west_where
+        elif treatment == 0: treatment = base_line
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
@@ -232,10 +242,12 @@ class cpm_LLVM(cpm_reduction):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_SQL_100(cpm_reduction):
-    def __init__(self, treatment, requirements=39, fraction=0.5, name="CPM_SQL_100", filename="./data/SQL_100testing.csv"):
-    # def __init__(self, requirements=39, fraction=0.5, name="CPM_SQL_100", filename="./Problems/CPM/data/SQL_100testing.csv"):
+    # def __init__(self, treatment, requirements=39, fraction=0.5, name="CPM_SQL_100", filename="./data/SQL_100testing.csv"):
+    def __init__(self, treatment=None, requirements=39, fraction=0.5, name="CPM_SQL_100", filename="./Problems/CPM/data/SQL_100testing.csv"):
         self.name = name
         self.filename = filename
+        if treatment is None: treatment = east_west_where
+        elif treatment == 0: treatment = base_line
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
@@ -248,10 +260,12 @@ class cpm_SQL_100(cpm_reduction):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_SQL_4553(cpm_reduction):
-    def __init__(self, treatment, requirements=39, fraction=0.5, name="CPM_SQL_4553", filename="./data/SQL_4553training.csv"):
-    # def __init__(self, requirements=39, fraction=0.5, name="CPM_SQL_4553", filename="./Problems/CPM/data/SQL_4553training.csv"):
+    # def __init__(self, treatment, requirements=39, fraction=0.5, name="CPM_SQL_4553", filename="./data/SQL_4553training.csv"):
+    def __init__(self, treatment=None, requirements=39, fraction=0.5, name="CPM_SQL_4553", filename="./Problems/CPM/data/SQL_4553training.csv"):
         self.name = name
         self.filename = filename
+        if treatment is None: treatment = east_west_where
+        elif treatment == 0: treatment = base_line
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
@@ -264,10 +278,12 @@ class cpm_SQL_4553(cpm_reduction):
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_X264(cpm_reduction):
-    def __init__(self, treatment, requirements=16, fraction=0.5, name="cpm_X264", filename="./data/X264_AllMeasurements.csv"):
-    # def __init__(self, treatment, requirements=16, fraction=0.5, name="cpm_X264", filename="./Problems/CPM/data/X264_AllMeasurements.csv"):
+    # def __init__(self, treatment, requirements=16, fraction=0.5, name="cpm_X264", filename="./data/X264_AllMeasurements.csv"):
+    def __init__(self, treatment=None, requirements=16, fraction=0.5, name="cpm_X264", filename="./Problems/CPM/data/X264_AllMeasurements.csv"):
         self.name = name
         self.filename = filename
+        if treatment is None: treatment = east_west_where
+        elif treatment == 0: treatment = base_line
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
@@ -286,9 +302,9 @@ class data_container:
         self.value = value
 
 def performance_test(dataset, treatment):
-    repeat = 10
+    repeat = 5
     scores = []
-    for x in [i * 0.01 for i in xrange(50, 90)]:
+    for x in [i * 0.01 for i in xrange(50, 90, 5)]:
         temp_store = []
         for p in xrange(repeat):
             problem = dataset(treatment, fraction=x)
@@ -314,7 +330,7 @@ def draw(scores1, name):
 # This is a function that would help to generate numbers to compare the elbow (trade off between amount of training
 # and accuracy)
 if __name__ == "__main__":
-    problems = [cpm_apache_training_reduction, cpm_BDBC, cpm_BDBJ, cpm_LLVM, cpm_SQL_100, cpm_SQL_4553,  cpm_X264]
+    problems = [cpm_X264] #cpm_apache_training_reduction, cpm_BDBC, cpm_BDBJ, cpm_LLVM, cpm_SQL_100, cpm_SQL_4553,  cpm_X264]
     treatments = [base_line, exemplar_where, east_west_where]
     for problem in problems:
         print problem

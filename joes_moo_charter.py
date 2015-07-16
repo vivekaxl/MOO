@@ -343,8 +343,9 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                             # #print scorelist
                             # print "-" *30
                             # print alg.name, o
-                            # print keylist
-                            # print scorelist
+                            print keylist
+                            print scorelist
+                            exit()
                             # print min(scorelist) - 0.1, max(scorelist) + 0.1
                             axarr[oo].plot(keylist, scorelist, label=alg.name, marker=alg.type, color=alg.color, markersize=7, markeredgecolor='none') #MARKER PLOTS
                             #axarr[p][oo].plot([min(keylist)]+keylist, [100]+smallslist, color=alg.color) #BOTTOMLINE
