@@ -37,7 +37,6 @@ def table(source, rows = True, contents = row):
   for n,cells in contents(source):
     if n == 0 : head(cells,t) 
     else      :
-      cells = [1 if x == 'Y' else 0 for x in cells[:-1]] + cells[-1:]
       body(cells,t,rows)
   #print ">>>>", t.headers
   return t

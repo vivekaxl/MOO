@@ -12,7 +12,7 @@ def read_csv(filename, header=False):
         elif i ==0 and header is True:
             H = row
             continue
-        data.append([i-1]+[1 if x =="Y" else 0 for x in row[:-1]] + [int(row[-1])])
+        data.append([i-1]+[1 if x =="Y" else 0 for x in row[:-1]] + [float(row[-1])])
     f.close()
     if header is True: return H, data
     return data

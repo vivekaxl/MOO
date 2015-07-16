@@ -80,7 +80,7 @@ def createTbl(
 
 
 def wrapper_createTbl(dir):
-  return createTbl([dir], _smote=False)
+    return createTbl([dir], _smote=False)
 
 
 def test_createTbl():
