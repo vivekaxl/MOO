@@ -1,1078 +1,180 @@
 <Experiment>
 <Problem name = 'CPM_APACHE'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>36</NumEvals>
+<RunTime>1.32980895042</RunTime>
+<IBD>0.367879443624</IBD>
+<IBS>0.0407247614448</IBS>
+<f1>990.0</f1>
+</Summary></Run>
+</Algorithm>
 <Algorithm name = 'NSGAII'>
 <Run id = '1'>
 <Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>0.651000022888</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.492000102997</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
 <NumEvals>1200</NumEvals>
-<RunTime>0.528000116348</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.594000101089</RunTime>
-<IBD>0.367879442704</IBD>
+<RunTime>0.747328042984</RunTime>
+<IBD>0.367879442398</IBD>
 <IBS>0.0</IBS>
 <f1>840.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>1200</NumEvals>
-<RunTime>0.5609998703</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.578999996185</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.503000020981</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>1200</NumEvals>
-<RunTime>0.514000177383</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.0</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1200</NumEvals>
-<RunTime>0.455999851227</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>800</NumEvals>
-<RunTime>0.148999929428</RunTime>
-<IBD>0.367879442923</IBD>
-<IBS>0.0</IBS>
-<f1>870.0</f1>
 </Summary></Run>
 </Algorithm>
 <Algorithm name = 'DE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.409999847412</RunTime>
-<IBD>0.416862021198</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.440999984741</RunTime>
-<IBD>0.449328965315</IBD>
-<IBS>0.0472563396347</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.391000032425</RunTime>
-<IBD>0.558035146674</IBD>
-<IBS>0.0446180266909</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.364000082016</RunTime>
-<IBD>0.416862021198</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>1900</NumEvals>
-<RunTime>0.27999997139</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.401999950409</RunTime>
-<IBD>0.411112291861</IBD>
-<IBS>0.0483135334987</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1900</NumEvals>
-<RunTime>0.37700009346</RunTime>
-<IBD>0.513417119983</IBD>
-<IBS>0.0446180266909</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.319999933243</RunTime>
-<IBD>0.367879442704</IBD>
-<IBS>0.048982578494</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.391999959946</RunTime>
-<IBD>0.459425825359</IBD>
-<IBS>0.0483135334987</IBS>
-<f1>840.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>1700</NumEvals>
-<RunTime>0.297999858856</RunTime>
-<IBD>0.449328965315</IBD>
-<IBS>0.0472563396347</IBS>
+<NumEvals>1000</NumEvals>
+<RunTime>0.370721817017</RunTime>
+<IBD>0.40656966096</IBD>
+<IBS>0.142241976231</IBS>
 <f1>840.0</f1>
 </Summary></Run>
 </Algorithm>
 </Problem>
 <Problem name = 'cpm_X264'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>28</NumEvals>
+<RunTime>1.5011279583</RunTime>
+<IBD>0.370348422703</IBD>
+<IBS>0.00689303057679</IBS>
+<f1>257.0</f1>
+</Summary></Run>
+</Algorithm>
 <Algorithm name = 'NSGAII'>
 <Run id = '1'>
 <Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.628999948502</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.0</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.587999820709</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.0</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.636000156403</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.0</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.644999980927</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00274535627018</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.611999988556</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00274535627018</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>1200</NumEvals>
-<RunTime>0.648000001907</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00274535627018</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.571000099182</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00274535627018</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.675999879837</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00274535627018</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.574000120163</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00274535627018</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.640999794006</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.0</IBS>
+<NumEvals>1000</NumEvals>
+<RunTime>0.738329172134</RunTime>
+<IBD>0.367879442351</IBD>
+<IBS>0.00355436321858</IBS>
 <f1>244.0</f1>
 </Summary></Run>
 </Algorithm>
 <Algorithm name = 'DE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>1700</NumEvals>
-<RunTime>0.326000213623</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00412570774061</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.327000141144</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00481974398847</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>1700</NumEvals>
-<RunTime>0.389000177383</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.013933192371</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
 <NumEvals>1500</NumEvals>
-<RunTime>0.329999923706</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.013933192371</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.330999851227</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00690185273205</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>1500</NumEvals>
-<RunTime>0.348000049591</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.013933192371</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1700</NumEvals>
-<RunTime>0.321999788284</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.013933192371</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.331000089645</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00690185273205</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1500</NumEvals>
-<RunTime>0.401000022888</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00412570774061</IBS>
-<f1>244.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.34299993515</RunTime>
-<IBD>0.367879442539</IBD>
-<IBS>0.00690185273205</IBS>
+<RunTime>0.506999969482</RunTime>
+<IBD>0.367879442351</IBD>
+<IBS>0.0125927088703</IBS>
 <f1>244.0</f1>
 </Summary></Run>
 </Algorithm>
 </Problem>
-<Problem name = 'CPM_SQL_4553'>
+<Problem name = 'CPM_SQL'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>49</NumEvals>
+<RunTime>3.38742899895</RunTime>
+<IBD>0.367879625111</IBD>
+<IBS>0.119325593117</IBS>
+<f1>13.0</f1>
+</Summary></Run>
+</Algorithm>
 <Algorithm name = 'NSGAII'>
 <Run id = '1'>
 <Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.626999855042</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.702000141144</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.702999830246</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.618999958038</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>3600</NumEvals>
-<RunTime>0.808000087738</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.641999959946</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>3800</NumEvals>
-<RunTime>0.704999923706</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
 <NumEvals>1400</NumEvals>
-<RunTime>0.921000003815</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.825000047684</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>2800</NumEvals>
-<RunTime>0.818000078201</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
+<RunTime>0.887528181076</RunTime>
+<IBD>0.367879563798</IBD>
+<IBS>0.145537669327</IBS>
 <f1>12.0</f1>
 </Summary></Run>
 </Algorithm>
 <Algorithm name = 'DE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>600</NumEvals>
-<RunTime>0.558000087738</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>900</NumEvals>
-<RunTime>0.710000038147</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>500</NumEvals>
-<RunTime>0.618999958038</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>0.444999933243</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>600</NumEvals>
-<RunTime>0.663000106812</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>0.532999992371</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>700</NumEvals>
-<RunTime>0.560000181198</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>700</NumEvals>
-<RunTime>0.65499997139</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1200</NumEvals>
-<RunTime>0.643999814987</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>600</NumEvals>
-<RunTime>0.519999980927</RunTime>
-<IBD>0.606530811345</IBD>
-<IBS>0.0</IBS>
-<f1>12.0</f1>
-</Summary></Run>
-</Algorithm>
-</Problem>
-<Problem name = 'CPM_SQL_100'>
-<Algorithm name = 'NSGAII'>
-<Run id = '1'>
-<Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>0.666999816895</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.145537669327</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>800</NumEvals>
-<RunTime>0.696000099182</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.145537669327</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>0.698999881744</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.145537669327</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>800</NumEvals>
-<RunTime>0.625</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.145537669327</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>0.661000013351</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.145537669327</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>0.68499994278</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.0</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>0.759000062943</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.145537669327</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>800</NumEvals>
-<RunTime>0.648999929428</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.145537669327</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>0.72000002861</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.145537669327</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>1000</NumEvals>
-<RunTime>0.615000009537</RunTime>
-<IBD>0.367879563798</IBD>
-<IBS>0.145537669327</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'DE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>0.395999908447</RunTime>
+<NumEvals>300</NumEvals>
+<RunTime>0.601011991501</RunTime>
 <IBD>0.513417233125</IBD>
 <IBS>0.203114157063</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>500</NumEvals>
-<RunTime>0.427999973297</RunTime>
-<IBD>0.513417233125</IBD>
-<IBS>0.203114157063</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>0.47100019455</RunTime>
-<IBD>0.513417233125</IBD>
-<IBS>0.203114157063</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>500</NumEvals>
-<RunTime>0.40700006485</RunTime>
-<IBD>0.513417233125</IBD>
-<IBS>0.203114157063</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>0.387000083923</RunTime>
-<IBD>0.513417233125</IBD>
-<IBS>0.203114157063</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>700</NumEvals>
-<RunTime>0.415999889374</RunTime>
-<IBD>0.513417233125</IBD>
-<IBS>0.203114157063</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>500</NumEvals>
-<RunTime>0.401999950409</RunTime>
-<IBD>0.513417233125</IBD>
-<IBS>0.203114157063</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>500</NumEvals>
-<RunTime>0.394000053406</RunTime>
-<IBD>0.513417233125</IBD>
-<IBS>0.203114157063</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>500</NumEvals>
-<RunTime>0.588000059128</RunTime>
-<IBD>0.513417233125</IBD>
-<IBS>0.203114157063</IBS>
-<f1>13.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>0.468999862671</RunTime>
-<IBD>0.513417233125</IBD>
-<IBS>0.203114157063</IBS>
-<f1>13.0</f1>
+<f1>12.0</f1>
 </Summary></Run>
 </Algorithm>
 </Problem>
 <Problem name = 'CPM_LLVM'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>34</NumEvals>
+<RunTime>1.59385800362</RunTime>
+<IBD>0.489541669548</IBD>
+<IBS>0.249499225803</IBS>
+<f1>201.0</f1>
+</Summary></Run>
+</Algorithm>
 <Algorithm name = 'NSGAII'>
 <Run id = '1'>
 <Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.727999925613</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0103621254911</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.641000032425</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0103621254911</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.710999965668</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0103621254911</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.546999931335</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0103621254911</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.634999990463</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0103621254911</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.542999982834</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0103621254911</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.641999959946</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>2200</NumEvals>
-<RunTime>0.599999904633</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0103621254911</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>2800</NumEvals>
-<RunTime>0.682999849319</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>2200</NumEvals>
-<RunTime>0.564999818802</RunTime>
-<IBD>0.36787945139</IBD>
-<IBS>0.0103621254911</IBS>
-<f1>200.0</f1>
+<NumEvals>1200</NumEvals>
+<RunTime>0.669345855713</RunTime>
+<IBD>0.367879451114</IBD>
+<IBS>0.0100782669182</IBS>
+<f1>199.0</f1>
 </Summary></Run>
 </Algorithm>
 <Algorithm name = 'DE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.333000183105</RunTime>
-<IBD>0.388312084808</IBD>
-<IBS>0.021567495993</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.385999917984</RunTime>
-<IBD>0.378241576881</IBD>
-<IBS>0.0244237466777</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
 <NumEvals>1700</NumEvals>
-<RunTime>0.309000015259</RunTime>
-<IBD>0.378241576881</IBD>
-<IBS>0.0328707237766</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.306999921799</RunTime>
-<IBD>0.378241576881</IBD>
-<IBS>0.0328707237766</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>1500</NumEvals>
-<RunTime>0.309000015259</RunTime>
-<IBD>0.378241576881</IBD>
-<IBS>0.0328707237766</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.37099981308</RunTime>
-<IBD>0.378241576881</IBD>
-<IBS>0.0216080876447</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.423000097275</RunTime>
-<IBD>0.378241576881</IBD>
-<IBS>0.0216080876447</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.301000118256</RunTime>
-<IBD>0.378241576881</IBD>
-<IBS>0.0328707237766</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1500</NumEvals>
-<RunTime>0.357000112534</RunTime>
-<IBD>0.378241576881</IBD>
-<IBS>0.0685980464775</IBS>
-<f1>200.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>1500</NumEvals>
-<RunTime>0.304000139236</RunTime>
-<IBD>0.378241576881</IBD>
-<IBS>0.0328707237766</IBS>
-<f1>200.0</f1>
+<RunTime>0.346239805222</RunTime>
+<IBD>0.367879451114</IBD>
+<IBS>0.0310706642401</IBS>
+<f1>199.0</f1>
 </Summary></Run>
 </Algorithm>
 </Problem>
 <Problem name = 'CPM_BDBJ'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>52</NumEvals>
+<RunTime>2.28614807129</RunTime>
+<IBD>0.378716942648</IBD>
+<IBS>0.626118818819</IBS>
+<f1>3127.0</f1>
+</Summary></Run>
+</Algorithm>
 <Algorithm name = 'NSGAII'>
 <Run id = '1'>
 <Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.741999864578</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0210449694269</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.615000009537</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
 <NumEvals>1800</NumEvals>
-<RunTime>0.697000026703</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.611999988556</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0210449694269</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.692999839783</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0210449694269</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.611999988556</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0210449694269</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.732999801636</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0210449694269</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.591000080109</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0217379303316</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.716000080109</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0210449694269</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>1600</NumEvals>
-<RunTime>0.604000091553</RunTime>
-<IBD>0.367879441335</IBD>
-<IBS>0.0210449694269</IBS>
+<RunTime>0.810935974121</RunTime>
+<IBD>0.367879441336</IBD>
+<IBS>0.00430650917435</IBS>
 <f1>2960.0</f1>
 </Summary></Run>
 </Algorithm>
 <Algorithm name = 'DE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.362999916077</RunTime>
-<IBD>0.389617371667</IBD>
-<IBS>0.0331731696089</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>1900</NumEvals>
-<RunTime>0.362999916077</RunTime>
-<IBD>0.388924410762</IBD>
-<IBS>0.0305048321081</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>1900</NumEvals>
-<RunTime>0.440999984741</RunTime>
-<IBD>0.392576256457</IBD>
-<IBS>0.0123067234868</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.37900018692</RunTime>
-<IBD>0.388924410762</IBD>
-<IBS>0.0333516929137</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.361000061035</RunTime>
-<IBD>0.390392421621</IBD>
-<IBS>0.0331671105182</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.358000040054</RunTime>
-<IBD>0.388924410762</IBD>
-<IBS>0.0331731696089</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1900</NumEvals>
-<RunTime>0.355000019073</RunTime>
-<IBD>0.388924410762</IBD>
-<IBS>0.0173894425388</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.458000183105</RunTime>
-<IBD>0.39104288188</IBD>
-<IBS>0.0331642642901</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1800</NumEvals>
-<RunTime>0.399000167847</RunTime>
-<IBD>0.388924410762</IBD>
-<IBS>0.0333516929137</IBS>
-<f1>2960.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>1900</NumEvals>
-<RunTime>0.368999958038</RunTime>
-<IBD>0.392576256457</IBD>
-<IBS>0.0123067234868</IBS>
+<NumEvals>1500</NumEvals>
+<RunTime>0.438123226166</RunTime>
+<IBD>0.389747555688</IBD>
+<IBS>0.0438400444467</IBS>
 <f1>2960.0</f1>
 </Summary></Run>
 </Algorithm>
 </Problem>
 <Problem name = 'CPM_BDBC'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>47</NumEvals>
+<RunTime>3.96550607681</RunTime>
+<IBD>0.367879625111</IBD>
+<IBS>0.0</IBS>
+<f1>0.0</f1>
+</Summary></Run>
+</Algorithm>
 <Algorithm name = 'NSGAII'>
 <Run id = '1'>
 <Summary>
 <NumEvals>200</NumEvals>
-<RunTime>0.732000112534</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
-<NumEvals>200</NumEvals>
-<RunTime>0.863000154495</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>200</NumEvals>
-<RunTime>0.640000104904</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>200</NumEvals>
-<RunTime>1.0569999218</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>200</NumEvals>
-<RunTime>0.679000139236</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>200</NumEvals>
-<RunTime>0.647000074387</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>200</NumEvals>
-<RunTime>0.53200006485</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>200</NumEvals>
-<RunTime>0.626999855042</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>200</NumEvals>
-<RunTime>0.543999910355</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.238651186234</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>200</NumEvals>
-<RunTime>0.563999891281</RunTime>
+<RunTime>0.940124034882</RunTime>
 <IBD>0.367879625111</IBD>
 <IBS>0.238651186234</IBS>
 <f1>0.0</f1>
@@ -1081,81 +183,9 @@
 <Algorithm name = 'DE'>
 <Run id = '1'>
 <Summary>
-<NumEvals>2000</NumEvals>
-<RunTime>0.498999834061</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '2'>
-<Summary>
 <NumEvals>1400</NumEvals>
-<RunTime>0.34500002861</RunTime>
+<RunTime>0.369513988495</RunTime>
 <IBD>0.367879625111</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '3'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.335999965668</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '4'>
-<Summary>
-<NumEvals>1200</NumEvals>
-<RunTime>0.322999954224</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '5'>
-<Summary>
-<NumEvals>1200</NumEvals>
-<RunTime>0.316999912262</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '6'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.334999799728</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '7'>
-<Summary>
-<NumEvals>1200</NumEvals>
-<RunTime>0.328000068665</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '8'>
-<Summary>
-<NumEvals>1500</NumEvals>
-<RunTime>0.330000162125</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '9'>
-<Summary>
-<NumEvals>1300</NumEvals>
-<RunTime>0.349999904633</RunTime>
-<IBD>0.367879625111</IBD>
-<IBS>0.0</IBS>
-<f1>0.0</f1>
-</Summary></Run>
-<Run id = '10'>
-<Summary>
-<NumEvals>1400</NumEvals>
-<RunTime>0.408999919891</RunTime>
-<IBD>0.670320099661</IBD>
 <IBS>0.0</IBS>
 <f1>0.0</f1>
 </Summary></Run>

@@ -143,9 +143,9 @@ if dfrankOnly is True:
 if not vschart:
     core = JMOO(tests, reports)
 
-import pdb
-pdb.set_trace()
+
 print "here"
+
 # Perform the tests
 if df and not reportOnly and not dfreportOnly and not dfchartOnly and not dfrankOnly and not versionspace and not vschart:
     core.doDefectPrediction()

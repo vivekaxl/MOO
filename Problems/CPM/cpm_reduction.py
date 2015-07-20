@@ -123,21 +123,24 @@ class cpm_apache_data_frame:
 
 
 class cpm_reduction(jmoo_problem):
-    def get_training_data(self, filename, percentage=0.8, method=base_line):
+    def get_training_data(self, number, percentage=1.0, method=base_line):
         from random import sample
         random_selection = sample(self.data, int(len(self.data) * percentage))
-        self.get_testing_data([x[0] for x in random_selection])
+        self.get_testing_data(number)
+
 
         temp_file_generation(self.header, random_selection)
         training = method(temp_file_name)
         temp_file_removal()
+        print "Length of the training data: ", len(training),
+
         return [row[:-1] for row in training], [row[-1] for row in training]
 
-    def get_testing_data(self, list):
+    def get_testing_data(self, number):
         testing_data = []
-        for row in self.data:
-            if row[0] not in list:
-                testing_data.append(row)
+        from random import sample
+        testing_data = sample(self.data, number)
+        print "Length of testing_data: ", len(testing_data)
         self.testing_independent = [row[1:-1] for row in testing_data]
         self.testing_dependent = [float(row[-1]) for row in testing_data]
 
@@ -167,29 +170,34 @@ class cpm_reduction(jmoo_problem):
     def evalConstraints(prob,input = None):
         return False
 
-import os
-print os.getcwd()
 class cpm_apache_training_reduction(cpm_reduction):
-    # def __init__(self, treatment=east, requirements=9, fraction=0.5, name="CPM_APACHE", filename="./data/Apache_AllMeasurements.csv"):
-    def __init__(self, treatment=None, requirements=9, fraction=0.5, name="CPM_APACHE", filename="./Problems/CPM/data/Apache_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=9, name="CPM_APACHE", filename="./data/Apache_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=9, name="CPM_APACHE", filename="./Problems/CPM/data/Apache_AllMeasurements.csv"):
+
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
-        elif treatment == 0: treatment = base_line
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
         self.objectives = [jmoo_objective("f1", True)]
         self.header, self.data = read_csv(self.filename, header=True)
-        self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(filename, fraction, method=treatment)
+
+        if treatment is None:
+            fraction = 1.0
+            treatment = east_west_where
+        elif treatment.__name__ == "base_line": fraction =  (len(self.data) - number)/float((len(self.data)))
+        else: fraction = 1.0
+
+
+        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_BDBC(cpm_reduction):
-    # def __init__(self, treatment, requirements=18, fraction=0.5, name="CPM_BDBC", filename="./data/BDBC_AllMeasurements.csv"):
-    def __init__(self, treatment=None, requirements=18, fraction=0.5, name="CPM_BDBC", filename="./Problems/CPM/data/BDBC_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=18, name="CPM_BDBC", filename="./data/BDBC_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=18, name="CPM_BDBC", filename="./Problems/CPM//data/BDBC_AllMeasurements.csv"):
+
         self.name = name
         self.filename = filename
         if treatment is None: treatment = east_west_where
@@ -200,14 +208,22 @@ class cpm_BDBC(cpm_reduction):
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
         self.objectives = [jmoo_objective("f1", True)]
         self.header, self.data = read_csv(self.filename, header=True)
+
+        if treatment is None:
+            fraction = 1.0
+            treatment = east_west_where
+        elif treatment.__name__ == "base_line":  fraction = (len(self.data) - number)/float((len(self.data)))
+        else: fraction = 1.0
+
         self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(filename, fraction, method=treatment)
+        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_BDBJ(cpm_reduction):
-    # def __init__(self, treatment, requirements=26, fraction=0.5, name="CPM_BDBJ", filename="./data/BDBJ_AllMeasurements.csv"):
-    def __init__(self, treatment=None, requirements=26, fraction=0.5, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=26, name="CPM_BDBJ", filename="./data/BDBJ_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=26, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
+
         self.name = name
         self.filename = filename
         if treatment is None: treatment = east_west_where
@@ -218,14 +234,22 @@ class cpm_BDBJ(cpm_reduction):
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
         self.objectives = [jmoo_objective("f1", True)]
         self.header, self.data = read_csv(self.filename, header=True)
+
+        if treatment is None:
+            fraction = 1.0
+            treatment = east_west_where
+        elif treatment.__name__ == "base_line": fraction =  (len(self.data) - number)/float((len(self.data)))
+        else: fraction = 1.0
+
         self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(filename, fraction, method=treatment)
+        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_LLVM(cpm_reduction):
-    # def __init__(self, treatment, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./data/LLVM_AllMeasurements.csv"):
-    def __init__(self, treatment=None, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./data/LLVM_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
+
         self.name = name
         self.filename = filename
         if treatment is None: treatment = east_west_where
@@ -236,14 +260,22 @@ class cpm_LLVM(cpm_reduction):
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
         self.objectives = [jmoo_objective("f1", True)]
         self.header, self.data = read_csv(self.filename, header=True)
+
+        if treatment is None:
+            fraction = 1.0
+            treatment = east_west_where
+        elif treatment.__name__ == "base_line": fraction = (len(self.data) - number)/float((len(self.data)))
+        else: fraction = 1.0
+
         self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(filename, fraction, method=treatment)
+        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
-class cpm_SQL_100(cpm_reduction):
-    # def __init__(self, treatment, requirements=39, fraction=0.5, name="CPM_SQL_100", filename="./data/SQL_100testing.csv"):
-    def __init__(self, treatment=None, requirements=39, fraction=0.5, name="CPM_SQL_100", filename="./Problems/CPM/data/SQL_100testing.csv"):
+class cpm_SQL(cpm_reduction):
+    # def __init__(self, treatment, number=50, requirements=39, fraction=0.5, name="CPM_SQL", filename="./data/SQL_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=39, fraction=0.5, name="CPM_SQL", filename="./Problems/CPM/data/SQL_AllMeasurements.csv"):
+
         self.name = name
         self.filename = filename
         if treatment is None: treatment = east_west_where
@@ -254,32 +286,23 @@ class cpm_SQL_100(cpm_reduction):
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
         self.objectives = [jmoo_objective("f1", True)]
         self.header, self.data = read_csv(self.filename, header=True)
+
+        if treatment is None:
+            fraction = 1.0
+            treatment = east_west_where
+        elif treatment.__name__ == "base_line": fraction =  (len(self.data) - number)/float((len(self.data)))
+        else: fraction = 1.0
+
         self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(filename, fraction, method=treatment)
+        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
-class cpm_SQL_4553(cpm_reduction):
-    # def __init__(self, treatment, requirements=39, fraction=0.5, name="CPM_SQL_4553", filename="./data/SQL_4553training.csv"):
-    def __init__(self, treatment=None, requirements=39, fraction=0.5, name="CPM_SQL_4553", filename="./Problems/CPM/data/SQL_4553training.csv"):
-        self.name = name
-        self.filename = filename
-        if treatment is None: treatment = east_west_where
-        elif treatment == 0: treatment = base_line
-        names = ["x"+str(i+1) for i in xrange(requirements)]
-        lows = [0 for _ in xrange(requirements)]
-        ups = [1 for _ in xrange(requirements)]
-        self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
-        self.objectives = [jmoo_objective("f1", True)]
-        self.header, self.data = read_csv(self.filename, header=True)
-        self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(filename, fraction, method=treatment)
-        self.CART = tree.DecisionTreeRegressor()
-        self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_X264(cpm_reduction):
-    # def __init__(self, treatment, requirements=16, fraction=0.5, name="cpm_X264", filename="./data/X264_AllMeasurements.csv"):
-    def __init__(self, treatment=None, requirements=16, fraction=0.5, name="cpm_X264", filename="./Problems/CPM/data/X264_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=16, fraction=0.5, name="cpm_X264", filename="./data/X264_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=16, fraction=0.5, name="cpm_X264", filename="./Problems/CPM/data/X264_AllMeasurements.csv"):
+
         self.name = name
         self.filename = filename
         if treatment is None: treatment = east_west_where
@@ -290,8 +313,15 @@ class cpm_X264(cpm_reduction):
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
         self.objectives = [jmoo_objective("f1", True)]
         self.header, self.data = read_csv(self.filename, header=True)
+
+        if treatment is None:
+            fraction = 1.0
+            treatment = east_west_where
+        elif treatment.__name__ == "base_line": fraction =  (len(self.data) - number)/float((len(self.data)))
+        else: fraction = 1.0
+
         self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(filename, fraction, method=treatment)
+        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
@@ -301,15 +331,15 @@ class data_container:
         self.fraction = fraction
         self.value = value
 
-def performance_test(dataset, treatment):
-    repeat = 5
+def performance_test(dataset, treatment, test_numbers):
+    repeat = 3
     scores = []
-    for x in [i * 0.01 for i in xrange(50, 90, 5)]:
+    for number in test_numbers:
         temp_store = []
-        for p in xrange(repeat):
-            problem = dataset(treatment, fraction=x)
-            temp_store.append(problem.test_data())
-        scores.append(data_container(x, sum(temp_store)/len(temp_store)))
+        for _ in xrange(repeat):
+            p = dataset(treatment, number=number)
+            temp_store.append(p.test_data())
+        scores.append(data_container(number, sum(temp_store)/len(temp_store)))
     return scores
     #draw([x.fraction for x in scores], [x.value for x in scores], problem.name)
 
@@ -317,25 +347,100 @@ def draw(scores1, name):
     import pylab as pl
     for score in scores1:
         print score[-1]
-        pl.plot(score[0], score[1], label=score[-1])
+        pl.plot(score[0], score[1], linestyle="-", label=score[-1])
     pl.xlim(min([min(s0[0]) for s0 in scores1]) * 0.9, max([max(s0[0]) for s0 in scores1]) * 1.4)
-    pl.ylim(min([min(s1[1]) for s1 in scores1]) * 0.9, max([max(s1[1]) for s1 in scores1]) * 1.4)
-    pl.xlabel('Training set range')
+    # pl.ylim(min([min(s1[1]) for s1 in scores1]) * 0.9, max([max(s1[1]) for s1 in scores1]) * 1.4)
+    pl.ylim(0, 1.0)
+    pl.xlabel('No. of Testing Instances')
     pl.ylabel('MRE variation over 10 repeats')
     pl.legend(loc='upper right')
     pl.title(name)
     pl.savefig("./figures/" + name + ".png")
     pl.close()
 
+    print "#" * 20, "END", "#" * 20
+
 # This is a function that would help to generate numbers to compare the elbow (trade off between amount of training
 # and accuracy)
-if __name__ == "__main__":
-    problems = [cpm_X264] #cpm_apache_training_reduction, cpm_BDBC, cpm_BDBJ, cpm_LLVM, cpm_SQL_100, cpm_SQL_4553,  cpm_X264]
+
+
+def test_cpm_apache():
+    problems = [cpm_apache_training_reduction]
     treatments = [base_line, exemplar_where, east_west_where]
+    numbers = [50, 100, 150]
+    scores = []
     for problem in problems:
-        print problem
-        scores = []
         for treatment in treatments:
-            temp = performance_test(problem, treatment)
+            print "=" * 30, problem.__name__, treatment.__name__
+            temp = performance_test(problem, treatment, numbers)
             scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
-        draw(scores, problem.__name__)
+    draw(scores, problem.__name__)
+
+def test_BDBJ():
+    problems = [cpm_BDBJ]
+    treatments = [base_line, exemplar_where, east_west_where]
+    numbers = [50, 100, 150]
+    scores = []
+    for problem in problems:
+        for treatment in treatments:
+            temp = performance_test(problem, treatment, numbers)
+            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+    draw(scores, problem.__name__)
+
+def test_BDBC():
+    problems = [cpm_BDBC]
+    treatments = [base_line, exemplar_where, east_west_where]
+    numbers = [50, 100, 200, 400, 800, 1600, 2400]
+    scores = []
+    for problem in problems:
+        for treatment in treatments:
+            temp = performance_test(problem, treatment, numbers)
+            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+    draw(scores, problem.__name__)
+
+
+def test_SQL():
+    problems = [cpm_SQL]
+    treatments = [base_line, exemplar_where, east_west_where]
+    numbers = [50, 100, 200, 400, 800, 1600, 3000]
+    scores = []
+    for problem in problems:
+        for treatment in treatments:
+            temp = performance_test(problem, treatment, numbers)
+            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+    draw(scores, problem.__name__)
+
+
+def test_x264():
+    problems = [cpm_X264]
+    treatments = [base_line, exemplar_where, east_west_where]
+    numbers = [50, 100, 200, 400, 800, 1000]
+    scores = []
+    for problem in problems:
+        for treatment in treatments:
+            temp = performance_test(problem, treatment, numbers)
+            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+    draw(scores, problem.__name__)
+
+def test_LLVM():
+    problems = [cpm_LLVM]
+    treatments = [base_line, exemplar_where, east_west_where]
+    numbers = [50, 100, 200, 400, 800, 1000]
+    scores = []
+    for problem in problems:
+        for treatment in treatments:
+            temp = performance_test(problem, treatment, numbers)
+            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+    draw(scores, problem.__name__)
+
+
+def start_test():
+    test_cpm_apache()
+    test_BDBC()
+    test_BDBJ()
+    test_SQL()
+    test_x264()
+    test_LLVM()
+
+if __name__ == "__main__":
+    start_test()

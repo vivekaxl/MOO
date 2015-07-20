@@ -49,6 +49,7 @@ def joes_charter_reporter(problems, algorithms, tag=""):
     RRS = []
     data = []
     foam = []
+    baseline =[]
     
     for p,prob in enumerate(problems):
         base.append([])
@@ -58,10 +59,16 @@ def joes_charter_reporter(problems, algorithms, tag=""):
         foam.append([])
         finput = open("data/" + prob.name + "-p" + str(MU) + "-d"  + str(len(prob.decisions)) + "-o" + str(len(prob.objectives)) + "-dataset.txt", 'rb')
         reader = csv.reader(finput, delimiter=',')
+        initial = []
+
+        filename = "data/" + prob.name + "-p" + str(MU) + "-d"  + str(len(prob.decisions)) + "-o" + str(len(prob.objectives)) + "-dataset.txt"
+        row_count = sum(1 for _ in csv.reader( open(filename)))
         for i,row in enumerate(reader):
-            if i > MU:
-                    base[p].append(float(row[1]))
-                    
+            if i > 1 and i != row_count-1:
+                    initial.append(prob.evaluate(row)[-1])
+        baseline.append(initial)
+
+
             
         for a,alg in enumerate(algorithms):
             
@@ -75,6 +82,8 @@ def joes_charter_reporter(problems, algorithms, tag=""):
             # data/RRS_TABLE__DTLZ1_12_8-p100-d12-o8_GALE.datatable
             # data/results_DTLZ1_12_8-p100-d12-o8_GALE.datatable
             # data/decision_bin_table_DTLZ1_12_8-p100-d12-o8_GALE.datatable
+            # import pdb
+            # pdb.set_trace()
             
             reader2 = csv.reader(f2input, delimiter=',')
             reader3 = csv.reader(f3input, delimiter=',')
@@ -307,6 +316,25 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                         maxEvals = 0
                         for a,alg in enumerate(algorithms):
                             maxEvals = max(maxEvals, max(data[p][a][0]))
+
+                        from numpy import percentile
+                        first_percentile = percentile(baseline[p], 25)
+                        second_percentile = percentile(baseline[p], 50)
+                        third_percentile = percentile(baseline[p], 75)
+
+
+                        print first_percentile, second_percentile, third_percentile
+
+
+                        for i, sc in enumerate([first_percentile, second_percentile, third_percentile]):
+                            keylist = []
+                            scores = []
+                            keylist.extend([j for j in xrange(10, int(maxEvals))])
+                            scores.extend([sc for _ in xrange(10, int(maxEvals))])
+                            axarr[oo].plot(keylist, scores, label=str(i+1)+"quadrant", marker="+", color="BLACK", markersize=7, markeredgecolor='none')
+
+
+
                         for a,alg in enumerate(algorithms):    
                             
                             scores = {}
@@ -327,7 +355,7 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                                 scores[eval] = [score for score in scores[eval] ]#if score >= lq and score <= uq ]
                                 for item in scores[eval]:
                                     keylist.append(eval)
-                                    scorelist.append(item)
+                                    scorelist.append(min(scorelist + [item]))
                                     if len(smallslist) == 0: 
                                         smallslist.append(min(scores[eval]))
                                     else:
@@ -343,15 +371,15 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                             # #print scorelist
                             # print "-" *30
                             # print alg.name, o
-                            print keylist
-                            print scorelist
-                            exit()
+                            # print keylist
+                            # print scorelist
+                            # exit()
                             # print min(scorelist) - 0.1, max(scorelist) + 0.1
                             axarr[oo].plot(keylist, scorelist, label=alg.name, marker=alg.type, color=alg.color, markersize=7, markeredgecolor='none') #MARKER PLOTS
                             #axarr[p][oo].plot([min(keylist)]+keylist, [100]+smallslist, color=alg.color) #BOTTOMLINE
                             axarr[oo].plot([x for x in range(0,10000,10)], [100 for x in range(0,10000,10)], color="Black") #BASELINE
                             min_yaxis = min(min(scorelist), min_yaxis)
-                            max_yaxis = max(max(scorelist), max_yaxis)
+                            max_yaxis = max(max(max(scorelist), max_yaxis), third_percentile)
                             axarr[oo].set_autoscale_on(True)
                             axarr[oo].set_xlim([-10, 10000])
 
