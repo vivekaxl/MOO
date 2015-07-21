@@ -329,8 +329,8 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                         for i, sc in enumerate([first_percentile, second_percentile, third_percentile]):
                             keylist = []
                             scores = []
-                            keylist.extend([j for j in xrange(10, int(maxEvals))])
-                            scores.extend([sc for _ in xrange(10, int(maxEvals))])
+                            keylist.extend([j for j in xrange(10, int(maxEvals - 3000))])
+                            scores.extend([sc for _ in xrange(10, int(maxEvals - 3000))])
                             axarr[oo].plot(keylist, scores, label=str(i+1)+"quadrant", marker="+", color="BLACK", markersize=7, markeredgecolor='none')
 
 

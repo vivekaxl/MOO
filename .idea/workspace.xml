@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="jmoo_properties.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jmoo_properties.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="2880">
-              <caret line="105" column="17" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.9230769" vertical-offset="1575" max-vertical-offset="2940">
+              <caret line="141" column="13" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="13" />
               <folding>
                 <element signature="e#1078#1107#0" expanded="true" />
               </folding>
@@ -36,37 +36,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jmoo_stats_box.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
+      <file leaf-file-name="jmoo_jmoea.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jmoo_jmoea.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-59.666668" vertical-offset="939" max-vertical-offset="4140">
-              <caret line="178" column="65" selection-start-line="178" selection-start-column="53" selection-end-line="178" selection-end-column="65" />
+            <state vertical-scroll-proportion="-6.888889" vertical-offset="294" max-vertical-offset="2295">
+              <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="joes_moo_charter.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/joes_moo_charter.py">
+      <file leaf-file-name="jmoo_algorithms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jmoo_algorithms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65591395" vertical-offset="4629" max-vertical-offset="6900">
-              <caret line="333" column="84" selection-start-line="333" selection-start-column="84" selection-end-line="333" selection-end-column="84" />
-              <folding>
-                <element signature="e#1064#1083#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="5805" max-vertical-offset="6585">
+              <caret line="410" column="27" selection-start-line="410" selection-start-column="27" selection-end-line="410" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cpm_reduction.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_reduction.py">
+      <file leaf-file-name="jmoo_stats_box.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1980" max-vertical-offset="6720">
-              <caret line="360" column="35" selection-start-line="360" selection-start-column="35" selection-end-line="360" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#13912#14008#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="4140">
+              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,7 +78,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/NSGAIII/nsgaiii_components.py" />
         <option value="$PROJECT_DIR$/deap/tools/emo.py" />
         <option value="$PROJECT_DIR$/ANYWHERE/Helper/perpendicular_distance.py" />
         <option value="$PROJECT_DIR$/Problems/NRP/Requirement.py" />
@@ -102,7 +96,6 @@
         <option value="$PROJECT_DIR$/Problems/NRP/nrp.py" />
         <option value="$PROJECT_DIR$/ANYWHERE/Helper/ndimes.py" />
         <option value="$PROJECT_DIR$/ANYWHERE/Helper/poles.py" />
-        <option value="$PROJECT_DIR$/jmoo_algorithms.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/cpm_apache.py" />
         <option value="$PROJECT_DIR$/MOEA_D/moead_components.py" />
         <option value="$PROJECT_DIR$/jmoo_stats_box.py" />
@@ -131,9 +124,11 @@
         <option value="$PROJECT_DIR$/jmoo_interface.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/data/SQL_100testing.csv" />
         <option value="$PROJECT_DIR$/Problems/CPM/Logs/Logs_of_Variable_base_line.txt" />
+        <option value="$PROJECT_DIR$/joes_moo_charter.py" />
+        <option value="$PROJECT_DIR$/data/results_CPM_APACHE-p100-d9-o1_GALE.datatable" />
         <option value="$PROJECT_DIR$/Problems/CPM/cpm_reduction.py" />
         <option value="$PROJECT_DIR$/jmoo_properties.py" />
-        <option value="$PROJECT_DIR$/joes_moo_charter.py" />
+        <option value="$PROJECT_DIR$/jmoo_algorithms.py" />
       </list>
     </option>
   </component>
@@ -195,7 +190,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
+              <option name="myItemId" value="charts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -212,36 +207,8 @@
               <option name="myItemId" value="charts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jmoo-jmoo_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jmoo-jmoo_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Problems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jmoo-jmoo_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jmoo-jmoo_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Problems" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CPM" />
+              <option name="myItemId" value="07-21-2015" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -436,10 +403,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2614458" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2614458" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -491,20 +458,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/RahulTool/axe/counts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="0" max-vertical-offset="0">
-          <caret line="353" column="7" selection-start-line="353" selection-start-column="2" selection-end-line="353" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/RahulTool/makeAmodel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0689654" vertical-offset="0" max-vertical-offset="0">
-          <caret line="43" column="23" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/RahulTool/_imports/settingsWhere.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -639,14 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/results_CPM_APACHE-p100-d9-o1_GALE.datatable">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="587">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/results_CPM_APACHE-p100-d9-o1_DE.datatable">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
@@ -675,11 +620,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/figures/cpm_apache_training_reduction.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/charts/07-19-2015/figure01_CPM_APACHE_.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -703,14 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_jmoea.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="2295">
-          <caret line="73" column="35" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jmoo_problem.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="975" max-vertical-offset="1965">
@@ -724,33 +656,6 @@
         <state vertical-scroll-proportion="0.7948718" vertical-offset="1035" max-vertical-offset="1620">
           <caret line="100" column="12" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="12" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_interface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1515" max-vertical-offset="2550">
-          <caret line="153" column="6" selection-start-line="153" selection-start-column="6" selection-end-line="153" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-59.666668" vertical-offset="939" max-vertical-offset="4140">
-          <caret line="178" column="65" selection-start-line="178" selection-start-column="53" selection-end-line="178" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_reduction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4920" max-vertical-offset="6720">
-          <caret line="360" column="35" selection-start-line="360" selection-start-column="35" selection-end-line="360" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#13912#14008#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -774,22 +679,124 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
+    <entry file="file://$PROJECT_DIR$/joes_moo_charter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="2880">
-          <caret line="105" column="17" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
+        <state vertical-scroll-proportion="-12.444445" vertical-offset="4629" max-vertical-offset="6900">
+          <caret line="331" column="81" selection-start-line="331" selection-start-column="81" selection-end-line="331" selection-end-column="81" />
           <folding>
-            <element signature="e#1078#1107#0" expanded="true" />
+            <element signature="e#1064#1083#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/joes_moo_charter.py">
+    <entry file="file://$PROJECT_DIR$/data/cpm_X264-p100-d16-o1-dataset.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65591395" vertical-offset="4629" max-vertical-offset="6900">
-          <caret line="333" column="84" selection-start-line="333" selection-start-column="84" selection-end-line="333" selection-end-column="84" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1620">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/results_cpm_X264-p100-d16-o1_GALE.datatable">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_interface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1515" max-vertical-offset="2550">
+          <caret line="153" column="6" selection-start-line="153" selection-start-column="6" selection-end-line="153" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/results_CPM_APACHE-p100-d9-o1_GALE.datatable">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1848" max-vertical-offset="2436">
+          <caret line="79" column="11" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/figures/cpm_apache_training_reduction.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_reduction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="7.5555553" vertical-offset="4839" max-vertical-offset="6825">
+          <caret line="309" column="0" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
           <folding>
-            <element signature="e#1064#1083#0" expanded="true" />
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#14145#14241#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_stats_box.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="4140">
+          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_jmoea.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.888889" vertical-offset="294" max-vertical-offset="2295">
+          <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_algorithms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5805" max-vertical-offset="6585">
+          <caret line="410" column="27" selection-start-line="410" selection-start-column="27" selection-end-line="410" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/charts/07-21-2015/figure01_CPM_APACHE_.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/charts/07-21-2015/figure02_cpm_X264_.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/charts/07-21-2015/figure03_CPM_SQL_.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/charts/07-21-2015/figure04_CPM_LLVM_.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/charts/07-21-2015/figure05_CPM_BDBJ_.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/charts/07-21-2015/figure06_CPM_BDBC_.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9230769" vertical-offset="1575" max-vertical-offset="2940">
+          <caret line="141" column="13" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="13" />
+          <folding>
+            <element signature="e#1078#1107#0" expanded="true" />
           </folding>
         </state>
       </provider>

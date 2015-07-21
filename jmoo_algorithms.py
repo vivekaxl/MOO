@@ -405,7 +405,7 @@ def default_toStop(statBox):
 def bstop(statBox):
     stop = True
     for o,obj in enumerate(statBox.problem.objectives):
-        if statBox.box[-1].changes[o] <= statBox.bests[o]: stop = False # TODO: Removed the = sign
+        if statBox.box[-1].changes[o] <= statBox.bests[o]: stop = False
     
     if stop == True:
         statBox.lives += -1

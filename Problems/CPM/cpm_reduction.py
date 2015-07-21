@@ -124,25 +124,30 @@ class cpm_apache_data_frame:
 
 class cpm_reduction(jmoo_problem):
     def get_training_data(self, number, percentage=1.0, method=base_line):
+        from copy import deepcopy
+        transformed_data = deepcopy(self.data)
+        random_selection = self.get_testing_data(transformed_data)
         from random import sample
-        random_selection = sample(self.data, int(len(self.data) * percentage))
-        self.get_testing_data(number)
-
+        random_selection = sample(random_selection, int(len(random_selection) * percentage))
 
         temp_file_generation(self.header, random_selection)
         training = method(temp_file_name)
         temp_file_removal()
-        print "Length of the training data: ", len(training),
+
+        print "Length of training set: ", len(training),
+        print "Length of testing set: ", len(self.testing_dependent)
 
         return [row[:-1] for row in training], [row[-1] for row in training]
 
-    def get_testing_data(self, number):
-        testing_data = []
-        from random import sample
-        testing_data = sample(self.data, number)
-        print "Length of testing_data: ", len(testing_data)
+    def get_testing_data(self, data):
+        training_percent = 0.3
+        total_data = len(self.data)
+        from random import shuffle
+        shuffle(data)
+        testing_data = data[:int(training_percent * len(data))]
         self.testing_independent = [row[1:-1] for row in testing_data]
         self.testing_dependent = [float(row[-1]) for row in testing_data]
+        return data[int(training_percent * len(data)):]
 
     def test_data(self):
         prediction = self.CART.predict(self.testing_independent)
@@ -248,7 +253,7 @@ class cpm_BDBJ(cpm_reduction):
 
 class cpm_LLVM(cpm_reduction):
     # def __init__(self, treatment, number=50, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./data/LLVM_AllMeasurements.csv"):
-    def __init__(self, treatment, number=50, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=11, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
 
         self.name = name
         self.filename = filename
@@ -274,7 +279,7 @@ class cpm_LLVM(cpm_reduction):
 
 class cpm_SQL(cpm_reduction):
     # def __init__(self, treatment, number=50, requirements=39, fraction=0.5, name="CPM_SQL", filename="./data/SQL_AllMeasurements.csv"):
-    def __init__(self, treatment, number=50, requirements=39, fraction=0.5, name="CPM_SQL", filename="./Problems/CPM/data/SQL_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=39, name="CPM_SQL", filename="./Problems/CPM/data/SQL_AllMeasurements.csv"):
 
         self.name = name
         self.filename = filename
@@ -332,14 +337,17 @@ class data_container:
         self.value = value
 
 def performance_test(dataset, treatment, test_numbers):
-    repeat = 3
+    repeats = 20
     scores = []
+    print "Dataset: ", dataset.__name__, " Repeats: ", repeats, " Treatment: ", treatment.__name__
     for number in test_numbers:
         temp_store = []
-        for _ in xrange(repeat):
+        for repeat in xrange(repeats):
+            print repeat, " ",
             p = dataset(treatment, number=number)
             temp_store.append(p.test_data())
         scores.append(data_container(number, sum(temp_store)/len(temp_store)))
+        print
     return scores
     #draw([x.fraction for x in scores], [x.value for x in scores], problem.name)
 
@@ -367,11 +375,10 @@ def draw(scores1, name):
 def test_cpm_apache():
     problems = [cpm_apache_training_reduction]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 150]
+    numbers = [50, 100, 115]
     scores = []
     for problem in problems:
         for treatment in treatments:
-            print "=" * 30, problem.__name__, treatment.__name__
             temp = performance_test(problem, treatment, numbers)
             scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
     draw(scores, problem.__name__)
@@ -379,7 +386,7 @@ def test_cpm_apache():
 def test_BDBJ():
     problems = [cpm_BDBJ]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 150]
+    numbers = [50, 100, 110]
     scores = []
     for problem in problems:
         for treatment in treatments:
@@ -390,7 +397,7 @@ def test_BDBJ():
 def test_BDBC():
     problems = [cpm_BDBC]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 200, 400, 800, 1600, 2400]
+    numbers = [50, 100, 200, 400, 800, 1600]
     scores = []
     for problem in problems:
         for treatment in treatments:
@@ -414,7 +421,7 @@ def test_SQL():
 def test_x264():
     problems = [cpm_X264]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 200, 400, 800, 1000]
+    numbers = [50, 100, 200, 400, 800]
     scores = []
     for problem in problems:
         for treatment in treatments:
@@ -425,7 +432,7 @@ def test_x264():
 def test_LLVM():
     problems = [cpm_LLVM]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 200, 400, 800, 1000]
+    numbers = [50, 100, 200, 400, 700]
     scores = []
     for problem in problems:
         for treatment in treatments:
