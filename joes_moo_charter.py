@@ -65,6 +65,7 @@ def joes_charter_reporter(problems, algorithms, tag=""):
         row_count = sum(1 for _ in csv.reader( open(filename)))
         for i,row in enumerate(reader):
             if i > 1 and i != row_count-1:
+                    row = map(float, row)
                     initial.append(prob.evaluate(row)[-1])
         baseline.append(initial)
 

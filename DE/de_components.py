@@ -142,13 +142,13 @@ def de_selector(problem, individuals):
         #print "New Score: ", mutant.fitness.fitness
         newer_generation.append(better(problem, individual, mutant))
 
-    #print len(newer_generation)
+    # print len(newer_generation)
     return newer_generation, no_evals
 
 #Vivek: This is just a stub
 def de_mutate(problem, population):
     #print "mutate"
-    #print "Length of the Population: ",len(population)
+    # print "mutated: Length of the Population: ",len(population)
     #for i,p in enumerate(population):
     #    print ">>", i, sum(p.fitness.fitness)
     #print "Minimum in population: ", min([sum(p.fitness.fitness) for p in population])
@@ -157,5 +157,5 @@ def de_mutate(problem, population):
 
 #Vivek: This is just a stub
 def de_recombine(problem, unusedSlot, mutants, MU):
-    #print "recombine"
+    # print "recombine: Length of population: ", len(mutants)
     return mutants, 0

@@ -163,9 +163,13 @@ class cpm_reduction(jmoo_problem):
         if input:
             for i,decision in enumerate(self.decisions):
                 decision.value = input[i]
-            input = [decision.value for decision in self.decisions]
+            input = [round(decision.value, 1) for decision in self.decisions]
+            # print "Input: ", input
             assert(len(input) == len(self.decisions)), "Something's wrong"
             prediction = self.CART.predict(input)
+            # print prediction
+            import time
+            # time.sleep(0.5)
             return prediction
         else:
             assert(False), "BOOM"

@@ -126,7 +126,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         numNewEvals += evals
 
 
-        
+        print "Length of pop: jmoea: ", len(population)
         # # # # # # # # # # #
         # 4d) Collect Stats #
         # # # # # # # # # # #
@@ -144,11 +144,11 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
 
 
 
-    
-
-    # print "=" * 30
-    # print len(statBox.box[-1].population)
-    # for pop in statBox.box[-1].population:
-    #     print pop.fitness.fitness
-    # return the representative generation
+        fignum = len([name for name in os.listdir('data/finalpopulation')]) + 1
+        filename = "data/finalpopulation/" + problem.name + "_" + algorithm.name + str(fignum) + ".txt"
+        filedesc = open(filename, 'w')
+        print "hold population: ", len(statBox.box[-1].population)
+        for pop in statBox.box[-1].population:
+            filedesc.write(','.join([str(round(p)) for p in pop.decisionValues]) + " : " + ','.join([str(round(p)) for p in pop.fitness.fitness]) + "\n")
+        filedesc.close()
     return statBox
