@@ -1,10 +1,10 @@
 <Experiment>
-<Problem name = 'CPM_SQL'>
+<Problem name = 'CPM_APACHE'>
 <Algorithm name = 'GALE'>
 <Run id = '1'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>1.91139292717</RunTime>
+<RunTime>0.69000005722</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
@@ -12,7 +12,7 @@
 <Run id = '2'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>1.98034501076</RunTime>
+<RunTime>0.62882900238</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
@@ -20,7 +20,7 @@
 <Run id = '3'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>1.99148988724</RunTime>
+<RunTime>0.597733974457</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
@@ -28,7 +28,7 @@
 <Run id = '4'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>2.0433371067</RunTime>
+<RunTime>0.624596118927</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
@@ -36,7 +36,7 @@
 <Run id = '5'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>2.12521195412</RunTime>
+<RunTime>0.588099956512</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
@@ -44,7 +44,7 @@
 <Run id = '6'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>2.02261018753</RunTime>
+<RunTime>0.632302999496</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
@@ -52,7 +52,7 @@
 <Run id = '7'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>1.97742295265</RunTime>
+<RunTime>0.619916200638</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
@@ -60,7 +60,7 @@
 <Run id = '8'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>1.96566581726</RunTime>
+<RunTime>0.692897796631</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
@@ -68,7 +68,7 @@
 <Run id = '9'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>2.09713411331</RunTime>
+<RunTime>0.641468048096</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
@@ -76,7 +76,259 @@
 <Run id = '10'>
 <Summary>
 <NumEvals>0</NumEvals>
-<RunTime>1.93146491051</RunTime>
+<RunTime>0.632803201675</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+</Algorithm>
+</Problem>
+<Problem name = 'cpm_X264'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.96383690834</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '2'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.00358104706</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '3'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.883033037186</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '4'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.891439914703</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '5'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.973020792007</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '6'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.932689905167</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '7'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.973479032516</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '8'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.909969091415</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '9'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.945269107819</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '10'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.938690185547</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+</Algorithm>
+</Problem>
+<Problem name = 'CPM_LLVM'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.729192018509</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '2'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.701451063156</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '3'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.742395162582</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '4'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.68093419075</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '5'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.72029209137</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '6'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.680131912231</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '7'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.734752893448</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '8'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.740805864334</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '9'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.703584909439</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '10'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>0.710635185242</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+</Algorithm>
+</Problem>
+<Problem name = 'CPM_BDBJ'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.4692261219</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '2'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.46604609489</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '3'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.45699810982</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '4'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.40305995941</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '5'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.4647269249</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '6'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.37632012367</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '7'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.43125915527</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '8'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.31861400604</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '9'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.49252295494</RunTime>
+<IBD>1.0</IBD>
+<IBS>0</IBS>
+<f1>0</f1>
+</Summary></Run>
+<Run id = '10'>
+<Summary>
+<NumEvals>0</NumEvals>
+<RunTime>1.45289087296</RunTime>
 <IBD>1.0</IBD>
 <IBS>0</IBS>
 <f1>0</f1>
