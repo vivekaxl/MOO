@@ -102,7 +102,8 @@ def temp_file_generation(header, listoflist):
 def temp_file_removal():
     os.remove(temp_file_name)
 
-
+testing_percent = 0
+training_percent = 0
 
 
 
@@ -123,43 +124,46 @@ class cpm_apache_data_frame:
 
 
 class cpm_reduction(jmoo_problem):
-    def get_training_data(self, number, percentage=1.0, method=base_line):
+    def get_training_data(self, method=base_line):
+        global testing_percent, training_percent
         from copy import deepcopy
         transformed_data = deepcopy(self.data)
-        random_selection = self.get_testing_data(transformed_data)
-        from random import sample
-        random_selection = sample(random_selection, int(len(random_selection) * percentage))
+        random_selection = self.get_testing_data(transformed_data, testing_percent)
 
         temp_file_generation(self.header, random_selection)
         training = method(temp_file_name)
         temp_file_removal()
+
 
         print "Length of training set: ", len(training),
         print "Length of testing set: ", len(self.testing_dependent)
 
         return [row[:-1] for row in training], [row[-1] for row in training]
 
-    def get_testing_data(self, data):
-        training_percent = 0.3
-        total_data = len(self.data)
+    def get_testing_data(self, data, testing_perc):
+        print "testing_percent: ", testing_percent
         from random import shuffle
         shuffle(data)
-        testing_data = data[:int(training_percent * len(data))]
+        testing_data = data[:int(testing_perc * len(data))]
         self.testing_independent = [row[1:-1] for row in testing_data]
         self.testing_dependent = [float(row[-1]) for row in testing_data]
-        return data[int(training_percent * len(data)):]
+
+        # This makes sure that the training and testing doesn't overlap
+        return data[int(testing_perc * len(data)):]
 
     def test_data(self):
-        prediction = self.CART.predict(self.testing_independent)
+        prediction = [float(x) for x in self.CART.predict(self.testing_independent)]
         mre = []
         for i, j in zip(self.testing_dependent, prediction):
-            mre.append(abs(i - j)/i)
+            mre.append(abs(i - j)/float(i))
         return sum(mre)/len(mre)
 
     def print_data(self):
         print len(self.data)
 
     def evaluate(self, input = None):
+        print "This needs to be changed"
+        exit()
         if input:
             for i,decision in enumerate(self.decisions):
                 decision.value = input[i]
@@ -167,9 +171,6 @@ class cpm_reduction(jmoo_problem):
             # print "Input: ", input
             assert(len(input) == len(self.decisions)), "Something's wrong"
             prediction = self.CART.predict(input)
-            # print prediction
-            import time
-            # time.sleep(0.5)
             return prediction
         else:
             assert(False), "BOOM"
@@ -180,8 +181,8 @@ class cpm_reduction(jmoo_problem):
         return False
 
 class cpm_apache_training_reduction(cpm_reduction):
-    # def __init__(self, treatment, number=50, requirements=9, name="CPM_APACHE", filename="./data/Apache_AllMeasurements.csv"):
-    def __init__(self, treatment, number=50, requirements=9, name="CPM_APACHE", filename="./Problems/CPM/data/Apache_AllMeasurements.csv"):
+    def __init__(self, treatment, requirements=9, name="CPM_APACHE", filename="./data/Apache_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=9, name="CPM_APACHE", filename="./Problems/CPM/data/Apache_AllMeasurements.csv"):
 
         self.name = name
         self.filename = filename
@@ -196,21 +197,15 @@ class cpm_apache_training_reduction(cpm_reduction):
         # Read data
         self.header, self.data = read_csv(self.filename, header=True)
 
-        if treatment is None:
-            fraction = 1.0
-            treatment = east_west_where
-        elif treatment.__name__ == "base_line": fraction =  (len(self.data) - number)/float((len(self.data)))
-        else: fraction = 1.0
 
 
-        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
+        self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
-
 
 class cpm_BDBC(cpm_reduction):
-    # def __init__(self, treatment, number=50, requirements=18, name="CPM_BDBC", filename="./data/BDBC_AllMeasurements.csv"):
-    def __init__(self, treatment, number=50, requirements=18, name="CPM_BDBC", filename="./Problems/CPM//data/BDBC_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=18, name="CPM_BDBC", filename="./data/BDBC_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=18, name="CPM_BDBC", filename="./Problems/CPM//data/BDBC_AllMeasurements.csv"):
 
         self.name = name
         self.filename = filename
@@ -223,130 +218,100 @@ class cpm_BDBC(cpm_reduction):
         self.objectives = [jmoo_objective("f1", True)]
         self.header, self.data = read_csv(self.filename, header=True)
 
-        if treatment is None:
-            fraction = 1.0
-            treatment = east_west_where
-        elif treatment.__name__ == "base_line":  fraction = (len(self.data) - number)/float((len(self.data)))
-        else: fraction = 1.0
-
-        self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
+        self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
-    def validity(self, solution):
-        page_size_index = 7
-        cache_size_index = 13
-        pages_indexes = [8, 9, 10, 11, 12]
-        caches_indexes = [14, 15, 16, 17]
-        if solution[page_size_index] != 1 and solution[cache_size_index] != 1: return False
-        if sum([solution[i] for i in pages_indexes]) != 1: return False
-        if sum([solution[i] for i in caches_indexes]) != 1: return False
-        return True
-
-
 class cpm_BDBJ(cpm_reduction):
-    # def __init__(self, treatment, number=50, requirements=26, name="CPM_BDBJ", filename="./data/BDBJ_AllMeasurements.csv"):
-    def __init__(self, treatment, number=50, requirements=26, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=26, name="CPM_BDBJ", filename="./data/BDBJ_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=26, name="CPM_BDBJ", filename="./Problems/CPM/data/BDBJ_AllMeasurements.csv"):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
-        elif treatment == 0: treatment = base_line
+        # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
+        # Generating decisions
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
+        # Generating Objectives (this is single objective)
         self.objectives = [jmoo_objective("f1", True)]
+        # Read data
         self.header, self.data = read_csv(self.filename, header=True)
 
-        if treatment is None:
-            fraction = 1.0
-            treatment = east_west_where
-        elif treatment.__name__ == "base_line": fraction =  (len(self.data) - number)/float((len(self.data)))
-        else: fraction = 1.0
 
-        self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
+
+        self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_LLVM(cpm_reduction):
-    # def __init__(self, treatment, number=50, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./data/LLVM_AllMeasurements.csv"):
-    def __init__(self, treatment, number=50, requirements=11, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./data/LLVM_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=11, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
-        elif treatment == 0: treatment = base_line
+        # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
+        # Generating decisions
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
+        # Generating Objectives (this is single objective)
         self.objectives = [jmoo_objective("f1", True)]
+        # Read data
         self.header, self.data = read_csv(self.filename, header=True)
 
-        if treatment is None:
-            fraction = 1.0
-            treatment = east_west_where
-        elif treatment.__name__ == "base_line": fraction = (len(self.data) - number)/float((len(self.data)))
-        else: fraction = 1.0
 
-        self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
+
+        self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 class cpm_SQL(cpm_reduction):
-    # def __init__(self, treatment, number=50, requirements=39, fraction=0.5, name="CPM_SQL", filename="./data/SQL_AllMeasurements.csv"):
-    def __init__(self, treatment, number=50, requirements=39, name="CPM_SQL", filename="./Problems/CPM/data/SQL_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=39, fraction=0.5, name="CPM_SQL", filename="./data/SQL_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=39, name="CPM_SQL", filename="./Problems/CPM/data/SQL_AllMeasurements.csv"):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
-        elif treatment == 0: treatment = base_line
+        # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
+        # Generating decisions
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
+        # Generating Objectives (this is single objective)
         self.objectives = [jmoo_objective("f1", True)]
+        # Read data
         self.header, self.data = read_csv(self.filename, header=True)
 
-        if treatment is None:
-            fraction = 1.0
-            treatment = east_west_where
-        elif treatment.__name__ == "base_line": fraction =  (len(self.data) - number)/float((len(self.data)))
-        else: fraction = 1.0
 
-        self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
+
+        self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
 
 class cpm_X264(cpm_reduction):
-    # def __init__(self, treatment, number=50, requirements=16, fraction=0.5, name="cpm_X264", filename="./data/X264_AllMeasurements.csv"):
-    def __init__(self, treatment, number=50, requirements=16, fraction=0.5, name="cpm_X264", filename="./Problems/CPM/data/X264_AllMeasurements.csv"):
+    def __init__(self, treatment, number=50, requirements=16, fraction=0.5, name="cpm_X264", filename="./data/X264_AllMeasurements.csv"):
+    # def __init__(self, treatment, number=50, requirements=16, fraction=0.5, name="cpm_X264", filename="./Problems/CPM/data/X264_AllMeasurements.csv"):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
-        elif treatment == 0: treatment = base_line
+        # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
         ups = [1 for _ in xrange(requirements)]
+        # Generating decisions
         self.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(requirements)]
+        # Generating Objectives (this is single objective)
         self.objectives = [jmoo_objective("f1", True)]
+        # Read data
         self.header, self.data = read_csv(self.filename, header=True)
 
-        if treatment is None:
-            fraction = 1.0
-            treatment = east_west_where
-        elif treatment.__name__ == "base_line": fraction =  (len(self.data) - number)/float((len(self.data)))
-        else: fraction = 1.0
 
-        self.testing_independent, self.testing_dependent = [], []
-        self.training_independent, self.training_dependent = self.get_training_data(number, method=treatment, percentage=fraction)
+
+        self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
@@ -356,32 +321,48 @@ class data_container:
         self.fraction = fraction
         self.value = value
 
-def performance_test(dataset, treatment, test_numbers):
+def performance_test(dataset, treatment):
     repeats = 20
     scores = []
-    print "Dataset: ", dataset.__name__, " Repeats: ", repeats, " Treatment: ", treatment.__name__
-    for number in test_numbers:
-        temp_store = []
-        for repeat in xrange(repeats):
-            print repeat, " ",
-            p = dataset(treatment, number=number)
-            temp_store.append(p.test_data())
-        scores.append(data_container(number, sum(temp_store)/len(temp_store)))
-        print
+    print "Dataset: ", dataset.__name__, " Repeats: ", repeats, " Treatment: ", treatment.__name__, training_percent
+    temp_store = []
+    for repeat in xrange(repeats):
+        print repeat, " ",
+        p = dataset(treatment=treatment)
+        temp_store.append(p.test_data())
+    scores.append(data_container(training_percent, temp_store))
     return scores
     #draw([x.fraction for x in scores], [x.value for x in scores], problem.name)
 
-def draw(scores1, name):
+def draw(data, name):
     import pylab as pl
+
+    scores1 = []
+    import matplotlib.pyplot as plt
+    import numpy as np
+    for row in data:
+        scores = []
+        for d in row:
+            temp = []
+            temp.append(d[0])
+            temp.append(np.percentile(d[1], 50))
+            temp.append(np.percentile(d[1], 75) - np.percentile(d[1], 25))
+            temp.append(d[2])
+            scores.append(temp)
+        scores1.append(scores)
+
+
     for score in scores1:
-        print score[-1]
-        pl.plot(score[0], score[1], linestyle="-", label=score[-1])
-    pl.xlim(min([min(s0[0]) for s0 in scores1]) * 0.9, max([max(s0[0]) for s0 in scores1]) * 1.4)
+        x_coordinates = [s[0] for s in score]
+        y_coordinates = [s[1] for s in score]
+        y_error = [s[2] for s in score]
+        pl.errorbar(x_coordinates, y_coordinates, yerr=y_error, linestyle="-", label=score[-1][-1])
+
+    pl.xlim(0.4, 1.2)
     # pl.ylim(min([min(s1[1]) for s1 in scores1]) * 0.9, max([max(s1[1]) for s1 in scores1]) * 1.4)
     pl.ylim(0, 1.0)
-    pl.xlabel('No. of Testing Instances')
-    pl.ylabel('MRE variation over 10 repeats')
-    pl.errorbar(0.1)
+    pl.xlabel('Training Data (% of data)')
+    pl.ylabel('MRE variation over 20 repeats')
     pl.legend(loc='upper right')
     pl.title(name)
     pl.savefig("./figures/" + name + ".png")
@@ -396,79 +377,119 @@ def draw(scores1, name):
 def test_cpm_apache():
     problems = [cpm_apache_training_reduction]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 115]
+    global training_percent, testing_percent
+    percents = [50, 60, 70, 80, 90]
     scores = []
     for problem in problems:
         for treatment in treatments:
-            temp = performance_test(problem, treatment, numbers)
-            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            treatscores = []
+            for percent in percents:
+                training_percent = percent/100
+                testing_percent = 1 - training_percent
+                temp = performance_test(dataset=problem, treatment=treatment)
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            scores.append(treatscores)
     draw(scores, problem.__name__)
 
 def test_BDBJ():
     problems = [cpm_BDBJ]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 110]
+    global training_percent, testing_percent
+    percents = [50, 60, 70, 80, 90]
     scores = []
     for problem in problems:
         for treatment in treatments:
-            temp = performance_test(problem, treatment, numbers)
-            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            treatscores = []
+            for percent in percents:
+                training_percent = percent/100
+                testing_percent = 1 - training_percent
+                temp = performance_test(dataset=problem, treatment=treatment)
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            scores.append(treatscores)
     draw(scores, problem.__name__)
 
 def test_BDBC():
     problems = [cpm_BDBC]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 200, 400, 800, 1600]
+    global training_percent, testing_percent
+    percents = [50, 60, 70, 80, 90]
     scores = []
     for problem in problems:
         for treatment in treatments:
-            temp = performance_test(problem, treatment, numbers)
-            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            treatscores = []
+            for percent in percents:
+                training_percent = percent/100
+                testing_percent = 1 - training_percent
+                print "1 training_percent: ", training_percent
+                temp = performance_test(dataset=problem, treatment=treatment)
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            scores.append(treatscores)
     draw(scores, problem.__name__)
 
 
 def test_SQL():
     problems = [cpm_SQL]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 200, 400, 800, 1600, 3000]
+    global training_percent, testing_percent
+    percents = [50, 60, 70, 80, 90]
     scores = []
     for problem in problems:
         for treatment in treatments:
-            temp = performance_test(problem, treatment, numbers)
-            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            treatscores = []
+            for percent in percents:
+                training_percent = percent/100
+                testing_percent = 1 - training_percent
+                print "1 training_percent: ", training_percent
+                temp = performance_test(dataset=problem, treatment=treatment)
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            scores.append(treatscores)
     draw(scores, problem.__name__)
 
 
 def test_x264():
     problems = [cpm_X264]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 200, 400, 800]
+    global training_percent, testing_percent
+    percents = [50, 60, 70, 80, 90]
     scores = []
     for problem in problems:
         for treatment in treatments:
-            temp = performance_test(problem, treatment, numbers)
-            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            treatscores = []
+            for percent in percents:
+                training_percent = percent/100
+                testing_percent = 1 - training_percent
+                print "1 training_percent: ", training_percent
+                temp = performance_test(dataset=problem, treatment=treatment)
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            scores.append(treatscores)
     draw(scores, problem.__name__)
 
 def test_LLVM():
     problems = [cpm_LLVM]
     treatments = [base_line, exemplar_where, east_west_where]
-    numbers = [50, 100, 200, 400, 700]
+    global training_percent, testing_percent
+    percents = [50, 60, 70, 80, 90]
     scores = []
     for problem in problems:
         for treatment in treatments:
-            temp = performance_test(problem, treatment, numbers)
-            scores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            treatscores = []
+            for percent in percents:
+                training_percent = percent/100
+                testing_percent = 1 - training_percent
+                print "1 training_percent: ", training_percent
+                temp = performance_test(dataset=problem, treatment=treatment)
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+            scores.append(treatscores)
     draw(scores, problem.__name__)
 
 
 def start_test():
-    test_cpm_apache()
+    # test_cpm_apache()
     # test_BDBC()
     # test_BDBJ()
     # test_SQL()
     # test_x264()
-    # test_LLVM()
+    test_LLVM()
 
 if __name__ == "__main__":
     start_test()
