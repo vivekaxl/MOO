@@ -66,6 +66,7 @@ def joes_charter_reporter(problems, algorithms, tag=""):
         for i,row in enumerate(reader):
             if i > 1 and i != row_count-1:
                     row = map(float, row)
+                    assert(prob.validate(row) is True), "Something's wrong"
                     initial.append(prob.evaluate(row)[-1])
         baseline.append(initial)
 
@@ -318,6 +319,8 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                         for a,alg in enumerate(algorithms):
                             maxEvals = max(maxEvals, max(data[p][a][0]))
 
+
+                        # print baseline
                         from numpy import percentile
                         first_percentile = percentile(baseline[p], 25)
                         second_percentile = percentile(baseline[p], 50)
@@ -380,6 +383,7 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                             #axarr[p][oo].plot([min(keylist)]+keylist, [100]+smallslist, color=alg.color) #BOTTOMLINE
                             axarr[oo].plot([x for x in range(0,10000,10)], [100 for x in range(0,10000,10)], color="Black") #BASELINE
                             min_yaxis = min(min(scorelist), min_yaxis)
+                            # max_yaxis = max(max(scorelist), max_yaxis)
                             max_yaxis = max(max(max(scorelist), max_yaxis), third_percentile)
                             axarr[oo].set_autoscale_on(True)
                             axarr[oo].set_xlim([-10, 10000])

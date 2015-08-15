@@ -149,6 +149,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
         filedesc = open(filename, 'w')
         print "hold population: ", len(statBox.box[-1].population)
         for pop in statBox.box[-1].population:
-            filedesc.write(','.join([str(round(p)) for p in pop.decisionValues]) + " : " + ','.join([str(round(p)) for p in pop.fitness.fitness]) + "\n")
+            if problem.validate(pop.decisionValues) is False: continue
+            filedesc.write(','.join([str(int(round(p, 0))) for p in pop.decisionValues]) + " : " + ','.join([str(p) for p in pop.fitness.fitness]) + "\n")
         filedesc.close()
     return statBox

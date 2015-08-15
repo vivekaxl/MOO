@@ -1,6 +1,6 @@
 import os
-# file_names = ["CPM_BDBC_"]#, "CPM_LLVM", "CPM_SQL", "cpm_X264", "CPM_BDBJ_", "CPM_BDBC", ]
-file_names = ["CPM_BDBJ_"]#, "CPM_BDBC", ]
+# file_names = ["CPM_BDBC_", "CPM_LLVM", "CPM_SQL", "cpm_X264", "CPM_BDBJ_", "CPM_APACHE", ]
+file_names = ["CPM_SQL"]#, "CPM_BDBC", ]
 # file_names = [ "CPM_BDBC", ]
 
 algorithms = [ "GALE"]
@@ -19,8 +19,8 @@ for key in file_dict.keys():
     print key, len(file_dict[key])
 
 
-
 # adding all algorithms together
+
 PERFORMANCE = 0
 GALE = 1
 DE = 2
@@ -102,11 +102,14 @@ for file_name in file_names:
     # pdb.set_trace()
     # for c in content_dict[str(float(min([int(float(p)) for p in content_dict.keys()])))]:
     #     print ','.join([str(int(float(cc))) for cc in c.split(',')]), min([int(float(p)) for p in content_dict.keys()])
-    min_score = str(float(min([int(float(maps_content[content][PERFORMANCE])) for content in maps_content.keys()])))
+
+
+
+    min_score = str(float(min([float(maps_content[content][PERFORMANCE]) for content in maps_content.keys()])))
     print min_score
     useful = [content  for content in maps_content.keys() if min_score == maps_content[content][PERFORMANCE]]
     # print useful
 
     print len(useful)
     for content in useful:
-        print ','.join([str(int(float(cc))) for cc in content.split(',')]), " : ",  int(float(maps_content[content][0]))/float(100)
+        print ','.join([str(cc) for cc in content.split(',')]), " : ",  float(maps_content[content][0])

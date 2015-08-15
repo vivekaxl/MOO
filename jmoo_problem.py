@@ -64,11 +64,14 @@ class jmoo_problem(object):
 
         elif GALE_DISTRIBUTION == "UNIFORM":
             while True: # repeat if we don't meet constraints
+                temp_value = []
                 for decision in prob.decisions:
-                    decision.value = random.uniform(decision.low, decision.up)
-                if not prob.evalConstraints():
-                    break
-            return [decision.value for decision in prob.decisions]
+                    temp_value.append(random.uniform(decision.low, decision.up))
+                # if not prob.evalConstraints():
+                #     break
+                if prob.validate(temp_value) is True: break
+            assert(prob.validate(temp_value) is True), "Something's wrong"
+            return temp_value
     def generateExtreme(prob):
         
         for decision in prob.decisions:
