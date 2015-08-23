@@ -134,14 +134,14 @@ class cpm_reduction(jmoo_problem):
         training = method(temp_file_name)
         temp_file_removal()
 
-
-        print "Length of training set: ", len(training),
-        print "Length of testing set: ", len(self.testing_dependent)
+        #
+        # print "Length of training set: ", len(training),
+        # print "Length of testing set: ", len(self.testing_dependent)
 
         return [row[:-1] for row in training], [row[-1] for row in training]
 
     def get_testing_data(self, data, testing_perc):
-        print "testing_percent: ", testing_percent
+        # print "testing_percent: ", testing_percent
         from random import shuffle
         shuffle(data)
         testing_data = data[:int(testing_perc * len(data))]
@@ -180,6 +180,10 @@ class cpm_reduction(jmoo_problem):
     def evalConstraints(prob,input = None):
         return False
 
+    def find_total_time(self):
+        return sum([d[-1] for d in self.data])
+
+
 class cpm_apache_training_reduction(cpm_reduction):
     def __init__(self, treatment, requirements=9, name="CPM_APACHE", filename="./data/Apache_AllMeasurements.csv"):
     # def __init__(self, treatment, number=50, requirements=9, name="CPM_APACHE", filename="./Problems/CPM/data/Apache_AllMeasurements.csv"):
@@ -197,11 +201,10 @@ class cpm_apache_training_reduction(cpm_reduction):
         # Read data
         self.header, self.data = read_csv(self.filename, header=True)
 
-
-
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
+        self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
 
 class cpm_BDBC(cpm_reduction):
     def __init__(self, treatment, number=50, requirements=18, name="CPM_BDBC", filename="./data/BDBC_AllMeasurements.csv"):
@@ -221,6 +224,8 @@ class cpm_BDBC(cpm_reduction):
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
+
+        self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
 
 class cpm_BDBJ(cpm_reduction):
     def __init__(self, treatment, number=50, requirements=26, name="CPM_BDBJ", filename="./data/BDBJ_AllMeasurements.csv"):
@@ -245,6 +250,8 @@ class cpm_BDBJ(cpm_reduction):
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
+        self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
+
 class cpm_LLVM(cpm_reduction):
     def __init__(self, treatment, number=50, requirements=11, fraction=0.5, name="CPM_LLVM", filename="./data/LLVM_AllMeasurements.csv"):
     # def __init__(self, treatment, number=50, requirements=11, name="CPM_LLVM", filename="./Problems/CPM/data/LLVM_AllMeasurements.csv"):
@@ -268,6 +275,8 @@ class cpm_LLVM(cpm_reduction):
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
+        self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
+
 class cpm_SQL(cpm_reduction):
     def __init__(self, treatment, number=50, requirements=39, fraction=0.5, name="CPM_SQL", filename="./data/SQL_AllMeasurements.csv"):
     # def __init__(self, treatment, number=50, requirements=39, name="CPM_SQL", filename="./Problems/CPM/data/SQL_AllMeasurements.csv"):
@@ -285,11 +294,10 @@ class cpm_SQL(cpm_reduction):
         # Read data
         self.header, self.data = read_csv(self.filename, header=True)
 
-
-
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
+        self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
 
 
 class cpm_X264(cpm_reduction):
@@ -314,31 +322,42 @@ class cpm_X264(cpm_reduction):
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
+        self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
 
 
 class data_container:
-    def __init__(self, fraction, value):
+    def __init__(self, fraction, value, saved_time):
         self.fraction = fraction
         self.value = value
+        self.saved_times = saved_time
+
+    def __str__(self):
+        return str(self.fraction) + str(self.value) + str(self.saved_times) + "\n"
 
 def performance_test(dataset, treatment):
     repeats = 20
     scores = []
-    print "Dataset: ", dataset.__name__, " Repeats: ", repeats, " Treatment: ", treatment.__name__, training_percent
+    saved_times = []
+
     temp_store = []
     for repeat in xrange(repeats):
-        print repeat, " ",
+        # print repeat, " ",
+        # print "Dataset: ", dataset.__name__, " Repeats: ", repeats,
+        # print " Treatment: ", treatment.__name__, "Training Percent: ", training_percent,
         p = dataset(treatment=treatment)
+        saved_times.append(p.saved_time)
         temp_store.append(p.test_data())
-    scores.append(data_container(training_percent, temp_store))
+
+    scores.append(data_container(training_percent, temp_store, sum(saved_times)/len(saved_times)))
     return scores
     #draw([x.fraction for x in scores], [x.value for x in scores], problem.name)
 
 def draw(data, name):
     import pylab as pl
-
+    filename = "./Logs/" + name + ".txt"
+    fdesc = open(filename, "w")
+    fdesc.write("training_percent, mean, iqr, saved_time,technique \n")
     scores1 = []
-    import matplotlib.pyplot as plt
     import numpy as np
     for row in data:
         scores = []
@@ -348,8 +367,13 @@ def draw(data, name):
             temp.append(np.percentile(d[1], 50))
             temp.append(np.percentile(d[1], 75) - np.percentile(d[1], 25))
             temp.append(d[2])
+            temp_string = str(d[0][-1]) + "," + str(np.percentile(d[1], 50)) + "," + str(np.percentile(d[1], 75) -
+                                                    np.percentile(d[1], 25)) + "," + str(d[3][-1]) + "," + str(d[2]) + "\n"
+            print temp_string
+            fdesc.write(temp_string)
             scores.append(temp)
         scores1.append(scores)
+    fdesc.close()
 
 
     for score in scores1:
@@ -387,7 +411,7 @@ def test_cpm_apache():
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -404,7 +428,7 @@ def test_BDBJ():
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -422,7 +446,7 @@ def test_BDBC():
                 testing_percent = 1 - training_percent
                 print "1 training_percent: ", training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -441,7 +465,7 @@ def test_SQL():
                 testing_percent = 1 - training_percent
                 print "1 training_percent: ", training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -460,7 +484,7 @@ def test_x264():
                 testing_percent = 1 - training_percent
                 print "1 training_percent: ", training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -476,9 +500,9 @@ def test_LLVM():
             for percent in percents:
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
-                print "1 training_percent: ", training_percent
+                # print "1 training_percent: ", training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
