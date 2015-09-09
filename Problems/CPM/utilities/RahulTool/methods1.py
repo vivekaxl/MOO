@@ -58,8 +58,8 @@ def createTbl(
   makeaModel = makeAmodel.makeAModel()
   _r = []
   for t in data:
-    m = makeaModel.csv2py(t, _smote=_smote, duplicate=duplicate)
-    _r += m._rows
+      m = makeaModel.csv2py(t, _smote=_smote, duplicate=duplicate)
+      _r += m._rows
   m._rows = _r
   prepare(m, settings=None)  # Initialize all parameters for where2 to run
   tree = where2(m, m._rows)  # Decision tree using where2
@@ -68,13 +68,13 @@ def createTbl(
   headerLabel = '=klass'
   Rows = []
   for k, _ in leaves(tree):  # for k, _ in leaves(tree):
-    for j in k.val:
-      tmp = j.cells
-      if isBin:
-        tmp[-1] = 0 if tmp[-1] < bugThres else 1
-      tmp.append('_' + str(id(k) % 1000))
-      j.__dict__.update({'cells': tmp})
-      Rows.append(j.cells)
+      for j in k.val:
+          tmp = j.cells
+          if isBin:
+              tmp[-1] = 0 if tmp[-1] < bugThres else 1
+          tmp.append('_' + str(id(k) % 1000))
+          j.__dict__.update({'cells': tmp})
+          Rows.append(j.cells)
 
   return newTable(tbl, headerLabel, Rows)
 

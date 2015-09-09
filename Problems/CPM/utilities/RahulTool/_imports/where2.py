@@ -419,7 +419,6 @@ def _distances(m = nasa93):
 
 def prepare(m, settings = None):
   "Prepare the 'The' class"
-  seed(1)
   global The
   The = settings if settings else defaults().update(verbose = True,
                minSize = len(m._rows) ** 0.5,
@@ -429,7 +428,6 @@ def prepare(m, settings = None):
 
 def _where(m = nasa93):
   m = m()
-  seed(1)
   told = N()
   for r in m._rows:
     s = scores(m, r)

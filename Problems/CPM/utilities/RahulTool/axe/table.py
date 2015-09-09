@@ -32,14 +32,14 @@ def row(file,skip= The.reader.skip):
     yield n, [ line[col] for col in todo ]
 
 ## Read Headers and Rows
-def table(source, rows = True, contents = row):
-  t = table0(source)
-  for n,cells in contents(source):
-    if n == 0 : head(cells,t) 
-    else      :
-      body(cells,t,rows)
-  #print ">>>>", t.headers
-  return t
+def table(source, rows = True, contents=row):
+    t = table0(source)
+    for n,cells in contents(source):
+        if n == 0 :
+            head(cells, t)
+        else:
+            body(cells, t, rows)
+    return t
 
 def centroid(tbl,selections=False):
   return [h.centroid() for h in tbl.headers if (not selections or h.selected)]
@@ -52,18 +52,18 @@ def table0(source):
     more =[], less =[], klass=[], headers=[], 
     _rows=[], at   ={}, patterns= The.reader.patterns)
 
-def head(cells,t,numc=The.reader.numc):
-  for col,cell in enumerate(cells):
-    this   = Num if numc in cell else Sym
-    this.rank = 0
-    header = this()
-    header.col, header.name = col,cell
-    t.at[cell] = header
-    for pattern,val in t.patterns.items():
-      if re.search(pattern,cell):
-        where  = val(t)
-        where += [header]
-  return t
+def head(cells, t, numc=The.reader.numc):
+    for col,cell in enumerate(cells):
+        this = Num if numc in cell else Sym
+        this.rank = 0
+        header = this()
+        header.col, header.name = col,cell
+        t.at[cell] = header
+        for pattern,val in t.patterns.items():
+            if re.search(pattern, cell):
+                where = val(t)
+                where += [header]
+    return t
 
 def body(cells,t,keep=True):
   #print "LEN?",len(t._rows)

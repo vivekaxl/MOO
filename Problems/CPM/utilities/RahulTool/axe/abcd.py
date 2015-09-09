@@ -38,8 +38,9 @@ class Abcd:
   def ask(i):
     def p(y) : return int(100*y + 0.5)
     def n(y) : return int(y)
-    pd = pf = pn = prec = g = f = acc = 0
     for x in i.known:
+      # Old man's bug: Fixed by Magnificient Fu
+      pd = pf = pn = prec = g = f = acc = 0
       a= i.a[x]; b= i.b[x]; c= i.c[x]; d= i.d[x]
       if (b+d)    : pd   = d     / (b+d)
       if (a+c)    : pf   = c     / (a+c)

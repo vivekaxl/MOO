@@ -1,4 +1,4 @@
-time_passes,gvn,instcombine,inline,jump_threading,simplifycfg,sccp,print_used_types,ipsccp,iv_users,licm,Performance
+$time_passes,$gvn,$instcombine,$inline,$jump_threading,$simplifycfg,$sccp,$print_used_types,$ipsccp,$iv_users,$licm,$<Performance
 Y,N,N,N,N,N,N,N,N,N,N,210.44
 Y,N,N,N,N,N,Y,N,N,Y,N,200.66
 Y,N,N,Y,N,Y,N,N,Y,Y,N,213.603333333333

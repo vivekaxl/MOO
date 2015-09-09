@@ -35,8 +35,7 @@ class makeAModel(object):
                  for r in _rows],
           names=indep + less + more)
     m.decisions = [x for x in range(nindep)]
-
-    m.objectives = [nindep + x - 1 for x in range(ndep)]
+    m.objectives = [nindep + x  for x in range(ndep)]
 
     for k, indx in enumerate(m.decisions):
       for l in m.objectives:
@@ -46,9 +45,9 @@ class makeAModel(object):
     for x in m.decisions:
       m.w[x] = 1
     for y, _ in enumerate(less):
-      m.w[x + y] = -1
+      m.w[x + y+1] = -1
     for z, _ in enumerate(more):
-      m.w[x + y + z] = 1
+      m.w[x + y + z+1] = 1
     for x in m.cols:
       all = sorted(row.cells[x] for row in m._rows)
       m.lo[x] = all[0]
@@ -68,13 +67,13 @@ class makeAModel(object):
   def csv2py(self, filename, _smote=False, duplicate=False):
     "Convert a csv file to a model file"
     tbl = table(filename)
-    if _smote:
-      tbl = smote.SMOTE(
-          tbl,
-          atleast=50,
-          atmost=101,
-          bugIndx=1,
-          resample=duplicate)
+    # if _smote:
+    #   tbl = smote.SMOTE(
+    #       tbl,
+    #       atleast=50,
+    #       atmost=101,
+    #       bugIndx=1,
+    #       resample=duplicate)
     self.str2num(tbl)
     tonum = lambda x: self.translate[x] if isinstance(x, str) else x
 
@@ -85,7 +84,6 @@ class makeAModel(object):
       for l in tbl.depen:
         if k.name == l.name:
           tbl.indep.pop(indx)
-
     return self.data(indep=[i.name for i in tbl.indep],
                      less=[i.name for i in tbl.depen],
                      _rows=map(lambda x: [tonum(xx) for xx in x.cells],

@@ -26,6 +26,10 @@ def equal_list(lista, listb):
 def WHEREDataTransformation(filename):
     from utilities.RahulTool.methods1 import wrapper_createTbl
     # The data has to be access using this attribute table._rows.cells
+    print wrapper_createTbl(filename)._rows[0]
+    import pdb
+    pdb.set_trace()
+    exit()
     transformed_table = [[int(z) for z in x.cells[:-1]] + x.cells[-1:] for x in wrapper_createTbl(filename)._rows]
     cluster_numbers = set(map(lambda x: x[-1], transformed_table))
 
@@ -515,5 +519,80 @@ def start_test():
     # test_x264()
     test_LLVM()
 
+
+def offline_draw( name):
+    from collections import defaultdict
+    import pylab as pl
+    filename = "./Logs/" + name + ".txt"
+    fdesc = open(filename, "r")
+    scores = defaultdict(list)
+    for i, line in enumerate(fdesc):
+        if i == 0: continue
+        line_split = line.split(",")
+        # print ">> ", line_split
+        if line_split[-1] not in scores.keys():  scores[line_split[-1]] = []
+        scores[line_split[-1]].append([float(xx) for xx in line_split[:-2]])
+
+
+    ymin = 1e10
+    ymax = -1e10
+    for key in scores.keys():
+        score = scores[key]
+        # for score in score_temp:
+        #     print score
+        #     raw_input()
+        # print score
+        x_coordinates = [s[0] for s in score]
+        y_coordinates = [s[1]*100 for s in score]
+        y_error = [s[2]*100 for s in score]
+        ymin = min(min(y_coordinates), ymin)
+        ymax = max(max(y_coordinates), ymax)
+        # print x_coordinates
+        print y_coordinates
+        # print y_error
+        # print key
+        pl.errorbar(x_coordinates, y_coordinates, yerr=y_error, linestyle="-", label=key)
+
+
+    print ymin
+    print ymax
+    pl.xlim(0.4, 1.2)
+    pl.ylim(ymin * 0.9, ymax * 1.4)
+    # pl.ylim(0, 1.0)
+    pl.xlabel('Training Data (% of data)')
+    pl.ylabel('MRE variation over 20 repeats')
+    pl.legend(loc='upper right')
+    pl.title(name)
+    pl.savefig("./figures/" + name + "1.png")
+
+    pl.close()
+
+    #
+    #
+    # for score in scores1:
+    #     x_coordinates = [s[0] for s in score]
+    #     y_coordinates = [s[1] for s in score]
+    #     y_error = [s[2] for s in score]
+    #     pl.errorbar(x_coordinates, y_coordinates, yerr=y_error, linestyle="-", label=score[-1][-1])
+    #
+    # pl.xlim(0.4, 1.2)
+    # # pl.ylim(min([min(s1[1]) for s1 in scores1]) * 0.9, max([max(s1[1]) for s1 in scores1]) * 1.4)
+    # pl.ylim(0, 1.0)
+    # pl.xlabel('Training Data (% of data)')
+    # pl.ylabel('MRE variation over 20 repeats')
+    # pl.legend(loc='upper right')
+    # pl.title(name)
+    # pl.savefig("./figures/" + name + ".png")
+    # pl.close()
+    #
+    # print "#" * 20, "END", "#" * 20
+
+
+def start_drawing():
+    problems = [ "cpm_X264"]
+    for problem in problems:
+        offline_draw(problem)
+
 if __name__ == "__main__":
+    # start_drawing()
     start_test()
