@@ -364,6 +364,8 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                                         smallslist.append(min(scores[eval]))
                                     else:
                                         smallslist.append(    min(min(scores[eval]), min(smallslist))  )
+
+
                             
                             if oo==0:
                                 axarr[oo].set_ylabel(prob.name + "\n_o"+str(len(prob.objectives)), fontweight='bold', fontsize=14)
@@ -376,7 +378,8 @@ def joes_charter_reporter(problems, algorithms, tag=""):
                             # print "-" *30
                             # print alg.name, o
                             # print keylist
-                            # print scorelist
+                            print alg.name
+                            print scorelist
                             # exit()
                             # print min(scorelist) - 0.1, max(scorelist) + 0.1
                             axarr[oo].plot(keylist, scorelist, label=alg.name, marker=alg.type, color=alg.color, markersize=7, markeredgecolor='none') #MARKER PLOTS
