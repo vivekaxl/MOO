@@ -26,10 +26,6 @@ def equal_list(lista, listb):
 def WHEREDataTransformation(filename):
     from utilities.RahulTool.methods1 import wrapper_createTbl
     # The data has to be access using this attribute table._rows.cells
-    print wrapper_createTbl(filename)._rows[0]
-    import pdb
-    pdb.set_trace()
-    exit()
     transformed_table = [[int(z) for z in x.cells[:-1]] + x.cells[-1:] for x in wrapper_createTbl(filename)._rows]
     cluster_numbers = set(map(lambda x: x[-1], transformed_table))
 
@@ -65,7 +61,37 @@ def east_west_where(filename):
         ret.append(west)
 
     return ret
-#
+
+def wei_east_west_where(filename):
+    def furthest(one, all_members):
+        ret = None
+        ret_distance = -1 * 1e10
+        for member in all_members:
+            if equal_list(one, member) is True: continue
+            else:
+                temp = euclidean_distance(one, member)
+                if temp > ret_distance:
+                    ret = member
+                    ret_distance = temp
+        return ret
+    from random import choice
+    cluster_table = WHEREDataTransformation(filename)
+
+    ret = []
+    for cluster in cluster_table:
+        cluster[-1] = [c[:-1] for c in cluster[-1]]
+        one = choice(cluster[-1])
+        east = furthest(one, cluster[-1])
+        west = furthest(east, cluster[-1])
+        from random import random
+        if random() > 0.5:
+            ret.append(east)
+        else:
+            ret.append(west)
+
+    return ret
+
+
 def exemplar_where(filename):
     cluster_table = WHEREDataTransformation(filename)
 
@@ -75,6 +101,15 @@ def exemplar_where(filename):
         ret.append(sorted(cluster[-1], key=lambda x: x[-1])[0])
     return ret
 
+def random_where(filename):
+    cluster_table = WHEREDataTransformation(filename)
+
+    ret = []
+    for cluster in cluster_table:
+        cluster[-1] = [c[:-1] for c in cluster[-1]]
+        from random import choice
+        ret.append(choice(cluster[-1]))
+    return ret
 
 # def median_where(self, filename):
 #     # todo
@@ -330,10 +365,11 @@ class cpm_X264(cpm_reduction):
 
 
 class data_container:
-    def __init__(self, fraction, value, saved_time):
+    def __init__(self, fraction, value, saved_time, total_time):
         self.fraction = fraction
         self.value = value
         self.saved_times = saved_time
+        self.total_times = total_time
 
     def __str__(self):
         return str(self.fraction) + str(self.value) + str(self.saved_times) + "\n"
@@ -342,17 +378,22 @@ def performance_test(dataset, treatment):
     repeats = 20
     scores = []
     saved_times = []
-
+    total_times = []
+    print dataset.__name__, treatment.__name__,
     temp_store = []
     for repeat in xrange(repeats):
         # print repeat, " ",
         # print "Dataset: ", dataset.__name__, " Repeats: ", repeats,
         # print " Treatment: ", treatment.__name__, "Training Percent: ", training_percent,
+        print ".",
         p = dataset(treatment=treatment)
         saved_times.append(p.saved_time)
+        total_times.append(p.find_total_time())
         temp_store.append(p.test_data())
-
-    scores.append(data_container(training_percent, temp_store, sum(saved_times)/len(saved_times)))
+    print
+    # print total_times
+    assert(int(sum(total_times)/len(total_times)) == int(total_times[0])), "Something's wrong"
+    scores.append(data_container(training_percent, temp_store, sum(saved_times)/len(saved_times), sum(total_times)/len(total_times)))
     return scores
     #draw([x.fraction for x in scores], [x.value for x in scores], problem.name)
 
@@ -360,7 +401,7 @@ def draw(data, name):
     import pylab as pl
     filename = "./Logs/" + name + ".txt"
     fdesc = open(filename, "w")
-    fdesc.write("training_percent, mean, iqr, saved_time,technique \n")
+    fdesc.write("training_percent, mean, iqr, saved_time, total_time, technique \n")
     scores1 = []
     import numpy as np
     for row in data:
@@ -372,7 +413,7 @@ def draw(data, name):
             temp.append(np.percentile(d[1], 75) - np.percentile(d[1], 25))
             temp.append(d[2])
             temp_string = str(d[0][-1]) + "," + str(np.percentile(d[1], 50)) + "," + str(np.percentile(d[1], 75) -
-                                                    np.percentile(d[1], 25)) + "," + str(d[3][-1]) + "," + str(d[2]) + "\n"
+                                                    np.percentile(d[1], 25)) + "," + str(d[3][-1]) + "," + str(d[4][-1]//10**4) + "," + str(d[2]) + "\n"
             print temp_string
             fdesc.write(temp_string)
             scores.append(temp)
@@ -386,7 +427,7 @@ def draw(data, name):
         y_error = [s[2] for s in score]
         pl.errorbar(x_coordinates, y_coordinates, yerr=y_error, linestyle="-", label=score[-1][-1])
 
-    pl.xlim(0.4, 1.2)
+    pl.xlim(0.0, 1.2)
     # pl.ylim(min([min(s1[1]) for s1 in scores1]) * 0.9, max([max(s1[1]) for s1 in scores1]) * 1.4)
     pl.ylim(0, 1.0)
     pl.xlabel('Training Data (% of data)')
@@ -404,119 +445,122 @@ def draw(data, name):
 
 def test_cpm_apache():
     problems = [cpm_apache_training_reduction]
-    treatments = [base_line, exemplar_where, east_west_where]
+    treatments = [random_where, base_line, exemplar_where, east_west_where, wei_east_west_where]
     global training_percent, testing_percent
-    percents = [50, 60, 70, 80, 90]
+    percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
 def test_BDBJ():
     problems = [cpm_BDBJ]
-    treatments = [base_line, exemplar_where, east_west_where]
+    treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
-    percents = [50, 60, 70, 80, 90]
+    percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
 def test_BDBC():
     problems = [cpm_BDBC]
-    treatments = [base_line, exemplar_where, east_west_where]
+    treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
-    percents = [50, 60, 70, 80, 90]
+    percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
-                print "1 training_percent: ", training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
 
 def test_SQL():
     problems = [cpm_SQL]
-    treatments = [base_line, exemplar_where, east_west_where]
+    treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
-    percents = [50, 60, 70, 80, 90]
+    percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
-                print "1 training_percent: ", training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
 
 def test_x264():
     problems = [cpm_X264]
-    treatments = [base_line, exemplar_where, east_west_where]
+    treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
-    percents = [50, 60, 70, 80, 90]
+    percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
-                print "1 training_percent: ", training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
 def test_LLVM():
     problems = [cpm_LLVM]
-    treatments = [base_line, exemplar_where, east_west_where]
+    treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
-    percents = [50, 60, 70, 80, 90]
+    percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
                 # print "1 training_percent: ", training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
 
 def start_test():
     # test_cpm_apache()
-    # test_BDBC()
-    # test_BDBJ()
-    # test_SQL()
-    # test_x264()
+    test_BDBJ()
+    test_BDBC()
+    test_SQL()
+    test_x264()
     test_LLVM()
 
 
@@ -544,20 +588,21 @@ def offline_draw( name):
         # print score
         x_coordinates = [s[0] for s in score]
         y_coordinates = [s[1]*100 for s in score]
-        y_error = [s[2]*100 for s in score]
+        # y_error = [s[2]*100 for s in score]
+        y_error = [0 for s in score]
         ymin = min(min(y_coordinates), ymin)
         ymax = max(max(y_coordinates), ymax)
         # print x_coordinates
-        print y_coordinates
+        # print y_coordinates
         # print y_error
         # print key
-        pl.errorbar(x_coordinates, y_coordinates, yerr=y_error, linestyle="-", label=key)
-
+        # pl.errorbar(x_coordinates, y_coordinates, yerr=y_error, linestyle="-", label=key)
+        pl.plot(x_coordinates, y_coordinates, label=key)
 
     print ymin
     print ymax
-    pl.xlim(0.4, 1.2)
-    pl.ylim(ymin * 0.9, ymax * 1.4)
+    pl.xlim(0.0, 1.2)
+    pl.ylim(ymin * 0.9, ymax * 1.6)
     # pl.ylim(0, 1.0)
     pl.xlabel('Training Data (% of data)')
     pl.ylabel('MRE variation over 20 repeats')
@@ -589,10 +634,12 @@ def offline_draw( name):
 
 
 def start_drawing():
-    problems = [ "cpm_X264"]
+    problems = [ "cpm_apache_training_reduction"]
     for problem in problems:
         offline_draw(problem)
 
 if __name__ == "__main__":
     # start_drawing()
+    from random import seed
+    seed(1)
     start_test()

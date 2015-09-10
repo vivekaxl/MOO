@@ -35,7 +35,8 @@ class makeAModel(object):
                  for r in _rows],
           names=indep + less + more)
     m.decisions = [x for x in range(nindep)]
-    m.objectives = [nindep + x  for x in range(ndep)]
+    # m.objectives = [nindep + x -1 for x in range(ndep)] # old
+    m.objectives = [nindep + x  for x in range(ndep)] # new
 
     for k, indx in enumerate(m.decisions):
       for l in m.objectives:
@@ -45,8 +46,10 @@ class makeAModel(object):
     for x in m.decisions:
       m.w[x] = 1
     for y, _ in enumerate(less):
+      # m.w[x + y] = -1
       m.w[x + y+1] = -1
     for z, _ in enumerate(more):
+      # m.w[x + y + z] = 1
       m.w[x + y + z+1] = 1
     for x in m.cols:
       all = sorted(row.cells[x] for row in m._rows)
