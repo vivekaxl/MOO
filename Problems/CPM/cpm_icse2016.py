@@ -445,7 +445,7 @@ def draw(data, name):
 
 def test_cpm_apache():
     problems = [cpm_apache_training_reduction]
-    treatments = [random_where, base_line, exemplar_where, east_west_where, wei_east_west_where]
+    treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
@@ -556,12 +556,12 @@ def test_LLVM():
 
 
 def start_test():
-    # test_cpm_apache()
-    test_BDBJ()
-    test_BDBC()
-    test_SQL()
-    test_x264()
-    test_LLVM()
+    test_cpm_apache()
+    # test_BDBJ()
+    # test_BDBC()
+    # test_SQL()
+    # test_x264()
+    # test_LLVM()
 
 
 def offline_draw( name):
@@ -634,12 +634,12 @@ def offline_draw( name):
 
 
 def start_drawing():
-    problems = [ "cpm_apache_training_reduction"]
+    problems = [ "cpm_BDBC", "cpm_BDBJ", "cpm_LLVM", "cpm_SQL", "cpm_X264"]
     for problem in problems:
         offline_draw(problem)
 
 if __name__ == "__main__":
-    # start_drawing()
-    from random import seed
-    seed(1)
-    start_test()
+    start_drawing()
+    # from random import seed
+    # seed(1)
+    # start_test()
