@@ -241,6 +241,10 @@ class cpm_apache_training_reduction(cpm_reduction):
         self.header, self.data = read_csv(self.filename, header=True)
 
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
+        global training_percent
+        # print training_percent,
+        from math import log
+        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
         self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
@@ -261,6 +265,11 @@ class cpm_BDBC(cpm_reduction):
         self.header, self.data = read_csv(self.filename, header=True)
 
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
+        global training_percent
+        # print training_percent,
+        from math import log
+        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
@@ -286,6 +295,11 @@ class cpm_BDBJ(cpm_reduction):
 
 
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
+        global training_percent
+        # print training_percent,
+        from math import log
+        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
@@ -311,6 +325,11 @@ class cpm_LLVM(cpm_reduction):
 
 
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
+        global training_percent
+        # print training_percent,
+        from math import log
+        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
 
@@ -334,6 +353,11 @@ class cpm_SQL(cpm_reduction):
         self.header, self.data = read_csv(self.filename, header=True)
 
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
+        global training_percent
+        # print training_percent,
+        from math import log
+        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
         self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
@@ -359,6 +383,11 @@ class cpm_X264(cpm_reduction):
 
 
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
+        global training_percent
+        # print training_percent,
+        from math import log
+        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
         self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
@@ -639,7 +668,7 @@ def start_drawing():
         offline_draw(problem)
 
 if __name__ == "__main__":
-    start_drawing()
-    # from random import seed
-    # seed(1)
-    # start_test()
+    # start_drawing()
+    from random import seed
+    seed(1)
+    start_test()
