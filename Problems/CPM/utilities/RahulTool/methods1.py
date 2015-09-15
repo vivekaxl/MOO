@@ -62,7 +62,10 @@ def createTbl(
       _r += m._rows
   m._rows = _r
   prepare(m, settings=None)  # Initialize all parameters for where2 to run
+  # print("WHERE start")
+
   tree = where2(m, m._rows)  # Decision tree using where2
+  # print("WHERE end")
   tbl = table(t)
 
   headerLabel = '=klass'

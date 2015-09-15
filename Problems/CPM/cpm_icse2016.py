@@ -52,6 +52,7 @@ def east_west_where(filename):
     cluster_table = WHEREDataTransformation(filename)
 
     ret = []
+    print ">>>>>>Length of cluster table: ", len(cluster_table)*2
     for cluster in cluster_table:
         cluster[-1] = [c[:-1] for c in cluster[-1]]
         one = choice(cluster[-1])
@@ -60,6 +61,8 @@ def east_west_where(filename):
         ret.append(east)
         ret.append(west)
 
+    # print len(ret), 2*len(cluster_table)
+    assert(len(ret) == 2*len(cluster_table)), "Something's wrong"
     return ret
 
 def wei_east_west_where(filename):
@@ -96,6 +99,7 @@ def exemplar_where(filename):
     cluster_table = WHEREDataTransformation(filename)
 
     ret = []
+    print "Length of cluster table: ", len(cluster_table)
     for cluster in cluster_table:
         cluster[-1] = [c[:-1] for c in cluster[-1]]
         ret.append(sorted(cluster[-1], key=lambda x: x[-1])[0])
@@ -105,6 +109,7 @@ def random_where(filename):
     cluster_table = WHEREDataTransformation(filename)
 
     ret = []
+    print "Length of cluster table: ", len(cluster_table)
     for cluster in cluster_table:
         cluster[-1] = [c[:-1] for c in cluster[-1]]
         from random import choice
@@ -125,6 +130,7 @@ def base_line(filename="./data/Apache_AllMeasurements.csv"):
     for cluster in cluster_table:
         cluster[-1] = [c[:-1] for c in cluster[-1]]
         ret.extend(cluster[-1])
+    print "Length of cluster table: ", len(ret)
     return ret
 
 temp_file_name = "temp_file.csv"
@@ -164,10 +170,12 @@ class cpm_apache_data_frame:
 
 class cpm_reduction(jmoo_problem):
     def get_training_data(self, method=base_line):
+        # print method.__name__
         global testing_percent, training_percent
         from copy import deepcopy
         transformed_data = deepcopy(self.data)
         random_selection = self.get_testing_data(transformed_data, testing_percent)
+        # print "Length of the $$training set: ", len(random_selection)
 
         temp_file_generation(self.header, random_selection)
         training = method(temp_file_name)
@@ -242,9 +250,10 @@ class cpm_apache_training_reduction(cpm_reduction):
 
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         global training_percent
+        from math import log, ceil
         # print training_percent,
-        from math import log
-        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+
+        # print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
         self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
@@ -266,9 +275,9 @@ class cpm_BDBC(cpm_reduction):
 
         self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
         global training_percent
-        # print training_percent,
+        # print "inside: ", training_percent
         from math import log
-        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+        # print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
 
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
@@ -484,6 +493,7 @@ def test_cpm_apache():
             for percent in percents:
                 print percent,
                 training_percent = percent/100
+                # print "before performance test: ", training_percent
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
                 treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
@@ -586,11 +596,11 @@ def test_LLVM():
 
 def start_test():
     test_cpm_apache()
-    # test_BDBJ()
-    # test_BDBC()
-    # test_SQL()
-    # test_x264()
-    # test_LLVM()
+    test_BDBJ()
+    test_BDBC()
+    test_SQL()
+    test_x264()
+    test_LLVM()
 
 
 def offline_draw( name):

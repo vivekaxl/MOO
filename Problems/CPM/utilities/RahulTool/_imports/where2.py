@@ -213,9 +213,13 @@ multiple solutions.
 
 """
 def where2(m, data, lvl = 0, up = None, verbose = False):
+
   node = o(val = None, _up = up, _kids = [])
-  def tooDeep(): return lvl > The.what.depthMax
-  def tooFew() : return len(data) < The.what.minSize
+  def tooDeep(): return lvl > The.what.depthMax  # depthMax is not updated
+  def tooFew() :
+      # print("Length of data: ", len(data), The.minSize, lvl)
+      # raw_input()
+      return len(data) < The.minSize
   def show(suffix):
     if verbose:
       print(The.what.b4 * lvl, len(data),
@@ -263,7 +267,7 @@ the other, then ignore the other pole.
 def maybePrune(m, lvl, west, east):
   "Usually, go left then right, unless dominated."
   goLeft, goRight = True, True  # default
-  if  The.prune and lvl >= The.what.depthMin:
+  if  The.prune and lvl >= The.depthMin:
     sw = scores(m, west)
     se = scores(m, east)
     if abs(sw - se) > The.wriggle:  # big enough to consider
@@ -421,9 +425,10 @@ def prepare(m, settings = None):
   "Prepare the 'The' class"
   global The
   The = settings if settings else defaults().update(verbose = True,
-               minSize = len(m._rows) ** 0.5,
+               minSize = int(len(m._rows) ** 0.5),
                prune = False,
                wriggle = 0.3)
+  # print("stopping condition: ", int(len(m._rows)**0.5), len(m._rows), )
   return The
 
 def _where(m = nasa93):
