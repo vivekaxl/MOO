@@ -520,9 +520,9 @@ def test_BDBJ():
 
 def test_BDBC():
     problems = [cpm_BDBC]
-    treatments = [random_where, base_line, exemplar_where, east_west_where]
+    treatments = [east_west_where]#[random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
-    percents = [10,20,30,40, 50,60,70,80,90]
+    percents = [30]#[10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
         for treatment in treatments:
@@ -595,12 +595,12 @@ def test_LLVM():
 
 
 def start_test():
-    test_cpm_apache()
-    test_BDBJ()
+    # test_cpm_apache()
+    # test_BDBJ()
     test_BDBC()
-    test_SQL()
-    test_x264()
-    test_LLVM()
+    # test_SQL()
+    # test_x264()
+    # test_LLVM()
 
 
 def offline_draw( name):
