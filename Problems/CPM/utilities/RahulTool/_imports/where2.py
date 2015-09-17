@@ -213,7 +213,9 @@ multiple solutions.
 
 """
 def where2(m, data, lvl = 0, up = None, verbose = False):
-
+  # for i in xrange(0, lvl):
+  #     print("|--", end="")
+  # print(len(data))
   node = o(val = None, _up = up, _kids = [])
   def tooDeep(): return lvl > The.what.depthMax  # depthMax is not updated
   def tooFew() :
@@ -225,6 +227,7 @@ def where2(m, data, lvl = 0, up = None, verbose = False):
       print(The.what.b4 * lvl, len(data),
             suffix, ' ; ', id(node) % 1000, sep = '')
   if tooDeep() or tooFew():
+    # print("STOPPED", tooDeep(), tooFew(), The.minSize)
     show(".")
     node.val = data
   else:
@@ -271,8 +274,12 @@ def maybePrune(m, lvl, west, east):
     sw = scores(m, west)
     se = scores(m, east)
     if abs(sw - se) > The.wriggle:  # big enough to consider
+      # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>Wriggling")
+      # raw_input()
       if se > sw: goLeft = False  # no left
       if sw > se: goRight = False  # no right
+
+
   return goLeft, goRight
 """
 

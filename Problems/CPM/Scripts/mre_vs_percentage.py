@@ -1,51 +1,3 @@
-def evaluation_data():
-    eval = {}
-
-    apache = {}
-    apache["random_where"] = [8, 8, 16, 16, 16, 16, 16, 16, 16]
-    apache["base_line"] = [20, 39, 58, 77, 96, 116, 135, 154, 173]
-    apache["exemplar_where"] = [8, 8, 16, 16, 16, 16, 16, 16, 16]
-    apache["east_west_where"] = [16, 16, 32, 32, 32, 32, 32, 32, 32, 32]
-    eval["apache"] = apache
-
-    bdbj = {}
-    bdbj["random_where"] = [8, 8, 15, 16, 16, 16, 16, 16, 16]
-    bdbj["base_line"] = [18, 36, 55, 72, 90, 108, 126, 145, 163]
-    bdbj["exemplar_where"] = [8, 8, 15, 16, 16, 16, 16, 16, 16]
-    bdbj["east_west_where"] = [16, 16, 30, 32, 32, 30, 30, 32, 32]
-    eval["bdbj"] = bdbj
-
-    bdbc = {}
-    bdbc["random_where"] = [30, 30, 30, 52, 52, 52, 52, 51, 51]
-    bdbc["base_line"] = [256, 512, 768, 1024, 1280, 1536, 1792, 2049, 2305]
-    bdbc["exemplar_where"] = [30, 30, 30, 52, 52, 52, 52, 51, 51]
-    bdbc["east_west_where"] = [60, 60, 60, 104.6, 105.1, 100.8, 103.7, 102.6, 100.3]
-    eval["bdbc"] = bdbc
-
-    sql = {}
-    sql["random_where"] = [30, 33, 52, 53, 56, 51, 49, 51, 82]
-    sql["base_line"] = [466, 931, 1396, 1862, 2327, 2796, 3258, 3723, 4188]
-    sql["exemplar_where"] = [30, 33, 52, 53, 50, 51, 51, 52, 81]
-    sql["east_west_where"] = [60, 65, 104, 103, 102, 103, 103, 101, 161]
-    eval["sql"] = sql
-
-
-    X264 = {}
-    X264["random_where"] = [16, 22, 30, 30, 30, 29, 30, 29, 51]
-    X264["base_line"] = [116, 231, 346, 461, 576, 692, 807, 922, 1037]
-    X264["exemplar_where"] = [16, 22, 30, 30, 30, 29, 30, 29, 52]
-    X264["east_west_where"] = [32, 45, 59, 59, 60, 60, 60, 60, 59, 108]
-    eval["X264"] = X264
-
-    LLVM = {}
-    LLVM["random_where"] = [16, 16, 31, 30, 30, 30, 30, 30, 30]
-    LLVM["base_line"] = [103, 205, 308, 410, 512, 615, 717, 820, 922]
-    LLVM["exemplar_where"] = [16, 16, 30, 30, 30, 30, 30, 30, 30]
-    LLVM["east_west_where"] = [32, 31, 60, 59, 60, 58, 58, 58, 60, 59]
-    eval["LLVM"] = LLVM
-
-    return eval
-
 def median_mre_scores():
     def list_files():
         log_directory = "../Logs/"
@@ -194,5 +146,5 @@ f.text(0.04, 0.5, 'MRE', va='center', rotation='vertical', fontsize=11)
 plt.xlabel("Percentage of Data")
 # plt.subplot_tool()
 # f.tight_layout()
-plt.savefig('destination_path.eps', format='eps')
+plt.savefig('SamplingAccuracy.eps', format='eps')
 # plt.show()

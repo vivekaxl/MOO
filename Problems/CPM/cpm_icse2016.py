@@ -29,6 +29,12 @@ def WHEREDataTransformation(filename):
     transformed_table = [[int(z) for z in x.cells[:-1]] + x.cells[-1:] for x in wrapper_createTbl(filename)._rows]
     cluster_numbers = set(map(lambda x: x[-1], transformed_table))
 
+    #debug
+    dict = {}
+    for line in transformed_table:
+        if line[-1] in dict.keys(): dict[line[-1]] += 1
+        else: dict[line[-1]] = 1
+
     # separating clusters
     # the element looks like [clusterno, rows]
     cluster_table = []
@@ -52,7 +58,7 @@ def east_west_where(filename):
     cluster_table = WHEREDataTransformation(filename)
 
     ret = []
-    print ">>>>>>Length of cluster table: ", len(cluster_table)*2
+    print ">>>>>>Length of cluster table: ", len(cluster_table)
     for cluster in cluster_table:
         cluster[-1] = [c[:-1] for c in cluster[-1]]
         one = choice(cluster[-1])
@@ -63,36 +69,7 @@ def east_west_where(filename):
 
     # print len(ret), 2*len(cluster_table)
     assert(len(ret) == 2*len(cluster_table)), "Something's wrong"
-    return ret
-
-def wei_east_west_where(filename):
-    def furthest(one, all_members):
-        ret = None
-        ret_distance = -1 * 1e10
-        for member in all_members:
-            if equal_list(one, member) is True: continue
-            else:
-                temp = euclidean_distance(one, member)
-                if temp > ret_distance:
-                    ret = member
-                    ret_distance = temp
-        return ret
-    from random import choice
-    cluster_table = WHEREDataTransformation(filename)
-
-    ret = []
-    for cluster in cluster_table:
-        cluster[-1] = [c[:-1] for c in cluster[-1]]
-        one = choice(cluster[-1])
-        east = furthest(one, cluster[-1])
-        west = furthest(east, cluster[-1])
-        from random import random
-        if random() > 0.5:
-            ret.append(east)
-        else:
-            ret.append(west)
-
-    return ret
+    return ret, len(ret)
 
 
 def exemplar_where(filename):
@@ -103,7 +80,7 @@ def exemplar_where(filename):
     for cluster in cluster_table:
         cluster[-1] = [c[:-1] for c in cluster[-1]]
         ret.append(sorted(cluster[-1], key=lambda x: x[-1])[0])
-    return ret
+    return ret, len(cluster_table)
 
 def random_where(filename):
     cluster_table = WHEREDataTransformation(filename)
@@ -114,14 +91,8 @@ def random_where(filename):
         cluster[-1] = [c[:-1] for c in cluster[-1]]
         from random import choice
         ret.append(choice(cluster[-1]))
-    return ret
+    return ret, len(cluster_table)
 
-# def median_where(self, filename):
-#     # todo
-#
-# def mean_where(self, filename):
-#     # todo
-#
 
 def base_line(filename="./data/Apache_AllMeasurements.csv"):
     cluster_table = WHEREDataTransformation(filename)
@@ -131,7 +102,7 @@ def base_line(filename="./data/Apache_AllMeasurements.csv"):
         cluster[-1] = [c[:-1] for c in cluster[-1]]
         ret.extend(cluster[-1])
     print "Length of cluster table: ", len(ret)
-    return ret
+    return ret, len(ret)
 
 temp_file_name = "temp_file.csv"
 def temp_file_generation(header, listoflist):
@@ -178,7 +149,7 @@ class cpm_reduction(jmoo_problem):
         # print "Length of the $$training set: ", len(random_selection)
 
         temp_file_generation(self.header, random_selection)
-        training = method(temp_file_name)
+        training, self.no_of_clusters = method(temp_file_name)
         temp_file_removal()
 
         #
@@ -237,6 +208,7 @@ class cpm_apache_training_reduction(cpm_reduction):
 
         self.name = name
         self.filename = filename
+        self.no_of_clusters = 0
         # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
@@ -248,7 +220,7 @@ class cpm_apache_training_reduction(cpm_reduction):
         # Read data
         self.header, self.data = read_csv(self.filename, header=True)
 
-        self.training_independent, self.training_dependent = self.get_training_data(method=treatment)
+        self.training_independent, self.training_dependent,  = self.get_training_data(method=treatment)
         global training_percent
         from math import log, ceil
         # print training_percent,
@@ -403,11 +375,12 @@ class cpm_X264(cpm_reduction):
 
 
 class data_container:
-    def __init__(self, fraction, value, saved_time, total_time):
+    def __init__(self, fraction, value, saved_time, total_time, evaluations):
         self.fraction = fraction
         self.value = value
         self.saved_times = saved_time
         self.total_times = total_time
+        self.evaluations = evaluations
 
     def __str__(self):
         return str(self.fraction) + str(self.value) + str(self.saved_times) + "\n"
@@ -417,6 +390,7 @@ def performance_test(dataset, treatment):
     scores = []
     saved_times = []
     total_times = []
+    evaluations = []
     print dataset.__name__, treatment.__name__,
     temp_store = []
     for repeat in xrange(repeats):
@@ -428,10 +402,11 @@ def performance_test(dataset, treatment):
         saved_times.append(p.saved_time)
         total_times.append(p.find_total_time())
         temp_store.append(p.test_data())
+        evaluations.append(p.no_of_clusters)
     print
     # print total_times
     assert(int(sum(total_times)/len(total_times)) == int(total_times[0])), "Something's wrong"
-    scores.append(data_container(training_percent, temp_store, sum(saved_times)/len(saved_times), sum(total_times)/len(total_times)))
+    scores.append(data_container(training_percent, temp_store, sum(saved_times)/len(saved_times), sum(total_times)/len(total_times), sum(evaluations)/len(evaluations)))
     return scores
     #draw([x.fraction for x in scores], [x.value for x in scores], problem.name)
 
@@ -439,7 +414,7 @@ def draw(data, name):
     import pylab as pl
     filename = "./Logs/" + name + ".txt"
     fdesc = open(filename, "w")
-    fdesc.write("training_percent, mean, iqr, saved_time, total_time, technique \n")
+    fdesc.write("training_percent, mean, iqr, saved_time, total_time, technique, evaluations \n")
     scores1 = []
     import numpy as np
     for row in data:
@@ -451,7 +426,7 @@ def draw(data, name):
             temp.append(np.percentile(d[1], 75) - np.percentile(d[1], 25))
             temp.append(d[2])
             temp_string = str(d[0][-1]) + "," + str(np.percentile(d[1], 50)) + "," + str(np.percentile(d[1], 75) -
-                                                    np.percentile(d[1], 25)) + "," + str(d[3][-1]) + "," + str(d[4][-1]//10**4) + "," + str(d[2]) + "\n"
+                                                    np.percentile(d[1], 25)) + "," + str(d[3][-1]) + "," + str(d[4][-1]//10**4) + "," + str(int(d[-1][-1])) + "," + str(d[2])+ "," +"\n"
             print temp_string
             fdesc.write(temp_string)
             scores.append(temp)
@@ -496,7 +471,7 @@ def test_cpm_apache():
                 # print "before performance test: ", training_percent
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp], [x.evaluations for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -520,9 +495,9 @@ def test_BDBJ():
 
 def test_BDBC():
     problems = [cpm_BDBC]
-    treatments = [east_west_where]#[random_where, base_line, exemplar_where, east_west_where]
+    treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
-    percents = [30]#[10,20,30,40, 50,60,70,80,90]
+    percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
         for treatment in treatments:
@@ -539,7 +514,7 @@ def test_BDBC():
 
 def test_SQL():
     problems = [cpm_SQL]
-    treatments = [random_where, base_line, exemplar_where, east_west_where]
+    treatments = [exemplar_where, random_where, base_line,  east_west_where]
     global training_percent, testing_percent
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
@@ -595,9 +570,9 @@ def test_LLVM():
 
 
 def start_test():
-    # test_cpm_apache()
+    test_cpm_apache()
     # test_BDBJ()
-    test_BDBC()
+    # test_BDBC()
     # test_SQL()
     # test_x264()
     # test_LLVM()

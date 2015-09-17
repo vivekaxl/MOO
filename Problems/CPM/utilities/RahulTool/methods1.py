@@ -65,6 +65,9 @@ def createTbl(
   # print("WHERE start")
 
   tree = where2(m, m._rows)  # Decision tree using where2
+  # print tree
+  # import pdb
+  # pdb.set_trace()
   # print("WHERE end")
   tbl = table(t)
 
@@ -75,7 +78,7 @@ def createTbl(
           tmp = j.cells
           if isBin:
               tmp[-1] = 0 if tmp[-1] < bugThres else 1
-          tmp.append('_' + str(id(k) % 1000))
+          tmp.append('_' + str(id(k)))
           j.__dict__.update({'cells': tmp})
           Rows.append(j.cells)
 
