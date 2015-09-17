@@ -95,12 +95,14 @@ def random_where(filename):
 
 
 def base_line(filename="./data/Apache_AllMeasurements.csv"):
-    cluster_table = WHEREDataTransformation(filename)
-
+    # cluster_table = WHEREDataTransformation(filename)
+    ret0 = open(filename, "r").readlines()[1:]
+    ret0 = [x.replace("\r", "").replace("\n", "") for x in ret0]
     ret = []
-    for cluster in cluster_table:
-        cluster[-1] = [c[:-1] for c in cluster[-1]]
-        ret.extend(cluster[-1])
+    for r in ret0:
+        print r
+        ret.append([int(float(x)) for x in r.split(",")])
+
     print "Length of cluster table: ", len(ret)
     return ret, len(ret)
 
@@ -225,7 +227,7 @@ class cpm_apache_training_reduction(cpm_reduction):
         from math import log, ceil
         # print training_percent,
 
-        # print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
         self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
@@ -279,7 +281,7 @@ class cpm_BDBJ(cpm_reduction):
         global training_percent
         # print training_percent,
         from math import log
-        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+        # print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
 
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
@@ -309,7 +311,7 @@ class cpm_LLVM(cpm_reduction):
         global training_percent
         # print training_percent,
         from math import log
-        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+        # print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
 
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
@@ -337,7 +339,7 @@ class cpm_SQL(cpm_reduction):
         global training_percent
         # print training_percent,
         from math import log
-        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+        # print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
 
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
@@ -367,7 +369,7 @@ class cpm_X264(cpm_reduction):
         global training_percent
         # print training_percent,
         from math import log
-        print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
+        # print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
 
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
@@ -426,7 +428,7 @@ def draw(data, name):
             temp.append(np.percentile(d[1], 75) - np.percentile(d[1], 25))
             temp.append(d[2])
             temp_string = str(d[0][-1]) + "," + str(np.percentile(d[1], 50)) + "," + str(np.percentile(d[1], 75) -
-                                                    np.percentile(d[1], 25)) + "," + str(d[3][-1]) + "," + str(d[4][-1]//10**4) + "," + str(int(d[-1][-1])) + "," + str(d[2])+ "," +"\n"
+                                                    np.percentile(d[1], 25)) + "," + str(d[3][-1]) + "," + str(d[4][-1]//10**4) + "," + str(int(d[-1][-1])) + "," + str(d[2])+"\n"
             print temp_string
             fdesc.write(temp_string)
             scores.append(temp)
@@ -458,7 +460,7 @@ def draw(data, name):
 
 def test_cpm_apache():
     problems = [cpm_apache_training_reduction]
-    treatments = [random_where, base_line, exemplar_where, east_west_where]
+    treatments = [base_line]#[random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
@@ -489,7 +491,7 @@ def test_BDBJ():
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp], [x.evaluations for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -507,7 +509,7 @@ def test_BDBC():
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp], [x.evaluations for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -526,7 +528,7 @@ def test_SQL():
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp], [x.evaluations for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -545,7 +547,7 @@ def test_x264():
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp], [x.evaluations for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
@@ -564,7 +566,7 @@ def test_LLVM():
                 testing_percent = 1 - training_percent
                 # print "1 training_percent: ", training_percent
                 temp = performance_test(dataset=problem, treatment=treatment)
-                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp]])
+                treatscores.append([[x.fraction for x in temp], [x.value for x in temp], treatment.__name__, [x.saved_times for x in temp], [x.total_times for x in temp], [x.evaluations for x in temp]])
             scores.append(treatscores)
     draw(scores, problem.__name__)
 
