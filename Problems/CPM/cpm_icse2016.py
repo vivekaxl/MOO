@@ -16,6 +16,13 @@ from Problems.CPM.utilities.csv_utilities import read_csv
 from sklearn import tree
 import itertools
 
+
+testing_percent = 0
+training_percent = 0
+problem_name = ""
+percent_name = -1
+repeat_name = -1
+
 def equal_list(lista, listb):
     assert(len(lista) == len(listb)), "Not a valid comparison"
     for i, j in zip(lista, listb):
@@ -24,6 +31,18 @@ def equal_list(lista, listb):
     return True
 
 def WHEREDataTransformation(filename):
+    global problem_name, percent_name, repeat_name
+    cluster_file_name = "./Cluster_Data/" + str(problem_name) + "_" + str(percent_name) + "_" + str(repeat_name) + ".txt"
+    # import pdb
+    # pdb.set_trace()
+
+    if os.path.isfile(cluster_file_name) is True:
+        print "LOADED FROM THE FILE: ", cluster_file_name
+        import pickle
+        cluster_table = pickle.load(open(cluster_file_name, "rb"))
+        return cluster_table
+
+
     from utilities.RahulTool.methods1 import wrapper_createTbl
     # The data has to be access using this attribute table._rows.cells
     transformed_table = [[int(z) for z in x.cells[:-1]] + x.cells[-1:] for x in wrapper_createTbl(filename)._rows]
@@ -40,6 +59,10 @@ def WHEREDataTransformation(filename):
     cluster_table = []
     for number in cluster_numbers:
         cluster_table.append([number]+ [filter(lambda x: x[-1] == number, transformed_table)])
+
+    import pickle
+    pickle.dump(cluster_table, open(cluster_file_name, "wb"))
+
     return cluster_table
 
 def east_west_where(filename):
@@ -100,6 +123,7 @@ def base_line(filename="./data/Apache_AllMeasurements.csv"):
     ret0 = [x.replace("\r", "").replace("\n", "") for x in ret0]
     ret = []
     for r in ret0:
+        print r
         ret.append([int(float(x)) for x in r.split(",")])
 
     print "Length of cluster table: ", len(ret)
@@ -119,8 +143,6 @@ def temp_file_generation(header, listoflist):
 def temp_file_removal():
     os.remove(temp_file_name)
 
-testing_percent = 0
-training_percent = 0
 
 
 
@@ -387,6 +409,7 @@ class data_container:
         return str(self.fraction) + str(self.value) + str(self.saved_times) + "\n"
 
 def performance_test(dataset, treatment):
+    global repeat_name
     repeats = 20
     scores = []
     saved_times = []
@@ -395,6 +418,7 @@ def performance_test(dataset, treatment):
     print dataset.__name__, treatment.__name__,
     temp_store = []
     for repeat in xrange(repeats):
+        repeat_name = repeat
         # print repeat, " ",
         # print "Dataset: ", dataset.__name__, " Repeats: ", repeats,
         # print " Treatment: ", treatment.__name__, "Training Percent: ", training_percent,
@@ -460,13 +484,15 @@ def draw(data, name):
 def test_cpm_apache():
     problems = [cpm_apache_training_reduction]
     treatments = [random_where, base_line, exemplar_where, east_west_where]
-    global training_percent, testing_percent
+    global training_percent, testing_percent, problem_name, percent_name, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
+        problem_name = problem.__name__
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                percent_name = percent
                 print percent,
                 training_percent = percent/100
                 # print "before performance test: ", training_percent
@@ -479,13 +505,15 @@ def test_cpm_apache():
 def test_BDBJ():
     problems = [cpm_BDBJ]
     treatments = [random_where, base_line, exemplar_where, east_west_where]
-    global training_percent, testing_percent
+    global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
+        problem_name = problem.__name__
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                percent_name = percent
                 print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
@@ -497,13 +525,15 @@ def test_BDBJ():
 def test_BDBC():
     problems = [cpm_BDBC]
     treatments = [random_where, base_line, exemplar_where, east_west_where]
-    global training_percent, testing_percent
+    global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
+        problem_name = problem.__name__
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                percent_name = percent
                 print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
@@ -516,13 +546,15 @@ def test_BDBC():
 def test_SQL():
     problems = [cpm_SQL]
     treatments = [exemplar_where, random_where, base_line,  east_west_where]
-    global training_percent, testing_percent
+    global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
+        problem_name = problem.__name__
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                percent_name = percent
                 print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
@@ -535,13 +567,15 @@ def test_SQL():
 def test_x264():
     problems = [cpm_X264]
     treatments = [random_where, base_line, exemplar_where, east_west_where]
-    global training_percent, testing_percent
+    global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
+        problem_name = problem.__name__
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                percent_name = percent
                 print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
@@ -553,13 +587,15 @@ def test_x264():
 def test_LLVM():
     problems = [cpm_LLVM]
     treatments = [random_where, base_line, exemplar_where, east_west_where]
-    global training_percent, testing_percent
+    global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
     for problem in problems:
+        problem_name = problem.__name__
         for treatment in treatments:
             treatscores = []
             for percent in percents:
+                percent_name = percent
                 print percent,
                 training_percent = percent/100
                 testing_percent = 1 - training_percent
@@ -572,11 +608,11 @@ def test_LLVM():
 
 def start_test():
     # test_cpm_apache()
-    # test_BDBJ()
+    test_BDBJ()
     # test_BDBC()
-    test_SQL()
-    test_x264()
-    test_LLVM()
+    # test_SQL()
+    # test_x264()
+    # test_LLVM()
 
 
 def offline_draw( name):
@@ -627,25 +663,17 @@ def offline_draw( name):
 
     pl.close()
 
-    #
-    #
-    # for score in scores1:
-    #     x_coordinates = [s[0] for s in score]
-    #     y_coordinates = [s[1] for s in score]
-    #     y_error = [s[2] for s in score]
-    #     pl.errorbar(x_coordinates, y_coordinates, yerr=y_error, linestyle="-", label=score[-1][-1])
-    #
-    # pl.xlim(0.4, 1.2)
-    # # pl.ylim(min([min(s1[1]) for s1 in scores1]) * 0.9, max([max(s1[1]) for s1 in scores1]) * 1.4)
-    # pl.ylim(0, 1.0)
-    # pl.xlabel('Training Data (% of data)')
-    # pl.ylabel('MRE variation over 20 repeats')
-    # pl.legend(loc='upper right')
-    # pl.title(name)
-    # pl.savefig("./figures/" + name + ".png")
-    # pl.close()
-    #
-    # print "#" * 20, "END", "#" * 20
+def delete_file(filenames):
+    for filename in filenames:
+        os.remove(filename)
+
+def delete_cluster_data():
+    cluster_data_dir = "./Cluster_Data/"
+    files = os.listdir(cluster_data_dir)
+    files = [cluster_data_dir + f for f in files]
+    delete_file(files)
+
+# def clear_logging():
 
 
 def start_drawing():
@@ -658,3 +686,4 @@ if __name__ == "__main__":
     from random import seed
     seed(1)
     start_test()
+    # delete_cluster_data()
