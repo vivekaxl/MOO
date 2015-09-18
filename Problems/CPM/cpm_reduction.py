@@ -72,6 +72,17 @@ def exemplar_where(filename):
     return ret
 
 
+def random_where(filename):
+    cluster_table = WHEREDataTransformation(filename)
+
+    ret = []
+    print "Length of cluster table: ", len(cluster_table)
+    for cluster in cluster_table:
+        cluster[-1] = [c[:-1] for c in cluster[-1]]
+        from random import choice
+        ret.append(choice(cluster[-1]))
+    return ret
+
 # def median_where(self, filename):
 #     # todo
 #
@@ -134,6 +145,8 @@ class cpm_reduction(jmoo_problem):
         training = method(temp_file_name)
         temp_file_removal()
 
+        import pdb
+        pdb.set_trace()
 
         print "Length of training set: ", len(training),
         print "Length of testing set: ", len(self.testing_dependent)
@@ -186,7 +199,7 @@ class cpm_apache_training_reduction(cpm_reduction):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
+        if treatment is None: treatment = random_where
         elif treatment == 0: treatment = base_line
         # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]

@@ -21,7 +21,7 @@ def median_mre_scores():
     for file in files:
         name = file[:-4].split("_")[1]
         data[name] = get_data(file)
-
+    print data.keys()
     return data
 
 
@@ -32,7 +32,7 @@ top = bottom + height
 
 
 #
-print median_mre_scores().keys()
+print median_mre_scores()["apache"].keys()
 # print evaluation_data()["apache"]["east_west_where"]
 
 import numpy as np
@@ -63,8 +63,8 @@ ax2.plot(x_axis, median_mre_scores()["BDBC"]["east_west_where"], 'kx-', color='g
 ax2.plot(x_axis, median_mre_scores()["BDBC"]["base_line"], 'kx-', color='b')
 # ax2.set_title('Berkeley DB C')
 ax2.set_xlim(0.05, 0.95)
-ax2.set_ylim(-5, 70)
-ax2.set_yticks(np.arange(0, 70, 20))
+# ax2.set_ylim(-5, 70)
+# ax2.set_yticks(np.arange(0, 70, 20))
 # ax2.set_ylabel("MRE")
 ax2.text(right, 0.5*(bottom+top), 'BDBC',
         horizontalalignment='center',

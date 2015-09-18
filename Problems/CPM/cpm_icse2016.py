@@ -123,7 +123,6 @@ def base_line(filename="./data/Apache_AllMeasurements.csv"):
     ret0 = [x.replace("\r", "").replace("\n", "") for x in ret0]
     ret = []
     for r in ret0:
-        print r
         ret.append([int(float(x)) for x in r.split(",")])
 
     print "Length of cluster table: ", len(ret)
@@ -196,6 +195,9 @@ class cpm_reduction(jmoo_problem):
         prediction = [float(x) for x in self.CART.predict(self.testing_independent)]
         mre = []
         for i, j in zip(self.testing_dependent, prediction):
+            # if abs(i - j)/float(i) > 1:
+            #     print abs(i - j)/float(i), i, j
+                # raw_input()
             mre.append(abs(i - j)/float(i))
         return sum(mre)/len(mre)
 
@@ -428,8 +430,7 @@ def performance_test(dataset, treatment):
         total_times.append(p.find_total_time())
         temp_store.append(p.test_data())
         evaluations.append(p.no_of_clusters)
-    print
-    # print total_times
+
     assert(int(sum(total_times)/len(total_times)) == int(total_times[0])), "Something's wrong"
     scores.append(data_container(training_percent, temp_store, sum(saved_times)/len(saved_times), sum(total_times)/len(total_times), sum(evaluations)/len(evaluations)))
     return scores
@@ -445,6 +446,7 @@ def draw(data, name):
     for row in data:
         scores = []
         for d in row:
+            print d[1]
             temp = []
             temp.append(d[0])
             temp.append(np.percentile(d[1], 50))
@@ -608,8 +610,8 @@ def test_LLVM():
 
 def start_test():
     # test_cpm_apache()
-    test_BDBJ()
-    # test_BDBC()
+    # test_BDBJ()
+    test_BDBC()
     # test_SQL()
     # test_x264()
     # test_LLVM()
