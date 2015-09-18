@@ -100,7 +100,6 @@ def base_line(filename="./data/Apache_AllMeasurements.csv"):
     ret0 = [x.replace("\r", "").replace("\n", "") for x in ret0]
     ret = []
     for r in ret0:
-        print r
         ret.append([int(float(x)) for x in r.split(",")])
 
     print "Length of cluster table: ", len(ret)
@@ -460,7 +459,7 @@ def draw(data, name):
 
 def test_cpm_apache():
     problems = [cpm_apache_training_reduction]
-    treatments = [base_line]#[random_where, base_line, exemplar_where, east_west_where]
+    treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
@@ -572,12 +571,12 @@ def test_LLVM():
 
 
 def start_test():
-    test_cpm_apache()
+    # test_cpm_apache()
     # test_BDBJ()
     # test_BDBC()
-    # test_SQL()
-    # test_x264()
-    # test_LLVM()
+    test_SQL()
+    test_x264()
+    test_LLVM()
 
 
 def offline_draw( name):
