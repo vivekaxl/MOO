@@ -237,7 +237,7 @@ class JMOO:
                     
 
                     start = time.time()
-                    statBox = jmoo_evo(problem, algorithm)
+                    statBox = jmoo_evo(problem, algorithm, repeat)
                     end = time.time()
 
                     # approx = []

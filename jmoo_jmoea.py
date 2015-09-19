@@ -37,7 +37,7 @@ import jmoo_properties
 import os, sys, inspect
 
 
-def jmoo_evo(problem, algorithm, toStop = bstop):
+def jmoo_evo(problem, algorithm, repeat=-1, toStop = bstop):
     """
     ----------------------------------------------------------------------------
      Inputs:
@@ -145,7 +145,7 @@ def jmoo_evo(problem, algorithm, toStop = bstop):
 
 
         fignum = len([name for name in os.listdir('data/finalpopulation')]) + 1
-        filename = "data/finalpopulation/" + problem.name + "_" + algorithm.name + str(fignum) + ".txt"
+        filename = "data/finalpopulation/" + problem.name + "_" + algorithm.name + "_" + str(repeat) + "_" + str(fignum) + ".txt"
         filedesc = open(filename, 'w')
         print "hold population: ", len(statBox.box[-1].population)
         for pop in statBox.box[-1].population:

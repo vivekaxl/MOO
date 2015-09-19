@@ -145,9 +145,6 @@ class cpm_reduction(jmoo_problem):
         training = method(temp_file_name)
         temp_file_removal()
 
-        import pdb
-        pdb.set_trace()
-
         print "Length of training set: ", len(training),
         print "Length of testing set: ", len(self.testing_dependent)
 
@@ -291,7 +288,7 @@ class cpm_BDBJ(cpm_reduction):
         if solution[4] == 1 and solution[6] != 1: return False
         if solution[6] == 1 and sum([solution[7], solution[8]]) != 1: return False
         if solution[10] != 1: return False
-        if solution[10] == 1 and sum([solution[11], solution[12]]) == 0: return False
+        if solution[10] == 1 and sum([solution[11], solution[12]]) != 1: return False
         if solution[13] != 1: return False
         if solution[14] != 1: return False
         if solution[19] == 1 and solution[17] != 1: return False

@@ -65,9 +65,9 @@ from diabaties import *
 # JMOO Experimental Definitions
 algorithms = [
               jmoo_GALE(),
-              jmoo_NSGAII(),
+              # jmoo_NSGAII(),
               # # jmoo_SPEA2(),
-              jmoo_DE(),
+              # jmoo_DE(),
               # jmoo_MOEAD(),
               # jmoo_NSGAIII(),
               # #   jmoo_ANYWHERE(),
@@ -102,11 +102,11 @@ problems =[
     #MONRP(50, 5, 5, 20, 120)
     # cpm_apache(),cpm_X264(), cpm_SQL_4553(), cpm_SQL_100(), cpm_LLVM(), cpm_BDBJ(), cpm_BDBC()
     cpm_apache_training_reduction(treatment=None),
-    # cpm_X264(treatment=None),
-    # cpm_SQL(treatment=None),
-    # cpm_LLVM(treatment=None),
-    # cpm_BDBJ(treatment=None),
-    # cpm_BDBC(treatment=None)
+    cpm_X264(treatment=None),
+    cpm_SQL(treatment=None),
+    cpm_LLVM(treatment=None),
+    cpm_BDBJ(treatment=None),
+    cpm_BDBC(treatment=None)
 
 
     # #, fonseca(3), srinivas(), schaffer(), osyczka2(),# water()

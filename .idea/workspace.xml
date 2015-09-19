@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="jmoo_properties.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
+      <file leaf-file-name="transform1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/finalpopulation/Helper/transform1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.6296296" vertical-offset="436" max-vertical-offset="2925">
-              <caret line="42" column="12" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="12" />
+            <state vertical-scroll-proportion="-15.0" vertical-offset="675" max-vertical-offset="1290">
+              <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -37,68 +37,43 @@
       <file leaf-file-name="cpm_reduction.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_reduction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6296296" vertical-offset="1078" max-vertical-offset="4155">
-              <caret line="83" column="14" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3647" max-vertical-offset="4755">
+              <caret line="290" column="71" selection-start-line="290" selection-start-column="71" selection-end-line="290" selection-end-column="71" />
               <folding>
-                <element signature="e#7872#9524#0" expanded="false" />
-                <element signature="e#9561#11978#0" expanded="false" />
-                <element signature="e#12015#13422#0" expanded="false" />
-                <element signature="e#13458#15370#0" expanded="false" />
-                <element signature="e#15408#17112#0" expanded="false" />
-                <element signature="e#17140#17236#0" expanded="false" />
-                <element signature="e#17284#17756#0" expanded="false" />
-                <element signature="e#17784#18853#0" expanded="false" />
-                <element signature="e#19016#19713#0" expanded="false" />
-                <element signature="e#19736#20412#0" expanded="false" />
-                <element signature="e#20435#21174#0" expanded="false" />
-                <element signature="e#21197#21935#0" expanded="false" />
-                <element signature="e#21959#22698#0" expanded="false" />
-                <element signature="e#22721#23460#0" expanded="false" />
+                <element signature="e#7828#9480#0" expanded="false" />
+                <element signature="e#11971#13378#0" expanded="false" />
+                <element signature="e#13414#15326#0" expanded="false" />
+                <element signature="e#15364#17068#0" expanded="false" />
+                <element signature="e#17096#17192#0" expanded="false" />
+                <element signature="e#17240#17712#0" expanded="false" />
+                <element signature="e#17740#18809#0" expanded="false" />
+                <element signature="e#18972#19669#0" expanded="false" />
+                <element signature="e#19692#20368#0" expanded="false" />
+                <element signature="e#20391#21130#0" expanded="false" />
+                <element signature="e#21153#21891#0" expanded="false" />
+                <element signature="e#21915#22654#0" expanded="false" />
+                <element signature="e#22677#23416#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transform1.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data/finalpopulation/Helper/transform1.py">
+      <file leaf-file-name="BDBJ_AllMeasurements.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Problems/CPM/data/BDBJ_AllMeasurements.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.053097345" vertical-offset="0" max-vertical-offset="1800">
-              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+            <state vertical-scroll-proportion="-8.888889" vertical-offset="0" max-vertical-offset="2805">
+              <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cpm_icse2016.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_icse2016.py">
+      <file leaf-file-name="test_dataset.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Problems/CPM/data/test_dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.555555" vertical-offset="1320" max-vertical-offset="10440">
-              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="116" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mre_vs_percentage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Problems/CPM/Scripts/mre_vs_percentage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="710" max-vertical-offset="2310">
-              <caret line="67" column="23" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.2920354" vertical-offset="0" max-vertical-offset="585">
+              <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="variance_variation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Problems/CPM/Scripts/variance_variation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.185185" vertical-offset="166" max-vertical-offset="2325">
-              <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
-              <folding>
-                <element signature="e#1024#1042#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -115,8 +90,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Problems/xomo/xomo.py" />
-        <option value="$PROJECT_DIR$/Problems/CPM/utilities/lib.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/utilities/where_utilities.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/cpm.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/utilities/sdivUtil.py" />
@@ -139,8 +112,6 @@
         <option value="$PROJECT_DIR$/data/finalpopulation/Helper/percentile.apache.txt" />
         <option value="$PROJECT_DIR$/Problems/CPM/utilities/csv_utilities.py" />
         <option value="$PROJECT_DIR$/jmoo_problem.py" />
-        <option value="$PROJECT_DIR$/jmoo_jmoea.py" />
-        <option value="$PROJECT_DIR$/data/finalpopulation/Helper/transform1.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/Logs/cpm_LLVM.txt" />
         <option value="$PROJECT_DIR$/joes_moo_charter.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/data/LLVM_AllMeasurements.csv" />
@@ -164,8 +135,12 @@
         <option value="$PROJECT_DIR$/Problems/CPM/cpm_icse2016.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/Scripts/mre_vs_percentage.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/Scripts/variance_variation.py" />
+        <option value="$PROJECT_DIR$/jmoo_core.py" />
+        <option value="$PROJECT_DIR$/jmoo_jmoea.py" />
         <option value="$PROJECT_DIR$/jmoo_properties.py" />
+        <option value="$PROJECT_DIR$/data/finalpopulation/Helper/transform1.py" />
         <option value="$PROJECT_DIR$/Problems/CPM/cpm_reduction.py" />
+        <option value="$PROJECT_DIR$/Problems/CPM/data/test_dataset.py" />
       </list>
     </option>
   </component>
@@ -440,7 +415,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28554216" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -448,7 +423,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29527837" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29527837" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -495,106 +470,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/charts/08-14-2015/figure16_CPM_BDBJ_.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/charts/08-15-2015/figure01_CPM_BDBJ_.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/charts/08-15-2015/figure02_CPM_SQL_.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_jmoea.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1391" max-vertical-offset="2310">
-          <caret line="107" column="41" selection-start-line="107" selection-start-column="41" selection-end-line="107" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_algorithms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="799" max-vertical-offset="6585">
-          <caret line="103" column="33" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utility.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15338646" vertical-offset="3043" max-vertical-offset="3975">
-          <caret line="210" column="70" selection-start-line="210" selection-start-column="68" selection-end-line="210" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GALE/gale_components.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1306" max-vertical-offset="2625">
-          <caret line="108" column="42" selection-start-line="108" selection-start-column="42" selection-end-line="108" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GALE/fastmap/Moo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.962963" vertical-offset="1348" max-vertical-offset="2775">
-          <caret line="121" column="42" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PF/DTLZ1(15)-PF.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2115">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PF/DTLZ_PF_Generator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2745">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_icse_logs.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="529">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/joes_moo_charter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4988" max-vertical-offset="6885">
-          <caret line="380" column="42" selection-start-line="380" selection-start-column="42" selection-end-line="380" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/data/SQL_AllMeasurements.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52389705" vertical-offset="0" max-vertical-offset="69900">
-          <caret line="19" column="94" selection-start-line="19" selection-start-column="94" selection-end-line="19" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/RahulTool/axe/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16544117" vertical-offset="0" max-vertical-offset="1635">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/RahulTool/axe/abcd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5036765" vertical-offset="281" max-vertical-offset="1275">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Problems/CPM/utilities/RahulTool/axe/table.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1980">
@@ -621,13 +496,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="16841" max-vertical-offset="17385">
           <caret line="1152" column="39" selection-start-line="1152" selection-start-column="39" selection-end-line="1152" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/data/BDBJ_AllMeasurements.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2805">
-          <caret line="180" column="56" selection-start-line="180" selection-start-column="56" selection-end-line="180" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -667,14 +535,6 @@
     <entry file="file://$PROJECT_DIR$/Problems/CPM/figures/cpm_apache_training_reduction.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/data/Apache_AllMeasurements.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83455884" vertical-offset="2426" max-vertical-offset="2970">
-          <caret line="192" column="22" selection-start-line="192" selection-start-column="22" selection-end-line="192" selection-end-column="22" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Problems/CPM/figures/cpm_BDBC.png">
@@ -834,14 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6296296" vertical-offset="436" max-vertical-offset="2925">
-          <caret line="42" column="12" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_icse2016.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.555555" vertical-offset="1320" max-vertical-offset="10440">
@@ -860,33 +712,176 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_reduction.py">
+    <entry file="file://$PROJECT_DIR$/jmoo_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6296296" vertical-offset="1078" max-vertical-offset="4155">
-          <caret line="83" column="14" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
-          <folding>
-            <element signature="e#7872#9524#0" expanded="false" />
-            <element signature="e#9561#11978#0" expanded="false" />
-            <element signature="e#12015#13422#0" expanded="false" />
-            <element signature="e#13458#15370#0" expanded="false" />
-            <element signature="e#15408#17112#0" expanded="false" />
-            <element signature="e#17140#17236#0" expanded="false" />
-            <element signature="e#17284#17756#0" expanded="false" />
-            <element signature="e#17784#18853#0" expanded="false" />
-            <element signature="e#19016#19713#0" expanded="false" />
-            <element signature="e#19736#20412#0" expanded="false" />
-            <element signature="e#20435#21174#0" expanded="false" />
-            <element signature="e#21197#21935#0" expanded="false" />
-            <element signature="e#21959#22698#0" expanded="false" />
-            <element signature="e#22721#23460#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="-8.296296" vertical-offset="3361" max-vertical-offset="10860">
+          <caret line="239" column="35" selection-start-line="239" selection-start-column="35" selection-end-line="239" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_jmoea.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1745" max-vertical-offset="2310">
+          <caret line="147" column="108" selection-start-line="147" selection-start-column="108" selection-end-line="147" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_4.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_5.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_6.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_8.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_10.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_11.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_13.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jmoo_properties.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63716817" vertical-offset="1830" max-vertical-offset="2925">
+          <caret line="147" column="42" selection-start-line="147" selection-start-column="42" selection-end-line="147" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/data/Apache_AllMeasurements.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84070796" vertical-offset="2405" max-vertical-offset="2970">
+          <caret line="192" column="22" selection-start-line="192" selection-start-column="22" selection-end-line="192" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/data/BDBJ_AllMeasurements.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.888889" vertical-offset="0" max-vertical-offset="2805">
+          <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_9.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_12.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_0_15.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/finalpopulation/CPM_APACHE_GALE_2_35.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/finalpopulation/Helper/transform1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.053097345" vertical-offset="0" max-vertical-offset="1800">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        <state vertical-scroll-proportion="-15.0" vertical-offset="675" max-vertical-offset="1290">
+          <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/cpm_reduction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3647" max-vertical-offset="4755">
+          <caret line="290" column="71" selection-start-line="290" selection-start-column="71" selection-end-line="290" selection-end-column="71" />
+          <folding>
+            <element signature="e#7828#9480#0" expanded="false" />
+            <element signature="e#11971#13378#0" expanded="false" />
+            <element signature="e#13414#15326#0" expanded="false" />
+            <element signature="e#15364#17068#0" expanded="false" />
+            <element signature="e#17096#17192#0" expanded="false" />
+            <element signature="e#17240#17712#0" expanded="false" />
+            <element signature="e#17740#18809#0" expanded="false" />
+            <element signature="e#18972#19669#0" expanded="false" />
+            <element signature="e#19692#20368#0" expanded="false" />
+            <element signature="e#20391#21130#0" expanded="false" />
+            <element signature="e#21153#21891#0" expanded="false" />
+            <element signature="e#21915#22654#0" expanded="false" />
+            <element signature="e#22677#23416#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Problems/CPM/data/test_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2920354" vertical-offset="0" max-vertical-offset="585">
+          <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
           <folding />
         </state>
       </provider>
