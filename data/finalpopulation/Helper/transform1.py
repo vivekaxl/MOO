@@ -27,6 +27,31 @@ def get_dataset(filename):
     return content, sorted(rank_list)
 
 
+
+def validate(solution):
+    if sum(solution) == 0: return False
+    if solution[0] != 1: return False
+    if solution[1] != 1: return False
+    if solution[2] != 1: return False
+    if sum([solution[3], solution[4]]) != 1: return False
+    if solution[4] == 1 and solution[5] != 1: return False
+    if solution[4] == 0 and sum(solution[5:10]) != 0: return False
+    if solution[4] == 1 and solution[6] != 1: return False
+    if solution[6] == 1 and sum([solution[7], solution[8]]) != 1: return False
+    if solution[10] != 1: return False
+    if solution[10] == 1 and sum([solution[11], solution[12]]) != 1: return False
+    if solution[13] != 1: return False
+    if solution[14] != 1: return False
+    if solution[19] == 1 and solution[15] != 1: return False
+    if solution[16] != 1: return False
+    if solution[16] == 1 and solution[17] != 1: return False
+    if solution[16] == 1 and solution[18] != 1: return False
+    if solution[20] == 1 and solution[21] != 1: return False
+    if solution[20] == 1 and solution[22] != 1: return False
+    if solution[22] == 1 and sum([solution[23], solution[24]]) != 1: return False
+    if solution[20] == 0 and sum(solution[21:25]) != 0: return False
+    return True
+
 def get_ranks(file_names):
     algorithms = [ "GALE"]
     list_of_files = os.listdir("..")
@@ -47,6 +72,22 @@ def get_ranks(file_names):
         for f in file_dict[key]: content.extend(read_file_return_list(f))
         dataset, rank_list = get_dataset(file_names[-1])
         transform_content = [c.split(":")[0].replace(" ", "") for c in content]
+
+        # only for BDBJ
+        for index, tc in enumerate(transform_content):
+            temp_tc = map(int, tc.split(","))
+            indexes_iTracting = [21, 22, 23, 24]
+            indexes_new_io = [5, 6, 7, 8, 9]
+            if temp_tc[20] == 0:
+                for ind in indexes_iTracting: temp_tc[ind] = 0
+            if temp_tc[4] == 0:
+                for ind in indexes_new_io: temp_tc[ind] = 0
+
+            assert(validate(temp_tc) is True), "Something is wrong"
+            transform_content[index] = ",".join([str(i) for i in temp_tc])
+
+
+
 
         for tc in transform_content:
             if key in ranks.keys():

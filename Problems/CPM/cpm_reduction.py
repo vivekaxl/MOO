@@ -174,6 +174,8 @@ class cpm_reduction(jmoo_problem):
 
     def evaluate(self, input = None):
         if input:
+            print input
+            raw_input()
             for i,decision in enumerate(self.decisions):
                 decision.value = input[i]
             input = [round(decision.value, 0) for decision in self.decisions]
@@ -291,13 +293,14 @@ class cpm_BDBJ(cpm_reduction):
         if solution[10] == 1 and sum([solution[11], solution[12]]) != 1: return False
         if solution[13] != 1: return False
         if solution[14] != 1: return False
-        if solution[19] == 1 and solution[17] != 1: return False
+        if solution[19] == 1 and solution[15] != 1: return False
         if solution[16] != 1: return False
         if solution[16] == 1 and solution[17] != 1: return False
         if solution[16] == 1 and solution[18] != 1: return False
         if solution[20] == 1 and solution[21] != 1: return False
         if solution[20] == 1 and solution[22] != 1: return False
         if solution[22] == 1 and sum([solution[23], solution[24]]) != 1: return False
+        if solution[20] == 0 and sum(solution[21:25]) != 0: return False
         return True
 
 class cpm_LLVM(cpm_reduction):
