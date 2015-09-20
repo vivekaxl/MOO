@@ -174,15 +174,17 @@ class cpm_reduction(jmoo_problem):
 
     def evaluate(self, input = None):
         if input:
-            print input
-            raw_input()
+            import time
+            start = time.time()
             for i,decision in enumerate(self.decisions):
                 decision.value = input[i]
+
             input = [round(decision.value, 0) for decision in self.decisions]
             assert(len(input) == len(self.decisions)), "Something's wrong"
-            if self.validate(input) is False: return [10**5]
+            if self.validate(input) is False: return [10**10]
 
             prediction = self.CART.predict(input)
+            # print "Evaluation Time: ", time.time() - start
             return [p/float(10**4) for p in prediction]
         else:
             assert(False), "BOOM"
@@ -198,7 +200,7 @@ class cpm_apache_training_reduction(cpm_reduction):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = random_where
+        if treatment is None: treatment = east_west_where
         elif treatment == 0: treatment = base_line
         # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]

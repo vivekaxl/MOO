@@ -71,6 +71,7 @@ class jmoo_problem(object):
                 #     break
                 if prob.validate(temp_value) is True: break
             assert(prob.validate(temp_value) is True), "Something's wrong"
+            # print "Initial Population Generation Complete"
             return temp_value
     def generateExtreme(prob):
         

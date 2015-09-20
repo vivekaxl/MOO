@@ -1,6 +1,8 @@
 
-
+from __future__ import division
 import os
+
+
 
 def read_file_return_list(filename):
     return open("../"+filename, "r").readlines()
@@ -22,7 +24,7 @@ def get_dataset(filename):
     for t in temp_list:
         temp = t.replace("Y","1").replace("N", "0").split(",")
         content[",".join(temp[:-1])] = float(temp[-1])
-        rank_list.append(int(float(temp[-1])))
+        rank_list.append(float(temp[-1]))
 
     return content, sorted(rank_list)
 
@@ -74,25 +76,26 @@ def get_ranks(file_names):
         transform_content = [c.split(":")[0].replace(" ", "") for c in content]
 
         # only for BDBJ
-        for index, tc in enumerate(transform_content):
-            temp_tc = map(int, tc.split(","))
-            indexes_iTracting = [21, 22, 23, 24]
-            indexes_new_io = [5, 6, 7, 8, 9]
-            if temp_tc[20] == 0:
-                for ind in indexes_iTracting: temp_tc[ind] = 0
-            if temp_tc[4] == 0:
-                for ind in indexes_new_io: temp_tc[ind] = 0
-
-            assert(validate(temp_tc) is True), "Something is wrong"
-            transform_content[index] = ",".join([str(i) for i in temp_tc])
+        # for index, tc in enumerate(transform_content):
+        #     temp_tc = map(int, tc.split(","))
+        #     indexes_iTracting = [21, 22, 23, 24]
+        #     indexes_new_io = [5, 6, 7, 8, 9]
+        #     if temp_tc[20] == 0:
+        #         for ind in indexes_iTracting: temp_tc[ind] = 0
+        #     if temp_tc[4] == 0:
+        #         for ind in indexes_new_io: temp_tc[ind] = 0
+        #
+        #     assert(validate(temp_tc) is True), "Something is wrong"
+        #     transform_content[index] = ",".join([str(i) for i in temp_tc])
 
 
 
 
         for tc in transform_content:
+            # print tc
             if key in ranks.keys():
                 try:
-                    ranks[key].extend([rank_list.index(int(float(dataset[tc])))])
+                    ranks[key].extend([rank_list.index(float(dataset[tc]))])
                 except:
                     count += 1
                     pass
@@ -100,9 +103,9 @@ def get_ranks(file_names):
                 # print "> "*10
                 # try:
                 try:
-                    ranks[key] = [rank_list.index(int(float(dataset[tc])))]
+                    ranks[key] = [rank_list.index(float(dataset[tc]))]
                 except:
-                    print tc
+                    # print tc
                     count += 1
                     pass
 
@@ -118,5 +121,18 @@ def get_ranks(file_names):
 
 if __name__ == "__main__":
     file_names = ["CPM_BDBJ",]# "cpm_X264", "CPM_APACHE", "CPM_BDBC", "CPM_LLVM", "CPM_SQL",]
+    # file_names = ["cpm_X264", "CPM_APACHE", "CPM_BDBC", "CPM_LLVM", "CPM_SQL",]
     for file_name in file_names:
-        print file_name, get_ranks([file_name])
+        print file_name,
+        rank_list = get_ranks([file_name])
+        rank_list = sorted(rank_list)
+        print rank_list
+        tw5 = int(len(rank_list)/4)
+        hlf = 2 * tw5
+        thrds = 3 * tw5
+        _, ranklst = get_dataset(file_name)
+        length = len(ranklst)
+        # x = lambda x: int((x/length) * 100)
+        x = lambda x: x
+        print " 25: ",x(rank_list[tw5])," Median: ", x(rank_list[hlf]), " 75: ", x(rank_list[thrds])
+        print " y25: ",x(ranklst[tw5])," y50: ", x(ranklst[hlf]), " y75: ", x(ranklst[thrds])
