@@ -120,7 +120,7 @@ def get_ranks(file_names):
     return best_scores
 
 if __name__ == "__main__":
-    file_names = ["CPM_BDBJ",]# "cpm_X264", "CPM_APACHE", "CPM_BDBC", "CPM_LLVM", "CPM_SQL",]
+    file_names = ["CPM_APACHE",]# "cpm_X264", "CPM_APACHE", "CPM_BDBC", "CPM_LLVM", "CPM_SQL",]
     # file_names = ["cpm_X264", "CPM_APACHE", "CPM_BDBC", "CPM_LLVM", "CPM_SQL",]
     for file_name in file_names:
         print file_name,
