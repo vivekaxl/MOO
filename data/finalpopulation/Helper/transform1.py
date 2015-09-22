@@ -54,8 +54,39 @@ def validate(solution):
     if solution[20] == 0 and sum(solution[21:25]) != 0: return False
     return True
 
+def values_for_sql(file_names):
+    algorithms = [ "NSGAII"]
+    list_of_files = os.listdir("..")
+
+    from collections import defaultdict
+    file_dict = defaultdict(list)
+
+    for file_name in file_names:
+        for file in list_of_files:
+            if file_name in file:
+                for algorithm in algorithms:
+                    if algorithm in file:
+                        file_dict[file_name + "#" + algorithm + "#" + file.split("_")[3]].append(file)
+
+
+    count = 0
+    ranks = defaultdict(list)
+    final_list = []
+    for key in file_dict.keys():
+        content = []
+        values = []
+        for f in file_dict[key]: content.extend(read_file_return_list(f))
+        for cont in content:
+            values.append([[cont.split(":")[0]], float(cont.split()[-1])])
+        final_list.append(sorted(values, key=lambda x: x[-1])[0][-1])
+
+    import numpy as np
+    print "Median: ", np.percentile(final_list, 50), "IQR: ", np.percentile(final_list, 75) - np.percentile(final_list, 25)
+
+
+
 def get_ranks(file_names):
-    algorithms = [ "GALE"]
+    algorithms = [ "NSGAII"]
     list_of_files = os.listdir("..")
 
     from collections import defaultdict
@@ -119,8 +150,15 @@ def get_ranks(file_names):
     print "count: ", count
     return best_scores
 
-if __name__ == "__main__":
-    file_names = ["CPM_APACHE",]# "cpm_X264", "CPM_APACHE", "CPM_BDBC", "CPM_LLVM", "CPM_SQL",]
+
+def _values_for_sql():
+    file_names = ["CPM_SQL"]
+    for file_name in file_names:
+        print file_name,
+        values_for_sql([file_name])
+
+def _values_for_rest():
+    file_names = ["CPM_APACHE", "CPM_BDBC", "CPM_BDBJ",  "CPM_LLVM", "CPM_SQL","cpm_X264",]
     # file_names = ["cpm_X264", "CPM_APACHE", "CPM_BDBC", "CPM_LLVM", "CPM_SQL",]
     for file_name in file_names:
         print file_name,
@@ -134,5 +172,11 @@ if __name__ == "__main__":
         length = len(ranklst)
         # x = lambda x: int((x/length) * 100)
         x = lambda x: x
-        print " 25: ",x(rank_list[tw5])," Median: ", x(rank_list[hlf]), " 75: ", x(rank_list[thrds])
-        print " y25: ",x(ranklst[tw5])," y50: ", x(ranklst[hlf]), " y75: ", x(ranklst[thrds])
+        # Ranks:
+        # print " 25: ",x(rank_list[tw5])," Median: ", x(rank_list[hlf]), " 75: ", x(rank_list[thrds])
+        # Scores:
+        # print " y25: ",x(ranklst[tw5])," y50: ", x(ranklst[hlf]), " y75: ", x(ranklst[thrds])
+        print " Median: ", x(ranklst[hlf]), " IQR: ", x(ranklst[thrds]) - x(ranklst[tw5])
+
+if __name__ == "__main__":
+    _values_for_sql()

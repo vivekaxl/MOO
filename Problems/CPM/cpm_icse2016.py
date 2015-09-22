@@ -103,6 +103,20 @@ def exemplar_where(filename):
     for cluster in cluster_table:
         cluster[-1] = [c[:-1] for c in cluster[-1]]
         ret.append(sorted(cluster[-1], key=lambda x: x[-1])[0])
+        # ret.append(sorted(cluster[-1], key=lambda x: x[-1])[int(len(cluster[-1])/2)])
+
+    return ret, len(cluster_table)
+
+
+def exemplar_where_median(filename):
+    cluster_table = WHEREDataTransformation(filename)
+
+    ret = []
+    print "Length of cluster table: ", len(cluster_table)
+    for cluster in cluster_table:
+        cluster[-1] = [c[:-1] for c in cluster[-1]]
+        ret.append(sorted(cluster[-1], key=lambda x: x[-1])[int(len(cluster[-1])/2)])
+
     return ret, len(cluster_table)
 
 def random_where(filename):
@@ -248,12 +262,24 @@ class cpm_apache_training_reduction(cpm_reduction):
         self.training_independent, self.training_dependent,  = self.get_training_data(method=treatment)
         global training_percent
         from math import log, ceil
-        # print training_percent,
+        # # print training_percent,
+        # print "=" * 20
+        # print "Reduced data: ", self.training_dependent
+        # print "total run time: ", sum(self.training_dependent)
+        # print "totol total run time: ", self.find_total_time()
+        # print "sadsadsa time: ", self.find_total_time() - sum(self.training_dependent)
+        # print "Saving Percentage: ", (sum(self.training_dependent)/self.find_total_time()) *100
+        # print "Length of self.data: ", len(self.data)
+        # print treatment.__name__
+
 
         print "Length of training dataset: ", len(self.training_dependent), len(self.data), (2*log(len(self.data) * training_percent, 2))
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
         self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
+        # print "Saved_time: ", self.saved_time
+        # print "asdasdas Saving : ", ((self.find_total_time() - self.saved_time)/self.find_total_time()) * 100
+        # raw_input()
 
 class cpm_BDBC(cpm_reduction):
     def __init__(self, treatment, number=50, requirements=18, name="CPM_BDBC", filename="./data/BDBC_AllMeasurements.csv"):
@@ -308,6 +334,8 @@ class cpm_BDBJ(cpm_reduction):
 
         self.CART = tree.DecisionTreeRegressor()
         self.CART = self.CART.fit(self.training_independent, self.training_dependent)
+
+
 
         self.saved_time = (self.find_total_time() - sum(self.training_dependent))/10**4
 
@@ -412,7 +440,7 @@ class data_container:
 
 def performance_test(dataset, treatment):
     global repeat_name
-    repeats = 20
+    repeats = 5
     scores = []
     saved_times = []
     total_times = []
@@ -431,6 +459,8 @@ def performance_test(dataset, treatment):
         temp_store.append(p.test_data())
         evaluations.append(p.no_of_clusters)
 
+    # import pdb
+    # pdb.set_trace()
     assert(int(sum(total_times)/len(total_times)) == int(total_times[0])), "Something's wrong"
     scores.append(data_container(training_percent, temp_store, sum(saved_times)/len(saved_times), sum(total_times)/len(total_times), sum(evaluations)/len(evaluations)))
     return scores
@@ -507,6 +537,7 @@ def test_cpm_apache():
 def test_BDBJ():
     problems = [cpm_BDBJ]
     treatments = [random_where, base_line, exemplar_where, east_west_where]
+    # treatments = [exemplar_where_median, base_line, exemplar_where,]
     global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
@@ -527,6 +558,7 @@ def test_BDBJ():
 def test_BDBC():
     problems = [cpm_BDBC]
     treatments = [random_where, base_line, exemplar_where, east_west_where]
+    # treatments = [exemplar_where_median, base_line, exemplar_where,]
     global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
@@ -548,6 +580,7 @@ def test_BDBC():
 def test_SQL():
     problems = [cpm_SQL]
     treatments = [exemplar_where, random_where, base_line,  east_west_where]
+    # treatments = [exemplar_where_median, base_line, exemplar_where,]
     global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
@@ -569,6 +602,7 @@ def test_SQL():
 def test_x264():
     problems = [cpm_X264]
     treatments = [random_where, base_line, exemplar_where, east_west_where]
+    # treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
@@ -589,6 +623,7 @@ def test_x264():
 def test_LLVM():
     problems = [cpm_LLVM]
     treatments = [random_where, base_line, exemplar_where, east_west_where]
+    # treatments = [random_where, base_line, exemplar_where, east_west_where]
     global training_percent, testing_percent, problem_name, percent_name
     percents = [10,20,30,40, 50,60,70,80,90]
     scores = []
@@ -609,9 +644,9 @@ def test_LLVM():
 
 
 def start_test():
-    # test_cpm_apache()
+    test_cpm_apache()
     # test_BDBJ()
-    test_BDBC()
+    # test_BDBC()
     # test_SQL()
     # test_x264()
     # test_LLVM()

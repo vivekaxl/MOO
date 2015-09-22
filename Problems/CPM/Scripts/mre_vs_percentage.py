@@ -63,6 +63,7 @@ ax2.plot(x_axis, median_mre_scores()["BDBC"]["east_west_where"], 'kx-', color='g
 ax2.plot(x_axis, median_mre_scores()["BDBC"]["base_line"], 'kx-', color='b')
 # ax2.set_title('Berkeley DB C')
 ax2.set_xlim(0.05, 0.95)
+ax2.set_yticks(np.arange(0, 180, 40))
 # ax2.set_ylim(-5, 70)
 # ax2.set_yticks(np.arange(0, 70, 20))
 # ax2.set_ylabel("MRE")

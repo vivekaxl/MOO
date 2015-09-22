@@ -200,7 +200,7 @@ class cpm_apache_training_reduction(cpm_reduction):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
+        if treatment is None: treatment = random_where
         elif treatment == 0: treatment = base_line
         # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -232,7 +232,7 @@ class cpm_BDBC(cpm_reduction):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
+        if treatment is None: treatment = random_where
         elif treatment == 0: treatment = base_line
         names = ["x"+str(i+1) for i in xrange(requirements)]
         lows = [0 for _ in xrange(requirements)]
@@ -265,7 +265,7 @@ class cpm_BDBJ(cpm_reduction):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
+        if treatment is None: treatment = random_where
         elif treatment == 0: treatment = base_line
         # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -311,7 +311,7 @@ class cpm_LLVM(cpm_reduction):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
+        if treatment is None: treatment = random_where
         elif treatment == 0: treatment = base_line
         # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -339,7 +339,7 @@ class cpm_SQL(cpm_reduction):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
+        if treatment is None: treatment = random_where
         elif treatment == 0: treatment = base_line
         # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
@@ -380,7 +380,7 @@ class cpm_X264(cpm_reduction):
 
         self.name = name
         self.filename = filename
-        if treatment is None: treatment = east_west_where
+        if treatment is None: treatment = random_where
         elif treatment == 0: treatment = base_line
         # Setting up to create decisions
         names = ["x"+str(i+1) for i in xrange(requirements)]
