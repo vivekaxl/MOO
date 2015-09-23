@@ -114,7 +114,7 @@ def temp_file_removal():
     os.remove(temp_file_name)
 
 testing_percent = 0
-training_percent = 70
+training_percent = 40
 
 
 
@@ -144,7 +144,7 @@ class cpm_reduction(jmoo_problem):
         temp_file_generation(self.header, random_selection)
         training = method(temp_file_name)
         temp_file_removal()
-
+        print "training set: ", training_percent
         print "Length of training set: ", len(training),
         print "Length of testing set: ", len(self.testing_dependent)
 
