@@ -470,7 +470,7 @@ def draw(data, name):
     import pylab as pl
     filename = "./Logs/" + name + ".txt"
     fdesc = open(filename, "w")
-    fdesc.write("training_percent, mean, iqr, saved_time, total_time, technique, evaluations \n")
+    fdesc.write("training_percent, mean, standard_deviation, saved_time, total_time, technique, evaluations \n")
     scores1 = []
     import numpy as np
     for row in data:
@@ -482,8 +482,9 @@ def draw(data, name):
             temp.append(np.percentile(d[1], 50))
             temp.append(np.percentile(d[1], 75) - np.percentile(d[1], 25))
             temp.append(d[2])
-            temp_string = str(d[0][-1]) + "," + str(np.percentile(d[1], 50)) + "," + str(np.percentile(d[1], 75) -
-                                                    np.percentile(d[1], 25)) + "," + str(d[3][-1]) + "," + str(d[4][-1]//10**4) + "," + str(int(d[-1][-1])) + "," + str(d[2])+"\n"
+            # temp_string = str(d[0][-1]) + "," + str(np.percentile(d[1], 50)) + "," + str(np.percentile(d[1], 75) -
+            #                                         np.percentile(d[1], 25)) + "," + str(d[3][-1]) + "," + str(d[4][-1]//10**4) + "," + str(int(d[-1][-1])) + "," + str(d[2])+"\n"
+            temp_string = str(d[0][-1]) + "," + str(np.around(np.mean(d[1]), 3)) + "," + str(np.around(np.std(d[1]), 3)) + "," + str(d[3][-1]) + "," + str(d[4][-1]//10**4) + "," + str(int(d[-1][-1])) + "," + str(d[2])+"\n"
             print temp_string
             fdesc.write(temp_string)
             scores.append(temp)
@@ -645,11 +646,11 @@ def test_LLVM():
 
 def start_test():
     test_cpm_apache()
-    # test_BDBJ()
-    # test_BDBC()
-    # test_SQL()
-    # test_x264()
-    # test_LLVM()
+    test_BDBJ()
+    test_BDBC()
+    test_SQL()
+    test_x264()
+    test_LLVM()
 
 
 def offline_draw( name):
